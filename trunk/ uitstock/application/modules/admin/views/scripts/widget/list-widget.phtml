@@ -1,0 +1,58 @@
+<?php 
+		$i = 0; 
+		
+		foreach ($this->widgets as $widget): 
+			$i++;
+			 
+			if ($widget['published'] == 1) {
+				$title = "Click vào để ẩn widget";
+				$img =  $this->dirImg . '/AnHien_1.png'; 
+			} else {
+				$title = "Click vào để hiện widget";	
+				$img = $this->dirImg . '/AnHien_0.png';
+			}
+	
+			$minOrder = $this->pagewidget->getMinOrder($this->pageId, $widget['position']);
+			$maxOrder = $this->pagewidget->getMaxOrder($this->pageId, $widget['position']);
+			$order = $widget['ordering'];
+			
+			$upImg = $this->dirImg . '/up.png';
+			$downImg = $this->dirImg . '/down.png';
+			
+			if ($order == $minOrder) $upImg = '';																			
+			if ($order == $maxOrder) $downImg = '';
+			if ($maxOrder == $minOrder) {$downImg = '';$upImg = '';} 	
+			 																
+		if ($i % 2 != 0) {
+?>												
+			<tr class="odd gradeX" >							
+				<td class="left"><?php echo $i ?></td>
+				<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($widget['id']) ?>"  wid="<?php echo $this->escape($widget['page_id']); ?>" value="<?php echo $this->escape($widget['id']); ?>"/></td> 
+				<td class="left"><?php echo $this->escape($widget['name']) ?></td>
+				<td class="left"><?php echo $this->escape($widget['alias']) ?></td>								
+				<td class="center"><img name="widget" path="admin/widget/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($widget['id']); ?>" pathDirImg="<?php echo $this->dirImg; ?>" /></td>																													
+				<td class="center">
+					<img class="click order" path="admin/widget/change-order"  type="up" title="Click vào để đưa widget lên" src="<?php echo $upImg; ?>" ordering="<?php echo $this->escape($widget['ordering']) ?>" id="<?php echo $this->escape($widget['id']); ?>" currentpath="<?php echo $_SESSION['temp']; ?>" pageId="<?php echo $this->pageId; ?>" position="<?php echo $widget['position']; ?>" />
+					<img class="click order" path="admin/widget/change-order" type="down" title="Click vào để đưa widget xuống" src="<?php echo $downImg; ?>" ordering="<?php echo $this->escape($widget['ordering']) ?>" id="<?php echo $this->escape($widget['id']); ?>" currentpath="<?php echo $_SESSION['temp']; ?>" pageId="<?php echo $this->pageId; ?>" position="<?php echo $widget['position']; ?>" />
+		 			<input type="text" size="1" style="text-align: center" value="<?php echo $order ?>" />
+		 		</td>
+				<td class="center"><?php echo $this->escape($widget['position']) ?></td>																															
+				<td class="right"><?php echo $this->escape($widget['id']) ?></td>
+			</tr>						
+<?php } else { ?>														
+			<tr class="odd gradeX" >							
+				<td class="left"><?php echo $i ?></td>
+				<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($widget['id']) ?>" wid="<?php echo $this->escape($widget['page_id']); ?>" value="<?php echo $this->escape($widget['id']); ?>"/></td> 
+				<td class="left"><?php echo $this->escape($widget['name']) ?></td>
+				<td class="left"><?php echo $this->escape($widget['alias']) ?></td>								
+				<td class="center"><img name="widget" path="admin/widget/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($widget['id']); ?>" pathDirImg="<?php echo $this->dirImg; ?>" /></td>																			
+				<td class="center">
+					<img class="click order" path="admin/widget/change-order"  type="up" title="Click vào để đưa widget lên" src="<?php echo $upImg; ?>" ordering="<?php echo $this->escape($widget['ordering']) ?>" id="<?php echo $this->escape($widget['id']); ?>" currentpath="<?php echo $_SESSION['temp']; ?>" pageId="<?php echo $this->pageId; ?>" position="<?php echo $widget['position']; ?>" />
+					<img class="click order" path="admin/widget/change-order" type="down" title="Click vào để đưa widget xuống" src="<?php echo $downImg; ?>" ordering="<?php echo $this->escape($widget['ordering']) ?>" id="<?php echo $this->escape($widget['id']); ?>" currentpath="<?php echo $_SESSION['temp']; ?>" pageId="<?php echo $this->pageId; ?>" position="<?php echo $widget['position']; ?>" />
+		 			<input type="text" size="1" style="text-align: center" value="<?php echo $order ?>" />
+		 		</td>
+				<td class="center"><?php echo $this->escape($widget['position']) ?></td>																															
+				<td class="right"><?php echo $this->escape($widget['id']) ?></td>
+			</tr>
+<?php } ?>
+<?php endforeach ?>	
