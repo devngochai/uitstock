@@ -159,7 +159,8 @@
 		                 ->join(array('pw' => $dbPageWidgetName), 'w.id = pw.widget_id', array('position'))
 		                 ->join(array('p' => $dbPageName), 'pw.page_id = p.id', array('name'))
 		                 ->where('p.name = ?', $pageName)		                 		          
-		                 ->where('p.component_id = ?', $componentId)       		                 			                 		         
+		                 ->where('p.component_id = ?', $componentId)  
+		                 ->where('published = 1')     		                 			                 		         
 		                 ->order('pw.ordering');
 		                          		                 		                 				                 		                         						
 			return $db->fetchAll($select);								   

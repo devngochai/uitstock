@@ -109,10 +109,7 @@ class Admin_TemplateController extends ZendStock_Controller_Action {
 	public function setDefaultTemplateAction()
 	{
 		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);				
-					
-		$componentMapper = new Cloud_Model_Component_CloudComponentMapper();		
-		$component_1 = $componentMapper->getFirstComponent();
+		$this->_helper->viewRenderer->setNoRender(true);										
 			
 		$component_id = $this->request->getParam('component');		
 		$id = $this->request->getParam('id');			
@@ -123,10 +120,7 @@ class Admin_TemplateController extends ZendStock_Controller_Action {
 							
 		if (null == $template) echo 'error';
 		else {
-			if (null == $component_id)
-				$this->templateMapper->setDefaultTemplate($id, $component_1->id, $count);
-			else 
-				$this->templateMapper->setDefaultTemplate($id, $component_id, $count);	
+			$this->templateMapper->setDefaultTemplate($id, $component_id, $count);	
 		}
 	}	
 	

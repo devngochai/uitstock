@@ -105,15 +105,30 @@
 		
 		public function savePage(Cloud_Model_Page_CloudPage $Page, $component_id)
 		{		
-			$id = $this->save($Page);			
-			if ($Page->getIs_home() == 1)
+			$id = $this->save($Page);
+			$this->setHome($Page);			
+//			if ($Page->getIs_home() == 1)
+//			{
+//				$data = array('is_home' => 0);			
+//				$where = array('component_id = ?' => $component_id);
+//				$this->getDbTable()->update($data, $where);
+//				
+//				$data = array('is_home' => 1);			
+//				$where = array('id = ?' => $id);
+//				$this->getDbTable()->update($data, $where);
+//			}
+		}
+		
+		public function setHome(Cloud_Model_Page_CloudPage $page)
+		{
+			if ($page->getIs_home() == 1)
 			{
 				$data = array('is_home' => 0);			
-				$where = array('component_id = ?' => $component_id);
+				$where = array('component_id = ?' => $page->getComponent_id());
 				$this->getDbTable()->update($data, $where);
 				
 				$data = array('is_home' => 1);			
-				$where = array('id = ?' => $id);
+				$where = array('id = ?' => $page->getId());
 				$this->getDbTable()->update($data, $where);
 			}
 		}

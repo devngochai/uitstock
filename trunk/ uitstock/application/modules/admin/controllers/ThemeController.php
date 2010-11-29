@@ -110,10 +110,7 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 	public function setDefaultThemeAction()
 	{
 		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);				
-					
-		$componentMapper = new Cloud_Model_Component_CloudComponentMapper();	
-		$component_1 = $componentMapper->getFirstComponent();	
+		$this->_helper->viewRenderer->setNoRender(true);											
 		
 		$component_id = $this->request->getParam('component');		
 		$id = $this->request->getParam('id');		
@@ -123,11 +120,8 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 		$this->themeMapper->find($id, $theme);			
 					
 		if (null == $theme) echo 'error';
-		else {
-			if (null == $component_id)
-				$this->themeMapper->setDefaulTheme($id, $component_1->id, $count);
-			else 
-				$this->themeMapper->setDefaultTheme($id, $component_id, $count);	
+		else {			
+			$this->themeMapper->setDefaultTheme($id, $component_id, $count);	
 		}
 	}	
 	

@@ -85,8 +85,9 @@ class Admin_PageController extends ZendStock_Controller_Action {
 			
 			if ($this->getRequest()->isPost()) {
 				if ($form->isValid($this->request->getPost())) {			
-					$page = new Cloud_Model_Page_CloudPage($form->getValues());																							
+					$page = new Cloud_Model_Page_CloudPage($form->getValues());																								
 					$this->pageMapper->save($page);
+					$this->pageMapper->setHome($page);		
 					$this->view->message = 'Đã sửa page: ' . $currentPage->getName();
 				}
 			}
