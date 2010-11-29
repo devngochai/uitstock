@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Nov 28, 2010 at 11:17 PM
+-- Generation Time: Nov 29, 2010 at 12:09 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -38,6 +38,43 @@ CREATE TABLE `articles` (
 
 -- 
 -- Dumping data for table `articles`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `company`
+-- 
+
+CREATE TABLE `company` (
+  `COMPANY_ID` varchar(10) NOT NULL,
+  `GROUP_ID` varchar(10) default NULL,
+  `NAME` varchar(255) default NULL,
+  `INFO` text,
+  PRIMARY KEY  (`COMPANY_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `company`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `company_group`
+-- 
+
+CREATE TABLE `company_group` (
+  `GROUP_ID` varchar(10) NOT NULL,
+  `GROUP_NAME` varchar(50) default NULL,
+  `DESCRIPTION` varchar(256) default NULL,
+  PRIMARY KEY  (`GROUP_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `company_group`
 -- 
 
 
@@ -82,6 +119,24 @@ CREATE TABLE `content_categorys` (
 
 -- 
 -- Dumping data for table `content_categorys`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `market`
+-- 
+
+CREATE TABLE `market` (
+  `MARKET_ID` varchar(10) NOT NULL,
+  `NAME` varchar(50) default NULL,
+  `DISCRIPTION` varchar(256) default NULL,
+  PRIMARY KEY  (`MARKET_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `market`
 -- 
 
 
@@ -298,6 +353,27 @@ INSERT INTO `page_widget` VALUES (99, 9, 33, 'Left', 2, 1);
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `portfolio`
+-- 
+
+CREATE TABLE `portfolio` (
+  `PORTFOLIO_ID` varchar(10) NOT NULL,
+  `NAME` varchar(100) default NULL,
+  `USER_ID` varchar(10) default NULL,
+  `STOCK_ID` varchar(3) default NULL,
+  `BALANCE` int(11) default NULL,
+  `AVERAGE_PRICE` float default NULL,
+  PRIMARY KEY  (`PORTFOLIO_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `portfolio`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `privileges`
 -- 
 
@@ -334,6 +410,22 @@ CREATE TABLE `privilege_types` (
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `quy_dinh`
+-- 
+
+CREATE TABLE `quy_dinh` (
+  `THOI_GIAN_TRA` int(11) default NULL,
+  `CHO_MUA_BAN_TRONG_NGAY` int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `quy_dinh`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `roles`
 -- 
 
@@ -364,6 +456,72 @@ CREATE TABLE `role_privilege` (
 
 -- 
 -- Dumping data for table `role_privilege`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `stock`
+-- 
+
+CREATE TABLE `stock` (
+  `STOCK_ID` varchar(3) NOT NULL,
+  `COMPANY_ID` varchar(10) default NULL,
+  `MARKET_ID` varchar(10) default NULL,
+  `CEILING_PRICE` float default NULL,
+  `REFERENCE_PRICE` float default NULL,
+  `FLOOR_PRICE` float default NULL,
+  `BUY_PRICE1` float default NULL,
+  `BUY_VOLUME1` int(11) default NULL,
+  `BUY_PRICE2` float default NULL,
+  `BUY_VOLUME2` int(11) default NULL,
+  `BUY_PRICE3` float default NULL,
+  `BUY_VOLUME3` int(11) default NULL,
+  `SELL_PRICE1` float default NULL,
+  `SELL_VOLUME1` int(11) default NULL,
+  `SELL_PRICE2` float default NULL,
+  `SELL_VOLUME2` int(11) default NULL,
+  `SELL_PRICE3` float default NULL,
+  `SELL_VOLUME3` int(11) default NULL,
+  `CLOSING_PRICE` float default NULL,
+  `HIGH_PRICE` float default NULL,
+  `LOW_PRICE` float default NULL,
+  `LAST_TRADED_PRICE` float default NULL,
+  `LAST_TRADED_VOLUME` int(11) default NULL,
+  `TOTAL_MATCHED_VOLUME` int(11) default NULL,
+  `LAST_UPDATED_TIME` date default NULL,
+  PRIMARY KEY  (`STOCK_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `stock`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `stock_history`
+-- 
+
+CREATE TABLE `stock_history` (
+  `DATE` date NOT NULL,
+  `STOCK_ID` varchar(3) NOT NULL,
+  `CEILING_PRICE` float default NULL,
+  `REFERENCE_PRICE` float default NULL,
+  `FLOOR_PRICE` float default NULL,
+  `CLOSING_PRICE` float default NULL,
+  `HIGH_PRICE` float default NULL,
+  `LOW_PRICE` float default NULL,
+  `LAST_TRADED_PRICE` float default NULL,
+  `LAST_TRADED_VOLUME` int(11) default NULL,
+  `TOTAL_MATCHED_VOLUME` int(11) default NULL,
+  PRIMARY KEY  (`DATE`,`STOCK_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `stock_history`
 -- 
 
 
@@ -418,6 +576,29 @@ INSERT INTO `themes` VALUES (4, 3, 'Theme màu xanh nước biển', '/news/them
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `transaction`
+-- 
+
+CREATE TABLE `transaction` (
+  `TRANS_ID` varchar(10) NOT NULL,
+  `USER_ID` varchar(10) default NULL,
+  `STOCK_ID` varchar(3) default NULL,
+  `TRANS_TYPE` varchar(50) default NULL,
+  `QUANTITY` int(11) default NULL,
+  `PRICE` float default NULL,
+  `TRADING_DATE` date default NULL,
+  `STATUS` int(11) default NULL,
+  PRIMARY KEY  (`TRANS_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `transaction`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `users`
 -- 
 
@@ -435,6 +616,50 @@ CREATE TABLE `users` (
 
 -- 
 -- Dumping data for table `users`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `user_account`
+-- 
+
+CREATE TABLE `user_account` (
+  `USER_ID` varchar(10) NOT NULL,
+  `LEVEL_ID` varchar(10) default NULL,
+  `NAME` varchar(255) default NULL,
+  `HASHED_PASS` varchar(255) default NULL,
+  `FULL_NAME` varchar(255) default NULL,
+  `ADDRESS` text,
+  `EMAIL` varchar(255) default NULL,
+  `PHONE` int(11) default NULL,
+  `STATUS` varchar(50) default NULL,
+  `MONEY` float default NULL,
+  `LAST_LOGIN_TIME` date default NULL,
+  PRIMARY KEY  (`USER_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `user_account`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `user_level`
+-- 
+
+CREATE TABLE `user_level` (
+  `LEVEL_ID` varchar(10) NOT NULL,
+  `LEVEL_NAME` varchar(50) default NULL,
+  `DESCRIPTION` text,
+  PRIMARY KEY  (`LEVEL_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `user_level`
 -- 
 
 
