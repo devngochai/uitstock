@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forms>
+	<localhost>
+		<template>
+			<add>
+				<action></action>
+				<method>post</method>
+				<name>addTemplateForm</name>
+				<elements>
+					<name>
+						<type>text</type>
+						<options>
+							<label>Tên template</label>
+						</options>
+					</name>
+					<path>
+						<type>text</type>
+						<options>
+							<label>Đường dẫn</label>
+						</options>
+					</path>
+					<is_default>
+						<type>select</type>
+					</is_default>
+					<submit>
+						<type>submit</type>
+						<options>
+							<label>Thêm</label>
+							<class>button</class>
+						</options>
+					</submit>
+				</elements>
+			</add>
+		</template>
+	</localhost>	
+</forms>

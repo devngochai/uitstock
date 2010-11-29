@@ -1,0 +1,515 @@
+@import url("reset.css");
+@import url("global-tabs.css");
+
+/********** BASIC SETTINGS **********/
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.active {
+	background: url(../images/bg_nav_active.jpg) repeat-x;
+}
+
+.read-all {
+	text-align: right;
+}
+
+.date {
+	font-weight: bold;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue !important;
+}
+
+.s_blue {
+	color: #244CCF !important;
+}	
+
+.stock-time {
+    text-align: right;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.panel-header {
+    width: 100%;
+    height: 22px;
+    background: url("../images/bg_nav.jpg") repeat-x;
+    color: #F3E4C2;
+    font-size: 14px;
+    text-align: center;
+    line-height: 22px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 2px 0;
+    font-family: Arial;
+}
+
+.panel-content-data {
+    overflow: auto;    
+}
+
+#wrapper {
+    width: 965px;
+    margin: 0 auto;
+    text-align: center;
+   	background: white;
+}
+
+/********** HEADER **********/
+header {
+	width: 100%;
+	overflow: hidden;	
+}
+
+/***** BANNER *****/
+header #banner {
+	height: 90px;		
+	background: url("../images/banner.gif") 95% 50% no-repeat;
+	padding-top: 5px;
+	padding-bottom: 10px;
+    text-align: left;
+}
+
+/***** NAV *****/
+header nav{
+	height: 40px;	
+    background: url(../images/bg_nav.jpg) repeat-x;
+}	
+
+header nav ul li {
+	float: left;
+	line-height: 40px;
+}
+
+header nav ul li.first {
+	padding-left: 20px;	
+}
+
+header nav ul li.active:hover {
+	background: url(../images/bg_nav_active.jpg) repeat-x;
+}
+
+header nav ul li.last {
+	padding-right: 30px;
+}
+
+header nav ul li:hover {
+	background:	#50a287;
+}
+
+header nav ul li a {	
+	padding: 0 20px;
+    color: #F3E4C2 !important;    
+}
+
+header nav ul li a:hover {
+	text-decoration: none;
+}
+
+header nav ul li a.first-child {
+    padding-left: 0;
+}
+
+header nav ul li a.last-child {
+    border: none;   
+}
+
+/***** STOCK HORZITIONAL *****/
+header #stock-horzintal {
+	text-align: left;				
+    background: #F3E4C2;  	         
+}
+
+header #stock-horzintal h2 {
+    float: left;   
+    width: 70px;
+    padding-left: 20px;
+    background: #F3E4C2;   
+	font-size: 15px;
+	color: navy;
+	
+}
+
+header #stock-horzintal p {
+    float: right; 
+    width: 849px;         
+    font-size: 15px; 
+}
+
+header #stock-horzintal p marquee{
+    margin-right: 15px;
+}
+
+header #stock-horzintal p img {
+    margin-left: 10px;
+}
+
+/****** NAV-USER *****/
+header #nav-user {
+	text-align: left;
+	padding-left: 20px;	
+    overflow: hidden;	
+}
+
+header #nav-user .left {
+	display: inline;
+}
+
+header #nav-user .right{
+	display: inline;
+	padding-right: 10px;
+}
+
+/***** MAIN CONTENT *****/
+#mainContent {
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+#mainContent #content {
+    float: left;
+    width: 710px;
+    text-align: left;
+    padding-left: 20px;	      
+}
+
+#mainContent aside {
+    float: right;
+    width: 210px;
+    text-align: left;       
+    padding-right: 10px;
+}
+
+/***** INDEX *****/
+#content #stock-index {
+    border: 1px solid #A3A3A3;   
+    width: 400px;
+    float: left;  
+    overflow: hidden;     
+    height: 390px;        
+    border-radius: 0px 0px 7px 7px;  
+    border-radius: 0px 0px 7px 7px;
+    -moz-border-radius: 0px 0px 7px 7px;
+}
+
+#content #stock-index hgroup {
+    padding: 10px;    
+}
+
+#content #stock-index hgroup img {
+    margin-top: 24px;
+}
+
+/***** STOCK-VERTICAL *****/
+#content #stock-vertical {
+    border: 1px solid #A3A3A3;   
+    width: 300px;    
+    float: right;
+    text-align: center;
+}
+
+#content #stock-vertical hgroup {
+    height: 309px;   
+}
+
+#content #stock-vertical hgroup table tbody img {
+    margin-right: 5px;
+}
+
+#content #stock-vertical table thead tr{
+    background-color: #F3E4C2;
+}
+
+/***** STOCK INFO *****/
+#content #stock-info {
+    width: 710px; 
+    padding: 3px 0;    
+    margin-top: 10px; 
+}
+
+#content #news-info {
+    width: 710px; 
+    height: 208px;
+    margin-top: 10px; 
+    padding: 3px 0;      
+}
+
+#content #rule-info  {
+    width: 710px; 
+    margin-bottom: 10px;
+}
+
+#content #rule-info article ol li{
+    margin-left: 40px;
+}
+
+#content #rule-info article ol li ul li {
+   list-style: circle; 
+}
+
+#content #rule-info article ul li,
+#content #rule-info article ul li ul li{
+    list-style: square;
+    margin-left: 20px;
+}
+
+#content #news-info ul.block {
+	margin: 10px;
+	font: 15px Arial;	
+}
+
+#content #news-info ul.block li ul {
+	list-style-image: url("../images/bullet.gif");
+	list-style-type: square; 
+}
+
+#content #news-info .read-all {
+	font: 11px Arial;
+	color: #676767;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+#content #stock-info article p {
+    text-align: right;  
+    padding-bottom: 3px;
+    font-size: 15px;
+    color: #993300;
+    font-weight: bold;
+}
+
+#content #stock-info article table thead {
+    background: url(../images/top_center.gif) repeat-x;
+    text-align: center;
+    color: #8D6B2B;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/***** SEARCH *****/
+aside #search {
+    width: 189px;
+    border: 1px solid #A3A3A3;
+    padding: 5px;
+}
+
+aside #search span {
+    margin-left: 5px;
+    border: 1px solid #A3A3A3;
+    padding: 2px;
+}
+
+/***** STOCK STATICS *****/
+aside #stock-statics {
+    width: 200px;
+    border: 1px solid #A3A3A3;    
+    margin: 10px 0;   
+    padding-bottom: 10px;
+    border-radius: 0px 0px 7px 7px; 
+    -moz-border-radius: 0px 0px 7px 7px;
+}
+
+aside #stock-statics h2 {
+    width: 100%;
+    height: 22px;
+    background: url(../images/bg_sidebar.jpg);
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 22px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding: 3px 0;
+}
+
+.statics {
+    padding-left: 10px;   
+    cursor: pointer;
+}
+
+.statics img {
+    margin-right:10px;
+}
+
+aside #stock-statics li {
+    margin-left: 50px;     
+}
+
+#stock-statics #stock-online {
+    background: url(../images/stock-online.jpg) top left no-repeat;    
+    padding-left: 30px;
+    margin-left: 5px;
+}
+
+#stock-statics #stock-tool {
+    background: url(../images/stock-tool.jpg) top left no-repeat;    
+    padding-left: 30px;
+    margin-left: 5px;
+}
+
+/***** GOLD *****/
+aside #gold-info {
+    width: 195px;
+    border: 1px solid #A3A3A3;
+    padding: 5px 5px 5px 0;         
+    margin: 10px 0;
+    border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+}
+
+aside #gold-info #gold {
+    background: url(../images/gold.gif) top left no-repeat;
+    padding-left: 24px;
+    margin-left: 13px;
+    color: #8A0000;
+    font:bold 12px arial;
+}
+
+aside #gold-info .right {
+    color: #8A0000;
+    font:bold 10px arial;
+    text-align: right;
+    padding-right: 8px;
+    padding-bottom: 2px;
+}
+
+aside #gold-info table {
+    font:bold 11px arial;
+    text-align: center;    
+    margin: 0 auto;
+}
+
+aside #gold-info table td {
+    border: 1px solid #A3A3A3;
+}
+
+/***** Money *****/
+aside #money-info {
+    width: 195px;
+    border: 1px solid #A3A3A3;
+    padding: 5px 5px 5px 0;
+    border-radius: 7px 7px 7px 7px;     
+    -moz-border-radius: 7px 7px 7px 7px;
+}
+
+aside #money-info #money {
+    background: url(../images/circle-chart.gif) top left no-repeat;
+    padding-left: 24px;
+    margin-left: 13px;
+    margin-bottom: 5px;
+    color: #8A0000;
+    font:bold 12px arial;
+}
+
+aside #money-info hgroup {
+    height: 50px;
+    overflow: auto;
+}
+
+aside #money-info table {
+    font:bold 11px arial;
+    text-align: center;    
+    margin: 0 auto;
+}
+
+aside #money-info table td {
+    border: 1px solid #A3A3A3;
+}
+
+/********** USER STATICS **********/
+#user-statics {
+    text-align: left;  
+    border: 1px solid #A3A3A3;
+    padding: 10px 20px;        
+    width: 890px;
+    margin-left: 20px;  
+    color: #197A34;
+    font-weight: bold;
+    font-size: 13px;  
+    border-radius: 7px 7px 7px 7px;	   
+    -moz-border-radius: 7px 7px 7px 7px;
+}
+
+#user-statics #user-statics-header {
+    color: #993300; 
+    font-size: 17px;   
+}
+
+#user-statics .indent {
+    padding-left: 20px;
+    color: #5D5D5D;
+    font-family: Arial;
+    font-weight: normal;
+}
+
+/********** STATICS BOX **********/
+#content .statics-box {
+    width: 690px;
+    padding: 10px;
+    border: 1px solid #A3A3A3;    
+    margin-bottom: 10px;
+    border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+}
+
+#content .statics-box h2 {
+    color:Maroon;    
+    font: bold 16px Arial;     
+    text-align: center;
+}
+
+#content .statics-box p {
+    text-align: right;
+    color:#993300;
+    font: bold 12px Arial;    
+}
+
+#content .statics-box table thead {
+    background: url(../images/top_center.gif) repeat-x;
+    text-align: center;
+    color: #8D6B2B;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#content .statics-box table tbody tr {
+    color:#008000;  
+}
+
+/********** FOOTER **********/
+footer {
+    margin-top: 10px;    
+    height: 50px;
+    padding: 5px 20px; 
+    text-align: left;
+    background: url("../images/bg_nav.jpg") repeat;
+    color: #fff;    
+    font-size: 11px;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+    letter-spacing: 1px;
+}
+
+footer a {
+    color: #fff;
+}
