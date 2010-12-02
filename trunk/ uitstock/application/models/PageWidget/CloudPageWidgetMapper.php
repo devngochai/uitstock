@@ -6,7 +6,7 @@
 	 * Student ID   : 07520194
 	 * Faculty      : IS
 	 */
-	class Cloud_Model_PageWidget_CloudPageWidgetMapper
+	class Cloud_Model_PageWidget_CloudPageWidgetMapper implements Cloud_Model_PageWidget_Interface
 	{
 		protected $_dbTable;
 		

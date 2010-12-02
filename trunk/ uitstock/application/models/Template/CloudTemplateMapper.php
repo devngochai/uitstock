@@ -6,7 +6,7 @@
 	 * Student ID   : 07520194
 	 * Faculty      : IS
 	 */
-	class Cloud_Model_Template_CloudTemplateMapper
+	class Cloud_Model_Template_CloudTemplateMapper implements Cloud_Model_Template_Interface
 	{
 		protected $_dbTable;
 		

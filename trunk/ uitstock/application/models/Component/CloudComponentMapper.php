@@ -6,7 +6,7 @@
 	 * Student ID   : 07520194
 	 * Faculty      : IS
 	 */
-	class Cloud_Model_Component_CloudComponentMapper
+	class Cloud_Model_Component_CloudComponentMapper implements Cloud_Model_Component_Interface
 	{
 		protected $_dbTable;
 		
@@ -79,7 +79,8 @@
 				      ->setOrdering($row->ordering);		   
 		}
 		
-		public function findComponentDetail($id) {					
+		public function findComponentDetail($id) 
+		{					
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();
 
 			$dbComponent = $this->getDbTable()->info();

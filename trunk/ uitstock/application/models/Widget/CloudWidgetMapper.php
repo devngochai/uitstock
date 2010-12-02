@@ -6,7 +6,7 @@
 	 * Student ID   : 07520194
 	 * Faculty      : IS
 	 */
-	class Cloud_Model_Widget_CloudWidgetMapper
+	class Cloud_Model_Widget_CloudWidgetMapper implements Cloud_Model_Widget_Interface
 	{
 		protected $_dbTable;
 		

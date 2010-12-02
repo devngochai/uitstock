@@ -6,7 +6,7 @@
 	 * Student ID   : 07520194
 	 * Faculty      : IS
 	 */
-	class Cloud_Model_Theme_CloudThemeMapper
+	class Cloud_Model_Theme_CloudThemeMapper implements Cloud_Model_Theme_Interface
 	{
 		protected $_dbTable;
 		

@@ -6,7 +6,7 @@
 	 * Student ID   : 07520194
 	 * Faculty      : IS
 	 */
-	class Cloud_Model_Page_CloudPageMapper
+	class Cloud_Model_Page_CloudPageMapper implements Cloud_Model_Page_Interface
 	{
 		protected $_dbTable;
 		
