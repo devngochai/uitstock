@@ -35,10 +35,12 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 			$themes = $this->themeMapper->getThemeByComponent($c);					    		
 		else
 			$themes = $this->themeMapper->searchTheme($name, $c);
-			     	
-		$this->view->c = $c;				
-        $this->view->components = $components;        		
-		$this->view->themes = $themes;			  		     		     		
+			
+		$this->view->assign(array(
+				'c' => $c,
+				'components' => $components,
+				'themes' => $themes,
+		));					  		     		     		
 	}  
 	
 	public function addAction() 

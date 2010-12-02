@@ -34,10 +34,12 @@ class Admin_TemplateController extends ZendStock_Controller_Action {
 			$templates = $this->templateMapper->getTemplateByComponent($c);					    		
 		else
 			$templates = $this->templateMapper->searchTemplate($name, $c);
-											     	
-		$this->view->c = $c;		
-        $this->view->components = $components;        		
-		$this->view->templates = $templates;			  		     		     		
+			
+		$this->view->assign(array(
+				'c' => $c,
+				'components' => $components,
+				'templates' => $templates,
+		));														     				  		     		     	
 	}  
 	
 	public function addAction() 

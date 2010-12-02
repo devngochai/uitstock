@@ -41,13 +41,15 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 			$widgets = $this->widgetMapper->getWidgetbyPage($page_1->id);						
 		else
 			$widgets = $this->widgetMapper->searchWidget($alias, $page_1->id);
-											     	
-		$this->view->c = $c;		
-        $this->view->components = $components;    
-        $this->view->pages =  $pages;
-        $this->view->widgets = $widgets;
-		$this->view->pagewidget = $this->pagewidgetMapper;
-		$this->view->pageId = $page_1->id;		
+			
+		$this->view->assign(array(
+				'c'          => $c,
+				'components' => $components,
+				'pages'      => $pages,
+				'widgets'    => $widgets,
+				'pagewidget' => $this->pagewidgetMapper,
+				'pageId'     => $page_1->id,				
+		));												     		
 	}  
 	
 	public function listWidgetAction()
@@ -58,9 +60,12 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 			$componentId = $this->request->getParam('componentId');		 															 			
 			$pageId = $this->request->getParam('pageId');
 			$widgets = $this->widgetMapper->getWidgetbyPage($pageId);	
-			$this->view->widgets = $widgets;
-			$this->view->pageId = $pageId;
-			$this->view->pagewidget = $this->pagewidgetMapper;
+			
+			$this->view->assign(array(
+				'widgets' => $widgets,
+				'pageId' => $pageId,
+				'pagewidget' => $this->pagewidgetMapper,
+			));				
 		}				
 	}
 	
@@ -116,13 +121,15 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 		if (count($pageArray) == 1) {
 			$orders = $this->pagewidgetMapper->getOrderByPage($listPageId);	
 		} 
-				
-		$this->view->orders = $orders;
-		$this->view->listPageId = $listPageId;		
-		$this->view->path = $path;
-		$this->view->name = $name;
-		$this->view->published = $published;		
-		$this->view->alias = $alias;
+		
+		$this->view->assign(array(
+				'orders' 	 => $orders,
+				'listPageId' => $listPageId,
+				'path' 		 => $path,
+		        'name' 		 => $name,
+		        'published'  => $published,
+		        'alias' 	 => $alias,
+		));						
 	}
 	
 	public function getOrderByPositionAction()
@@ -155,10 +162,12 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 		$pageMapper = new Cloud_Model_Page_CloudPageMapper();
 		$pages = $pageMapper->getPageByComponent($componentId);
 		
-		$this->view->componentId = $componentId;
-		$this->view->pageWidgetId = $pageWidgetId;
-		$this->view->widget = $widget;				
-		$this->view->pages = $pages;
+		$this->view->assign(array(
+				'componentId' => $componentId,
+				'pageWidgetId' => $pageWidgetId,
+				'widget' => $widget,
+				'pages' => $pages,
+		));			
 
 		if (isset($_POST['ok'])) {									
 			$this->widgetMapper->updateAll();
@@ -199,17 +208,19 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 		$ordering = $this->request->getParam('ordering');
 		
 		$orders = $this->pagewidgetMapper->getOrderByPage($pageId, $position);
-		 				
-		$this->view->orders = $orders;
-		$this->view->pageId = $pageId;		
-		$this->view->path = $path;
-		$this->view->name = $name;
-		$this->view->published = $published;		
-		$this->view->alias = $alias;				
-		$this->view->widgetId = $widgetId;
-		$this->view->pageWidgetId = $pageWidgetId;
-		$this->view->position = $position;
-		$this->view->ordering = $ordering;							
+		
+		$this->view->assign(array(
+				'orders'       => $orders,
+				'pageId'       => $pageId,
+				'path'         => $path,
+				'name'         => $name,
+				'published'    => $published,
+				'alias'        => $alias,
+				'widgetId'     => $widgetId,
+				'pageWidgetId' => $pageWidgetId,
+				'position'     => $position,
+				'ordering'     => $ordering,
+		));		 										
 	}
 	
 	public function autoSuggestionWidgetAction()

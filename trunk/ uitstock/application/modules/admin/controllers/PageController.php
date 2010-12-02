@@ -37,10 +37,12 @@ class Admin_PageController extends ZendStock_Controller_Action {
 			$pages = $this->pageMapper->getPageByComponent($c);					    		
 		else
 			$pages = $this->pageMapper->searchPage($title, $c);
-											     	
-		$this->view->c = $c;		
-        $this->view->components = $components;     
-        $this->view->pages = $pages;   							  		     		     		
+
+		$this->view->assign(array(
+				'c' => $c,
+				'components' => $components,
+				'pages' => $pages,
+		));										  		     		     		
 	}  
 	
 	public function addAction() 
