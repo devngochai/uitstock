@@ -1,4 +1,4 @@
 <?php
-class Default_Boostrap extends Zend_Application_Module_Bootstrap {
+class Admin_Boostrap extends Zend_Application_Module_Bootstrap {
 		
 }
