@@ -1,7 +1,7 @@
 	<div id="content" class="xfluid">
 		<div class="portlet x12">
 			<div class="portlet-header item contentCategory">
-				<h4>Quản lý Category</h4>
+				<h4>Quản lý loại tin</h4>
 				<div class="float-right">																									
 					<a class="minibutton btn add" path="admin/article/add-cat">
 						<span><span class="icon add"></span>Thêm</span>
@@ -15,7 +15,7 @@
 					<a class="minibutton btn unpublish" name="contentCategory" path="admin/article/unpublish-cat" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon unpublish"></span>Unpublished</span>
 					</a>
-					<a class="minibutton btn deleteall" name="contentCategory" path="admin/article/delete-cat" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn delete" name="loại tin" path="admin/article/delete-cat" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon delete"></span>Xóa</span>
 					</a>					
 				</div>				
@@ -27,11 +27,11 @@
 					    <tr class="tool">														
 							<th colspan="5">
 							   <div id="suggest"><br />
-							        <input type="text" size="25" value="" class="txtSearch" onkeyup="suggest(this.value);" onblur="fill();" path="admin/article/auto-suggestion-contentCategory" component="<?php echo $this->c; ?>" />							     
+							        <input type="text" size="25" value="" class="txtSearch" onkeyup="suggest(this.value);" onblur="fill();" path="admin/article/auto-suggestion-cat" component="<?php echo $this->c; ?>" />							     
 							      	<div class="suggestionsBox" id="suggestions" style="display: none;">
 							      		<div class="suggestionList" id="suggestionsList"> &nbsp; </div>
 							      </div>
-							      <input type="button" value="Tìm kiếm" name="title" class="btnSearch" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>" />							      
+							      <input type="button" value="Tìm kiếm" name="name" class="btnSearch" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>" />							      
 							   </div>
 							</th>														  							   
 							</th>
@@ -39,7 +39,7 @@
 						
 						<tr>
 							<th width="10">#</th>
-							<th width="10"><input type="checkbox" id="select_all"></th>	
+							<th width="10"></th>	
 							<th width="300">Name</th>
 							<th width="300">Alias</th>							
 							<th width="100" class="center">Published</th>														
@@ -50,7 +50,7 @@
 							<?php $i = 0; foreach ($this->parents as $parent): $i++; $parentId = $parent->id; ?>
 								<tr class="odd gradeX" >							
 									<td class="left"><?php echo $i ?></td>
-									<td class="center"><input type="checkbox" name="select" value="<?php echo $this->escape($parent->id) ?>"  /></td> 
+									<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($parent->id) ?>" value="<?php echo $this->escape($parent->id) ?>"  /></td> 
 									<td class="left"><?php echo $this->escape($parent->name) ?></td>
 									<td class="left"><?php echo $this->escape($parent->alias) ?></td>								
 									<td class="center">
@@ -66,10 +66,13 @@
 									</td>																															
 									<td class="right"><?php echo $this->escape($parent->id) ?></td>
 								</tr>		
-								<?php foreach ($this->subs as $sub): $i++; if ($sub->parent_id == $parentId) {?>
+								<?php 
+									if (null != $this->subs) {
+										foreach ($this->subs as $sub): $i++; if ($sub->parent_id == $parentId) {									
+								?>
 									<tr class="odd gradeX" >							
 									<td class="left"><?php echo $i ?></td>
-									<td class="center"><input type="checkbox" name="select" value="<?php echo $this->escape($sub->id) ?>"  /></td> 
+									<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($sub->id) ?>" value="<?php echo $this->escape($sub->id) ?>"  /></td> 
 									<td class="left inside"><?php echo $this->escape($sub->name) ?></td>
 									<td class="left"><?php echo $this->escape($sub->alias) ?></td>								
 									<td class="center">
@@ -84,8 +87,8 @@
 										<img name="contentCategory" path="admin/article/set-publish-cat" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($sub->id) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
 									</td>																															
 									<td class="right"><?php echo $this->escape($sub->id) ?></td>
-								</tr>
-								<?php } endforeach ?>									
+								</tr>							
+								<?php } endforeach; } ?>									
 							<?php endforeach ?>			
 					</tbody>
 				</table>																																	

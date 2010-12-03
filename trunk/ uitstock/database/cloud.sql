@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 03, 2010 at 02:22 PM
+-- Generation Time: Dec 03, 2010 at 11:57 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -114,7 +114,7 @@ CREATE TABLE `content_categories` (
   `description` text,
   `published` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 -- 
 -- Dumping data for table `content_categories`
@@ -125,6 +125,25 @@ INSERT INTO `content_categories` VALUES (2, 1, 'Tin vắn chứng khoắn', 'tin
 INSERT INTO `content_categories` VALUES (3, 1, 'Tin HOSE', 'tin-hose', 'Tin HOSE', 1);
 INSERT INTO `content_categories` VALUES (4, 1, 'Tin từ công ty niêm yết', 'tin-tu-cong-ty-niem-yet', 'Tin từ công ty niêm yết', 1);
 INSERT INTO `content_categories` VALUES (5, 0, 'Nhận định thị trường', 'nhan-dinh-thi-truong', 'Nhận định thị trường', 1);
+INSERT INTO `content_categories` VALUES (6, 5, 'Công ty CK nhận định', 'cong-ty-ck-nhan-dinh', 'Công ty CK nhận định', 1);
+INSERT INTO `content_categories` VALUES (7, 5, 'Thị trường', 'thi-truong', 'Thị trường', 1);
+INSERT INTO `content_categories` VALUES (8, 5, 'Công ty', 'cong-ty', 'Công ty', 1);
+INSERT INTO `content_categories` VALUES (9, 0, 'Kinh tế Việt Nam', 'kinh-te-viet-nam', 'Kinh tế Việt Nam', 1);
+INSERT INTO `content_categories` VALUES (10, 9, 'Thị trường VN', 'thi-truong-vn', 'Thị trường VN', 1);
+INSERT INTO `content_categories` VALUES (11, 9, 'Tài chính - ngân hàng', 'tai-chinh---ngan-hang', 'Tài chính - ngân hàng', 1);
+INSERT INTO `content_categories` VALUES (12, 9, 'Bất động sản', 'bat-dong-san', 'Bất động sản', 1);
+INSERT INTO `content_categories` VALUES (13, 0, 'Kinh tế thế giới', 'kinh-te-the-gioi', 'Kinh tế thế giới', 1);
+INSERT INTO `content_categories` VALUES (14, 13, 'Chứng khoán', 'chung-khoan', 'Chứng khoán', 1);
+INSERT INTO `content_categories` VALUES (15, 13, 'Thị trường TG', 'thi-truong-tg', 'Thị trường TG', 1);
+INSERT INTO `content_categories` VALUES (16, 0, 'Kiến thức đầu tư', 'kien-thuc-dau-tu', 'Kiến thức đầu tư', 1);
+INSERT INTO `content_categories` VALUES (17, 16, 'Kiến thức cơ bản', 'kien-thuc-co-ban', 'Kiến thức cơ bản', 1);
+INSERT INTO `content_categories` VALUES (18, 16, 'Kiến thức chuyên sâu', 'kien-thuc-chuyen-sau', 'Kiến thức chuyên sâu', 1);
+INSERT INTO `content_categories` VALUES (19, 0, 'Điểm tin UITStock', 'diem-tin-uitstock', 'Điểm tin UITStock', 1);
+INSERT INTO `content_categories` VALUES (20, 0, 'Báo cáo phân tích', 'bao-cao-phan-tich', 'Báo cáo phân tích', 1);
+INSERT INTO `content_categories` VALUES (21, 0, 'Lịch sự kiện', 'lich-su-kien', 'Lịch sự kiện', 1);
+INSERT INTO `content_categories` VALUES (22, 0, 'Thể lệ sàn ảo', 'the-le-san-ao', 'Thể lệ sàn ảo', 1);
+INSERT INTO `content_categories` VALUES (23, 22, 'Luật chơi', 'luat-choi', 'Luật chơi', 1);
+INSERT INTO `content_categories` VALUES (24, 22, 'Hướng dẫn đặt lệnh', 'huong-dan-dat-lenh', 'Hướng dẫn đặt lệnh', 1);
 
 -- --------------------------------------------------------
 

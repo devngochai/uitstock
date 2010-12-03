@@ -22,12 +22,10 @@ class Admin_MenuController extends ZendStock_Controller_Action {
 	}	
 	
 	public function listItemAction() {			      
-	     $this->view->headTitle($this->config['title']['menuItem']);	
-	     $_SESSION['log'] = true;	     		
+	     $this->view->headTitle($this->config['title']['menuItem']);		      		
 	}
 	
 	public function listCategoryAction() {
-		$this->view->headTitle($this->config['title']['menuCategory']);	
-	    $_SESSION['log'] = true;
+		$this->view->headTitle($this->config['title']['menuCategory']);		    
 	}
 }

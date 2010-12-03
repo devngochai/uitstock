@@ -145,6 +145,7 @@ function addActionForButton()
 		var name = $(this).attr("name");
 		var path = $(this).attr("path");
 		var currentpath = $(this).attr("currentpath");
+		
 		if (id == undefined) {jAlert('Bạn chưa chọn ' + name + ' nào', 'Thông báo');
 								; return; }
 		jConfirm('Bạn có muốn xóa ' + name + ' này không ?', 'Chú ý', function(r) {

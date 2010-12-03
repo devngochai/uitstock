@@ -51,10 +51,12 @@ class Admin_PageController extends ZendStock_Controller_Action {
 		
 		$componentMapper = new Cloud_Model_Component_CloudComponentMapper();
 		$components = $componentMapper->fetchAllByFront();		
-		$componentMaxOrder = $this->pageMapper->getMaxOrder();				
+		$componentMaxOrder = $this->pageMapper->getMaxOrder();		
+				
 		$form = new Cloud_Form_Admin_Page_Add(array(
 							'components' => $components,
-							'page' => $componentMaxOrder));				
+							'page' => $componentMaxOrder
+		));				
 		
 		if ($this->getRequest()->isPost()) {
 			if ($form->isValid($this->request->getPost())) {			
