@@ -148,6 +148,18 @@ background-repeat:no-repeat;
 	background: url("../images/Toolbar/widget.png") no-repeat 11px 0px;	
 }
 
+.menuCategory h4 {
+	background: url("../images/Toolbar/MenuCategory.png") no-repeat 11px 0px;
+}
+
+.menuItem h4 {
+	background: url("../images/Toolbar/MenuItem.png") no-repeat 11px 0px;
+}
+
+.contentCategory h4 {
+	background: url("../images/Toolbar/ContentCategory.png") no-repeat 11px 0px;
+}
+
 /* -------------------------------------------------------------- 
    Button basics
 -------------------------------------------------------------- */

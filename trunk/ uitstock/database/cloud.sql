@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Nov 28, 2010 at 11:28 PM
+-- Generation Time: Dec 03, 2010 at 02:22 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -103,24 +103,28 @@ INSERT INTO `components` VALUES (3, 'Tin tức', 0, 2);
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `content_categorys`
+-- Table structure for table `content_categories`
 -- 
 
-CREATE TABLE `content_categorys` (
-  `id` int(11) NOT NULL,
-  `parent_id` int(11) default NULL,
+CREATE TABLE `content_categories` (
+  `id` int(11) NOT NULL auto_increment,
+  `parent_id` int(11) default '0',
   `name` varchar(50) default NULL,
   `alias` varchar(50) default NULL,
   `description` text,
   `published` tinyint(1) default NULL,
-  `image` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- 
--- Dumping data for table `content_categorys`
+-- Dumping data for table `content_categories`
 -- 
 
+INSERT INTO `content_categories` VALUES (1, 0, 'Tin tức', 'tin-tuc', 'Tin tức', 1);
+INSERT INTO `content_categories` VALUES (2, 1, 'Tin vắn chứng khoắn', 'tin-van-chung-khoan', 'Tin vắn chứng khoắn', 1);
+INSERT INTO `content_categories` VALUES (3, 1, 'Tin HOSE', 'tin-hose', 'Tin HOSE', 1);
+INSERT INTO `content_categories` VALUES (4, 1, 'Tin từ công ty niêm yết', 'tin-tu-cong-ty-niem-yet', 'Tin từ công ty niêm yết', 1);
+INSERT INTO `content_categories` VALUES (5, 0, 'Nhận định thị trường', 'nhan-dinh-thi-truong', 'Nhận định thị trường', 1);
 
 -- --------------------------------------------------------
 
@@ -169,6 +173,7 @@ CREATE TABLE `menu_items` (
   `parent_id` int(11) default NULL,
   `menu_cat_id` int(11) default NULL,
   `name` varbinary(50) default NULL,
+  `alias` varchar(255) default NULL,
   `link` varchar(255) default NULL,
   `ordering` int(11) default NULL,
   `published` tinyint(1) default NULL,

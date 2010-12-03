@@ -27,6 +27,11 @@
 	border-color: #263849;
 }
 
+.inside {
+	padding-left: 30px;
+	background: url("../images/sub.png") no-repeat 2% 50% white;
+}
+
 .item h4 {
 	display: inline;
 }
