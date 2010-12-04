@@ -12,7 +12,11 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 	protected $_categories;
 	
 	public function init()
-	{					
+	{	
+		$folder = Zend_Date::now()->toString('yyyyMMdd');					
+		$path = 'files/news/' . $folder;
+		if (!is_dir($path)) mkdir($path);
+		
 		$date = new Zend_Date();
 		$date =  $date->get(Cloud_Model_Utli_CloudUtli::DATABASE_DATETIME);
 		
@@ -21,7 +25,8 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 		
 		$this->addElement('text', 'title', array(	
 		      'required' => true,			      
-		      'label' => 'Tiêu đề',		      
+		      'label' => 'Tiêu đề',		
+			  'size' => 50,      
 			  'filters' => array('StringTrim'),		     
 		));		
 
@@ -29,29 +34,29 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 			$category[$row->id] = $row->name; 
 		}
 		
-		$this->addElement('select', 'parent_id', array(
+		$this->addElement('select', 'cat_id', array(
 		      'label' => 'Loại tin',
 		      'multiOptions' => $category,
 		));
 		
-		$this->addElement('text', 'relative', array(	
-		      'required' => true,			      
+		$this->addElement('text', 'listid_relative', array(			  	      
 		      'label' => 'ID bài viết liên quan (cách nhau bằng dấu ,)',		      
 			  'filters' => array('StringTrim'),		     
 		));				
 		
 		$element = new Zend_Form_Element_File('image');
-		$element->setLabel('Upload hình')		       
+		$element->setLabel('Upload hình')	
+				->setDestination($path)	       
 		        ->addValidator('Count', false, 1)
 		        ->addValidator('Extension', false, 'jpg,png,gif');
 		        		        
-		$this->addElement($element, 'image');		        
+		$this->addElement($element);		        
 		
 		$this->addElement('textarea', 'summarize', array(	
 		      'required' => true,			      
 		      'label' => 'Tóm tắt',
 			  'attribs' => array(
-					'cols' => 40,
+					'cols' => 120,
 					'rows' => 4,
 			   ),			      
 			  'filters' => array('StringTrim'),		     
@@ -63,6 +68,7 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 			  'attribs' => array(
 					'cols' => 40,
 					'rows' => 4,
+				    'id' => 'Content',
 			   ),			      
 			  'filters' => array('StringTrim'),		     
 		));			
@@ -73,7 +79,8 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 		));
 		
 		$this->addElement('select', 'important', array(
-			   'label' => 'Quan trọng',		       
+			   'label' => 'Quan trọng',		
+			   'value' => 0,      
 		       'multiOptions' => array('1' => 'Yes', '0' => 'No')
 		));
 				
@@ -96,6 +103,30 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 		       'decorators' => array('ViewHelper', array('HtmlTag',
 		               array('tag' => 'dd', 'class' => 'noDisplay')))
 		));	
+		
+		$this->addElement('hidden', 'count', array(
+		       'filters' => array('StringTrim'),
+		       'required' => true,
+		       'value' => 0,
+		       'decorators' => array('ViewHelper', array('HtmlTag',
+		               array('tag' => 'dd', 'class' => 'noDisplay')))
+		));	
+		
+		$this->addElement('hidden', 'relative_id', array(
+		       'filters' => array('StringTrim'),
+		       'required' => true,
+		       'value' => 0,
+		       'decorators' => array('ViewHelper', array('HtmlTag',
+		               array('tag' => 'dd', 'class' => 'noDisplay')))
+		));	
+
+		$this->addElement('hidden', 'path', array(
+		       'filters' => array('StringTrim'),
+		       'required' => true,
+		       'value' => $path,
+		       'decorators' => array('ViewHelper', array('HtmlTag',
+		               array('tag' => 'dd', 'class' => 'noDisplay')))
+		));
 	}		
 	
 	public function setCategories($categories)

@@ -51,10 +51,12 @@
 					<td><b>Ngày sửa tin:</b></td>
 					<td>
 						<?php
-							  $date = $this->article['modify_date'];												
-							  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
-							  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
-							  echo $date; 						 
+							  $date = $this->article['modify_date'];	
+							  if (null != $date) {
+							  	$date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
+							  	$date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
+							  	echo $date; 	
+							  }																	  						 
 						?>
 					</td>
 				</tr>

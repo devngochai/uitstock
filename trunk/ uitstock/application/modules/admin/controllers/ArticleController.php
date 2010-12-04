@@ -220,20 +220,56 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	    
 	    $form = new Cloud_Form_Admin_Article_Add(array(
 	    	'categories' => $this->contentCategoryMapper->fetchAllSub(),
-	    ));
-
+	    ));	    
 	    
 		if ($this->getRequest()->isPost()) {
 			if ($form->isValid($this->request->getPost())) {			
-				$values = $form->getValues();				
+				$values = $form->getValues();	
 				$article = new Cloud_Model_Article_CloudArticle($values);
 				$newId = $this->articleMapper->save($article);
-				$this->articleMapper->updateAlias($newId, $values['title']);																					
+				$this->articleMapper->updateImage($newId, $values['path']);
+				$this->articleMapper->updateAlias($newId, $values['title']);
+				$this->articleMapper->updateRelative($newId, $values['listid_relative']);																					
 				$this->view->message = 'Đã thêm tin: ' . $values['title'];
 			}
 		}
-		
-		$this->view->form = $form;
+		$this->view->form = $form;	
 	}
 	
+	public function editArticleAction()
+	{
+		$this->view->headTitle($this->config['title']['editArticle']);
+
+		if (null != $this->request->getParam('id')) {
+			$id = $this->request->getParam('id');
+			$currentArticle = new Cloud_Model_Article_CloudArticle();
+			$this->articleMapper->find($id, $currentArticle);						
+		
+			$form = new Cloud_Form_Admin_Article_Edit(array(
+				'article' => $currentArticle,
+			  	'categories' => $this->contentCategoryMapper->fetchAllSub(),
+			    'entries' => $this->articleMapper->fetchAll(),							
+			));
+			
+			if ($this->getRequest()->isPost()) {
+				if ($form->isValid($this->request->getPost())) {								
+					$values = $form->getValues();
+					$id = $values['id'];	
+					$image = $currentArticle->getImage();
+					$article = new Cloud_Model_Article_CloudArticle($values);
+					$this->articleMapper->save($article);
+					if ($values['up'] == 1)
+						$this->articleMapper->updateImage($id, $values['path']);
+					else
+						$this->articleMapper->updateImage2($id, $image, $values['path'], $values['fileName']);
+					$this->articleMapper->updateAlias($id, $values['title']);
+					$this->articleMapper->updateRelative($id, $values['listid_relative']);																					
+					$this->view->message = 'Đã sửa tin: ' . $values['title'];
+				}
+			}
+			
+			$this->view->form = $form;
+		}		
+	}
+			
 }

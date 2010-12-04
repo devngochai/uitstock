@@ -149,20 +149,25 @@ background-repeat:no-repeat;
 }
 
 .menuCategory h4 {
-	background: url("../images/Toolbar/MenuCategory.png") no-repeat 11px 0px;
+	background: url("../images/Toolbar/menu-category.png") no-repeat 11px 0px;
 }
 
 .menuItem h4 {
-	background: url("../images/Toolbar/MenuItem.png") no-repeat 11px 0px;
+	background: url("../images/Toolbar/menuItem.png") no-repeat 11px 0px;
 }
 
 .contentCategory h4 {
-	background: url("../images/Toolbar/ContentCategory.png") no-repeat 11px 0px;
+	background: url("../images/Toolbar/content-category.png") no-repeat 11px 0px;
 }
 
 .article h4 {
-	background: url("../images/Toolbar/Article.png") no-repeat 11px 0px;
+	background: url("../images/Toolbar/article.png") no-repeat 11px 0px;
 }
+
+.file-manager h4 {
+	background: url("../images/Toolbar/file-manager.png") no-repeat 11px 0px;
+}
+
 
 /* -------------------------------------------------------------- 
    Button basics

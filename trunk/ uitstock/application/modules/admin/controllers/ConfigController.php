@@ -14,6 +14,11 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 		$this->view->headTitle($this->config['title']['visit']);		
 	}
 	
+	public function fileManagerAction()
+	{
+		$this->view->headTitle($this->config['title']['fileManager']);	
+	}
+	
 	public function configurationAction() {
 		$this->view->headTitle($this->config['title']['configuration']);		
 	}

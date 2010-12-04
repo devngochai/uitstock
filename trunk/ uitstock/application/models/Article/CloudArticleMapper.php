@@ -67,8 +67,7 @@
 				'relative_id' => $article->getRelative_id(),
 			    'title' => $article->getTitle(),
 			    'alias' => $article->getAlias(),
-			    'summarize' => $article->getSummarize(),
-				'image' => $article->getImage(),
+			    'summarize' => $article->getSummarize(),			
 			    'content' => $article->getContent(),
 			    'create_date' => $article->getCreate_date(),
 			    'modify_date' => $article->getModify_date(),			    
@@ -130,6 +129,52 @@
 			$where = array('id = ?' => $id);
 			$this->getDbTable()->update($data, $where);                                
 		}	
+		
+		public function updateRelative($id, $listId)
+		{
+			$array = explode(',', $listId);	
+			var_dump($id);	
+			if (count($array) < 1) return;	
+			
+			$data = array('relative_id' => 0);
+			$where = array('relative_id = ?' => $id);
+			$this->getDbTable()->update($data, $where);								
+			
+			for ($i = 0; $i < count($array); $i++) {			
+				$data = array('relative_id' => $id);
+				$where = array('id = ?' => $array[$i]);
+				$this->getDbTable()->update($data, $where);								
+			}									
+		}
+		
+		public function updateImage($id, $path)
+		{			
+			if ($_FILES['image']['name'] == '') return;
+			
+			$f = $_FILES['image'];
+			$name = $f['name'];																
+			$ext = substr($name, strrpos($name, '.'));
+			$fileName = Zend_Date::now()->toString('yyyMMddHHmmss');
+			$file = $fileName . $ext;
+			$oldPath = $path . '/' . $name;
+			$newPath = $path . '/' . $file;
+			rename($oldPath, $newPath);			
+
+			$data = array('image' => $newPath);
+			$where = array('id = ?' => $id);
+			$this->getDbTable()->update($data, $where);
+		}
+		
+		public function updateImage2($id, $image, $path, $fileName)
+		{			
+			if ($_FILES['image']['name'] == '') return;
+			
+			$f = $_FILES['image'];
+			$name = $f['name'];			
+			unlink($image);
+			$path = $path . '/' . $name;		
+			rename($path, $image);																							
+		}
 
 		public function fetchArticleByPage($page)
 		{
