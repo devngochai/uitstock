@@ -117,8 +117,11 @@ function addActionForButton()
 								; return; }
 		document.location = path + "/id/" + id;
 	});
-		
 	
+	$('a.edit2').click(function(){
+		document.location = $(this).attr("path");
+	});
+			
 	$('a.default').click(function(){
 		var id = $("input[name='select']:checked").attr("id");
 		var component = $("input[name='select']:checked").attr("component");		
@@ -165,6 +168,30 @@ function addActionForButton()
 			}
 		});
 	});		
+	
+	$('a.delete2').click(function(){
+		var id = $(this).attr("id");	
+		var name = $(this).attr("name");
+		var path = $(this).attr("path");
+		var back = $(this).attr("back");
+				
+		jConfirm('Bạn có muốn xóa ' + name + ' này không ?', 'Chú ý', function(r) {
+			if (r)
+			{
+				$.ajax({
+					url: path,
+					data: 'id=' + id,
+					cache: false,
+					success: function(data){
+					    if (data == 'error') alert(name + ' này không tồn tại!');					   
+					    else if (data == 'default')  {jAlert('Không thể xóa ' + name + ' này!', 'Chú ý');
+														; return; }    										
+						else document.location = currentpath;				    
+					}
+				});
+			}
+		});
+	});
 	
 	$('a.publish').click(function(){
 		var listid = "";

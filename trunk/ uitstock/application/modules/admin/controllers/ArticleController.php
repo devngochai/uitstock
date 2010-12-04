@@ -26,8 +26,10 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];	
 
 		$name = $this->request->getParam('name');
+		$page = $this->_getParam('page', 1);
+
 		if (null == $name) {
-			$parents = $this->contentCategoryMapper->fetchAllParent();
+			$parents = $this->contentCategoryMapper->fetchParentByPage($page);
 			$subs = $this->contentCategoryMapper->fetchAllSub();
 		} else 
 			$parents = $this->contentCategoryMapper->searchCat($name);
@@ -36,6 +38,26 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	    		'parents' => $parents,
 	    		'subs' => $subs,
 	    ));
+	}
+	
+	public function viewCatAction()
+	{
+		$this->view->headTitle($this->config['title']['viewCategory']);
+		
+		if (null != $this->request->getParam('id')) {
+			$id = $this->request->getParam('id');
+			$currentCategory = new Cloud_Model_ContentCategory_CloudContentCategory();
+			$this->contentCategoryMapper->find($id, $currentCategory);
+			
+			$sub = $this->contentCategoryMapper->getSubNameById($currentCategory->parent_id);
+			if (null != $sub->name) $sub = $sub->name;
+		
+			$this->view->assign(array(
+	    		'category' => $currentCategory,
+	    		'sub' => $sub,
+	    ));
+		}
+		
 	}
 	
 	public function addCatAction()
@@ -153,5 +175,25 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 			echo '</ul>';
 		} 
 	}	
+	
+	public function listArticleAction()
+	{
+		$this->view->headTitle($this->config['title']['category']);	
+		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];	
+
+//		$name = $this->request->getParam('name');
+//		$page = $this->_getParam('page', 1);
+//
+//		if (null == $name) {
+//			$parents = $this->contentCategoryMapper->fetchAllParent($page);
+//			$subs = $this->contentCategoryMapper->fetchAllSub();
+//		} else 
+//			$parents = $this->contentCategoryMapper->searchCat($name);
+//						    
+//	    $this->view->assign(array(
+//	    		'parents' => $parents,
+//	    		'subs' => $subs,
+//	    ));
+	}
 	
 }

@@ -106,6 +106,21 @@
 				$db->delete($where);
 			}
 		}
+		
+		public function fetchParentByPage($page)
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+			             ->where('parent_id = 0');			             
+			    
+           $rows = $db->fetchAll($select);           
+           
+           $paginator = Zend_Paginator::factory($rows);
+    	   $paginator->setItemCountPerPage(2);
+    	   $paginator->setCurrentPageNumber($page);           		
+                     
+            return $paginator;  
+		}
 
 		public function fetchAllParent()
 		{
@@ -113,9 +128,9 @@
 			$select = $db->select()
 			             ->where('parent_id = 0');			             
 			    
-           $rows = $db->fetchAll($select);                        		
+            $rows = $db->fetchAll($select);                        		
                      
-            return $this->getEntries($rows);  
+           return $this->getEntries($rows);   
 		}
 		
 		public function fetchAllSub()
@@ -139,10 +154,25 @@
 			             ->where('name = ?', $name)			            
 			             ->where('id != ?', $id);
 			$row = $db->fetchRow($select);														
-			if ($row == null)
+			if (null == $row)
 				return null;
 																      				 			      		
 			return $this->getEntry($row);
+		}
+		
+		public function getSubNameById($parentId)
+		{
+			if ($parentId == 0) return "Không";
+			else {
+				$db = $this->getDbTable();
+				$select = $db->select()							
+							 ->where('id = ?', $parentId);
+				$row = $db->fetchRow($select);
+				if (null == $row)
+					return null;	
+
+				return $this->getEntry($row);	
+			}
 		}
 		
 		public function updateAlias($id, $name)

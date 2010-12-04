@@ -22,6 +22,10 @@
 	color: darkGreen;
 }
 
+.no-link2 a {
+	text-decoration: none;	
+}
+
 .mega-container .no-hover:hover .mega-link{	
 	background: #263849;
 	border-color: #263849;

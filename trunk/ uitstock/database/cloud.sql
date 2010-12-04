@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 03, 2010 at 11:57 PM
+-- Generation Time: Dec 04, 2010 at 09:42 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -33,6 +33,7 @@ CREATE TABLE `articles` (
   `publsihed` tinyint(1) default NULL,
   `important` tinyint(1) default NULL,
   `is_related` tinyint(1) default NULL,
+  `count` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
