@@ -18,7 +18,7 @@
 		<div class="portlet-content">									 							                													
 			<table cellpadding="0" cellspacing="0" border="0" class="display">
 				<tr>
-					<td width="90"><b>Tựa đề:</b></td>
+					<td width="90"><b>Tiêu đề:</b></td>
 					<td><?php echo $this->article['title']; ?></td>
 				</tr>
 				<tr>
@@ -26,12 +26,37 @@
 					<td><?php echo $this->article['alias']; ?></td>
 				</tr>
 				<tr>
+					<td><b>Tin liên quan:</b></td>
+					<td>
+						<?php 
+							foreach ($this->entries as $entry) {
+								if ($entry->relative_id == $this->article['id'])
+									echo $entry->title . '<br/>';								
+							}
+						?>
+					</td>
+				</tr>
+				<tr>
 					<td><b>Ngày đăng tin:</b></td>
-					<td><?php echo $this->article['create_date']; ?></td>
+					<td>
+						<?php 
+							  $date = $this->article['create_date'];
+							  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
+							  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
+							  echo $date; 
+						?>
+					</td>
 				</tr>
 				<tr>
 					<td><b>Ngày sửa tin:</b></td>
-					<td><?php echo $this->article['modify_date']; ?></td>
+					<td>
+						<?php
+							  $date = $this->article['modify_date'];												
+							  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
+							  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
+							  echo $date; 						 
+						?>
+					</td>
 				</tr>
 				<tr>
 					<td><b>Published:</b></td>

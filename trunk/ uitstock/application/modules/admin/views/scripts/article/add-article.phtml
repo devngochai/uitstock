@@ -1,0 +1,21 @@
+<div id="content" class="xfluid">
+	<div class="portlet x12">
+		<div class="portlet-header item article">
+			<h4>Thêm tin</h4>
+			<div class="float-right">
+				<a class="minibutton btn close" name="tin" back="<?php echo $_SESSION['temp']; ?>">
+						<span><span class="icon close"></span>Đóng</span>
+				</a>							
+			</div>				
+		</div>
+		
+		<div class="portlet-content">
+			<?php if (isset($this->message)) {?>
+				<div class="message">
+					<?php echo $this->message; ?>
+				</div>					
+			<?php } ?>
+			<?php echo $this->form;  ?>																																			
+		</div><!--  end .portlet-content -->
+	</div>
+</div><!--  end #content -->

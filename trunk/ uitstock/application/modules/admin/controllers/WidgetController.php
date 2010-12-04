@@ -246,7 +246,9 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 				 
 		if ($this->request->getParam('listid') != null) {			
 			$listid = explode(",", $this->request->getParam('listid'));
-			$this->pagewidgetMapper->setPublish($listid);	
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();			
+			Cloud_Model_Utli_CloudUtli::setPublish($dbTable, $listid);
 		}	
 		else 
 			echo 'error';							
@@ -259,11 +261,28 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 		
 		if ($this->request->getParam('listid') != null) {				 			
 			$listid = explode(",", $this->request->getParam('listid'));					 			
-			$this->pagewidgetMapper->setUnPublish($listid);	
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();
+			Cloud_Model_Utli_CloudUtli::setUnPublish($dbTable, $listid);
 		}		
 		else 
 			echo 'error';						
-	}	
+	}			
+	
+	public function setPublishAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		if ($this->request->getParam('id') != null) {							
+			$id = $this->request->getParam('id');		 															 			
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();
+			Cloud_Model_Utli_CloudUtli::setPublishAjax($dbTable, $id);
+		}		
+		else 
+			echo 'error';
+	}
 	
 	public function deleteAction()
 	{
@@ -274,19 +293,6 @@ class Admin_WidgetController extends ZendStock_Controller_Action {
 			$listid = $this->request->getParam('listid');
 			$this->pagewidgetMapper->deleteAll($listid);
 		}								
-	}
-	
-	public function setPublishAction()
-	{
-		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);
-		
-		if ($this->request->getParam('id') != null) {							
-			$id = $this->request->getParam('id');		 															 			
-			$this->pagewidgetMapper->setPublishAjax($id);	
-		}		
-		else 
-			echo 'error';
 	}
 	
 	public function changeOrderAction()

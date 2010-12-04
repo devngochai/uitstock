@@ -164,9 +164,88 @@
 		                 ->order('pw.ordering');
 		                          		                 		                 				                 		                         						
 			return $db->fetchAll($select);								   
+		}			
+		
+		public function getWidgetbyPageWidget($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbWidget = $this->getDbTable()->info();
+			$dbWidgetName = $dbWidget['name'];
+					
+			$PageWidgetMapper = new Cloud_Model_PageWidget_CloudPageWidgetMapper();
+			$dbPageWidget= $PageWidgetMapper->getDbTable()->info();
+			$dbPageWidgetName = $dbPageWidget['name'];
+			
+			$PageMapper = new Cloud_Model_Page_CloudPageMapper();
+			$dbPage= $PageMapper->getDbTable()->info();
+			$dbPageName = $dbPage['name'];
+								
+			$select = $db->select()		                  
+		                 ->from(array('w' => $dbWidgetName), array('name', 'alias','path'))
+		                 ->join(array('pw' => $dbPageWidgetName), 'w.id = pw.widget_id')
+		                 ->join(array('p' => $dbPageName), 'pw.page_id = p.id', array('component_id'))
+		                 ->where('pw.id = ?',$id);			                 		        		                 
+		                          		                 		                 				                 		                         						
+			return $db->fetchRow($select);	
+		}
+		
+		public function getWidgetByName($name, $widgetId)
+		{																								
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('name = ?', $name)			             
+			             ->where('id != ?', $widgetId);
+			$row = $db->fetchRow($select);														
+			if ($row == null)
+				return null;
+																      				 			      		
+			return $this->getEntry($row);
 		}	
 
-		public function checkUniqueWidgetName($componentId, $listPageId, $name, $widgetId = null)
+		public function autoSuggestionWidget($alias)
+		{
+			if (null == $alias) exit();	
+			
+			$db = $this->getDbTable();			
+			$select = $db->select()
+			             ->where('alias like ?', "%$alias%");			             
+			    
+            $rows = $db->fetchAll($select);    
+            $entries = array();
+            foreach ($rows as $row) {
+            	$entry = new Cloud_Model_Widget_CloudWidget(); 
+            	$entry->setAlias($row->alias);				             	 	            	       	      
+                $entries[] = $entry;            	         
+            }                     		
+                   
+            return $entries;            
+		}	
+		
+		public function searchWidget($alias, $pageId)
+		{
+			if (null == $alias) exit();
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbWidget = $this->getDbTable()->info();
+			$dbWidgetName = $dbWidget['name'];
+					
+			$PageWidgetMapper = new Cloud_Model_PageWidget_CloudPageWidgetMapper();
+			$dbPageWidget= $PageWidgetMapper->getDbTable()->info();
+			$dbPageWidgetName = $dbPageWidget['name'];
+								
+			$select = $db->select()		                  
+		                 ->from(array('w' => $dbWidgetName), array('name', 'alias'))
+		                 ->join(array('pw' => $dbPageWidgetName), 'w.id = pw.widget_id')
+		                 ->where('w.alias = ?' , $alias)
+		                 ->where('pw.page_id = ?',$pageId);		                 
+		                 //->where("pw.position in (select position from $dbPageWidgetName group by position");		                 			                 		         
+		                 //->order('pw.ordering');
+		                          		                 		                 				                 		                         						
+			return $db->fetchAll($select);								     
+		}	
+
+	public function checkUniqueWidgetName($componentId, $listPageId, $name, $widgetId = null)
 		{			
 			$widgetId = ($widgetId == null) ? '' : $widgetId;
 			$pageArray = explode(',', $listPageId);
@@ -246,83 +325,4 @@
 					          			   	             
 		   return $listAlias;			             
 		}
-		
-		public function getWidgetbyPageWidget($id)
-		{
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
-			
-			$dbWidget = $this->getDbTable()->info();
-			$dbWidgetName = $dbWidget['name'];
-					
-			$PageWidgetMapper = new Cloud_Model_PageWidget_CloudPageWidgetMapper();
-			$dbPageWidget= $PageWidgetMapper->getDbTable()->info();
-			$dbPageWidgetName = $dbPageWidget['name'];
-			
-			$PageMapper = new Cloud_Model_Page_CloudPageMapper();
-			$dbPage= $PageMapper->getDbTable()->info();
-			$dbPageName = $dbPage['name'];
-								
-			$select = $db->select()		                  
-		                 ->from(array('w' => $dbWidgetName), array('name', 'alias','path'))
-		                 ->join(array('pw' => $dbPageWidgetName), 'w.id = pw.widget_id')
-		                 ->join(array('p' => $dbPageName), 'pw.page_id = p.id', array('component_id'))
-		                 ->where('pw.id = ?',$id);			                 		        		                 
-		                          		                 		                 				                 		                         						
-			return $db->fetchRow($select);	
-		}
-		
-		public function getWidgetByName($name, $widgetId)
-		{																								
-			$db = $this->getDbTable();
-			$select = $db->select()			                	
-			             ->where('name = ?', $name)			             
-			             ->where('id != ?', $widgetId);
-			$row = $db->fetchRow($select);														
-			if ($row == null)
-				return null;
-																      				 			      		
-			return $this->getEntry($row);
-		}	
-
-		public function autoSuggestionWidget($alias)
-		{
-			if (null == $alias) exit();	
-			
-			$db = $this->getDbTable();			
-			$select = $db->select()
-			             ->where('alias like ?', "%$alias%");			             
-			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_Widget_CloudWidget(); 
-            	$entry->setAlias($row->alias);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
-                   
-            return $entries;            
-		}	
-		
-		public function searchWidget($alias, $pageId)
-		{
-			if (null == $alias) exit();
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
-			
-			$dbWidget = $this->getDbTable()->info();
-			$dbWidgetName = $dbWidget['name'];
-					
-			$PageWidgetMapper = new Cloud_Model_PageWidget_CloudPageWidgetMapper();
-			$dbPageWidget= $PageWidgetMapper->getDbTable()->info();
-			$dbPageWidgetName = $dbPageWidget['name'];
-								
-			$select = $db->select()		                  
-		                 ->from(array('w' => $dbWidgetName), array('name', 'alias'))
-		                 ->join(array('pw' => $dbPageWidgetName), 'w.id = pw.widget_id')
-		                 ->where('w.alias = ?' , $alias)
-		                 ->where('pw.page_id = ?',$pageId);		                 
-		                 //->where("pw.position in (select position from $dbPageWidgetName group by position");		                 			                 		         
-		                 //->order('pw.ordering');
-		                          		                 		                 				                 		                         						
-			return $db->fetchAll($select);								     
-		}							
 	}

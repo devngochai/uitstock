@@ -211,31 +211,7 @@
 		                 ->where('page_id = ?', $pageId);		                 			                 
 		            
             return $db->fetchAll($select);			   
-		}
-		
-		public function getMinOrder($pageId,$position)
-		{			
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
-			
-			$stmt = $db->query("SELECT min(ordering) as min from page_widget
-			                    WHERE page_id = $pageId and position = '$position'");
-			$row = $stmt->fetch();
-			
-			if (null == $row['min']) return 0;
-			else return $row['min'];							
 		}				
-		
-		public function getMaxOrder($pageId, $position)
-		{			
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
-			
-			$stmt = $db->query("SELECT max(ordering) as max from page_widget
-			                    WHERE page_id = $pageId and position = '$position'");
-			$row = $stmt->fetch();
-			
-			if (null == $row['max']) return 0;
-			else return $row['max'];
-		}		
 
 		public function getOrderByPage($pageId, $position = null)
 		{
@@ -273,25 +249,29 @@
 			return $row->id;															
 		}	
 
-		public function setPublish($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {
-				$id = $listid[$i]; 
-				$data = array('published' => 1);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-			}
-		}
+		public function getMinOrder($pageId,$position)
+		{			
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+			
+			$stmt = $db->query("SELECT min(ordering) as min from page_widget
+			                    WHERE page_id = $pageId and position = '$position'");
+			$row = $stmt->fetch();
+			
+			if (null == $row['min']) return 0;
+			else return $row['min'];							
+		}				
 		
-		public function setUnPublish($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {						
-				$id = $listid[$i]; 				
-				$data = array('published' => 0);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-			}
-		}
+		public function getMaxOrder($pageId, $position)
+		{			
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+			
+			$stmt = $db->query("SELECT max(ordering) as max from page_widget
+			                    WHERE page_id = $pageId and position = '$position'");
+			$row = $stmt->fetch();
+			
+			if (null == $row['max']) return 0;
+			else return $row['max'];
+		}	
 		
 		public function deleteAll($listid)
 		{
@@ -307,23 +287,7 @@
 				}										
 			}
 		}
-		
-		public function setPublishAjax($id)
-		{
-			$db = $this->getDbTable();
-			$select = $db->select()			    
-			             ->from($db, 'published')            	
-			             ->where('id = ?', $id);				          
-			$row = $db->fetchRow($select);																	
-																      				 			      		
-			$publish = ($row->published == 1) ? 0 : 1;
-						
-			$data = array('published' => $publish);
-			$where = array('id = ?' => $id);
-			$this->getDbTable()->update($data, $where);
-			echo "AnHien_$publish.png";
-		}
-
+				
 		public function checkOrder($type, $id, $pageId, $position, $ordering)
 		{			
 			$db = $this->getDbTable();

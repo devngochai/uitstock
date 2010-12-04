@@ -12,10 +12,10 @@
 					<a class="minibutton btn default" name="template" path="admin/template/set-default-template" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon default"></span>Quan trọng</span>
 					</a>
-					<a class="minibutton btn publish" name="article" path="admin/article/publish-article" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn publish" name="article" mapper="articleMapper" path="admin/article/publish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon publish"></span>Published</span>
 					</a>
-					<a class="minibutton btn unpublish" name="article" path="admin/article/unpublish-article" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn unpublish" name="article" mapper="articleMapper" path="admin/article/unpublish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon unpublish"></span>Unpublished</span>
 					</a>
 					<a class="minibutton btn delete" name="loại tin" path="admin/article/delete-article" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
@@ -42,7 +42,7 @@
 						<tr>
 							<th width="10">#</th>
 							<th width="10"><input type="checkbox" id="select_all"></th>	
-							<th width="500">Tựa đề</th>
+							<th width="500">Tiêu đề</th>
 							<th width="200" class="center">Loại tin</th>	
 							<th width="10" class="center">Ngày</th>						
 							<th width="10" class="center">Published</th>
@@ -58,7 +58,14 @@
 									<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($article['id']) ?>" value="<?php echo $this->escape($article['id']) ?>"  /></td> 
 									<td class="left"><a href="admin/article/view-article/id/<?php echo $this->escape($article['id']) ?>"><?php echo $this->escape($article['title']) ?></a></td>
 									<td class="center"><?php echo $this->escape($article['cat_name']) ?></td>								
-									<td class="left"><?php echo $this->escape($article['create_date']) ?></td>
+									<td class="left">
+										<?php
+											  $date = $this->escape($article['create_date']); 																					  
+											  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
+											  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
+											  echo $date; 						
+										?>
+									</td>
 									<td class="center">
 										<?php if ($article['published'] == 1) {
 											$title = "Click vào để ẩn Category";
@@ -68,7 +75,7 @@
 											$img = $this->dirImg . '/AnHien_0.png';
 											}
 										?>
-										<img name="article" path="admin/article/set-publish-article" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+										<img name="article" mapper="articleMapper" path="admin/article/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
 									</td>	
 									<td class="center"><img src="<?php if ($article['important'] == 1) echo $this->dirImg; ?>/default.png" title="Quan trọng" /></td>
 									<td class="center"><?php echo $this->escape($article['count']) ?></td>																														
@@ -80,7 +87,14 @@
 									<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($article['id']) ?>" value="<?php echo $this->escape($article['id']) ?>"  /></td> 
 									<td class="left"><a href="admin/article/view-article/id/<?php echo $this->escape($article['id']) ?>"><?php echo $this->escape($article['title']) ?></a></td>
 									<td class="center"><?php echo $this->escape($article['cat_name']) ?></td>								
-									<td class="left"><?php echo $this->escape($article['create_date']) ?></td>
+									<td class="left">
+										<?php
+											  $date = $this->escape($article['create_date']); 																					  
+											  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
+											  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
+											  echo $date; 						
+										?>
+									</td>
 									<td class="center">
 										<?php if ($article['published'] == 1) {
 											$title = "Click vào để ẩn Category";
@@ -90,7 +104,7 @@
 											$img = $this->dirImg . '/AnHien_0.png';
 											}
 										?>
-										<img name="article" path="admin/article/set-publish-article" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+										<img name="article" mapper="articleMapper" path="admin/article/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
 									</td>	
 									<td class="center"><img src="<?php if ($article['important'] == 1) echo $this->dirImg; ?>/default.png" title="Quan trọng" /></td>
 									<td class="center"><?php echo $this->escape($article['count']) ?></td>																														

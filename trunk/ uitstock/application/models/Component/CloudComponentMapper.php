@@ -109,7 +109,26 @@
 		{
 			$rows = $this->getDbTable()->fetchAll();								
 			return $this->getEntries($rows);
-		}			
+		}	
+
+	    public function fetchAllByOrder()
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()			             
+			             ->order('ordering');
+			$rows = $db->fetchAll($select);								
+			return $this->getEntries($rows);
+		}
+		
+	    public function fetchAllByFront()
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()			     
+						 ->where('is_admin = 0')        
+			             ->order('ordering');
+			$rows = $db->fetchAll($select);								
+			return $this->getEntries($rows);
+		}
 		
 	    public function getAllComponent()
 		{
@@ -134,48 +153,7 @@
 		                 ->where('th.is_default = 1');		                 
 		            
             return $db->fetchAll($select);			                     
-		}
-		
-	    public function fetchAllByOrder()
-		{
-			$db = $this->getDbTable();			
-			$select = $db->select()			             
-			             ->order('ordering');
-			$rows = $db->fetchAll($select);								
-			return $this->getEntries($rows);
-		}
-		
-	    public function fetchAllByFront()
-		{
-			$db = $this->getDbTable();			
-			$select = $db->select()			     
-						 ->where('is_admin = 0')        
-			             ->order('ordering');
-			$rows = $db->fetchAll($select);								
-			return $this->getEntries($rows);
-		}
-		
-	    public function getMaxOrder()
-		{
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
-			
-			$stmt = $db->query('SELECT max(ordering) as max from components');
-			$row = $stmt->fetch();
-			
-			if (null == $row['max']) return 0;
-			else return $row['max'];	
-		}
-		
-		public function getMinOrder()
-		{
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
-			
-			$stmt = $db->query('SELECT min(ordering) as min from components');
-			$row = $stmt->fetch();
-			
-			if (null == $row['min']) return 0;
-			else return $row['min'];		
-		}	
+		}			   			    
 										
 		public function getComponentById($id)
 		{
@@ -204,14 +182,29 @@
 				return null;
 																      				 			      		
 			return $this->getEntry($row);
-		}
-	
-			
-		public function deleteComponent($id)
+		}		
+
+		public function getMaxOrder()
 		{
-			$where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $id);
-			$this->getDbTable()->delete($where);
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+			
+			$stmt = $db->query('SELECT max(ordering) as max from components');
+			$row = $stmt->fetch();
+			
+			if (null == $row['max']) return 0;
+			else return $row['max'];	
 		}
+		
+		public function getMinOrder()
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+			
+			$stmt = $db->query('SELECT min(ordering) as min from components');
+			$row = $stmt->fetch();
+			
+			if (null == $row['min']) return 0;
+			else return $row['min'];		
+		}	
 		
 		public function autoSuggestionComponent($name)
 		{

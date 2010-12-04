@@ -116,29 +116,7 @@
 				$where = array('id = ?' => $id);
 				$this->getDbTable()->update($data, $where);
 			}
-		}
-		
-		public function getMinOrder()
-		{
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
-			
-			$stmt = $db->query('SELECT min(ordering) as min from pages');
-			$row = $stmt->fetch();
-			
-			if (null == $row['min']) return 0;
-			else return $row['min'];				
-		}	
-		
-		public function getMaxOrder()
-		{
-			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
-			
-			$stmt = $db->query('SELECT max(ordering) as max from pages');
-			$row = $stmt->fetch();
-			
-			if (null == $row['max']) return 0;
-			else return $row['max'];											
-		}
+		}				
 		
 		public function getPageByComponent($component_id)
 		{
@@ -166,59 +144,7 @@
             $rows = $db->fetchAll($select);                        		
                      
             return $this->getEntries($rows);  
-		}
-		
-		public function setPublish($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {
-				$id = $listid[$i]; 
-				$data = array('published' => 1);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-			}
-		}
-		
-	    public function setUnPublish($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {						
-				$id = $listid[$i]; 				
-				$data = array('published' => 0);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-			}
-		}
-		
-		public function setPublishAjax($id)
-		{
-				$db = $this->getDbTable();
-				$select = $db->select()			    
-				             ->from($db, 'published')            	
-				             ->where('id = ?', $id);				          
-				$row = $db->fetchRow($select);																	
-																	      				 			      		
-				$publish = ($row->published == 1) ? 0 : 1;
-							
-				$data = array('published' => $publish);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-				echo "AnHien_$publish.png";
-		}
-		
-		public function deleteAll($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {	
-				$id = $listid[$i]; 						
-				$page = new Cloud_Model_Page_CloudPage();		 		
-				$this->find($id, $page);		
-				if (null == $page) echo 'error';
-				else if ($page->getIs_home() == '1') echo 'default';
-				else {					
-					$db = $this->getDbTable();					
-					$where = $db->getAdapter()->quoteInto('id = ?', $id);
-					$db->delete($where);
-				}										
-			}
-		}
+		}				  				
 			   
 		public function getPageByTitle($title, $component_id, $currentPage)
 		{						
@@ -252,7 +178,45 @@
 				return null;
 																      				 			      		
 			return $this->getEntry($row);
-		}				
+		}	
+		
+		public function getMinOrder()
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+			
+			$stmt = $db->query('SELECT min(ordering) as min from pages');
+			$row = $stmt->fetch();
+			
+			if (null == $row['min']) return 0;
+			else return $row['min'];				
+		}	
+		
+		public function getMaxOrder()
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+			
+			$stmt = $db->query('SELECT max(ordering) as max from pages');
+			$row = $stmt->fetch();
+			
+			if (null == $row['max']) return 0;
+			else return $row['max'];											
+		}
+
+		public function deleteAll($listid)
+		{
+			for ($i = 0; $i < count($listid); $i++) {	
+				$id = $listid[$i]; 						
+				$page = new Cloud_Model_Page_CloudPage();		 		
+				$this->find($id, $page);		
+				if (null == $page) echo 'error';
+				else if ($page->getIs_home() == '1') echo 'default';
+				else {					
+					$db = $this->getDbTable();					
+					$where = $db->getAdapter()->quoteInto('id = ?', $id);
+					$db->delete($where);
+				}										
+			}
+		}
 		    				
 		public function autoSuggestionPage($title, $component_id)
 		{

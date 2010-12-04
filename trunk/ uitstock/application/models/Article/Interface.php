@@ -7,13 +7,9 @@ interface Cloud_Model_Article_Interface
 	public function getEntries($rows);
 	public function save(Cloud_Model_Article_CloudArticle $article);
 	public function find($id, Cloud_Model_Article_CloudArticle $article);
-	public function fetchArticleByPage($page);	
-	public function getArticleById($id);
 	public function updateAlias($id, $name);
-	public function stripUnicode($str);	
-	public function setPublishAction($listid);
-	public function setUnPublish($listid);
-	public function setPublishCatAjax($id);
+	public function fetchArticleByPage($page);	
+	public function getArticleById($id);	
 	public function autoSuggestionCat($name);
 	public function searchArticle($name);
 }

@@ -9,10 +9,10 @@
 					<a class="minibutton btn edit" name="page" path="admin/page/edit" >
 						<span><span class="icon edit" ></span>Sửa</span>
 					</a>
-					<a class="minibutton btn publish" name="page" path="admin/page/publish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn publish" name="page" mapper="pageMapper" path="admin/page/publish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon publish"></span>Published</span>
 					</a>
-					<a class="minibutton btn unpublish" name="page" path="admin/page/unpublish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn unpublish" name="page" mapper="pageMapper" path="admin/page/unpublish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
 						<span><span class="icon unpublish"></span>Unpublished</span>
 					</a>
 					<a class="minibutton btn deleteall" name="page" path="admin/page/delete" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
@@ -77,7 +77,7 @@
 											$img = $this->dirImg . '/AnHien_0.png';
 											}
 										?>
-										<img name="page" path="admin/page/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($page->id) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+										<img name="page" mapper="pageMapper" path="admin/page/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($page->id) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
 									</td>
 									<td class="center"><img src="<?php if ($page->is_home == 1) echo $this->dirImg; ?>/default.png" /></td>																						
 									<td class="right"><?php echo $this->escape($page->id) ?></td>
@@ -97,7 +97,7 @@
 											$img = $this->dirImg . '/AnHien_0.png';
 											}
 										?>
-										<img name="page" path="admin/page/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($page->id) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+										<img name="page" mapper="pageMapper" path="admin/page/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($page->id) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
 									</td>
 									<td class="center"><img src="<?php if ($page->is_home == 1) echo $this->dirImg; ?>/default.png" /></td>																						
 									<td class="right"><?php echo $this->escape($page->id) ?></td>

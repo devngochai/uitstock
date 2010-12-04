@@ -52,13 +52,12 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 			
 			$sub = $this->contentCategoryMapper->getSubNameById($currentCategory->parent_id);
 			if (null != $sub->name) $sub = $sub->name;
-		
-			$this->view->assign(array(
+								
+			$this->view->assign(array(			
 	    		'category' => $currentCategory,
 	    		'sub' => $sub,
-	    ));
-		}
-		
+	    	));
+		}		
 	}
 	
 	public function addCatAction()
@@ -116,46 +115,51 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		$this->_helper->viewRenderer->setNoRender(true);
 		
 		if (null != $this->request->getParam('id')) {			
-			$id = $this->request->getParam('id');	
-			var_dump($id);		
+			$id = $this->request->getParam('id');				
 			$this->contentCategoryMapper->delete($id);
 		}
 	}
 		
-	public function publishCatAction()
+	public function publishAction()
 	{
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 				 
 		if ($this->request->getParam('listid') != null) {			
 			$listid = explode(",", $this->request->getParam('listid'));
-			$this->contentCategoryMapper->setPublishAction($listid);
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();			
+			Cloud_Model_Utli_CloudUtli::setPublish($dbTable, $listid);			
 		}	
 		else 
 			echo 'error';							
 	}
 	
-	public function unpublishCatAction()
+	public function unpublishAction()
 	{
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
 		if ($this->request->getParam('listid') != null) {				 			
 			$listid = explode(",", $this->request->getParam('listid'));					 			
-			$this->contentCategoryMapper->setUnPublish($listid);
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();
+			Cloud_Model_Utli_CloudUtli::setUnPublish($dbTable, $listid);	
 		}		
 		else 
 			echo 'error';						
 	}	
 	
-	public function setPublishCatAction()
+	public function setPublishAction()
 	{
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
 		if ($this->request->getParam('id') != null) {							
-			$id = $this->request->getParam('id');		 															 			
-			$this->contentCategoryMapper->setPublishCatAjax($id);
+			$id = $this->request->getParam('id');		 
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();
+			Cloud_Model_Utli_CloudUtli::setPublishAjax($dbTable, $id);															 						
 		}		
 		else 
 			echo 'error';
@@ -200,10 +204,36 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		if (null != $this->request->getParam('id')) {
 			$id = $this->request->getParam('id');
 			$article = $this->articleMapper->getArticleById($id);
-		   		
-			$this->view->article = $article;
+
+			$entries = $this->articleMapper->fetchAll();
+			
+			$this->view->assign(array(			
+	    		'entries' => $entries,
+	    		'article' => $article,
+	    	));			
+		}		
+	}
+	
+	public function addArticleAction()
+	{
+		$this->view->headTitle($this->config['title']['addArticle']);		  
+	    
+	    $form = new Cloud_Form_Admin_Article_Add(array(
+	    	'categories' => $this->contentCategoryMapper->fetchAllSub(),
+	    ));
+
+	    
+		if ($this->getRequest()->isPost()) {
+			if ($form->isValid($this->request->getPost())) {			
+				$values = $form->getValues();				
+				$article = new Cloud_Model_Article_CloudArticle($values);
+				$newId = $this->articleMapper->save($article);
+				$this->articleMapper->updateAlias($newId, $values['title']);																					
+				$this->view->message = 'Đã thêm tin: ' . $values['title'];
+			}
 		}
 		
+		$this->view->form = $form;
 	}
 	
 }

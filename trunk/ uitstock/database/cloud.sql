@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 04, 2010 at 12:40 PM
+-- Generation Time: Dec 04, 2010 at 05:36 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -35,13 +35,14 @@ CREATE TABLE `articles` (
   `important` tinyint(1) default NULL,
   `count` int(11) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Dumping data for table `articles`
 -- 
 
 INSERT INTO `articles` VALUES (1, 2, 1, 0, 'Huy động và cho vay vốn bằng vàng: Vì sao phải siết?', 'alias', 'sum', 'files/avatar/linhnn.jpg', 'content', '2010-12-04', '2010-12-04', 1, 1, 0);
+INSERT INTO `articles` VALUES (2, 2, 1, 1, 'Giá vàng lập kỷ lục mới, USD vọt lên 20.450 đồng', 'o', 'k', 'files/news/30102010/chungkhoan_pxhvncgh645240493small.jpg', 'aa', '2010-12-04', NULL, 1, 1, 0);
 
 -- --------------------------------------------------------
 

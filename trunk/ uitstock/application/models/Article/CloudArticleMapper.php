@@ -109,6 +109,27 @@
 				    ->setImportant($row->important)
 				    ->setCount($row->count);								    	 				 	 			 				      		   
 		}	
+		
+		public function fetchAll()
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+						 ->from($db, array('title', 'relative_id'));
+			             
+			$rows = $this->getDbTable()->fetchAll();							
+			return $this->getEntries($rows);
+		}	
+		
+		public function updateAlias($id, $name)
+		{
+			$alias = Cloud_Model_Utli_CloudUtli::stripUnicode($name);
+            $alias = preg_replace(array('/\s+/', '/[^A-Za-z0-9-]/', '/^[-]/', '/-$/'),
+                                array('-', '','',''), strtolower($alias));     
+
+			$data = array('alias' => $alias);
+			$where = array('id = ?' => $id);
+			$this->getDbTable()->update($data, $where);                                
+		}	
 
 		public function fetchArticleByPage($page)
 		{
@@ -152,81 +173,7 @@
 		                 ->where('a.id = ?', $id);		                               		        	             			                                  	
                    
            return $db->fetchRow($select);
-		}
-		
-		public function updateAlias($id, $name)
-		{
-			$alias = $this->stripUnicode($name);
-            $alias = preg_replace(array('/\s+/', '/[^A-Za-z0-9-]/', '/^[-]/', '/-$/'),
-                                array('-', '','',''), strtolower($alias));     
-
-			$data = array('alias' => $alias);
-			$where = array('id = ?' => $id);
-			$this->getDbTable()->update($data, $where);                                
-		}
-		
-		public function stripUnicode($str)
-        {
-            if (!$str) return false;
-            $unicode = array(
-             'a'=>'á|à|ả|ã|ạ|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ',
-             'A'=>'Á|À|Ả|Ã|Ạ|Ă|Ắ|Ằ|Ẳ|Ẵ|Ặ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
-             'd'=>'đ',
-             'D'=>'Đ',
-        	  'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ',
-        	  'E'=>'É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
-        	  'i'=>'í|ì|ỉ|ĩ|ị',	  
-        	  'I'=>'Í|Ì|Ỉ|Ĩ|Ị',
-             'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ',
-        	  'O'=>'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
-             'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự',
-        	  'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
-             'y'=>'ý|ỳ|ỷ|ỹ|ỵ',
-             'Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ'
-           );
-           foreach ($unicode as $khongdau => $codau)
-           {
-                $arr = explode("|", $codau);
-                $str = str_replace($arr, $khongdau, $str);
-           }
-           return $str;
-        }      
-
-		public function setPublishAction($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {
-				$id = $listid[$i]; 
-				$data = array('published' => 1);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-			}
-		}
-		
-	    public function setUnPublish($listid)
-		{
-			for ($i = 0; $i < count($listid); $i++) {						
-				$id = $listid[$i]; 				
-				$data = array('published' => 0);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-			}
-		}
-		
-		public function setPublishCatAjax($id)
-		{
-				$db = $this->getDbTable();
-				$select = $db->select()			    
-				             ->from($db, 'published')            	
-				             ->where('id = ?', $id);				          
-				$row = $db->fetchRow($select);																	
-																	      				 			      		
-				$publish = ($row->published == 1) ? 0 : 1;
-							
-				$data = array('published' => $publish);
-				$where = array('id = ?' => $id);
-				$this->getDbTable()->update($data, $where);
-				echo "AnHien_$publish.png";
-		}
+		}							    	
 		
 		public function autoSuggestionCat($name)
 		{

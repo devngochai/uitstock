@@ -106,7 +106,9 @@ class Admin_PageController extends ZendStock_Controller_Action {
 				 
 		if ($this->request->getParam('listid') != null) {			
 			$listid = explode(",", $this->request->getParam('listid'));
-			$this->pageMapper->setPublish($listid);	
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();			
+			Cloud_Model_Utli_CloudUtli::setPublish($dbTable, $listid);	
 		}	
 		else 
 			echo 'error';							
@@ -119,7 +121,9 @@ class Admin_PageController extends ZendStock_Controller_Action {
 		
 		if ($this->request->getParam('listid') != null) {				 			
 			$listid = explode(",", $this->request->getParam('listid'));					 			
-			$this->pageMapper->setUnPublish($listid);	
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();
+			Cloud_Model_Utli_CloudUtli::setUnPublish($dbTable, $listid);	
 		}		
 		else 
 			echo 'error';						
@@ -132,7 +136,9 @@ class Admin_PageController extends ZendStock_Controller_Action {
 		
 		if ($this->request->getParam('id') != null) {							
 			$id = $this->request->getParam('id');		 															 			
-			$this->pageMapper->setPublishAjax($id);	
+			$mapper = $this->request->getParam('mapper');
+			$dbTable = $this->$mapper->getDbTable();
+			Cloud_Model_Utli_CloudUtli::setPublishAjax($dbTable, $id);	
 		}		
 		else 
 			echo 'error';

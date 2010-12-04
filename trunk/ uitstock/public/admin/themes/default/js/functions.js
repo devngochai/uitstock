@@ -196,6 +196,7 @@ function addActionForButton()
 	$('a.publish').click(function(){
 		var listid = "";
 		var name = $(this).attr('name');
+		var mapper = $(this).attr('mapper');
 		var path = $(this).attr('path');
 		var currentpath = $(this).attr('currentpath');
 		
@@ -206,12 +207,12 @@ function addActionForButton()
 		
 		$.ajax({
 			url: path,
-			data: 'listid=' + listid,
+			data: 'listid=' + listid + '&mapper=' + mapper,
 			cache: false,
 			success: function(data) {
 				if (data == 'error') {jAlert('Bạn chưa chọn ' + name + ' nào!', 'Chú ý');
 										; return; }
-				else {
+				else {					
 					//document.location = currentpath;
 					$("input[name='select']").each(function() {
 						if (this.checked) {
@@ -228,6 +229,7 @@ function addActionForButton()
 	$('a.unpublish').click(function(){
 		var listid = "";
 		var name = $(this).attr('name');
+		var mapper = $(this).attr('mapper');
 		var path = $(this).attr('path');
 		var currentpath = $(this).attr('currentpath');
 		
@@ -238,7 +240,7 @@ function addActionForButton()
 		
 		$.ajax({
 			url: path,
-			data: 'listid=' + listid,
+			data: 'listid=' + listid + '&mapper=' + mapper,
 			cache: false,
 			success: function(data) {
 				if (data == 'error') {jAlert('Bạn chưa chọn ' + name + ' nào!', 'Chú ý');
@@ -262,13 +264,14 @@ function addActionForButton()
 		var path = $(this).attr('path');
 		var pathDirImg = $(this).attr('pathDirImg');
 		var name = $(this).attr('name');
+		var mapper = $(this).attr('mapper');
 		obj = this;
 		
 		$.ajax({
 			url: path,
-			data: 'id=' + id,
+			data: 'id=' + id + '&mapper=' + mapper,
 			cache: false,
-			success: function(data) {						   
+			success: function(data) {				
 				obj.src = pathDirImg + '/' + data;
 				if (data == 'AnHien_1.png') obj.title = 'Nhấn vào để ẩn ' + name;
 				else obj.title = 'Nhấn vào để hiện ' + name;
@@ -553,13 +556,14 @@ function change3()
 		var path = $(this).attr('path');
 		var pathDirImg = $(this).attr('pathDirImg');
 		var name = $(this).attr('name');
+		var mapper = $(this).attr('mapper');
 		obj = this;
 		
 		$.ajax({
 			url: path,
-			data: 'id=' + id,
+			data: 'id=' + id + '&mapper=' + mapper,
 			cache: false,
-			success: function(data) {						   
+			success: function(data) {				
 				obj.src = pathDirImg + '/' + data;
 				if (data == 'AnHien_1.png') obj.title = 'Nhấn vào để ẩn ' + name;
 				else obj.title = 'Nhấn vào để hiện ' + name;
