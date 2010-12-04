@@ -14,7 +14,7 @@
 		protected $relative_id;		
 		protected $title;							
 		protected $alias;
-		protected $summerize;
+		protected $summarize;
 		protected $image;
 		protected $content;
 		protected $create_date;
@@ -104,10 +104,10 @@
 		}
 	
 			/**
-		 * @return the $summerize
+		 * @return the $summarize
 		 */
-		public function getSummerize() {
-			return $this->summerize;
+		public function getSummarize() {
+			return $this->summarize;
 		}
 	
 			/**
@@ -208,10 +208,10 @@
 		}
 	
 			/**
-		 * @param $summerize the $summerize to set
+		 * @param $summerize the $summarize to set
 		 */
-		public function setSummerize($summerize) {
-			$this->summerize = $summerize;
+		public function setSummarize($summarize) {
+			$this->summarize = $summarize;
 			return $this;
 		}
 	

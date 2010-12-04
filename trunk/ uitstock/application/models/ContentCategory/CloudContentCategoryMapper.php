@@ -162,7 +162,7 @@
 		
 		public function getSubNameById($parentId)
 		{
-			if ($parentId == 0) return "Không";
+			if ($parentId == 0) return "No";
 			else {
 				$db = $this->getDbTable();
 				$select = $db->select()							

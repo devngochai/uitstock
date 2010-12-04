@@ -108,7 +108,51 @@
 				    ->setPublished($row->published)
 				    ->setImportant($row->important)
 				    ->setCount($row->count);								    	 				 	 			 				      		   
-		}						
+		}	
+
+		public function fetchArticleByPage($page)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->order('a.create_date desc');		               		        	             
+			    
+           $rows = $db->fetchAll($select);           
+           
+           $paginator = Zend_Paginator::factory($rows);
+    	   $paginator->setItemCountPerPage(5);
+    	   $paginator->setCurrentPageNumber($page);           		
+                     
+           return $paginator;  
+		}
+		
+		public function getArticleById($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->where('a.id = ?', $id);		                               		        	             			                                  	
+                   
+           return $db->fetchRow($select);
+		}
 		
 		public function updateAlias($id, $name)
 		{

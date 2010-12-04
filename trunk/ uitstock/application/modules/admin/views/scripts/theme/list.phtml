@@ -64,7 +64,7 @@
 								<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($theme->id) ?>" component="<?php echo $this->escape($theme->component_id); ?>" /></td> 
 								<td class="left"><?php echo $this->escape($theme->name) ?></td>
 								<td class="left"><?php echo $this->escape($theme->path) ?></td>
-								<td class="center"><img src="<?php if ($theme->is_default == 1) echo $this->dirImg; ?>/default.png" class="click" title="Mặc định" /></td>																						
+								<td class="center"><img src="<?php if ($theme->is_default == 1) echo $this->dirImg; ?>/default.png" title="Mặc định" /></td>																						
 								<td class="center"><?php echo $this->escape($theme->id) ?></td>
 							</tr>		
 							<?php } else { ?>
@@ -73,7 +73,7 @@
 									<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($theme->id) ?>" component="<?php echo $this->escape($theme->component_id); ?>" /></td> 
 									<td class="left"><?php echo $this->escape($theme->name) ?></td>
 									<td class="left"><?php echo $this->escape($theme->path) ?></td>
-									<td class="center"><img src="<?php if ($theme->is_default == 1) echo $this->dirImg; ?>/default.png" class="click" title="Mặc định" /></td>																							
+									<td class="center"><img src="<?php if ($theme->is_default == 1) echo $this->dirImg; ?>/default.png" title="Mặc định" /></td>																							
 									<td class="center"><?php echo $this->escape($theme->id) ?></td>
 								</tr>
 							<?php } ?>							

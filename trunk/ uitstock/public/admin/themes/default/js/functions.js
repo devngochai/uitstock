@@ -186,7 +186,7 @@ function addActionForButton()
 					    if (data == 'error') alert(name + ' này không tồn tại!');					   
 					    else if (data == 'default')  {jAlert('Không thể xóa ' + name + ' này!', 'Chú ý');
 														; return; }    										
-						else document.location = currentpath;				    
+						else document.location = back;				    
 					}
 				});
 			}
@@ -305,7 +305,11 @@ function addActionForButton()
 				});
 			}
 		});
-	});			
+	});		
+	
+	$('a.close').click(function(){
+		document.location = $(this).attr("back");
+	});
 	
 	$('.selectBox').change(function(){	
 		$("tbody.rows").html("");

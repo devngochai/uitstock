@@ -12,33 +12,34 @@
 				<a class="minibutton btn delete2" name="loại tin" path="admin/article/delete-cat" id="<?php echo $this->category->id ?>" back="<?php echo $_SESSION['temp']; ?>">
 						<span><span class="icon delete"></span>Xóa</span>
 				</a>
-				<a class="minibutton btn close" name="loại tin" path="admin/article/delete-cat" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+				<a class="minibutton btn close" name="loại tin" back="<?php echo $_SESSION['temp']; ?>">
 						<span><span class="icon close"></span>Đóng</span>
 				</a>								
 			</div>				
 		</div>
 		
-		<div class="portlet-content">						 							                													
+		<div class="portlet-content">									 							                													
 			<table cellpadding="0" cellspacing="0" border="0" class="display">
 				<tr>
-					<td width="200">Category name:</td>
+					<td width="90"><b>Category name:</b></td>
 					<td><?php echo $this->category->name; ?></td>
 				</tr>
 				<tr>
-					<td>Alias:</td>
+					<td><b>Alias:</b></td>
 					<td><?php echo $this->category->alias; ?></td>
 				</tr>
 				<tr>
-					<td>Sub:</td>
+					<td><b>Sub:</b></td>
 					<td><?php echo $this->sub; ?></td>
 				</tr>
 				<tr>
-					<td>Description:</td>
+					<td><b>Description:</b></td>
 					<td><?php echo $this->category->description; ?></td>
 				</tr>
 				<tr>
-					<td>Published:</td>
-					<td><?php echo $this->category->published; ?></td>
+					<td><b>Published:</b></td>
+					<?php $published = ($this->category->published == 1) ? "Yes" : "No"; ?>
+					<td><?php echo $published; ?></td>
 				</tr>
 			</table>
 																																				

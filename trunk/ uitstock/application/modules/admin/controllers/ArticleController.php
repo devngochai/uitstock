@@ -9,7 +9,8 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
     
 	public function init() {    		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
-		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 		
+		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
+		 $this->articleMapper = new Cloud_Model_Article_CloudArticleMapper();		
 		 $this->contentCategoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();			     	           
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
@@ -178,22 +179,31 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function listArticleAction()
 	{
-		$this->view->headTitle($this->config['title']['category']);	
+		$this->view->headTitle($this->config['title']['article']);	
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];	
 
-//		$name = $this->request->getParam('name');
-//		$page = $this->_getParam('page', 1);
-//
-//		if (null == $name) {
-//			$parents = $this->contentCategoryMapper->fetchAllParent($page);
-//			$subs = $this->contentCategoryMapper->fetchAllSub();
-//		} else 
-//			$parents = $this->contentCategoryMapper->searchCat($name);
-//						    
-//	    $this->view->assign(array(
-//	    		'parents' => $parents,
-//	    		'subs' => $subs,
-//	    ));
+		$name = $this->request->getParam('name');
+		$page = $this->_getParam('page', 1);
+
+		if (null == $name) 
+			$articles = $this->articleMapper->fetchArticleByPage($page);
+		 else 
+			$articles = $this->articleMapper->searchArticle($name);
+		
+		$this->view->articles = $articles;	
+	}
+	
+	public function viewArticleAction()
+	{
+		$this->view->headTitle($this->config['title']['viewArticle']);
+		
+		if (null != $this->request->getParam('id')) {
+			$id = $this->request->getParam('id');
+			$article = $this->articleMapper->getArticleById($id);
+		   		
+			$this->view->article = $article;
+		}
+		
 	}
 	
 }

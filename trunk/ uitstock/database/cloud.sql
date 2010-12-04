@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 04, 2010 at 09:42 AM
+-- Generation Time: Dec 04, 2010 at 12:40 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -20,9 +20,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- 
 
 CREATE TABLE `articles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `cat_id` int(11) default NULL,
   `user_id` int(11) default NULL,
+  `relative_id` int(11) default NULL,
   `title` varchar(255) default NULL,
   `alias` varchar(255) default NULL,
   `summarize` text,
@@ -30,17 +31,17 @@ CREATE TABLE `articles` (
   `content` text,
   `create_date` date default NULL,
   `modify_date` date default NULL,
-  `publsihed` tinyint(1) default NULL,
+  `published` tinyint(1) default NULL,
   `important` tinyint(1) default NULL,
-  `is_related` tinyint(1) default NULL,
-  `count` int(11) default NULL,
+  `count` int(11) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `articles`
 -- 
 
+INSERT INTO `articles` VALUES (1, 2, 1, 0, 'Huy động và cho vay vốn bằng vàng: Vì sao phải siết?', 'alias', 'sum', 'files/avatar/linhnn.jpg', 'content', '2010-12-04', '2010-12-04', 1, 1, 0);
 
 -- --------------------------------------------------------
 
