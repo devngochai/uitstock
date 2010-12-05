@@ -52,8 +52,7 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 		        		        
 		$this->addElement($element);		        
 		
-		$this->addElement('textarea', 'summarize', array(	
-		      'required' => true,			      
+		$this->addElement('textarea', 'summarize', array(			   	      
 		      'label' => 'Tóm tắt',
 			  'attribs' => array(
 					'cols' => 120,
@@ -66,7 +65,7 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 		      'required' => true,			      
 		      'label' => 'Nội dung',
 			  'attribs' => array(
-					'cols' => 40,
+					'cols' => 200,
 					'rows' => 4,
 				    'id' => 'Content',
 			   ),			      
@@ -84,7 +83,8 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 		       'multiOptions' => array('1' => 'Yes', '0' => 'No')
 		));
 				
-		$this->addElement('submit', 'Add', array(              
+		$this->addElement('submit', 'Add', array(
+			   'label' => 'Post',              
 		       'ignore' =>true,		      		   
 		));	
 

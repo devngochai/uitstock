@@ -109,6 +109,17 @@
 				    ->setCount($row->count);								    	 				 	 			 				      		   
 		}	
 		
+		public function delete($listid)
+		{
+			$array = explode(',', $listid);
+			for ($i = 0; $i < count($array); $i++) {
+				$db = $this->getDbTable();					
+				$where = $db->getAdapter()->quoteInto('id = ?', $array[$i]);
+				$db->delete($where);	
+			}
+		}
+		
+		
 		public function fetchAll()
 		{
 			$db = $this->getDbTable();			
@@ -133,7 +144,7 @@
 		public function updateRelative($id, $listId)
 		{
 			$array = explode(',', $listId);	
-			var_dump($id);	
+			
 			if (count($array) < 1) return;	
 			
 			$data = array('relative_id' => 0);
@@ -175,7 +186,7 @@
 			$path = $path . '/' . $name;		
 			rename($path, $image);																							
 		}
-
+				
 		public function fetchArticleByPage($page)
 		{
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
@@ -190,6 +201,58 @@
 			$select = $db->select()		                  
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->order('a.create_date desc');		               		        	             
+			    
+           $rows = $db->fetchAll($select);           
+           
+           $paginator = Zend_Paginator::factory($rows);
+    	   $paginator->setItemCountPerPage(5);
+    	   $paginator->setCurrentPageNumber($page);           		
+                     
+           return $paginator;  
+		}
+		
+		public function fetchArticleById($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->where('a.cat_id = ?', $id)
+		                 ->order('a.create_date desc');		               		        	             
+			    
+           $rows = $db->fetchAll($select);           
+           
+           $paginator = Zend_Paginator::factory($rows);
+    	   $paginator->setItemCountPerPage(5);
+    	   $paginator->setCurrentPageNumber($page);           		
+                     
+           return $paginator;  
+		}
+		
+		public function fetchArticleBySub($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->where('c.parent_id = ?', $id)
 		                 ->order('a.create_date desc');		               		        	             
 			    
            $rows = $db->fetchAll($select);           
@@ -218,38 +281,66 @@
 		                 ->where('a.id = ?', $id);		                               		        	             			                                  	
                    
            return $db->fetchRow($select);
-		}							    	
-		
-		public function autoSuggestionCat($name)
-		{
-			if (null == $name) exit();	
-			
-			$db = $this->getDbTable();			
-			$select = $db->select()
-			             ->where('name like ?', "%$name%")
-			             ->limit(5, 0);			          
-			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_Article_CloudArticle();
-            	$entry->setName($row->name);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
-                   
-            return $entries;            
+		}			
+
+	 	public function setImportant($listid)
+		{	
+			$array = explode(',', $listid);
+			for ($i = 0; $i < count($array); $i++) {
+				$data = array('important' => 1);
+				$where = array('id = ?' => $array[$i]);
+				$this->getDbTable()->update($data, $where);		
+			}											
 		}
 		
-		public function searchArticle($name)
+		public function setNormal($listid)
+		{	
+			$array = explode(',', $listid);
+			for ($i = 0; $i < count($array); $i++) {
+				$data = array('important' => 0);
+				$where = array('id = ?' => $array[$i]);
+				$this->getDbTable()->update($data, $where);		
+			}											
+		}
+		
+		public function autoSuggestionArticle($title)
 		{
-			if (null == $name) exit();
+			if (null == $title) exit();	
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
-			             ->where('name = ?', $name);			           
+						 ->from($db, array('title'))
+			             ->where('title like ?', "%$title%")
+			             ->limit(5, 0);			          
+			                    
+            return $db->fetchAll($select);            
+		}
+		
+		public function searchArticle($title)
+		{
+			if (null == $title) exit();
+			
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->where('title like ?', $title)
+		                 ->order('a.create_date desc');		               		        	             
 			    
-            $rows = $db->fetchAll($select);                        		
+           $rows = $db->fetchAll($select);           
+           
+           $paginator = Zend_Paginator::factory($rows);
+    	   $paginator->setItemCountPerPage(5);
+    	   $paginator->setCurrentPageNumber($page);           		
                      
-            return $this->getEntries($rows);          
+           return $paginator;         
 		}
 	}

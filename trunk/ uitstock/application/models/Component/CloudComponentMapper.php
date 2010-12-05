@@ -212,17 +212,10 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
-			             ->where('name like ?', "%$name%");
-			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_Component_CloudComponent(); 
-            	$entry->setTemplate_id($row->template_id);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
+			             ->from($db, array('name'))
+			             ->where('name like ?', "%$name%");			                               	
                    
-            return $entries;            
+            return $db->fetchAll($select);            
 		}
 		
 		public function searchComponent($name)

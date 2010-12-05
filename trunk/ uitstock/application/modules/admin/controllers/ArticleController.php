@@ -114,8 +114,8 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
-		if (null != $this->request->getParam('id')) {			
-			$id = $this->request->getParam('id');				
+		if (null != $this->request->getParam('listid')) {			
+			$id = $this->request->getParam('listid');				
 			$this->contentCategoryMapper->delete($id);
 		}
 	}
@@ -185,14 +185,20 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	{
 		$this->view->headTitle($this->config['title']['article']);	
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];	
-
-		$name = $this->request->getParam('name');
+		
 		$page = $this->_getParam('page', 1);
-
-		if (null == $name) 
-			$articles = $this->articleMapper->fetchArticleByPage($page);
-		 else 
-			$articles = $this->articleMapper->searchArticle($name);
+		
+		$title = $this->request->getParam('title');
+		$id = $this->request->getParam('id');
+		$pid = $this->request->getParam('pid');
+		if (null == $title && null == $pid && null == $id) 
+			$articles = $this->articleMapper->fetchArticleByPage($page);					
+		if (null != $id) 
+			$articles = $this->articleMapper->fetchArticleById($this->request->getParam('id'));	
+		if (null != $pid) 
+			$articles = $this->articleMapper->fetchArticleBySub($this->request->getParam('pid'));
+		if (null != $title) 
+			$articles = $this->articleMapper->searchArticle($title);			
 		
 		$this->view->articles = $articles;	
 	}
@@ -270,6 +276,65 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 			
 			$this->view->form = $form;
 		}		
+	}
+	
+	public function setImportantAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);										
+							
+		$listid = $this->request->getParam('listid');							
+			
+		$article = new Cloud_Model_Article_CloudArticle();		 		
+		$this->articleMapper->find($listid, $article);	
+							
+		if (null == $article) echo 'error';
+		else {
+			$this->articleMapper->setImportant($listid);
+		}
+	}
+	
+	public function setNormalAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);										
+							
+		$listid = $this->request->getParam('listid');							
+			
+		$article = new Cloud_Model_Article_CloudArticle();		 		
+		$this->articleMapper->find($listid, $article);	
+							
+		if (null == $article) echo 'error';
+		else {
+			$this->articleMapper->setNormal($listid);
+		}
+	}
+	
+	public function deleteArticleAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		if (null != $this->request->getParam('listid')) {			
+			$listid = $this->request->getParam('listid');				
+			$this->articleMapper->delete($listid);
+		}
+	}
+	
+	public function autoSuggestionArticleAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);	
+				
+		$title = $this->request->getParam('name');				
+		$result = $this->articleMapper->autoSuggestionArticle($title);
+		if ($result) {			
+			echo '<ul>';
+			foreach ($result as $row) {
+				echo '<li onClick="fill(\''.$row->title.'\');">'.$row->title.'</li>';	
+			}
+			echo '</ul>';
+		} 
 	}
 			
 }

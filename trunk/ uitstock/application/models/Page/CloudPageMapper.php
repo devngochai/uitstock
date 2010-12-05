@@ -224,18 +224,11 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
+			             ->from($db, array('title'))
 			             ->where('title like ?', "%$title%")
-			             ->where('component_id = ?', $component_id);
-			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_Page_CloudPage(); 
-            	$entry->setTitle($row->title);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
+			             ->where('component_id = ?', $component_id);			                                 		
                    
-            return $entries;            
+            return $db->fetchAll($select);            
 		}	
 		
 		public function searchPage($title, $component_id)

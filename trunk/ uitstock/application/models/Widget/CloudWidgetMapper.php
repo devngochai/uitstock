@@ -209,17 +209,10 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
+			             ->from($db, array('alias'))
 			             ->where('alias like ?', "%$alias%");			             
 			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_Widget_CloudWidget(); 
-            	$entry->setAlias($row->alias);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
-                   
-            return $entries;            
+            return $db->fetchAll($select);                   
 		}	
 		
 		public function searchWidget($alias, $pageId)

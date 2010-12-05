@@ -227,17 +227,10 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
+			             ->from($db, array('name'))
 			             ->where('name like ?', "%$name%")
-			             ->where('component_id = ?', $component_id);
-			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_Template_CloudTemplate(); 
-            	$entry->setName($row->name);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
+			             ->where('component_id = ?', $component_id);			                               	
                    
-            return $entries;            
+            return $db->fetchAll($select);            
 		}		
 	}

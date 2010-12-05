@@ -3,13 +3,13 @@
 		<div class="portlet-header item article">
 			<h4>Xem tin</h4>
 			<div class="float-right">																																																																								
-				<a class="minibutton btn edit2" path="admin/article/edit-cat/id/<?php echo $this->article->id ?>" >
+				<a class="minibutton btn edit2" path="admin/article/edit-article/id/<?php echo $this->article['id'] ?>" >
 					<span><span class="icon edit" ></span>Sửa</span>
 				</a>
-				<a class="minibutton btn delete2" name="loại tin" path="admin/article/delete-cat" id="<?php echo $this->article->id ?>" back="<?php echo $_SESSION['temp']; ?>">
+				<a class="minibutton btn delete2" name="tin" path="admin/article/delete-article" id="<?php echo $this->article['id'] ?>" back="<?php echo $_SESSION['temp']; ?>">
 						<span><span class="icon delete"></span>Xóa</span>
 				</a>
-				<a class="minibutton btn close" name="loại tin" back="<?php echo $_SESSION['temp']; ?>">
+				<a class="minibutton btn close" name="tin" back="<?php echo $_SESSION['temp']; ?>">
 						<span><span class="icon close"></span>Đóng</span>
 				</a>								
 			</div>				

@@ -73,11 +73,10 @@ class Cloud_Form_Admin_Article_Edit extends Zend_Form
 		        		        
 		$this->addElement($element);		        
 		
-		$this->addElement('textarea', 'summarize', array(	
-		      'required' => true,			      
+		$this->addElement('textarea', 'summarize', array(			      	      
 		      'label' => 'Tóm tắt',
 			  'attribs' => array(
-					'cols' => 40,
+					'cols' => 120,
 					'rows' => 4,
 			   ),	
 			   'value' => $this->_article->getSummarize(),		      
@@ -88,8 +87,9 @@ class Cloud_Form_Admin_Article_Edit extends Zend_Form
 		      'required' => true,			      
 		      'label' => 'Nội dung',
 			  'attribs' => array(
-					'cols' => 40,
+					'cols' => 120,
 					'rows' => 4,
+					'id'   => 'Content',
 			   ),	
 			   'value' => $this->_article->getContent(),		   		      
 			  'filters' => array('StringTrim'),		     

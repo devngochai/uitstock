@@ -192,18 +192,11 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
+						 ->from($db, array('name'))
 			             ->where('name like ?', "%$name%")
-			             ->limit(5, 0);			          
-			    
-            $rows = $db->fetchAll($select);    
-            $entries = array();
-            foreach ($rows as $row) {
-            	$entry = new Cloud_Model_ContentCategory_CloudContentCategory();
-            	$entry->setName($row->name);				             	 	            	       	      
-                $entries[] = $entry;            	         
-            }                     		
+			             ->limit(5, 0);			          			                               		
                    
-            return $entries;            
+            return $db->fetchAll($select);            
 		}
 		
 		public function searchCat($name)
@@ -212,10 +205,14 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
-			             ->where('name = ?', $name);			           
+			             ->where('name = ?', $name);			             
 			    
-            $rows = $db->fetchAll($select);                        		
+           	$rows = $db->fetchAll($select);           
+           
+           	$paginator = Zend_Paginator::factory($rows);
+    	   	$paginator->setItemCountPerPage(2);
+    	   	$paginator->setCurrentPageNumber($page);           		
                      
-            return $this->getEntries($rows);          
+	        return $paginator; 					       
 		}
 	}

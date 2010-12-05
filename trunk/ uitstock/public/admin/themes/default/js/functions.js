@@ -121,6 +121,10 @@ function addActionForButton()
 	$('a.edit2').click(function(){
 		document.location = $(this).attr("path");
 	});
+	
+	$('a.view').click(function(){
+		document.location = $(this).attr("path");
+	});
 			
 	$('a.default').click(function(){
 		var id = $("input[name='select']:checked").attr("id");
@@ -142,6 +146,73 @@ function addActionForButton()
 			}
 		});
 	});		
+	
+	$('a.important').click(function(){
+		var id = $("input[name='select']:checked").attr("id");			
+		var name = $(this).attr("name");
+		var path = $(this).attr("path");
+		var currentpath = $(this).attr("currentpath");	
+		
+		listid = "";
+		$("input[name='select']").each(function(){
+			if (this.checked) listid += "," + this.value; 			
+		})
+		listid = listid.substr(1);
+		
+		if (id == undefined) {jAlert('Bạn chưa chọn ' + name + ' nào', 'Thông báo');
+								; return; }				
+		$.ajax({
+			url: path,
+			data: 'listid=' + listid,
+			cache: false,
+			success: function(data){
+				if (data == 'error') alert(name + ' này không tồn tại!');
+				else {					
+					//document.location = currentpath;
+					$("input[name='select']").each(function() {
+						if (this.checked) {
+							var $parent = $(this).parent().parent()
+							var pathDirImg = $parent.find('.important').attr('pathDirImg');							
+							$parent.find('.important').attr('src', pathDirImg + '/default.png');
+						}						
+					});	
+				}
+			}
+		});
+	});
+	
+	$('a.normal').click(function(){
+		var id = $("input[name='select']:checked").attr("id");			
+		var name = $(this).attr("name");
+		var path = $(this).attr("path");
+		var currentpath = $(this).attr("currentpath");	
+		
+		listid = "";
+		$("input[name='select']").each(function(){
+			if (this.checked) listid += "," + this.value; 			
+		})
+		listid = listid.substr(1);
+	
+		if (id == undefined) {jAlert('Bạn chưa chọn ' + name + ' nào', 'Thông báo');
+								; return; }				
+		$.ajax({
+			url: path,
+			data: 'listid=' + listid,
+			cache: false,
+			success: function(data){
+				if (data == 'error') alert(name + ' này không tồn tại!');
+				else {					
+					//document.location = currentpath;
+					$("input[name='select']").each(function() {
+						if (this.checked) {
+							var $parent = $(this).parent().parent()														
+							$parent.find('.important').attr('src', '');
+						}						
+					});	
+				}
+			}
+		});
+	});
 	
 	$('a.delete').click(function(){
 		var id = $("input[name='select']:checked").attr("id");
@@ -180,7 +251,7 @@ function addActionForButton()
 			{
 				$.ajax({
 					url: path,
-					data: 'id=' + id,
+					data: 'listid=' + id,
 					cache: false,
 					success: function(data){
 					    if (data == 'error') alert(name + ' này không tồn tại!');					   
