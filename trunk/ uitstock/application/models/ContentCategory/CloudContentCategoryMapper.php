@@ -184,7 +184,30 @@
 
 				return $this->getEntry($row);	
 			}
-		}							
+		}		
+
+		public function getNewsParent()
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+						 ->from($db, array('id', 'name'))
+			             ->where('description =  ?', "Tin tức")
+			             ->where('parent_id = 0')
+			             ->where('published = 1');			          			                               		
+                   
+            return $db->fetchAll($select);       
+		}
+		
+		public function getNewsSub($id)
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+						 ->from($db, array('name'))			           
+			             ->where('parent_id = ?', $id)
+			             ->where('published = 1');			          			                               		
+                   
+            return $db->fetchAll($select);       
+		}				
 		
 		public function autoSuggestionCat($name)
 		{

@@ -1,7 +1,9 @@
 <?php
 class News_IndexController extends ZendStock_Controller_Action {
 	public $config;
-	public $widgetMapper;	
+	public $widgetMapper;
+	public $newsMapper;	
+	public $categoryMapper;	
     
 	public function init() {      			     	           
 	     $templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
@@ -10,9 +12,14 @@ class News_IndexController extends ZendStock_Controller_Action {
 		 $dirTheme = $themeMapper->getThemeDefault(3);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 
-	     $this->widgetMapper = new Cloud_Model_Widget_CloudWidgetMapper();
+	     $this->widgetMapper = new Cloud_Model_Widget_CloudWidgetMapper();	     
 	     		  
+	     $this->categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+	     $this->newsMapper = new Cloud_Model_Article_CloudArticleMapper();
 		 $this->request = $this->getRequest();	 
+		 
+		 $this->view->categoryMapper =  $this->categoryMapper;
+		 $this->view->newsMapper = $this->newsMapper;
 	}
 	
 	public function indexAction() {			      

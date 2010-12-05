@@ -14,6 +14,8 @@ interface Cloud_Model_ContentCategory_Interface
 	public function fetchAllSub();
 	public function getSubNameById($parentId);
 	public function getContentCategoryByName($name, $currentContentCategory);
+	public function getNewsParent();
+	public function getNewsSub($id);
 	public function updateAlias($id, $name);	
 	public function searchCat($name);
 }

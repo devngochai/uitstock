@@ -114,8 +114,8 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
-		if (null != $this->request->getParam('listid')) {			
-			$id = $this->request->getParam('listid');				
+		if (null != $this->request->getParam('id')) {			
+			$id = $this->request->getParam('id');				
 			$this->contentCategoryMapper->delete($id);
 		}
 	}

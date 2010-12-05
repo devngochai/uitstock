@@ -201,7 +201,7 @@
 			$select = $db->select()		                  
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
-		                 ->order('a.create_date desc');		               		        	             
+		                 ->order('a.id desc', 'a.create_date desc');		               		        	             
 			    
            $rows = $db->fetchAll($select);           
            
@@ -227,7 +227,7 @@
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
 		                 ->where('a.cat_id = ?', $id)
-		                 ->order('a.create_date desc');		               		        	             
+		                 ->order('a.id desc', 'a.create_date desc');			               		        	             
 			    
            $rows = $db->fetchAll($select);           
            
@@ -253,7 +253,7 @@
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
 		                 ->where('c.parent_id = ?', $id)
-		                 ->order('a.create_date desc');		               		        	             
+		                 ->order('a.id desc', 'a.create_date desc');		               		        	             
 			    
            $rows = $db->fetchAll($select);           
            
@@ -282,6 +282,60 @@
                    
            return $db->fetchRow($select);
 		}			
+
+		public function getArticleByParent($id, $number)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
+		                 ->where('c.parent_id = ?', $id)
+		                 ->where('a.published = 1')		                
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit("$number, 0");		                               		        	             			                                  	
+                   
+           return $db->fetchAll($select);
+		}
+		
+		public function getArticleBySub($id, $number)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
+		                 ->where('c.id = ?', $id)
+		                 ->where('a.published = 1')
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit("$number, 0");		                               		        	             			                                  	
+		                                    
+           return $db->fetchAll($select);
+		}
+		
+		public function getImportantArticle($from, $end)
+		{			
+			$db = $this->getDbTable();						
+			             
+			$select = $db->select()		                  		                 		                 
+		                 ->where('important = 1');		                 	                               		        	             			                                  	
+                   
+           return $db->fetchAll($select);						
+		}	
 
 	 	public function setImportant($listid)
 		{	

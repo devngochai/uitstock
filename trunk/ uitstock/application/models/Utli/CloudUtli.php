@@ -9,6 +9,7 @@
 	class Cloud_Model_Utli_CloudUtli implements Cloud_Model_Utli_Interface
 	{
 		const DATE = 'dd-MM-YYYY';
+		const DATETIME = 'dd-MM-YYYY HH:mm:ss';
 		const DATABASE_DATE = 'YYYY-MM-dd';
 	    const DATABASE_DATETIME = 'YYYY-MM-dd HH:mm:ss';
 

@@ -13,7 +13,11 @@ interface Cloud_Model_Article_Interface
 	public function updateImage($id, $path);
 	public function updateImage2($id, $image, $path, $fileName);
 	public function fetchArticleByPage($page);	
+	public function fetchArticleBySub($id);
 	public function getArticleById($id);	
+	public function getArticleByParent($id, $number);
+	public function getArticleBySub($id, $number);		
+	public function getImportantArticle($id, $number);
 	public function setImportant($listid);
 	public function setNormal($listid);
 	public function autoSuggestionArticle($title);
