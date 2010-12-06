@@ -109,7 +109,7 @@
 										?>
 										<img name="article" mapper="articleMapper" path="admin/article/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
 									</td>	
-									<td class="center"><img class="important" ssrc="<?php if ($article['important'] == 1) echo $this->dirImg; ?>/default.png" title="Quan trọng" pathDirImg="<?php echo $this->dirImg; ?>"/></td>
+									<td class="center"><img class="important" src="<?php if ($article['important'] == 1) echo $this->dirImg; ?>/default.png" title="Quan trọng" pathDirImg="<?php echo $this->dirImg; ?>"/></td>
 									<td class="center"><?php echo $this->escape($article['count']) ?></td>																														
 									<td class="right"><?php echo $this->escape($article['id']) ?></td>									
 							<?php } endforeach ?>			

@@ -15,9 +15,12 @@ interface Cloud_Model_Article_Interface
 	public function fetchArticleByPage($page);	
 	public function fetchArticleBySub($id);
 	public function getArticleById($id);	
-	public function getArticleByParent($id, $number);
-	public function getArticleBySub($id, $number);		
-	public function getImportantArticle($id, $number);
+	public function getArticleByParent($id, $from, $end);
+	public function getArticleBySub($id, $from, $end);	
+	public function getRelativeArticleByParent($id, $pid, $from, $end);
+	public function getRelativeArticleBySub($id, $number);
+	public function getImportantArticle($from, $end);
+	public function getMostCountArticle($from, $end);
 	public function setImportant($listid);
 	public function setNormal($listid);
 	public function autoSuggestionArticle($title);

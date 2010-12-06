@@ -13,7 +13,7 @@
 		</ul>
 		<div class="newcontent">
 			<?php 				
-				$articles = $this->newsMapper->getArticleByParent($category->id, 4);				
+				$articles = $this->newsMapper->getArticleByParent($category->id, 0, 4);				
 				$i = 0;
 				foreach ($articles as $article) {					
 				$i++;

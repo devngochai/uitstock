@@ -275,6 +275,7 @@
 		
 		public function deleteAll($listid)
 		{
+			$listid = explode(',', $listid);
 			for ($i = 0; $i < count($listid); $i++) {	
 				$id = $listid[$i]; 						
 				$pageWidget = new Cloud_Model_PageWidget_CloudPageWidget();		 		

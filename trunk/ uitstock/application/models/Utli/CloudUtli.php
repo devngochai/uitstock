@@ -12,6 +12,13 @@
 		const DATETIME = 'dd-MM-YYYY HH:mm:ss';
 		const DATABASE_DATE = 'YYYY-MM-dd';
 	    const DATABASE_DATETIME = 'YYYY-MM-dd HH:mm:ss';
+	    
+	    public static function showDate($date)
+	    {	    					    	    																	 
+		    $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
+		    $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);	
+		    return $date;
+	    }
 
 		public static function stripUnicode($str)
         {

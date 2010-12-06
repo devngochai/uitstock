@@ -7,14 +7,9 @@
 			?>
 			<li>
 				<a href="news/index/detail">
-					<?php 							
-						  $date = $this->escape($new['create_date']); 																					  
-						  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
-						  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);					  							
-						  echo $new['title'];
-					?>
+					<?php echo $new['title']; ?>
 				  	<span>
-				  		<?php echo $date;?>
+				  		<?php echo Cloud_Model_Utli_CloudUtli::showDate($new['create_date']);?>
 				  	</span>
 				</a>
 			</li>			

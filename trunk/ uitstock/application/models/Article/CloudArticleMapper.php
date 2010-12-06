@@ -283,7 +283,7 @@
            return $db->fetchRow($select);
 		}			
 
-		public function getArticleByParent($id, $number)
+		public function getArticleByParent($id, $from, $end)
 		{
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
 			
@@ -300,12 +300,56 @@
 		                 ->where('c.parent_id = ?', $id)
 		                 ->where('a.published = 1')		                
 		                 ->order('a.id desc', 'a.create_date desc')
-		                 ->limit("$number, 0");		                               		        	             			                                  	
+		                 ->limit($end, $from);	                               		        	             			                                  	
                    
            return $db->fetchAll($select);
 		}
 		
-		public function getArticleBySub($id, $number)
+		public function getArticleBySub($id, $from, $end)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
+		                 ->where('c.id = ?', $id)
+		                 ->where('a.published = 1')
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit($end, $from);		                               		        	             			                                  	
+		                                    
+           return $db->fetchAll($select);
+		}
+		
+		public function getRelativeArticleByParent($id, $catPID, $from, $end)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))		               
+		                 ->where('a.id != ?', $id)
+		                 ->where('c.parent_id = ?', $catPID)		                
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit($end, $from);		                               		        	             			                                  	
+                   
+           return $db->fetchAll($select);
+		}
+		
+		public function getRelativeArticleBySub($id, $number)
 		{
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
 			
@@ -331,11 +375,24 @@
 		{			
 			$db = $this->getDbTable();						
 			             
-			$select = $db->select()		                  		                 		                 
-		                 ->where('important = 1');		                 	                               		        	             			                                  	
+			$select = $db->select()		                  		                 		                 		                 
+		                 ->order('count desc')
+		                 ->limit($end, $from);		                 	                               		        	             			                                  	
                    
            return $db->fetchAll($select);						
 		}	
+		
+		public function getMostCountArticle($from, $end)
+		{			
+			$db = $this->getDbTable();						
+			             
+			$select = $db->select()		                  		                 		                 
+		                 ->where('important = 1')
+		                 ->order('id desc', 'create_date desc')
+		                 ->limit($end, $from);		                 	                               		        	             			                                  	
+                   
+           return $db->fetchAll($select);						
+		}
 
 	 	public function setImportant($listid)
 		{	

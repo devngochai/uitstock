@@ -1,15 +1,9 @@
 <section id="top-3-news">
+	<?php foreach ($news as $new): ?>
 	<article>
-		<a href="news/index/detail"><img src="files/news/30102010/chungkhoan_pxhvncgh645240493small.jpg" width="150px" height="120px" /></a>
-		<p><a href="news/index/detail">Giá vàng lập kỷ lục mới, USD vọt lên 20.450 đồng</a></p>
-	</article>
-	<article>
-		<a href="news/index/detail"><img src="files/news/30102010/chungkhoan_ysdqxfrc957154133small.jpg" width="150px" height="120px" /></a>
-		<p><a href="news/index/detail">Siết huy động và cho vay vàng </a></p>
-	</article>
-	<article>
-		<a href="news/index/detail"><img src="files/news/30102010/chungkhoan_pqjtgrhd631544417small.jpg" width="150px" height="120px" /></a>
-		<p><a href="news/index/detail">ASM: Quyết định tăng vốn lên 401,4 tỷ đồng?</a></p>
-	</article>      
+		<a href="news/index/detail"><img src="<?php echo $new->image; ?>" width="150px" height="120px" /></a>
+		<p><a href="news/index/detail"><?php echo $new->title;?></a></p>
+	</article>	
+	<?php endforeach ?>    
 	<div class="clear"></div>                  
 </section>     
