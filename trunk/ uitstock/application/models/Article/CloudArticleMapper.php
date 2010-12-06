@@ -126,7 +126,7 @@
 			$select = $db->select()
 						 ->from($db, array('title', 'relative_id'));
 			             
-			$rows = $this->getDbTable()->fetchAll();							
+			$rows = $db->fetchAll();							
 			return $this->getEntries($rows);
 		}	
 		
@@ -185,6 +185,20 @@
 			unlink($image);
 			$path = $path . '/' . $name;		
 			rename($path, $image);																							
+		}
+		
+		public function updateCount($alias)
+		{		
+			$db = $this->getDbTable();			
+			$select = $db->select()
+						 ->from($db, array('count'))
+						 ->where('alias = ?', $alias);
+			             
+			$row = $db->fetchRow();
+				
+			$data = array('count' => (int) $row->count + 1);
+			$where = array('id = ?' => $id);
+			$this->getDbTable()->update($data, $where);																						
 		}
 				
 		public function fetchArticleByPage($page)
@@ -281,6 +295,25 @@
 		                 ->where('a.id = ?', $id);		                               		        	             			                                  	
                    
            return $db->fetchRow($select);
+		}
+		
+		public function getArticleByAlias($alias)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('name as cat_name'))
+		                 ->where('a.alias = ?', $alias);		                               		        	             			                                  	
+                   
+           return $db->fetchRow($select);
 		}			
 
 		public function getArticleByParent($id, $from, $end)
@@ -326,8 +359,9 @@
 		                                    
            return $db->fetchAll($select);
 		}
+				
 		
-		public function getRelativeArticleByParent($id, $catPID, $from, $end)
+		public function getArticleInParent($alias1, $alias, $from, $end)
 		{
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
 			
@@ -337,19 +371,22 @@
 			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
 			$dbCategory= $categoryMapper->getDbTable()->info();
 			$dbCategoryName = $dbCategory['name'];
+			
+			$cat = $categoryMapper->getIdByAlias($alias);
 				
 			$select = $db->select()		                  
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))		               
-		                 ->where('a.id != ?', $id)
-		                 ->where('c.parent_id = ?', $catPID)		                
+		                 ->where('a.alias != ?', $alias1)
+		                 ->where('c.parent_id = ?', $cat->id)
+		                 ->where('a.published = 1')		                
 		                 ->order('a.id desc', 'a.create_date desc')
 		                 ->limit($end, $from);		                               		        	             			                                  	
                    
-           return $db->fetchAll($select);
+            return $db->fetchAll($select);
 		}
 		
-		public function getRelativeArticleBySub($id, $number)
+		public function getArticleInSub($alias1, $alias, $from, $end)
 		{
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
 			
@@ -359,24 +396,42 @@
 			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
 			$dbCategory= $categoryMapper->getDbTable()->info();
 			$dbCategoryName = $dbCategory['name'];
+			
+			$cat = $categoryMapper->getIdByAlias($alias);
 				
 			$select = $db->select()		                  
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
-		                 ->where('c.id = ?', $id)
+		                 ->where('a.alias != ?', $alias1)
+		                 ->where('c.id = ?', $cat->id)
 		                 ->where('a.published = 1')
 		                 ->order('a.id desc', 'a.create_date desc')
-		                 ->limit("$number, 0");		                               		        	             			                                  	
+		                 ->limit($end, $from);	                               		        	             			                                  	
 		                                    
            return $db->fetchAll($select);
+		}
+		
+		public function getRelativeArticle($relativeId)
+		{			
+			if ($relativeId == 0) return '';
+			$db = $this->getDbTable();						
+			             
+			$select = $db->select()		
+						 ->where('id = ?', $id)    
+						 ->where('published = 1')              		                 		                 		                 
+		                 ->order('id desc', 'create_date desc');		                           	                               		        	             			                                  	
+                   
+           return $db->fetchAll($select);						
 		}
 		
 		public function getImportantArticle($from, $end)
 		{			
 			$db = $this->getDbTable();						
 			             
-			$select = $db->select()		                  		                 		                 		                 
-		                 ->order('count desc')
+			$select = $db->select()		
+						 ->where('important = 1')    
+						 ->where('published = 1')              		                 		                 		                 
+		                 ->order('id desc', 'create_date desc')
 		                 ->limit($end, $from);		                 	                               		        	             			                                  	
                    
            return $db->fetchAll($select);						
@@ -386,9 +441,9 @@
 		{			
 			$db = $this->getDbTable();						
 			             
-			$select = $db->select()		                  		                 		                 
-		                 ->where('important = 1')
-		                 ->order('id desc', 'create_date desc')
+			$select = $db->select()		      
+			             ->where('published = 1')               		                 		                 		       
+		                 ->order('count desc')
 		                 ->limit($end, $from);		                 	                               		        	             			                                  	
                    
            return $db->fetchAll($select);						
@@ -453,5 +508,5 @@
     	   $paginator->setCurrentPageNumber($page);           		
                      
            return $paginator;         
-		}
+		}				
 	}

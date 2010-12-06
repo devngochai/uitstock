@@ -2,14 +2,15 @@
    Set equal height
 -------------------------------------------------------------- */
 function setEqualHeight()
-{
-	var highestCol1 = Math.max($('.infor .portlet-content').height(), $('.dashboard .portlet-content').height());
-	$('.infor .portlet-content').height(highestCol1);	
-	$('.dashboard .portlet-content').height(highestCol1);	
+{	
 	
 	var highestCol2 = Math.max($('.infor').height(), $('.dashboard').height());
 	$('.infor').height(highestCol2);	
-	$('.dashboard').height(highestCol2);	
+	$('.dashboard').height(highestCol2);
+	
+	var highestCol1 = Math.max($('.infor .portlet-content').height(), $('.dashboard .portlet-content').height());
+	$('.infor .portlet-content').height(highestCol1);	
+	$('.dashboard .portlet-content').height(highestCol1);
 	
 	var highestCol3 = Math.max($('#ticket').height(), $('#todo').height());
 	$('#ticket').height(highestCol3);	
@@ -119,11 +120,11 @@ function addActionForButton()
 	});
 	
 	$('a.edit2').click(function(){
-		document.location = $(this).attr("path");
+		document.location = $(".global").attr("path1");
 	});
 	
 	$('a.view').click(function(){
-		document.location = $(this).attr("path");
+		document.location = $(this).attr("path3");
 	});
 			
 	$('a.default').click(function(){
@@ -131,7 +132,7 @@ function addActionForButton()
 		var component = $("input[name='select']:checked").attr("component");		
 		var name = $(this).attr("name");
 		var path = $(this).attr("path");
-		var currentpath = $(this).attr("currentpath");
+		var currentpath = $(".global").attr("currentpath");
 		var count = countRow();					
 		
 		if (id == undefined) {jAlert('Bạn chưa chọn ' + name + ' nào', 'Thông báo');
@@ -151,7 +152,7 @@ function addActionForButton()
 		var id = $("input[name='select']:checked").attr("id");			
 		var name = $(this).attr("name");
 		var path = $(this).attr("path");
-		var currentpath = $(this).attr("currentpath");	
+		var currentpath = $(".global").attr("currentpath");	
 		
 		listid = "";
 		$("input[name='select']").each(function(){
@@ -185,7 +186,7 @@ function addActionForButton()
 		var id = $("input[name='select']:checked").attr("id");			
 		var name = $(this).attr("name");
 		var path = $(this).attr("path");
-		var currentpath = $(this).attr("currentpath");	
+		var currentpath = $(".global").attr("currentpath");	
 		
 		listid = "";
 		$("input[name='select']").each(function(){
@@ -218,7 +219,7 @@ function addActionForButton()
 		var id = $("input[name='select']:checked").attr("id");
 		var name = $(this).attr("name");
 		var path = $(this).attr("path");
-		var currentpath = $(this).attr("currentpath");
+		var currentpath = $(".global").attr("currentpath");
 		
 		if (id == undefined) {jAlert('Bạn chưa chọn ' + name + ' nào', 'Thông báo');
 								; return; }
@@ -241,10 +242,10 @@ function addActionForButton()
 	});		
 	
 	$('a.delete2').click(function(){
-		var id = $(this).attr("id");	
+		var id = $(".global").attr("id");	
 		var name = $(this).attr("name");
-		var path = $(this).attr("path");
-		var back = $(this).attr("back");
+		var path = $(".global").attr("path2");
+		var back = $(".global").attr("back");
 				
 		jConfirm('Bạn có muốn xóa ' + name + ' này không ?', 'Chú ý', function(r) {
 			if (r)
@@ -269,7 +270,7 @@ function addActionForButton()
 		var name = $(this).attr('name');
 		var mapper = $(this).attr('mapper');
 		var path = $(this).attr('path');
-		var currentpath = $(this).attr('currentpath');
+		var currentpath = $(".global").attr('currentpath');
 		
 		$("input[name='select']").each(function(){
 			if (this.checked) listid += "," + this.value; 			
@@ -302,7 +303,7 @@ function addActionForButton()
 		var name = $(this).attr('name');
 		var mapper = $(this).attr('mapper');
 		var path = $(this).attr('path');
-		var currentpath = $(this).attr('currentpath');
+		var currentpath = $(".global").attr('currentpath');
 		
 		$("input[name='select']").each(function(){
 			if (this.checked) listid += "," + this.value; 			
@@ -354,7 +355,7 @@ function addActionForButton()
 		var listid = "";
 		var name = $(this).attr('name');
 		var path = $(this).attr('path');
-		var currentpath = $(this).attr('currentpath');
+		var currentpath = $(".global").attr('currentpath');
 		
 		$("input[name='select']").each(function(){
 			if (this.checked) listid += "," + this.value; 			
@@ -382,7 +383,7 @@ function addActionForButton()
 	});		
 	
 	$('a.close').click(function(){
-		document.location = $(this).attr("back");
+		document.location = $(".global").attr("back");
 	});
 	
 	$('.selectBox').change(function(){	

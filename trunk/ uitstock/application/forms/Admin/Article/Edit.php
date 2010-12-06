@@ -76,7 +76,7 @@ class Cloud_Form_Admin_Article_Edit extends Zend_Form
 		$this->addElement('textarea', 'summarize', array(			      	      
 		      'label' => 'Tóm tắt',
 			  'attribs' => array(
-					'cols' => 120,
+					'cols' => 100,
 					'rows' => 4,
 			   ),	
 			   'value' => $this->_article->getSummarize(),		      

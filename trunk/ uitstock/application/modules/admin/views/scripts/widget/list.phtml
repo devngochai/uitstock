@@ -2,20 +2,21 @@
 		<div class="portlet x12">
 			<div class="portlet-header item widget">
 				<h4>Quản lý widget</h4>
-				<div class="float-right">																									
+				<div class="float-right">
+					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"/>																									
 					<a class="minibutton btn add" path="admin/widget/add">
 						<span><span class="icon add"></span>Thêm</span>
 					</a>
 					<a class="minibutton btn edit" name="widget" path="admin/widget/edit" >
 						<span><span class="icon edit" ></span>Sửa</span>
 					</a>
-					<a class="minibutton btn publish" name="widget" mapper="pagewidgetMapper" path="admin/widget/publish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn publish" name="widget" mapper="pagewidgetMapper" path="admin/widget/publish">
 						<span><span class="icon publish"></span>Published</span>
 					</a>
-					<a class="minibutton btn unpublish" name="widget" mapper="pagewidgetMapper" path="admin/widget/unpublish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn unpublish" name="widget" mapper="pagewidgetMapper" path="admin/widget/unpublish">
 						<span><span class="icon unpublish"></span>Unpublished</span>
 					</a>
-					<a class="minibutton btn deleteall" name="widget" path="admin/widget/delete" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn deleteall" name="widget" path="admin/widget/delete">
 						<span><span class="icon delete"></span>Xóa</span>
 					</a>					
 				</div>				

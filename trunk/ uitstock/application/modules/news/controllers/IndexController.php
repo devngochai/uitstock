@@ -39,17 +39,14 @@ class News_IndexController extends ZendStock_Controller_Action {
     }    
     
     public function detailAction() {
-        $this->view->headTitle($this->config['title']['news']);
-        
-        $widgets = $this->widgetMapper->getWidgetByComponentPage(3, 'detail');
-        
-        $catPID = $this->request->getParam('catPID');
-        $catID = $this->request->getParam('catID');
-        $id = $this->request->getParam('id');
-	     
-	    $this->view->widgets = $widgets;
-	    $this->view->catPID = $catPID;
-	    $this->view->catID = $catID;
-	    $this->view->id = $id; 
+        $this->view->headTitle($this->config['title']['news']);        
+	    
+	    $this->view->assign(array(
+	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'detail'),
+	    	'alias' => $this->request->getParam('alias'),
+	    	'aliasP' => $this->request->getParam('aliasP'),
+	        'aliasS' => $this->request->getParam('aliasS'),
+	        'id' => $this->request->getParam('id'),
+	    ));
     }
 }

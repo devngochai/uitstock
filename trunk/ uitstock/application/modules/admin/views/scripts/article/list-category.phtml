@@ -2,26 +2,27 @@
 		<div class="portlet x12">
 			<div class="portlet-header item contentCategory">
 				<h4>Quản lý loại tin</h4>
-				<div class="float-right">																									
+				<div class="float-right">	
+				    <div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"/>																								
 					<a class="minibutton btn add" path="admin/article/add-cat">
 						<span><span class="icon add"></span>Thêm</span>
 					</a>
 					<a class="minibutton btn edit" name="loại tin" path="admin/article/edit-cat" >
 						<span><span class="icon edit" ></span>Sửa</span>
 					</a>
-					<a class="minibutton btn publish" name="loại tin" mapper="contentCategoryMapper" path="admin/article/publish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn publish" name="loại tin" mapper="contentCategoryMapper" path="admin/article/publish">
 						<span><span class="icon publish"></span>Published</span>
 					</a>
-					<a class="minibutton btn unpublish" name="loại tin" mapper="contentCategoryMapper" path="admin/article/unpublish" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn unpublish" name="loại tin" mapper="contentCategoryMapper" path="admin/article/unpublish">
 						<span><span class="icon unpublish"></span>Unpublished</span>
 					</a>
-					<a class="minibutton btn delete" name="loại tin" path="admin/article/delete-cat" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>">
+					<a class="minibutton btn delete" name="loại tin" path="admin/article/delete-cat">
 						<span><span class="icon delete"></span>Xóa</span>
 					</a>					
 				</div>				
 			</div>
 			
-			<div class="portlet-content">				 							                														
+			<div class="portlet-content">							 							                													
 				<table cellpadding="0" cellspacing="0" border="0" class="display">
 					<thead>
 					    <tr class="tool">														

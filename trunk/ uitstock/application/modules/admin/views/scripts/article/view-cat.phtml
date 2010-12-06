@@ -7,17 +7,18 @@
 					$id = $this->category->id;
 					if ($this->category->parent_id == 0) $link = "pid/$id";
 					else $link = "id/$id"; 
-				?>																										
-				<a class="minibutton btn view" path="admin/article/list-article/<?php echo $link; ?>" >
+				?>						
+				<div class="global" id="<?php echo $this->category->id ?>" path1="admin/article/edit-cat/id/<?php echo $this->category->id ?>" path2="admin/article/delete-cat" path3="admin/article/list-article/<?php echo $link; ?>"></div>																				
+				<a class="minibutton btn view">
 					<span><span class="icon view" ></span>Xem tin</span>
 				</a>																																								
-				<a class="minibutton btn edit2" path="admin/article/edit-cat/id/<?php echo $this->category->id ?>" >
+				<a class="minibutton btn edit2">
 					<span><span class="icon edit" ></span>Sửa</span>
 				</a>
-				<a class="minibutton btn delete2" name="loại tin" path="admin/article/delete-cat" id="<?php echo $this->category->id ?>" back="<?php echo $_SESSION['temp']; ?>">
+				<a class="minibutton btn delete2" name="loại tin">
 						<span><span class="icon delete"></span>Xóa</span>
 				</a>
-				<a class="minibutton btn close" name="loại tin" back="<?php echo $_SESSION['temp']; ?>">
+				<a class="minibutton btn close" name="loại tin">
 						<span><span class="icon close"></span>Đóng</span>
 				</a>								
 			</div>				

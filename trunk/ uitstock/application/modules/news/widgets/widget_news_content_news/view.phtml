@@ -2,7 +2,14 @@
 	<h2><?php echo $new['title']; ?></h2>                
 	<div class="detail-summarize">
 		<p><?php echo $new['summarize'];?></p>
-		<p>&gt; <a>Thị trường vàng vào 'vòng pháp luật'</a> / <a>Thị trường vàng sẽ nhiều 'sóng' trước hạn tất toán</a></p>
+		<p> 
+		<?php 
+			if ($relatives != '') {	 echo "&gt;";								
+				foreach ($relatives as $relative) {
+		?>
+				<a href=""><?php echo $relative->title;?></a> /
+		<?php }} ?>
+		</p>
 	</div><!-- end .detail-summarize -->
 	<div class="detail-main-content">
 		<?php echo $new['content']; ?>
@@ -14,16 +21,20 @@
 		<span>Các tin khác</span>
 	</p>
 	<ul>
-		<?php foreach($otherNews as $otherNew): ?>
+		<?php 
+			foreach($otherNews as $otherNew):
+			$alias = $otherNew['alias']; 
+			$link = (null == $this->aliasS) ?
+				"news/index/detail/aliasP/$this->aliasP/alias/$alias" :
+				"news/index/detail/aliasP/$this->aliasP/aliasS/$this->aliasS/alias/$alias";		
+		?>
 			<li>
-				<a>
+				
+				<a href="<?php echo $link;?>">
 					<?php echo $otherNew['title']; ?> 
 					<label><?php echo Cloud_Model_Utli_CloudUtli::showDate($otherNew['create_date']); ?></label>
 				</a>
 			</li>
 		<?php endforeach ?>		
-	</ul>
-	<div class="continue">
-		<a>Xem tiếp...</a>
-	</div>
+	</ul>	
 </section>  

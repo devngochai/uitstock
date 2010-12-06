@@ -27,7 +27,7 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];	
 
 		$name = $this->request->getParam('name');
-		$page = $this->_getParam('page', 1);
+		$page = $this->_getParam('page', 1);			
 
 		if (null == $name) {
 			$parents = $this->contentCategoryMapper->fetchParentByPage($page);

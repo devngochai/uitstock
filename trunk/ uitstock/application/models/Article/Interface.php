@@ -14,11 +14,13 @@ interface Cloud_Model_Article_Interface
 	public function updateImage2($id, $image, $path, $fileName);
 	public function fetchArticleByPage($page);	
 	public function fetchArticleBySub($id);
-	public function getArticleById($id);	
+	public function getArticleById($id);
+	public function getArticleByAlias($alias);
 	public function getArticleByParent($id, $from, $end);
 	public function getArticleBySub($id, $from, $end);	
-	public function getRelativeArticleByParent($id, $pid, $from, $end);
-	public function getRelativeArticleBySub($id, $number);
+	public function getArticleInParent($id, $alias, $from, $end);
+	public function getArticleInSub($id, $alias, $from, $end);
+	public function getRelativeArticle($id);
 	public function getImportantArticle($from, $end);
 	public function getMostCountArticle($from, $end);
 	public function setImportant($listid);

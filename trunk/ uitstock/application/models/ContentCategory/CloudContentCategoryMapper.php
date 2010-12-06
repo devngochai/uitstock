@@ -207,7 +207,27 @@
 			             ->where('published = 1');			          			                               		
                    
             return $db->fetchAll($select);       
-		}				
+		}	
+
+		public function getNameByAlias($alias)
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+						 ->from($db, array('name'))			           
+			             ->where('alias = ?', $alias);			            		          			                               	
+                   
+            return $db->fetchRow($select);  
+		}
+		
+		public function getIdByAlias($alias)
+		{
+			$db = $this->getDbTable();						
+			             
+			$select = $db->select()		
+						 ->where('alias = ?', $alias);                  		                 		                 		                 		                                	                               		        	             			                                  	
+                   
+           return $db->fetchRow($select);
+		}
 		
 		public function autoSuggestionCat($name)
 		{
