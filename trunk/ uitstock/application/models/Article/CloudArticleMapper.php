@@ -109,6 +109,23 @@
 				    ->setCount($row->count);								    	 				 	 			 				      		   
 		}	
 		
+		public function search($title, $from, $end)
+		{		
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];								
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->where('a.title like ?', "%$title%")
+		                 ->where('a.published = 1')
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit($end, $from);		               		        	             			                            	
+                     
+           return $db->fetchAll($select);  
+		}
+		
 		public function delete($listid)
 		{
 			$array = explode(',', $listid);
@@ -117,8 +134,7 @@
 				$where = $db->getAdapter()->quoteInto('id = ?', $array[$i]);
 				$db->delete($where);	
 			}
-		}
-		
+		}		
 		
 		public function fetchAll()
 		{
@@ -331,11 +347,65 @@
 		                 ->from(array('a' => $dbArticleName))
 		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
 		                 ->where('c.parent_id = ?', $id)
+		                 ->where('a.published = 1')
+		                 ->where('a.important = 0')		                
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit($end, $from);	                               		        	             			                                  	
+                   
+           return $db->fetchAll($select);
+		}
+		
+		public function getArticleByParentAlias($alias, $from, $end)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+			
+			$select = $db->select()		                  		                 
+		                 ->from(array('c' => $dbCategoryName), array('id'))
+		                 ->where('c.alias = ?', $alias);
+		                 		                
+			$row = $db->fetchRow($select);		                 		                 
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
+		                 ->where('c.parent_id = ?', $row['id'])
 		                 ->where('a.published = 1')		                
 		                 ->order('a.id desc', 'a.create_date desc')
 		                 ->limit($end, $from);	                               		        	             			                                  	
                    
            return $db->fetchAll($select);
+		}
+		
+		public function countByParentAlias($alias)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+			
+			$select = $db->select()		                  		                 
+		                 ->from(array('c' => $dbCategoryName), array('id'))
+		                 ->where('c.alias = ?', $alias);
+		                 		                
+			$row = $db->fetchRow($select);		                 		                 
+				
+			$stmt = $db->query("SELECT count(*) as count from $dbArticleName a, $dbCategoryName c
+								WHERE a.cat_id = c.id and c.parent_id = " . $row['id']);
+			$row = $stmt->fetch();
+			
+			if (null == $row['count']) return 0;
+			else return $row['count'];			                        		        	             			                                  	                              
 		}
 		
 		public function getArticleBySub($id, $from, $end)
@@ -358,6 +428,59 @@
 		                 ->limit($end, $from);		                               		        	             			                                  	
 		                                    
            return $db->fetchAll($select);
+		}
+		
+		public function getArticleBySubAlias($alias, $from, $end)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+			
+			$select = $db->select()		                  		                 
+		                 ->from(array('c' => $dbCategoryName), array('id'))
+		                 ->where('c.alias = ?', $alias);
+		                 		                
+			$row = $db->fetchRow($select);	
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName))
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array(''))
+		                 ->where('c.id = ?', $row['id'])
+		                 ->where('a.published = 1')
+		                 ->order('a.id desc', 'a.create_date desc')
+		                 ->limit($end, $from);		                               		        	             			                                  	
+		                                    
+           return $db->fetchAll($select);
+		}
+		
+		public function countBySubAlias($alias)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+					
+			$categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
+			$dbCategory= $categoryMapper->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+			
+			$select = $db->select()		                  		                 
+		                 ->from(array('c' => $dbCategoryName), array('id'))
+		                 ->where('c.alias = ?', $alias);
+		                 		                
+			$row = $db->fetchRow($select);		                 		                 
+				
+			$stmt = $db->query("SELECT count(*) as count from $dbArticleName a, $dbCategoryName c
+								WHERE a.cat_id = c.id and c.id = " . $row['id']);
+			$row = $stmt->fetch();
+			
+			if (null == $row['count']) return 0;
+			else return $row['count'];			                        		        	             			                                  	                              
 		}
 				
 		
@@ -424,16 +547,26 @@
            return $db->fetchAll($select);						
 		}
 		
-		public function getImportantArticle($from, $end)
+		public function getImportantArticle($from, $end, $flag)
 		{			
 			$db = $this->getDbTable();						
-			             
-			$select = $db->select()		
-						 ->where('important = 1')    
-						 ->where('published = 1')              		                 		                 		                 
-		                 ->order('id desc', 'create_date desc')
-		                 ->limit($end, $from);		                 	                               		        	             			                                  	
-                   
+					
+			if ($flag){             
+				$select = $db->select()		
+							 ->where('important = 1')    
+							 ->where("published = 1")
+							 ->where('cat_id = 2')     							                 		                 		                
+			                 ->order('id desc', 'create_date desc')
+			                 ->limit($end, $from);
+			}else {
+				$select = $db->select()		
+							 ->where('important = 1')    
+							 ->where("published = 1")
+							 ->where('cat_id != 2')     							                 		                 		                
+			                 ->order('id desc', 'create_date desc')
+			                 ->limit($end, $from);
+			}
+							                 		   		                 	                               		        	             			                                  	                   
            return $db->fetchAll($select);						
 		}	
 		
@@ -442,7 +575,8 @@
 			$db = $this->getDbTable();						
 			             
 			$select = $db->select()		      
-			             ->where('published = 1')               		                 		                 		       
+			             ->where('published = 1') 
+			             ->where('important = 0')              		                 		                 		       
 		                 ->order('count desc')
 		                 ->limit($end, $from);		                 	                               		        	             			                                  	
                    
@@ -508,5 +642,59 @@
     	   $paginator->setCurrentPageNumber($page);           		
                      
            return $paginator;         
-		}				
+		}	
+		
+		public function showPaging($page, $key, $number)
+        {            
+           	$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+           	
+           	$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];
+			
+			$stmt = $db->query("SELECT count(*) as count from articles
+								WHERE title like '%$key%'");
+			$row = $stmt->fetch();
+									                                           
+            $totalPages = ceil((int) $row['count'] / (int) $number);              
+            return $this->paging(5, $totalPages,$page,$key);
+        } 
+
+		public function paging($pageCount, $totalPages, $currentPage, $key)
+        {
+            if ($totalPages < 1) return "";
+            $currentURL = "news/index/search?key=$key";
+                      
+            if ($currentPage <= 0) $currentPage = 1;
+            $querystring = "";
+                  
+            $nav = "";                                
+            $prev = "";
+            $next = "";
+            $from = $currentPage - $pageCount + 1;
+            if  ($from <= 1) $from = 1;         
+            $to = $from + $pageCount;
+            if ($to > $totalPages) $to = $totalPages;
+                   
+            if ($currentPage >= 1 && $currentPage < $totalPages) 
+            {
+                $nextPage = $currentPage + 1;
+                $next = "<a href=\"$currentURL&page=$nextPage\" class=\"btnPaging\">Next</a>"; 
+            }
+            if ($currentPage > 1 && $currentPage <= $totalPages)
+            {
+                $prevPage =  $currentPage - 1;    
+                $prev = "<a href=\"$currentURL&page=$prevPage\" class=\"btnPaging\">Previous</a>";   
+            } 
+            
+            for ($i = $from; $i <= $to; $i++)
+            {           
+                if ($currentPage == $i) $nav .= "<span>{$i}</span>";
+                else 
+                {
+                    $qt = "page={$i}";
+                    $nav .= "<a href=\"$currentURL&{$qt}\">{$i}</a>";  
+                }
+            }
+            return $prev.$nav.$next;
+        }               
 	}

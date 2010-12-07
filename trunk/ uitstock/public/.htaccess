@@ -4,3 +4,4 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+RewriteRule news/index/detail/([a-z]*)/([a-z]*)/([a-z]*)/$ news/index/detail?aliasP=$1&aliasS=$2&alias=$3 [NC,L]

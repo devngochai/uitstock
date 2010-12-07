@@ -190,7 +190,7 @@
 		{
 			$db = $this->getDbTable();			
 			$select = $db->select()
-						 ->from($db, array('id', 'name'))
+						 ->from($db, array('id', 'name', 'alias'))
 			             ->where('description =  ?', "Tin tức")
 			             ->where('parent_id = 0')
 			             ->where('published = 1');			          			                               		
@@ -202,7 +202,7 @@
 		{
 			$db = $this->getDbTable();			
 			$select = $db->select()
-						 ->from($db, array('name'))			           
+						 ->from($db, array('name','alias'))			           
 			             ->where('parent_id = ?', $id)
 			             ->where('published = 1');			          			                               		
                    
@@ -218,6 +218,37 @@
                    
             return $db->fetchRow($select);  
 		}
+		
+		public function getAliasByArticle($articleId)
+		{		
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbCategory = $this->getDbTable()->info();
+			$dbCategoryName = $dbCategory['name'];
+					
+			$articleMapper = new Cloud_Model_Article_CloudArticleMapper();
+			$dbArticle= $articleMapper->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];						
+							
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbArticleName), array())
+		                 ->join(array('c' => $dbCategoryName), 'a.cat_id = c.id', array('alias as sub_alias', 'parent_id'))
+		                 ->where('a.id = ?', $articleId);		              		                                                       		        	             			                                  	
+		                                    
+           $row1 =  $db->fetchRow($select);          
+
+           $select = $db->select()		                  		                
+		                ->from(array('c' => $dbCategoryName), array('alias as parent_alias'))
+		                ->where('id = ?', $row1['parent_id']);
+
+		   $row2 = $db->fetchRow($select);
+
+		   $row = array();
+		   $row['sub_alias'] = $row1['sub_alias'];
+		   $row['parent_alias']= $row2['parent_alias'];
+		   
+		   return $row;
+		}				
 		
 		public function getIdByAlias($alias)
 		{

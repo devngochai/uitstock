@@ -5,6 +5,12 @@
 @import url("breadcum.css");
 
 /********** BASIC SETTINGS **********/
+.searchText {
+	    padding: 0 10px;
+    color:#4a87c1;
+    font:bold 20px arial;      
+    background: #F4F5F6; 
+}
 .left {
     float: left;
 }
@@ -537,3 +543,11 @@ footer {
 footer a {
     color: #fff;
 }
+
+/*****************PAGING******/
+ p#paging {margin-top: 10px;}
+ p#paging a.btnPaging {border: none}
+ p#paging a{text-decoration: none; height: 2.0833em; padding: 0 0.5em; border: 1px solid #ccc; margin: 0 4px; color: black}
+ p#paging a:hover{text-decoration: underline; color: blue}
+ p#paging a:active{color: black}  
+ p#paging span{color: green; height: 2.0833em; padding: 0 0.5em; border: 1px solid #ccc; background: #c1c1c1; margin: 0 4px}

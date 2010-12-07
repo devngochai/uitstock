@@ -1,11 +1,15 @@
+<?php 
+	$alias = $this->categoryMapper->getAliasByArticle($new[0]['id']);
+	$link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new[0]['alias'];
+?>
 <section id="expert">
 	<div class="header-panel">
-		<h2>Nhận định chuyên gia</h2>
+		<h2><a style="color:white;" href="news/index/category/aliasP/chuyen-gia-nhan-dinh/">Nhận định chuyên gia</a></h2>
 	</div>
 	
 	<article>
-		<h2><a href="news/index/detail"><?php echo $new[0]['title'];?></a></h2>
-		<a href="news/index/detail"><img src="<?php echo $new[0]['image'];?>" class="left" width="120" height="95"/></a>
+		<h2><a href="news/index/detail/<?php echo $link;?>"><?php echo $new[0]['title'];?></a></h2>
+		<a href="news/index/detail/<?php echo $link;?>"><img src="<?php echo $new[0]['image'];?>" class="left" width="120" height="95"/></a>
 		<p class="right"><?php echo $new[0]['summarize'];?></p>
 		<div class="clear"></div>
 	</article>

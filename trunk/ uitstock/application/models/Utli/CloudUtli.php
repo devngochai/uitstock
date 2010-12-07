@@ -8,15 +8,30 @@
 	 */
 	class Cloud_Model_Utli_CloudUtli implements Cloud_Model_Utli_Interface
 	{
-		const DATE = 'dd-MM-YYYY';
-		const DATETIME = 'dd-MM-YYYY HH:mm:ss';
+		const DATE = 'dd/MM/YYYY';
+		const TIME = 'HH:mm';
+		const DATETIME = 'dd/MM/YYYY HH:mm:ss';
 		const DATABASE_DATE = 'YYYY-MM-dd';
 	    const DATABASE_DATETIME = 'YYYY-MM-dd HH:mm:ss';
 	    
 	    public static function showDate($date)
 	    {	    					    	    																	 
+		    $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATETIME);
+		    $date = $date->get(Cloud_Model_Utli_CloudUtli::DATETIME);	
+		    return $date;
+	    }
+	    
+		public static function showDay($date)
+	    {	    					    	    																	 
 		    $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
 		    $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);	
+		    return $date;
+	    }
+	    
+		public static function showTime($date)
+	    {	    					    	    																	 
+		    $date = new Zend_Date($date);
+		    $date = $date->get(Cloud_Model_Utli_CloudUtli::TIME);	
 		    return $date;
 	    }
 

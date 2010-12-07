@@ -17,14 +17,20 @@ interface Cloud_Model_Article_Interface
 	public function getArticleById($id);
 	public function getArticleByAlias($alias);
 	public function getArticleByParent($id, $from, $end);
+	public function getArticleByParentAlias($alias, $from, $end);
+	public function countByParentAlias($alias);
 	public function getArticleBySub($id, $from, $end);	
+	public function getArticleBySubAlias($alias, $from, $end);
+	public function countBySubAlias($alias);
 	public function getArticleInParent($id, $alias, $from, $end);
 	public function getArticleInSub($id, $alias, $from, $end);
 	public function getRelativeArticle($id);
-	public function getImportantArticle($from, $end);
+	public function getImportantArticle($from, $end, $flag);
 	public function getMostCountArticle($from, $end);
 	public function setImportant($listid);
 	public function setNormal($listid);
 	public function autoSuggestionArticle($title);
 	public function searchArticle($name);
+	public function showPaging($page, $key, $number);
+	public function paging($pageCount, $totalPages, $currentPage, $key);
 }

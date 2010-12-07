@@ -124,7 +124,7 @@ function addActionForButton()
 	});
 	
 	$('a.view').click(function(){
-		document.location = $(this).attr("path3");
+		document.location = $(".global").attr("path3");
 	});
 			
 	$('a.default').click(function(){

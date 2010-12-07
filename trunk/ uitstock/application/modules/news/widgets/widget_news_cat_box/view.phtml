@@ -1,40 +1,86 @@
-<section class="news-box-cat">
-	<a><img src="files/news/30102010/130.jpg" class="left"/></a>
-	<hgroup>
-		<a>Công ty của ông Đặng Thành Tâm bị phạt 80 triệu đồng</a>
-		<br /><label class="c-time">01:24</label>  |  <label class="c-date">28/10/2010</label><br />
-		<p>
-			Ủy ban Chứng khoán vừa công bố quyết xử định phạt Công ty Khoáng sản Sài Gòn - Quy Nhơn do vi phạm quy chế công bố thông tin..<br />
-			&gt; <a>SDH: chủ tịch HĐQT đăng ký mua 1 triệu CP</a>
-		</p>
-	</hgroup>
-	<div class="clear"></div>
-</section>  
+<?php 
+	$i = 0;
+	foreach ($news as $new):	
+	$i++;
+	$relative_id = $new['relative_id'];				
+	$relatives = $this->newsMapper->getRelativeArticle($relative_id);	
+	
+	$alias = $this->categoryMapper->getAliasByArticle($new['id']);
+	$link = (null == $this->aliasS) ?
+		'aliasP/' . $alias['parent_alias'] . '/alias/' . $new['alias'] :
+		'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new['alias'];
+	
+	$linkPage = (null == $this->aliasS) ?
+		'aliasP/' . $alias['parent_alias'] :
+		'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'];
+	if ($i == 1) { 
+?>
 
-<section class="news-box-cat">
-	<a><img src="files/news/30102010/2.jpg" class="left"/></a>
+<section class="news-inportant">
+	<?php if (null != $new['image']) { ?>
+	<a href="index.php/news/index/detail/<?php echo $link;?>" ><img src="<?php echo $new['image'];?>" class="left"/></a>
+	<?php } ?>
 	<hgroup>
-		<a>Đại gia chứng khoán 'trốn' cổ phiếu </a>
-		<br /><label class="c-time">01:24</label>  |  <label class="c-date">28/10/2010</label><br />
+		<a href="index.php/news/index/detail/<?php echo $link;?>" ><?php echo $new['title']?></a>
+		<br />
+		<label class="c-time">
+			<?php echo Cloud_Model_Utli_CloudUtli::showTime($new['create_date']);?>
+		</label>  |  
+		<label class="c-date">
+			<?php echo Cloud_Model_Utli_CloudUtli::showDay($new['create_date']);?>
+		</label>
+		<br />
 		<p>
-			Không tìm thấy cơ hội lướt sóng ngắn hạn, nhiều nhà đầu tư lớn bỏ sàn chứng khoán đi du lịch nước ngoài. Có người chọn việc ở nhà làm osin toàn thời gian để tránh việc “táy máy” mua vào, bán ra các loại cổ phiếu.
+			<?php echo $new['summarize'];?><br />
+			<?php 										
+				if ($relatives != '') {	 echo "&gt;";								
+					foreach ($relatives as $relative) {
+			?>
+						<a href=""><?php echo $relative->title;?></a> /
+			<?php }} ?>
 		</p>
 	</hgroup>
 	<div class="clear"></div>
 </section>
 
-<section class="news-other">
-	<p>
-		<span>Các tin khác</span>
-	</p>
-	<ul>
-		<li><a>'Nhà đầu tư chứng khoán dài hạn có thể bắt đầu giải ngân' <label>(24/10)</label></a></li>
-		<li><a>Chứng khoán kéo dài những phiên giao dịch ảm đạm <label>(23/10</label></a></li>
-		<li><a>Vn-Index bất ngờ bật xanh cuối phiên <label>(22/10)</label></a></li>
-		<li><a>Chứng khoán gượng dậy sau phiên giảm sâu <label>(21/10</label></a></li>
-		<li><a>ACB: Trả cổ tức năm 2010 bằng tiền <label>(21/10</label></a></li>
-	</ul>
-	<div class="continue">
-		<a>Xem tiếp...</a>
-	</div>
+<?php
+	 } else {	 
+?>
+
+<section class="news-box-cat">
+	<?php if (null != $new['image']) { ?>
+	<a href="index.php/news/index/detail/<?php echo $link;?>"><img src="<?php echo $new['image'];?>" class="left"/></a>
+	<?php } ?>
+	<hgroup>
+		<a href="index.php/news/index/detail/<?php echo $link;?>"><?php echo $new['title']; ?></a>
+		<br />
+		<label class="c-time">
+			<?php echo Cloud_Model_Utli_CloudUtli::showTime($new['create_date']);?>
+		</label>  |  
+		<label class="c-date">
+			<?php echo Cloud_Model_Utli_CloudUtli::showDay($new['create_date']);?>
+		</label>
+		<br />
+		<p>
+			<?php echo $new['summarize'];?><br />			
+			<?php 										
+				if ($relatives != '') {	 echo "&gt;";								
+					foreach ($relatives as $relative) {
+			?>
+						<a href=""><?php echo $relative->title;?></a> /
+			<?php }} ?>
+		</p>
+	</hgroup>
+	<div class="clear"></div>
 </section>  
+<?php 
+	}	
+	endforeach 
+?>
+<section class="news-other">	
+	<div class="continue">
+	<?php if ($number_of_page > $this->page * $number) {?>
+		<a href="index.php/news/index/category/<?php echo $linkPage;?>/page/<?php echo $this->page + 1;?>">Xem tiếp...</a>
+	<?php } ?>
+	</div>
+</section> 

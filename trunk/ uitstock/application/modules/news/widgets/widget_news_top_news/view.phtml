@@ -1,12 +1,26 @@
+<?php
+	  $alias = $this->categoryMapper->getAliasByArticle($new[0]->id);
+	  $link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new[0]->alias;
+	  
+	  $relative_id = $new[0]->relative_id;				
+	  $relatives = $this->newsMapper->getRelativeArticle($relative_id);
+?>
 <section id="top-news">
 	<div class="left">
-		<a href=""><img src="<?php echo $new[0]->image;?>" width="200" height="200"/></a>
+		<a href="news/index/detail/<?php echo $link;?>">
+			<img src="<?php echo $new[0]->image;?>" width="200" height="200"/>
+		</a>
 	</div>
 	<div class="right">
-		<h2><a href=""><?php echo $new[0]->title;?></a></h2>
+		<h2><a href="news/index/detail/<?php echo $link;?>"><?php echo $new[0]->title;?></a></h2>
 		<p>
-			<?php echo $new[0]->summarize;?><br />
-			&gt; <a href="news/index/detail">SDH: chủ tịch HĐQT đăng ký mua 1 triệu CP</a>
+			<?php echo $new[0]->summarize;?><br />			
+			<?php 
+				if ($relatives != '') {	 echo "&gt;";								
+					foreach ($relatives as $relative) {
+			?>
+					<a href=""><?php echo $relative->title;?></a> /
+			<?php }} ?>
 		</p>              
 	</div>
 	<div class="clear"></div>

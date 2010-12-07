@@ -9,8 +9,17 @@
 			<ul class="block">                    				              		
 				<li>
 					<ul>                    			
-						<?php foreach ($hotNews as $new):?>
-							<li><a><?php echo $new->title;?></a></li>
+						<?php 
+							foreach ($hotNews as $new):
+								$alias = $this->categoryMapper->getAliasByArticle($new->id);
+								$link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new->alias;
+						?>
+							
+							<li>
+								<a href="news/index/detail/<?php echo $link;?>">
+									<?php echo $new->title;?>
+								</a>
+							</li>
 						<?php endforeach ?>						
 					</ul>
 				</li>
@@ -20,8 +29,16 @@
 			<ul class="block">                    				                    			
 				<li>
 					<ul>                    			
-						 <?php foreach ($topNews as $new):?>
-							<li><a><?php echo $new->title;?></a></li>
+						 <?php 
+						 	foreach ($topNews as $new):
+						 		$alias = $this->categoryMapper->getAliasByArticle($new->id);
+								$link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new->alias;
+						 ?>
+							<li>
+								<a href="news/index/detail/<?php echo $link;?>">
+									<?php echo $new->title;?>
+								</a>
+							</li>
 						<?php endforeach ?>                   				
 					</ul>
 				</li>

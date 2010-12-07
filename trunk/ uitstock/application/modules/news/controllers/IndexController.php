@@ -20,22 +20,26 @@ class News_IndexController extends ZendStock_Controller_Action {
 		 
 		 $this->view->categoryMapper =  $this->categoryMapper;
 		 $this->view->newsMapper = $this->newsMapper;
-	}
+		 	
+    }
 	
 	public function indexAction() {			      
 	     $this->view->headTitle($this->config['title']['news']);
 	     
-	     $widgets = $this->widgetMapper->getWidgetByComponentPage(3, 'index');
+	     $widgets = $this->widgetMapper->getWidgetByComponentPage(3, 'index');	     	  
 	     
 	     $this->view->widgets = $widgets;
 	}      
     
     public function categoryAction() {
-        $this->view->headTitle($this->config['title']['news']);
-        
-        $widgets = $this->widgetMapper->getWidgetByComponentPage(3, 'category');
-	     
-	    $this->view->widgets = $widgets;
+        $this->view->headTitle($this->config['title']['news']);                	     	  
+	    
+	    $this->view->assign(array(
+	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'category'),	    
+	    	'aliasP' => $this->request->getParam('aliasP'),
+	        'aliasS' => $this->request->getParam('aliasS'),	  
+	    	'page' => $this->_getParam('page', 1),   
+	    ));
     }    
     
     public function detailAction() {
@@ -48,5 +52,26 @@ class News_IndexController extends ZendStock_Controller_Action {
 	        'aliasS' => $this->request->getParam('aliasS'),
 	        'id' => $this->request->getParam('id'),
 	    ));
+    }
+    
+    public function searchAction() {    
+    	 $this->view->headTitle($this->config['title']['search']);        
+	    
+		if (null != $this->request->getParam('key')) {			
+			$key = $this->request->getParam('key');
+			$number = 7;
+			$page = $this->_getParam('page', 1);   
+			$start = ($page - 1) * $number;
+			$news = $this->newsMapper->search($key,$start, $number);
+			$this->view->news = $news;
+			$this->view->key = $key;
+			$this->view->page = $page;	
+			$this->view->number = $number;			
+		}
+		
+		$widgets = $this->widgetMapper->getWidgetByComponentPage(3, 'search');	     	  
+	     
+	    $this->view->widgets = $widgets;
+	    ;
     }
 }

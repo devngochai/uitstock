@@ -3,7 +3,7 @@
 			<div class="portlet-header item widget">
 				<h4>Quản lý widget</h4>
 				<div class="float-right">
-					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"/>																									
+					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>" ></div>																									
 					<a class="minibutton btn add" path="admin/widget/add">
 						<span><span class="icon add"></span>Thêm</span>
 					</a>
@@ -48,7 +48,7 @@
 				<table cellpadding="0" cellspacing="0" border="0" class="display">
 					<thead>
 					    <tr class="tool">														
-							<th colspan="5">
+							<th colspan="8">
 							   <div id="suggest"><br />
 							        <input type="text" size="25" value="" class="txtSearch" onkeyup="suggest(this.value);" onblur="fill();" path="admin/widget/auto-suggestion-widget" component="<?php echo $this->c; ?>" />							     
 							      	<div class="suggestionsBox" id="suggestions" style="display: none;">

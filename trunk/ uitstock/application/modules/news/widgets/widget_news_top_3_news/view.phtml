@@ -1,8 +1,12 @@
 <section id="top-3-news">
-	<?php foreach ($news as $new): ?>
+	<?php 
+		foreach ($news as $new):
+		$alias = $this->categoryMapper->getAliasByArticle($new->id);
+	    $link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new->alias; 
+	?>
 	<article>
-		<a href="news/index/detail"><img src="<?php echo $new->image; ?>" width="150px" height="120px" /></a>
-		<p><a href="news/index/detail"><?php echo $new->title;?></a></p>
+		<a href="news/index/detail/<?php echo $link;?>"><img src="<?php echo $new->image; ?>" width="150px" height="120px" /></a>
+		<p><a href="news/index/detail/<?php echo $link;?>"><?php echo $new->title;?></a></p>
 	</article>	
 	<?php endforeach ?>    
 	<div class="clear"></div>                  

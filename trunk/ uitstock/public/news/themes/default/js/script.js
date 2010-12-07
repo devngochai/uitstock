@@ -40,13 +40,13 @@ $(document).ready(function(){
 	startTime();
 	
     jQuery(".SearchTextBox").focus(function() {
-		if (jQuery(this).val()=="Enter keyword here") {
+		if (jQuery(this).val()=="Tìm kiếm") {
 			jQuery(this).val("");
 		}
 	});
 	jQuery(".SearchTextBox").blur(function() {
 		if (jQuery(this).val()=="") {
-			jQuery(this).val("Enter keyword here");
+			jQuery(this).val("Tìm kiếm");
 		}
 	});	
                 

@@ -41,23 +41,15 @@
 					<td><b>Ngày đăng tin:</b></td>
 					<td>
 						<?php 
-							  $date = $this->article['create_date'];
-							  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
-							  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
-							  echo $date; 
+							  echo Cloud_Model_Utli_CloudUtli::showDate($this->article['create_date']); 
 						?>
 					</td>
 				</tr>
 				<tr>
 					<td><b>Ngày sửa tin:</b></td>
 					<td>
-						<?php
-							  $date = $this->article['modify_date'];	
-							  if (null != $date) {
-							  	$date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
-							  	$date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
-							  	echo $date; 	
-							  }																	  						 
+						<?php 
+							  echo Cloud_Model_Utli_CloudUtli::showDate($this->article['modify_date']); 
 						?>
 					</td>
 				</tr>

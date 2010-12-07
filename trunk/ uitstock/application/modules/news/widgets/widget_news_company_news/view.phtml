@@ -1,12 +1,14 @@
 <section id="news-company">
-	<h2>Tin doanh nghiệp</h2>
+	<h2><a  href="news/index/category/aliasS/tin-van-chung-khoan/">Tin doanh nghiệp</a></h2>
 	<hgroup>
 		<ul>
 			<?php 
 				foreach ($news as $new) {
+					$alias = $this->categoryMapper->getAliasByArticle($new['id']);
+					$link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new['alias'];
 			?>
 			<li>
-				<a href="news/index/detail">
+				<a href="news/index/detail/<?php echo $link;?>">
 					<?php echo $new['title']; ?>
 				  	<span>
 				  		<?php echo Cloud_Model_Utli_CloudUtli::showDate($new['create_date']);?>

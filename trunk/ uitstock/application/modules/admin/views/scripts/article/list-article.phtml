@@ -3,7 +3,7 @@
 			<div class="portlet-header item article">
 				<h4>Quản lý tin</h4>
 				<div class="float-right">	
-					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"/>																								
+					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"/></div>																								
 					<a class="minibutton btn add" path="admin/article/add-article">
 						<span><span class="icon add"></span>Thêm</span>
 					</a>
@@ -32,7 +32,7 @@
 				<table cellpadding="0" cellspacing="0" border="0" class="display">
 					<thead>
 					    <tr class="tool">														
-							<th colspan="5">
+							<th colspan="9">
 							   <div id="suggest"><br />
 							        <input type="text" size="25" value="" class="txtSearch" onkeyup="suggest(this.value);" onblur="fill();" path="admin/article/auto-suggestion-article" />							     
 							      	<div class="suggestionsBox" id="suggestions" style="display: none;">
@@ -48,7 +48,7 @@
 							<th width="10"><input type="checkbox" id="select_all"></th>	
 							<th width="500">Tiêu đề</th>
 							<th width="200" class="center">Loại tin</th>	
-							<th width="10" class="center">Ngày</th>						
+							<th width="150" class="center">Ngày</th>						
 							<th width="10" class="center">Published</th>
 							<th width="100" class="center">Quan trọng</th>
 							<th width="10">Count</th>																												
@@ -62,12 +62,9 @@
 									<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($article['id']) ?>" value="<?php echo $this->escape($article['id']) ?>"  /></td> 
 									<td class="left"><a href="admin/article/view-article/id/<?php echo $this->escape($article['id']) ?>"><?php echo $this->escape($article['title']) ?></a></td>
 									<td class="center"><?php echo $this->escape($article['cat_name']) ?></td>								
-									<td class="left">
+									<td class="center">
 										<?php
-											  $date = $this->escape($article['create_date']); 																					  
-											  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
-											  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
-											  echo $date; 						
+											  echo Cloud_Model_Utli_CloudUtli::showDate($article['create_date']); 						
 										?>
 									</td>
 									<td class="center">
@@ -91,12 +88,9 @@
 									<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($article['id']) ?>" value="<?php echo $this->escape($article['id']) ?>"  /></td> 
 									<td class="left"><a href="admin/article/view-article/id/<?php echo $this->escape($article['id']) ?>"><?php echo $this->escape($article['title']) ?></a></td>
 									<td class="center"><?php echo $this->escape($article['cat_name']) ?></td>								
-									<td class="left">
+									<td class="center">
 										<?php
-											  $date = $this->escape($article['create_date']); 																					  
-											  $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
-											  $date = $date->get(Cloud_Model_Utli_CloudUtli::DATE);
-											  echo $date; 						
+											  echo Cloud_Model_Utli_CloudUtli::showDate($article['create_date']); 						
 										?>
 									</td>
 									<td class="center">
