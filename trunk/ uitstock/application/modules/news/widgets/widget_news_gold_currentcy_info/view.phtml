@@ -1,3 +1,6 @@
+<script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Gold_Content.js"></script>
+<script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Forex_Content.js"></script>
+
 <section id="gold-info" class="info2">
 	<p id="gold" class="statics">Giá vàng 9999</p>
 	<p class="right">ĐVT: tr.đ/lượng</p>
@@ -10,16 +13,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>SBJ</td>
-				<td>32.950</td>
-				<td>32,970</td>
-			</tr>
-			<tr>
-				<td>SJC</td>
-				<td>32.910</td>
-				<td>32,9870</td>
-			</tr>
+			<script type="text/javascript" language="JavaScript">
+                   document.write("<tr><td>SBJ</td><td>" + vGoldSbjBuy + "</td><td>" + vGoldSbjSell + "</td></tr>");
+                   document.write("<tr><td>SJC</td><td>" + vGoldSjcBuy + "</td><td>" + vGoldSjcSell + "</td></tr>");
+			</script>			
 		</tbody>
 	</table>
 </section>
@@ -29,41 +26,17 @@
 	<hgroup id="money-table">                      
 		<table width="92%" border="0px" cellspacing="0" cellpadding="0">                           
 			<tbody>
-				<tr>
-					<td>USD</td>
-					<td>19.500</td>                                
-				</tr>
-				<tr>
-					<td>GBP</td>
-					<td>31.566</td>                                
-				</tr>
-				<tr>
-					<td>HKD</td>
-					<td>2.590</td>                                
-				</tr>
-				<tr>
-					<td>CHF</td>
-					<td>20.761</td>                                
-				</tr>
-				<tr>
-					<td>JPY</td>
-					<td>247.02</td>                                
-				</tr>
-				<tr>
-					<td>AUD</td>
-					<td>19.610</td>                                
-				</tr>
-				<tr>
-					<td>CAD</td>
-					<td>19.491</td>                                
-				</tr>
-					<td>SGD</td>
-					<td>15.368</td>                                
-				</tr>
-				</tr>
-					<td>EUR</td>
-					<td>27.713</td>                                
-				</tr>
+				<script type="text/javascript" language="JavaScript">
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[0] + " </td><td align=right>" + vCosts[0] + " </td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[1] + " </td><td align=right>" + vCosts[1] + " </td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[2] + " </td><td align=right>" + vCosts[2] + "</td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[3] + " </td><td align=right> " + vCosts[3] + "</td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[4] + "</td><td align=right> " + vCosts[4] + "</td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[5] + "</td><td align=right> " + vCosts[5] + "</td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[6] + "</td><td align=right> " + vCosts[6] + "</td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[7] + " </td><td align=right> " + vCosts[7] + "</td></tr>");
+                    document.write("<tr><td align='Left'>&nbsp;" + vForexs[8] + "</td><td align=right>" + vCosts[8] + "</td></tr>");
+                </script>				
 			</tbody>
 		</table>
 	</hgroup>										
