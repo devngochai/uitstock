@@ -54,11 +54,11 @@
 									<td class="left"><a href="admin/article/view-cat/id/<?php echo $this->escape($parent['id']) ?>"><?php echo $this->escape($parent['name']) ?></a></td>
 									<td class="left"><?php echo $this->escape($parent['alias']) ?></td>								
 									<td class="center">
-										<?php if ($parent->published == 1) {
-											$title = "Click vào để ẩn Category";
+										<?php if ($parent['published'] == 1) {
+											$title = "Click vào để ẩn loại tin";
 											$img =  $this->dirImg . '/AnHien_1.png'; 
 											} else {
-											$title = "Click vào để hiện Category";	
+											$title = "Click vào để hiện loại tin";	
 											$img = $this->dirImg . '/AnHien_0.png';
 											}
 										?>
@@ -77,10 +77,10 @@
 									<td class="left"><?php echo $this->escape($sub->alias) ?></td>								
 									<td class="center">
 										<?php if ($sub->published == 1) {
-											$title = "Click vào để ẩn Category";
+											$title = "Click vào để ẩn loại tin";
 											$img =  $this->dirImg . '/AnHien_1.png'; 
 											} else {
-											$title = "Click vào để hiện Category";	
+											$title = "Click vào để hiện loại tin";	
 											$img = $this->dirImg . '/AnHien_0.png';
 											}
 										?>

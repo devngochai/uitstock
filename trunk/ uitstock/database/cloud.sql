@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 08, 2010 at 07:49 AM
+-- Generation Time: Dec 08, 2010 at 03:52 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -266,17 +266,19 @@ CREATE TABLE `menu_items` (
 -- 
 
 CREATE TABLE `modules` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) default NULL,
-  `type` varchar(50) default NULL,
-  `publshed` tinyint(1) default NULL,
+  `description` varchar(255) default NULL,
+  `published` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Dumping data for table `modules`
 -- 
 
+INSERT INTO `modules` VALUES (1, 'Quản lý tin', 'News Manager', 1);
+INSERT INTO `modules` VALUES (2, 'Quản lý loại tin', 'Category Manager', 1);
 
 -- --------------------------------------------------------
 

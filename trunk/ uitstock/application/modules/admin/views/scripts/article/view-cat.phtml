@@ -8,7 +8,7 @@
 					if ($this->category->parent_id == 0) $link = "pid/$id";
 					else $link = "id/$id"; 
 				?>						
-				<div class="global" id="<?php echo $this->category->id ?>" path1="admin/article/edit-cat/id/<?php echo $this->category->id ?>" path2="admin/article/delete-cat" path3="admin/article/list-article/<?php echo $link; ?>"></div>																				
+				<div class="global" id="<?php echo $this->category->id ?>" path1="admin/article/edit-cat/id/<?php echo $this->category->id ?>" path2="admin/article/delete-cat" path3="admin/article/list-article/<?php echo $link; ?>" back="<?php echo $_SESSION['temp']; ?>"></div>																				
 				<a class="minibutton btn view">
 					<span><span class="icon view" ></span>Xem tin</span>
 				</a>																																								
