@@ -10,6 +10,8 @@ class Cloud_Form_Admin_Module_Edit extends Zend_Form
 	 */
 	
 	protected $_module;
+	protected $_privilegeType;
+	protected $_privilegeTypes;
 	
 	public function init()
 	{		
@@ -40,6 +42,20 @@ class Cloud_Form_Admin_Module_Edit extends Zend_Form
 			  'filters' => array('StringTrim'),		     
 		));	
 		
+		foreach ($this->_privilegeType as $row) {
+			$entry[$row['id']] = $row['id']; 
+		}			
+			
+		foreach ($this->_privilegeTypes as $row) {
+			$entries[$row->id] = $row->name; 
+		}
+		
+		$this->addElement('multiCheckbox', 'privileges', array(			    	      
+		      'label' => 'Privileges',	
+		      'value' => $entry,			    		 		       			 		   
+		      'multiOptions' => $entries,     
+		));
+		
 		$this->addElement('select', 'published', array(
 			   'label' => 'Published',		   
 		       'value' => $this->_module->getPublished(),         
@@ -56,11 +72,22 @@ class Cloud_Form_Admin_Module_Edit extends Zend_Form
 		       'value' => $this->_module->getId(),
 		       'decorators' => array('ViewHelper', array('HtmlTag',
 		               array('tag' => 'dd', 'class' => 'noDisplay')))
-		));	
+		));					
+	
 	}	
 
 	public function setModule($module)
 	{
 		$this->_module = $module;		
+	}
+	
+	public function setPrivilegeType($privilegeType)
+	{
+		$this->_privilegeType = $privilegeType;		
+	}
+	
+	public function setPrivilegeTypes($privilegeTypes)
+	{
+		$this->_privilegeTypes = $privilegeTypes;		
 	}
 }

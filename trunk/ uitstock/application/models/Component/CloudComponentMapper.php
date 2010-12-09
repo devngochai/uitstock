@@ -106,18 +106,16 @@
 		}
 		
 		public function fetchAll()
-		{
-			$rows = $this->getDbTable()->fetchAll();								
-			return $this->getEntries($rows);
+		{		
+			return $this->getDbTable()->fetchAll();
 		}	
 
 	    public function fetchAllByOrder()
 		{
 			$db = $this->getDbTable();			
 			$select = $db->select()			             
-			             ->order('ordering');
-			$rows = $db->fetchAll($select);								
-			return $this->getEntries($rows);
+			             ->order('ordering');										
+			return $db->fetchAll($select);		
 		}
 		
 	    public function fetchAllByFront()
@@ -125,9 +123,8 @@
 			$db = $this->getDbTable();			
 			$select = $db->select()			     
 						 ->where('is_admin = 0')        
-			             ->order('ordering');
-			$rows = $db->fetchAll($select);								
-			return $this->getEntries($rows);
+			             ->order('ordering');		
+			return $db->fetchAll($select);		
 		}
 		
 	    public function getAllComponent()
@@ -165,7 +162,7 @@
 			if ($row == null)
 				return null;
 																					      				 			      	
-			return $this->getEntry($row);
+			return $row;
 		}
 			
 		public function getComponentByName($name, $currentComponent)
@@ -181,7 +178,7 @@
 			if ($row == null)
 				return null;
 																      				 			      		
-			return $this->getEntry($row);
+			return $row;
 		}		
 
 		public function getMaxOrder()
@@ -204,31 +201,5 @@
 			
 			if (null == $row['min']) return 0;
 			else return $row['min'];		
-		}	
-		
-		public function autoSuggestionComponent($name)
-		{
-			if (null == $name) exit();
-			
-			$db = $this->getDbTable();			
-			$select = $db->select()
-			             ->from($db, array('name'))
-			             ->where('name like ?', "%$name%");			                               	
-                   
-            return $db->fetchAll($select);            
-		}
-		
-		public function searchComponent($name)
-		{
-			if (null == $name) exit();
-			
-			$db = $this->getDbTable();			
-			$select = $db->select()
-			             ->where('name = ?', $name);
-			    
-            $rows = $db->fetchAll($select);                        		
-                     
-            return $this->getEntries($rows);          
-		}
-		
+		}							
 	}

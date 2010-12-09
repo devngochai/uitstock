@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 08, 2010 at 03:52 PM
+-- Generation Time: Dec 09, 2010 at 10:43 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -464,16 +464,22 @@ CREATE TABLE `portfolio` (
 -- 
 
 CREATE TABLE `privileges` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `module_id` int(11) default NULL,
   `pri_type_id` int(11) default NULL,
+  `ordering` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 -- 
 -- Dumping data for table `privileges`
 -- 
 
+INSERT INTO `privileges` VALUES (18, 1, 2, 2);
+INSERT INTO `privileges` VALUES (19, 2, 3, 1);
+INSERT INTO `privileges` VALUES (17, 1, 1, 1);
+INSERT INTO `privileges` VALUES (21, 1, 5, 3);
+INSERT INTO `privileges` VALUES (22, 2, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -482,16 +488,24 @@ CREATE TABLE `privileges` (
 -- 
 
 CREATE TABLE `privilege_types` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) default NULL,
   `description` varchar(200) default NULL,
+  `published` tinyint(1) default NULL,
+  `button1` text,
+  `button2` text,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- 
 -- Dumping data for table `privilege_types`
 -- 
 
+INSERT INTO `privilege_types` VALUES (1, 'Thêm tin', 'Add', 1, NULL, NULL);
+INSERT INTO `privilege_types` VALUES (2, 'Sửa tin', 'Edit', 1, NULL, NULL);
+INSERT INTO `privilege_types` VALUES (3, 'Thêm loại tin', 'Add', 1, NULL, NULL);
+INSERT INTO `privilege_types` VALUES (5, 'a', 'a', 1, '', '');
+INSERT INTO `privilege_types` VALUES (6, 'b', 'b', 1, 'sdf', 'xcv');
 
 -- --------------------------------------------------------
 

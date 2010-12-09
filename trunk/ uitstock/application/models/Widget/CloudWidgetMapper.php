@@ -113,9 +113,8 @@
 		}
 		
 		public function fetchAll()
-		{
-			$rows = $this->getDbTable()->fetchAll();							
-			return $this->getEntries($rows);
+		{			
+			return $this->getDbTable()->fetchAll();		
 		}			
 
 		public function getWidgetbyPage($pageId)

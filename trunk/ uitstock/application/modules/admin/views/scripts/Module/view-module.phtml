@@ -25,7 +25,11 @@
 				<tr>
 					<td><b>Description:</b></td>
 					<td><?php echo $this->module->description; ?></td>
-				</tr>								
+				</tr>	
+				<tr>
+					<td><b>Priviles:</b></td>					
+					<td><?php foreach ($this->privilegeTypes as $privilegeType) echo $privilegeType['name'] . '<br/>'; ?></td>
+				</tr>							
 				<tr>
 					<td><b>Published:</b></td>
 					<?php $published = ($this->module->published == 1) ? "Yes" : "No"; ?>

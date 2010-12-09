@@ -32,7 +32,7 @@
 		
 	    public function getEntry($row)
 		{
-			$entry = new Cloud_Model_module_CloudModule();			
+			$entry = new Cloud_Model_Module_CloudModule();			
 			$entry->setId($row->id)
 			      ->setName($row->name)
 			      ->setDescription($row->description)				  
@@ -49,7 +49,7 @@
             return $entries;
 		}
 		
-		public function save(Cloud_Model_module_CloudModule $module)
+		public function save(Cloud_Model_Module_CloudModule $module)
 		{			
 			$data = array(			   
 				'name' => $module->getName(),
@@ -106,6 +106,11 @@
            return $paginator;  
 		}
 		
+		public function getAll()
+		{
+			return $this->getDbTable()->fetchAll(); 
+		}
+		
 		public function getModuleByName($name, $currentModule)
 		{						
 			if (null == $currentModule) $id = "";
@@ -119,7 +124,7 @@
 			if ($row == null)
 				return null;
 																      				 			      		
-			return $this->getEntry($row);
+			return $row;
 		}
 		
 	}

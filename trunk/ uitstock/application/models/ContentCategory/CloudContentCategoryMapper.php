@@ -137,22 +137,18 @@
 		{
 			$db = $this->getDbTable();			
 			$select = $db->select()
-			             ->where('parent_id = 0');			             
-			    
-            $rows = $db->fetchAll($select);                        		
+			             ->where('parent_id = 0');			             			                              	
                      
-           return $this->getEntries($rows);   
+           return $db->fetchAll($select);   
 		}
 		
 		public function fetchAllSub()
 		{
 			$db = $this->getDbTable();			
 			$select = $db->select()
-			             ->where('parent_id != 0');			             
-			    
-            $rows = $db->fetchAll($select);                        		
+			             ->where('parent_id != 0');			             			                                 	
                      
-           return $this->getEntries($rows);  
+           return $db->fetchAll($select);  
 		}
 		
 		public function getContentCategoryByName($name, $currentContentCategory)
@@ -168,7 +164,7 @@
 			if (null == $row)
 				return null;
 																      				 			      		
-			return $this->getEntry($row);
+			return $row;
 		}
 		
 		public function getSubNameById($parentId)
@@ -182,7 +178,7 @@
 				if (null == $row)
 					return null;	
 
-				return $this->getEntry($row);	
+				return $row;	
 			}
 		}		
 

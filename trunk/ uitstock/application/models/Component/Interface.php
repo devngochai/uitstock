@@ -15,7 +15,5 @@ interface Cloud_Model_Component_Interface
 	public function getComponentById($id);	
 	public function getComponentByName($name, $currentComponent);
 	public function getMaxOrder();
-	public function getMinOrder();	
-	public function autoSuggestionComponent($name);
-	public function searchComponent($name);
+	public function getMinOrder();		
 }

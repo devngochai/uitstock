@@ -141,9 +141,8 @@
 			$db = $this->getDbTable();			
 			$select = $db->select()
 						 ->from($db, array('title', 'relative_id'));
-			             
-			$rows = $db->fetchAll();							
-			return $this->getEntries($rows);
+			             					
+			return $db->fetchAll();
 		}	
 		
 		public function updateAlias($id, $name)

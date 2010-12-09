@@ -84,9 +84,8 @@
 		}
 		
 		public function fetchAll()
-		{
-			$rows = $this->getDbTable()->fetchAll();							
-			return $this->getEntries($rows);
+		{					
+			return $this->getDbTable()->fetchAll();	
 		}	    
 		
 		public function saveTemplate(Cloud_Model_Template_CloudTemplate $template, $component_id)
@@ -110,11 +109,9 @@
 			
 			$db = $this->getDbTable();			
 			$select = $db->select()
-			             ->where('component_id = ?', $component_id);
-			    
-            $rows = $db->fetchAll($select);                        		
+			             ->where('component_id = ?', $component_id);			               		
                      
-            return $this->getEntries($rows);  
+            return $db->fetchAll($select);          
 		}
 		
 	    public function searchTemplate($name, $component_id)
@@ -124,11 +121,9 @@
 			$db = $this->getDbTable();			
 			$select = $db->select()
 			             ->where('name = ?', $name)
-			             ->where('component_id = ?', $component_id);
-			    
-            $rows = $db->fetchAll($select);                        		
+			             ->where('component_id = ?', $component_id);			             		
                      
-            return $this->getEntries($rows);          
+            return $db->fetchAll($select);             
 		}
 			
 		public function getTemplateByName($name, $component_id, $currentTemplate)
@@ -145,7 +140,7 @@
 			if ($row == null)
 				return null;
 																      				 			      		
-			return $this->getEntry($row);
+			return $row;
 		}
 	
 	    public function getTemplateByPath($path, $component_id, $currentTemplate)
@@ -162,7 +157,7 @@
 			if ($row == null)
 				return null;
 				
-			return $this->getEntry($row);
+			return $row;
 		}
 		
 		public function getIsDefault($component_id)
