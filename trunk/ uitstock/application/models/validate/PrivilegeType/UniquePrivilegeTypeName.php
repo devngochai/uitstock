@@ -30,7 +30,7 @@ class Cloud_Validate_UniquePrivilegeTypeName extends Zend_Validate_Abstract
 				
 		$privilegeType = $this->_mapper->getPrivilegeTypeByName($value, $currentPrivilegeType);
 					
-		if (null === $module)
+		if (null === $privilegeType)
 		{
 			return true;
 		}

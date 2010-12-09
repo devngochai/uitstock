@@ -10,5 +10,5 @@ interface Cloud_Model_PrivilegeType_Interface
 	public function delete($id);
 	public function fetchAll();
 	public function getPrivilegeTypeByModule($moduleId);
-	public function getPrivilegeTypeByName($name, $currentPrivilegeType);
+	public function getPrivilegeTypeByName($name, $currentPrivilegeType);	
 }

@@ -69,7 +69,7 @@
 		
 		public function saveAll($data, $id)
 		{
-			$data = array(			   
+			$data2 = array(			   
 				'module_id' => $data['module_id'],
 				'pri_type_id' => $id,
 				'ordering' => $this->getMaxOrder($data['module_id']) + 1,							   							 
@@ -77,10 +77,10 @@
 								
 			if (null == ($id = $data['privilege_id'])) {
 				$db = $this->getDbTable();
-				$db->insert($data);
+				$db->insert($data2);
 				return $db->getAdapter()->lastInsertId();
 			} else {
-				$this->getDbTable()->update($data, array('id = ?' => $id));		
+				$this->getDbTable()->update($data2, array('id = ?' => $id));		
 			}			
 		}
 		public function find($id, Cloud_Model_Privilege_CloudPrivilege $privilege)
@@ -131,12 +131,36 @@
 			$dbPrivilegeTypeName = $dbPrivilegeType['name'];					
 				
 			$select = $db->select()		                  
-		                 ->from(array('p' => $dbPrivilegeName), array('module_id'))		                 
+		                 ->from(array('p' => $dbPrivilegeName), array('module_id', 'id as priId'))		                 
 		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id')		               
 		                 ->order('p.ordering asc');			           
 			    
            return $db->fetchAll($select);   
 		}	
+		
+		public function getPrivilegeById($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPrivilege = $this->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];
+
+			$moduleMapper = new Cloud_Model_Module_CloudModuleMapper();
+			$dbModule = $moduleMapper->getDbTable()->info();
+			$dbModuleName = $dbModule['name'];
+			
+			$privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+			$dbPrivilegeType= $privilegeTypeMapper->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];					
+				
+			$select = $db->select()		                  
+		                 ->from(array('p' => $dbPrivilegeName), array('id as privilege_id'))		     
+		                 ->join(array('m' => $dbModuleName), 'p.module_id = m.id', array('id as module_id', 'name as module_name'))            
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id')
+		                 ->where('p.id = ?', $id);		               		              
+			    
+           return $db->fetchRow($select);  
+		}
 
 		public function getMaxOrder($moduleId)
 		{

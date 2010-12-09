@@ -172,6 +172,10 @@ background-repeat:no-repeat;
 	background: url("../images/Toolbar/module.png") no-repeat 11px 0px;
 }
 
+.privilege h4 {
+	background: url("../images/Toolbar/privilege.png") no-repeat 11px 0px;
+}
+
 
 /* -------------------------------------------------------------- 
    Button basics

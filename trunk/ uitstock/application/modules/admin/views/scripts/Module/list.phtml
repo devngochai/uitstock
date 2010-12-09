@@ -52,7 +52,7 @@
 									<tr class="odd gradeX" >							
 									<td class="left"><?php echo $i ?></td>
 									<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($privilegeType['id']) ?>" value="<?php echo $this->escape($privilegeType['id']) ?>"  /></td> 
-									<td class="left inside"><a href="admin/module/view-privilege-type/id/<?php echo $this->escape($privilegeType['id']) ?>"><?php echo $this->escape($privilegeType['name']) ?></a></td>
+									<td class="left inside"><a href="admin/module/view-privilege/id/<?php echo $this->escape($privilegeType['priId']) ?>"><?php echo $this->escape($privilegeType['name']) ?></a></td>
 									<td class="left"><?php echo $this->escape($privilegeType['description']) ?></td>								
 									<td class="center">
 										<?php if ($privilegeType['published'] == 1) {

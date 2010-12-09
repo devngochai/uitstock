@@ -131,4 +131,57 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 		
 		$this->view->form = $form;				
 	}	
+	
+	public function viewPrivilegeAction()
+	{
+		$this->view->headTitle($this->config['title']['viewPrivilege']);
+		
+		if (null != $this->request->getParam('id')) {
+			$id = $this->request->getParam('id');
+								
+			$privilege = $this->privilegeMapper->getPrivilegeById($id);					
+														
+			$this->view->assign(array(			
+	    		'privilege' => $privilege,	 			      
+	    	));
+		}		
+	}
+	
+	public function editPrivilegeAction() {
+		$this->view->headTitle($this->config['title']['editPrivilege']);
+
+		if (null != $this->request->getParam('id')) {
+			$id = $this->request->getParam('id');
+			
+			$privilege = $this->privilegeMapper->getPrivilegeById($id);		
+		
+			$form = new Cloud_Form_Admin_Privilege_Edit(array(
+			  	'modules' => $this->moduleMapper->getAll(),
+			    'privilege' => $this->privilegeMapper->getPrivilegeById($id),				 			  		
+			));
+			
+			if ($this->getRequest()->isPost()) {
+				if ($form->isValid($this->request->getPost())) {			
+					$values = $form->getValues();
+					$privilegeType = new Cloud_Model_PrivilegeType_CloudPrivilegeType($values);
+					$this->privilegeTypeMapper->save($privilegeType);					
+					$this->privilegeMapper->saveAll($values, $values['id']);																
+					$this->view->message = 'Đã sửa privilege: ' . $values['name'];
+				}
+			}
+			
+			$this->view->form = $form;
+		}
+	}
+	
+	public function deletePrivilegeAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		if (null != $this->request->getParam('listid')) {			
+			$id = $this->request->getParam('listid');				
+			$this->privilegeMapper->delete($id);
+		}
+	}
 }
