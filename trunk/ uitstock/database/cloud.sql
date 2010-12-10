@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 10, 2010 at 09:35 AM
+-- Generation Time: Dec 10, 2010 at 09:48 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -632,9 +632,9 @@ INSERT INTO `privilege_types` VALUES (36, 'Sửa thành viên', 'Edit', 1, '', '
 INSERT INTO `privilege_types` VALUES (37, 'Xóa thành viên', 'Delete', 1, '', '');
 INSERT INTO `privilege_types` VALUES (38, 'Truy cập', 'Access', 1, '', '');
 INSERT INTO `privilege_types` VALUES (39, 'Xem danh sách Role', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (40, 'Thêm Role', 'Add', 1, '', '');
+INSERT INTO `privilege_types` VALUES (40, 'Thêm Role', 'Add', 1, '					<a class="minibutton btn add" path="admin/role/add">\r\n						<span><span class="icon add"></span>Thêm</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (41, 'Sửa Role', 'Edit', 1, '', '');
-INSERT INTO `privilege_types` VALUES (42, 'Xóa Role', 'Delete', 1, '', '');
+INSERT INTO `privilege_types` VALUES (42, 'Xóa Role', 'Delete', 1, '		<a class="minibutton btn deleteall" name="role" path="admin/role/delete">\r\n						<span><span class="icon delete"></span>Xóa</span>\r\n					</a>	', '');
 INSERT INTO `privilege_types` VALUES (43, 'Truy cập', 'Access', 1, '', '');
 INSERT INTO `privilege_types` VALUES (44, 'Xem danh sách module', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (45, 'Thêm module', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/module/add-module\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm module</span>\r\n					</a>', '');
