@@ -16,10 +16,13 @@ class News_IndexController extends ZendStock_Controller_Action {
 	     		  
 	     $this->categoryMapper = new Cloud_Model_ContentCategory_CloudContentCategoryMapper();
 	     $this->newsMapper = new Cloud_Model_Article_CloudArticleMapper();
-		 $this->request = $this->getRequest();	 
+		 $this->request = $this->getRequest();	 		 
 		 
-		 $this->view->categoryMapper =  $this->categoryMapper;
-		 $this->view->newsMapper = $this->newsMapper;
+		 $this->view->assign(array(
+	    	'categoryMapper' => $this->categoryMapper,	    	    	
+	        'newsMapper' => $this->newsMapper,	  
+	    	'aliasP' => $this->request->getParam('aliasP'),   
+	    ));
 		 	
     }
 	
@@ -35,8 +38,7 @@ class News_IndexController extends ZendStock_Controller_Action {
         $this->view->headTitle($this->config['title']['news']);                	     	  
 	    
 	    $this->view->assign(array(
-	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'category'),	    
-	    	'aliasP' => $this->request->getParam('aliasP'),
+	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'category'),	    	    	
 	        'aliasS' => $this->request->getParam('aliasS'),	  
 	    	'page' => $this->_getParam('page', 1),   
 	    ));
@@ -47,8 +49,7 @@ class News_IndexController extends ZendStock_Controller_Action {
 	    
 	    $this->view->assign(array(
 	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'detail'),
-	    	'alias' => $this->request->getParam('alias'),
-	    	'aliasP' => $this->request->getParam('aliasP'),
+	    	'alias' => $this->request->getParam('alias'),	    	
 	        'aliasS' => $this->request->getParam('aliasS'),
 	        'id' => $this->request->getParam('id'),
 	    ));
