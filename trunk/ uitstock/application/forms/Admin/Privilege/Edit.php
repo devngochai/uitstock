@@ -13,24 +13,13 @@ class Cloud_Form_Admin_Privilege_Edit extends Zend_Form
 	protected $_privilege;
 	
 	public function init()
-	{		
-		// thêm validator
-		$this->addElementPrefixPath(
-		     'Cloud_Validate',
-		     APPLICATION_PATH . '/models/validate/PrivilegeType',
-		     'validate'
-		);			
-		
+	{				
 		$this->setMethod('post');				  
 		
 		$this->addElement('text', 'name', array(	
 		      'required' => true,			      
 		      'label' => 'Privilege name',
-		      'value' => $this->_privilege['name'],
-		      'validators' => array(
-		            array('UniquePrivilegeTypeName', false, array(new
-		            Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper()))
-		      ),
+		      'value' => $this->_privilege['name'],		      
 			  'filters' => array('StringTrim'),		     
 		));	
 		

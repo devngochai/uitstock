@@ -1,0 +1,50 @@
+	<div id="content" class="xfluid">
+		<div class="portlet x12">
+			<div class="portlet-header item role">
+				<h4>Quản lý role</h4>
+				<div class="float-right">	
+					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"></div>																								
+					<a class="minibutton btn add" path="admin/role/add">
+						<span><span class="icon add"></span>Thêm</span>
+					</a>
+					<a class="minibutton btn deleteall" name="role" path="admin/role/delete">
+						<span><span class="icon delete"></span>Xóa</span>
+					</a>					
+				</div>				
+			</div>
+			
+			<div class="portlet-content">				 							                														
+				<table cellpadding="0" cellspacing="0" border="0" class="display">
+					<thead>											  						
+						<tr>
+							<th width="10">#</th>
+							<th width="10"><input type="checkbox" id="select_all"></th>	
+							<th width="300">Name</th>
+							<th width="300">Description</th>													
+							<th width="100" class="right">ID</th>							
+						</tr>
+					</thead>
+					<tbody class="rows">
+							<?php $i = 0; foreach ($this->roles as $role): $i++; if ($i % 2 != 0) {?>
+								<tr class="odd gradeX" >							
+									<td class="left"><?php echo $i ?></td>
+									<td class="center"><input type="checkbox" name="select" value="<?php echo $this->escape($role->id) ?>" id="<?php echo $this->escape($role->id) ?>" /></td> 
+									<td class="left"><?php echo $this->escape($role->name) ?></td>
+									<td class="left"><?php echo $this->escape($role->description) ?></td>																																														
+									<td class="right"><?php echo $this->escape($role->id) ?></td>
+								</tr>		
+							<?php } else { ?>
+								<tr class="even gradeC">							
+									<td class="left"><?php echo $i ?></td>
+									<td class="center"><input type="checkbox" name="select" value="<?php echo $this->escape($role->id) ?>" id="<?php echo $this->escape($role->id) ?>" /></td> 
+									<td class="left"><?php echo $this->escape($role->name) ?></td>
+									<td class="left"><?php echo $this->escape($role->description) ?></td>																																														
+									<td class="right"><?php echo $this->escape($role->id) ?></td>																																								
+								</tr>													
+							<?php } endforeach ?>			
+					</tbody>
+				</table>																																	
+			</div>
+		</div>			
+		
+	</div><!--  end #content -->

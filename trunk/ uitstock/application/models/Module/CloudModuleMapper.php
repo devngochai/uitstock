@@ -87,6 +87,10 @@
 			$db->delete($where);				
 		}	
 		
+		public function fetch() {
+			return $this->getDbTable()->fetchAll();	
+		}
+		
 		public function fetchAll($page)
 		{
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
@@ -100,7 +104,7 @@
            $rows = $db->fetchAll($select);           
            
            $paginator = Zend_Paginator::factory($rows);
-    	   $paginator->setItemCountPerPage(5);
+    	   $paginator->setItemCountPerPage(2);
     	   $paginator->setCurrentPageNumber($page);           		
                      
            return $paginator;  

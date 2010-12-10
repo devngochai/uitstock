@@ -176,6 +176,9 @@ background-repeat:no-repeat;
 	background: url("../images/Toolbar/privilege.png") no-repeat 11px 0px;
 }
 
+.role h4 {
+	background: url("../images/Toolbar/role.png") no-repeat 11px 0px;
+}
 
 /* -------------------------------------------------------------- 
    Button basics

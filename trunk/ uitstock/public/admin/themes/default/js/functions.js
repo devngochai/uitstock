@@ -491,7 +491,6 @@ function addActionForButton()
 		return false;
 	});
 				
-
 	$('.next2').click(function(){
 		$('.hide1').insertAfter($('.buttonrow'));
 		$('.message1').html('');
@@ -543,6 +542,37 @@ function addActionForButton()
 				$('.message').html('').removeClass('message');				
 				$('.addContentDyn').html(data);	
 				change2();
+		    }
+		});
+										
+		return false;
+	});
+	
+	$('.continue').click(function(){		
+		$('.hide1').insertAfter($('.buttonrow'));
+		$('.message1').html('');		
+		$('.hide1').show();
+		
+		var name = $('.name').val();
+		if (name == "")  {jAlert('Bạn chưa nhập tên role !', 'Thông báo');$('.hide1').hide();
+							 return false; }
+		
+		var description = $('.description').val();				
+		var id = $('.id').val();
+		var url = $(this).attr('url');			
+		
+		var data = "&name=" + name + "&description=" + description + "&id=" + id;				
+		
+		$.ajax({
+			url: url,
+			data:  data,		
+			success: function(data) {										
+				if (data == 'duplicate') {$('.message1').fadeIn('slow').text('Role này đã tồn tại!').css({'color' : 'Green', 'display' :'inline'}); $('.hide1').hide();
+												return false; }				 			
+				
+				$('.hide1').hide();
+				$('.message').html('').removeClass('message');				
+				$('.addContentDyn').html(data);	
 		    }
 		});
 										
@@ -666,4 +696,3 @@ function change3()
 		});
 	});
 }
-
