@@ -7,21 +7,21 @@
 	
 	$alias = $this->categoryMapper->getAliasByArticle($new['id']);
 	$link = (null == $this->aliasS) ?
-		'aliasP/' . $alias['parent_alias'] . '/alias/' . $new['alias'] :
-		'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new['alias'];
+		$alias['parent_alias'] . '/' . $new['alias'] . '/' :
+		$alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new['alias']. '/' ;
 	
 	$linkPage = (null == $this->aliasS) ?
-		'aliasP/' . $alias['parent_alias'] :
-		'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'];
+		$alias['parent_alias']:
+		$alias['parent_alias'] . '/' . $alias['sub_alias'] ;
 	if ($i == 1) { 
 ?>
 
 <section class="news-inportant">
 	<?php if (null != $new['image']) { ?>
-	<a href="index.php/news/index/detail/<?php echo $link;?>" ><img src="<?php echo $new['image'];?>" class="left"/></a>
+	<a href="tintuc/<?php echo $link;?>" ><img src="<?php echo $new['image'];?>" class="left"/></a>
 	<?php } ?>
 	<hgroup>
-		<a href="index.php/news/index/detail/<?php echo $link;?>" ><?php echo $new['title']?></a>
+		<a href="tintuc/<?php echo $link;?>" ><?php echo $new['title']?></a>
 		<br />
 		<label class="c-time">
 			<?php echo Cloud_Model_Utli_CloudUtli::showTime($new['create_date']);?>
@@ -35,8 +35,12 @@
 			<?php 										
 				if ($relatives != '') {	 echo "&gt;";								
 					foreach ($relatives as $relative) {
+						$alias = $relative['alias']; 
+						$link = (null == $this->aliasS) ?
+							"tintuc/$this->aliasP/$alias/" :
+							"tintuc/$this->aliasP/$this->aliasS/$alias/";
 			?>
-						<a href=""><?php echo $relative->title;?></a> /
+						<a href="tintuc/<?php echo $link;?>"><?php echo $relative->title;?></a> /
 			<?php }} ?>
 		</p>
 	</hgroup>
@@ -49,10 +53,10 @@
 
 <section class="news-box-cat">
 	<?php if (null != $new['image']) { ?>
-	<a href="index.php/news/index/detail/<?php echo $link;?>"><img src="<?php echo $new['image'];?>" class="left"/></a>
+	<a href="tintuc/<?php echo $link;?>"><img src="<?php echo $new['image'];?>" class="left"/></a>
 	<?php } ?>
 	<hgroup>
-		<a href="index.php/news/index/detail/<?php echo $link;?>"><?php echo $new['title']; ?></a>
+		<a href="tintuc/<?php echo $link;?>"><?php echo $new['title']; ?></a>
 		<br />
 		<label class="c-time">
 			<?php echo Cloud_Model_Utli_CloudUtli::showTime($new['create_date']);?>
@@ -66,8 +70,12 @@
 			<?php 										
 				if ($relatives != '') {	 echo "&gt;";								
 					foreach ($relatives as $relative) {
+						$alias = $relative['alias']; 
+						$link = (null == $this->aliasS) ?
+							"tintuc/$this->aliasP/$alias/" :
+							"tintuc/$this->aliasP/$this->aliasS/$alias/";
 			?>
-						<a href=""><?php echo $relative->title;?></a> /
+						<a href="tintuc/<?php echo $link;?>"><?php echo $relative->title;?></a> /
 			<?php }} ?>
 		</p>
 	</hgroup>
@@ -80,7 +88,7 @@
 <section class="news-other">	
 	<div class="continue">
 	<?php if ($number_of_page > $this->page * $number) {?>
-		<a href="index.php/news/index/category/<?php echo $linkPage;?>/page/<?php echo $this->page + 1;?>">Xem tiếp...</a>
+		<a href="tintuc/chuyenmuc/<?php echo $linkPage , '/page/', $this->page + 1;?>/">Xem tiếp...</a>
 	<?php } ?>
 	</div>
 </section> 

@@ -581,6 +581,16 @@
                    
            return $db->fetchAll($select);						
 		}
+		
+		public function getTitleByAlias($alias)
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+						 ->from($db, array('title'))			           
+			             ->where('alias = ?', $alias);				           
+                   
+            return $db->fetchRow($select);  
+		}
 
 	 	public function setImportant($listid)
 		{	

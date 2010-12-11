@@ -1,5 +1,9 @@
 .visualize { margin-bottom: 4em; }
 
+.orange{
+	color: orange;
+	font-weight: bold;
+}
 .right {
 	text-align: right;
 }
@@ -81,6 +85,10 @@ dd {
 	line-height: 30px; 
 	padding-left: 30px; 
 	margin-bottom: 10px;	
+}
+
+.nickname {
+	color: green;
 }
 
 ul.errors {

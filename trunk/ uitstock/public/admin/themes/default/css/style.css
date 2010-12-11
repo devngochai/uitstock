@@ -180,6 +180,18 @@ background-repeat:no-repeat;
 	background: url("../images/Toolbar/role.png") no-repeat 11px 0px;
 }
 
+.user h4 {
+	background: url("../images/Toolbar/user.png") no-repeat 11px 0px;
+}
+
+.avatar h4 {
+	background: url("../images/Toolbar/avatar.png") no-repeat 11px 0px;
+}
+
+.password h4 {
+	background: url("../images/Toolbar/password.png") no-repeat 11px 0px;
+}
+
 /* -------------------------------------------------------------- 
    Button basics
 -------------------------------------------------------------- */
@@ -209,6 +221,8 @@ a.active>span{background: yellowGreen;}
 /* with icon */
 a.btn .icon {float:left;margin-left:-4px;width:18px;height:22px;}
 a.btn .add {background:url(../images/Toolbar/action/add.png) 0 0 no-repeat;background-position:-1px 3px;}
+a.btn .avatar {background:url(../images/Toolbar/action/avatar.png) 0 0 no-repeat; background-position:-1px 3px;}
+a.btn .password {background:url(../images/Toolbar/action/password.png) 0 0 no-repeat; background-position:-1px 3px;}
 a.btn .edit {background:url(../images/Toolbar/action/edit.png) 0 0 no-repeat; background-position:-1px 3px;}				
 a.btn .default {background:url(../images/Toolbar/action/default.png) 0 0 no-repeat;background-position:-1px 3px;}
 a.btn .delete {background:url(../images/Toolbar/action/delete.png) 0 0 no-repeat; background-position:-1px 3px;}

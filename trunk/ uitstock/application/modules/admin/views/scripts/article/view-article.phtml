@@ -3,7 +3,7 @@
 		<div class="portlet-header item article">
 			<h4>Xem tin</h4>
 			<div class="float-right">
-				<div class="global" id="<?php echo $this->article['id'] ?>" path1="admin/article/edit-article/id/<?php echo $this->article['id'] ?>" path2="admin/article/delete-article" back="<?php echo $_SESSION['temp']; ?>"></div>																																																																							
+				<div class="global" id="<?php echo $this->article['id'] ?>" path1="admin/article/edit-article/id/<?php echo $this->article['id'] ?>/" path2="admin/article/delete-article" back="<?php echo $_SESSION['temp']; ?>"></div>																																																																							
 				<a class="minibutton btn edit2"  >
 					<span><span class="icon edit" ></span>Sửa</span>
 				</a>
@@ -16,7 +16,8 @@
 			</div>				
 		</div>
 		
-		<div class="portlet-content">									 							                													
+		<div class="portlet-content">		
+			<?php if (null != $this->article) {?>							 							                													
 			<table cellpadding="0" cellspacing="0" border="0" class="display">
 				<tr>
 					<td width="90"><b>Tiêu đề:</b></td>
@@ -81,7 +82,7 @@
 				</tr>						
 				
 			</table>
-																																				
+			<?php } ?>																																	
 		</div>
 	</div>			
 	

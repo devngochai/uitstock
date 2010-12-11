@@ -35,21 +35,30 @@ class News_IndexController extends ZendStock_Controller_Action {
 	}      
     
     public function categoryAction() {
-        $this->view->headTitle($this->config['title']['news']);                	     	  
+    	$aliasP = $this->request->getParam('aliasP');
+    	$aliasS = $this->request->getParam('aliasS');
+    	$name = (null == $aliasS) ? 
+    			$this->categoryMapper->getNameByAlias($aliasP) :
+    			$this->categoryMapper->getNameByAlias($aliasS);  
+    			
+        $this->view->headTitle("UITStock News - $name->name");                	     	  
 	    
 	    $this->view->assign(array(
 	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'category'),	    	    	
-	        'aliasS' => $this->request->getParam('aliasS'),	  
+	        'aliasS' => $aliasS,	  
 	    	'page' => $this->_getParam('page', 1),   
 	    ));
     }    
     
     public function detailAction() {
-        $this->view->headTitle($this->config['title']['news']);        
+    	$alias = $this->request->getParam('alias');
+    	$title = $this->newsMapper->getTitleByAlias($alias);
+    	
+        $this->view->headTitle("UITStock News- $title->title");        
 	    
 	    $this->view->assign(array(
 	    	'widgets' => $this->widgetMapper->getWidgetByComponentPage(3, 'detail'),
-	    	'alias' => $this->request->getParam('alias'),	    	
+	    	'alias' => $alias,	    	
 	        'aliasS' => $this->request->getParam('aliasS'),
 	        'id' => $this->request->getParam('id'),
 	    ));

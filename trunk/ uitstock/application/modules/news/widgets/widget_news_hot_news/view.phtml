@@ -12,11 +12,11 @@
 						<?php 
 							foreach ($hotNews as $new):
 								$alias = $this->categoryMapper->getAliasByArticle($new->id);
-								$link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new->alias;
+								$link = $alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new->alias . '/';
 						?>
 							
 							<li>
-								<a href="news/index/detail/<?php echo $link;?>">
+								<a href="tintuc/<?php echo $link;?>">
 									<?php echo $new->title;?>
 								</a>
 							</li>
@@ -32,10 +32,10 @@
 						 <?php 
 						 	foreach ($topNews as $new):
 						 		$alias = $this->categoryMapper->getAliasByArticle($new->id);
-								$link = 'aliasP/' . $alias['parent_alias'] . '/aliasS/' . $alias['sub_alias'] . '/alias/' . $new->alias;
+								$link = $alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new->alias . '/';
 						 ?>
 							<li>
-								<a href="news/index/detail/<?php echo $link;?>">
+								<a href="tintuc/<?php echo $link;?>">
 									<?php echo $new->title;?>
 								</a>
 							</li>

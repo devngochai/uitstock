@@ -1,7 +1,7 @@
 <section class="breadcum">
-	<a class="left cat"><?php echo $parentName->name;?></a>
+	<a href="tintuc/chuyenmuc/<?php echo $linkP; ?>/" class="left cat"><?php echo $parentName->name;?></a>
 	<hgroup class="right">
-		<a class="left"><?php if ($subName != '') {?> &gt; <?php echo $subName->name;}?></a>
+		<a href="tintuc/chuyenmuc/<?php echo $linkP,'/',$linkS; ?>" class="left"><?php if ($subName != '') {?> &gt; <?php echo $subName->name;}?></a>
 		<span class="Timer right"></span>                    
 	</hgroup>
 	<div class="clear"></div>

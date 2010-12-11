@@ -21,6 +21,13 @@
 		    return $date;
 	    }
 	    
+		public static function showDateDB($date)
+	    {	    					    	    																	 
+		    $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATABASE_DATE);
+		    $date = $date->get(Cloud_Model_Utli_CloudUtli::DATABASE_DATE);	
+		    return $date;
+	    }
+	    
 		public static function showDay($date)
 	    {	    					    	    																	 
 		    $date = new Zend_Date($date, Cloud_Model_Utli_CloudUtli::DATE);
@@ -92,6 +99,41 @@
 			$publish = ($row->published == 1) ? 0 : 1;
 						
 			$data = array('published' => $publish);
+			$where = array('id = ?' => $id);
+			$dbTable->update($data, $where);
+			echo "AnHien_$publish.png";
+		}
+		
+		public static function setEnable($dbTable, $listid)
+		{
+			for ($i = 0; $i < count($listid); $i++) {
+				$id = $listid[$i]; 
+				$data = array('is_enable' => 1);
+				$where = array('id = ?' => $id);
+				$dbTable->update($data, $where);
+			}
+		}
+		
+	    public static function setDisable($dbTable, $listid)
+		{
+			for ($i = 0; $i < count($listid); $i++) {						
+				$id = $listid[$i]; 				
+				$data = array('is_enable' => 0);
+				$where = array('id = ?' => $id);
+				$dbTable->update($data, $where);
+			}
+		}
+		
+		public static function setEnableAjax($dbTable, $id)
+		{		;
+			$select = $dbTable->select()			    
+			                  ->from($dbTable, 'is_enable')            	
+			                  ->where('id = ?', $id);				          
+			$row = $dbTable->fetchRow($select);																	
+																      				 			      		
+			$publish = ($row->is_enable == 1) ? 0 : 1;
+						
+			$data = array('is_enable' => $publish);
 			$where = array('id = ?' => $id);
 			$dbTable->update($data, $where);
 			echo "AnHien_$publish.png";

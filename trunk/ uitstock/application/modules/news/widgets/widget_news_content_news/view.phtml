@@ -6,8 +6,12 @@
 		<?php 
 			if ($relatives != '') {	 echo "&gt;";								
 				foreach ($relatives as $relative) {
+					$alias = $relative['alias']; 
+					$link = (null == $this->aliasS) ?
+						"tintuc/$this->aliasP/$alias/" :
+						"tintuc/$this->aliasP/$this->aliasS/$alias/";	
 		?>
-				<a href=""><?php echo $relative->title;?></a> /
+				<a href="tintuc/<?php echo $link;?>"><?php echo $relative->title;?></a> /
 		<?php }} ?>
 		</p>
 	</div><!-- end .detail-summarize -->
@@ -23,10 +27,10 @@
 	<ul>
 		<?php 
 			foreach($otherNews as $otherNew):
-			$alias = $otherNew['alias']; 
-			$link = (null == $this->aliasS) ?
-				"news/index/detail/aliasP/$this->aliasP/alias/$alias" :
-				"news/index/detail/aliasP/$this->aliasP/aliasS/$this->aliasS/alias/$alias";		
+				$alias = $otherNew['alias']; 
+				$link = (null == $this->aliasS) ?
+					"tintuc/$this->aliasP/$alias/" :
+					"tintuc/$this->aliasP/$this->aliasS/$alias/";		
 		?>
 			<li>
 				

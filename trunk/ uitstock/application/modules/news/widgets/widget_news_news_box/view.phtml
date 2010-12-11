@@ -3,12 +3,12 @@
 ?>
 	<section class="news-box">
 		<ul class="tab">
-			<li class="first"><a href="news/index/category/aliasP/<?php echo $category->alias;?>/"><?php echo $category->name; ?></a></li>
+			<li class="first"><a href="tintuc/chuyenmuc/<?php echo $category->alias;?>/"><?php echo $category->name; ?></a></li>
 			<?php 				
 				$subs = $this->categoryMapper->getNewsSub($category->id);
 				foreach ($subs as $sub) {					
 			?>
-				<li><a href="news/index/category/aliasP/<?php echo $category->alias;?>/aliasS/<?php echo $sub->alias?>/"><?php echo $sub->name; ?></a></li>
+				<li><a href="tintuc/chuyenmuc/<?php echo $category->alias;?>/<?php echo $sub->alias?>/"><?php echo $sub->name; ?></a></li>
 			<?php } ?>
 		</ul>
 		<div class="newcontent">
@@ -17,15 +17,15 @@
 				$i = 0;
 				foreach ($articles as $article) {
 				$alias = $this->categoryMapper->getAliasByArticle($article['id']);
-				$link = 'aliasP/' . $alias['parent_alias'] . '/alias/' . $article['alias'];
+				$link = $alias['parent_alias'] . '/' . $article['alias'];
 										
 				$i++;
 				if ($i == 1) {					
 			?>
 			<article class="main left">
-				<a href="index.php/news/index/detail/<?php echo $link;?>"><img src="<?php echo $article['image']; ?>" class="left" width="130" height="100"/></a>
+				<a href="tintuc/<?php echo $link;?>"><img src="<?php echo $article['image']; ?>" class="left" width="130" height="100"/></a>
 				<hgroup>
-					<h2><a href="index.php/news/index/detail/<?php echo $link;?>"><?php echo $article['title']; ?></a></h2>
+					<h2><a href="tintuc/<?php echo $link;?>"><?php echo $article['title']; ?></a></h2>
 					<p><?php echo $article['summarize'];?></p>
 				</hgroup>
 				<div class="clear"></div>
@@ -33,7 +33,7 @@
 			<?php } else {?>
 			<article class="right">
 			   <ul class="list">
-					<li><a href=""><?php echo $article['title']; ?></a></li>										
+					<li><a href="tintuc/<?php echo $link;?>"><?php echo $article['title']; ?></a></li>										
 			   </ul> 
 			</article>			
 			<?php } } ?>

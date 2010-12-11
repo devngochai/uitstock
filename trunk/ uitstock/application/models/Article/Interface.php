@@ -28,6 +28,7 @@ interface Cloud_Model_Article_Interface
 	public function getRelativeArticle($id);
 	public function getImportantArticle($from, $end, $flag);
 	public function getMostCountArticle($from, $end);
+	public function getTitleByAlias($alias);
 	public function setImportant($listid);
 	public function setNormal($listid);
 	public function autoSuggestionArticle($title);

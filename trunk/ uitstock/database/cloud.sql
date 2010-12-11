@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 10, 2010 at 10:06 AM
+-- Generation Time: Dec 11, 2010 at 06:42 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -947,21 +947,25 @@ CREATE TABLE `transaction` (
 -- 
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `role_id` int(11) default NULL,
-  `name` varchar(255) default NULL,
-  `pass` varchar(255) default NULL,
-  `email` varchar(255) default NULL,
   `full_name` varchar(255) default NULL,
+  `gender` tinyint(1) default NULL,
+  `birthday` date default NULL,
+  `email` varchar(255) default NULL,
+  `mobile` varchar(255) default NULL,
+  `address` varchar(255) default NULL,
+  `avatar` text,
+  `password` varchar(255) default NULL,
   `is_enable` tinyint(1) default NULL,
-  `is_online` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `users`
 -- 
 
+INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211111409.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1);
 
 -- --------------------------------------------------------
 
@@ -1016,7 +1020,9 @@ CREATE TABLE `user_level` (
 CREATE TABLE `user_session` (
   `id` int(11) NOT NULL,
   `user_id` int(11) default NULL,
+  `session_id` varchar(255) default NULL,
   `ip` varchar(50) default NULL,
+  `browser` varchar(255) default NULL,
   `time` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

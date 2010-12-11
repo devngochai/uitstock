@@ -8,6 +8,8 @@ $(function ()
 	$('.hide1').hide();
 	$('.hide2').hide();		
 	
+	$(".date").mask("99/99/9999"); 
+	
 	button();
 	
 	autoFocus();

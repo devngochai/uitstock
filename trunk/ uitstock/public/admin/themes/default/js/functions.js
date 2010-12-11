@@ -2,8 +2,7 @@
    Set equal height
 -------------------------------------------------------------- */
 function setEqualHeight()
-{	
-	
+{		
 	var highestCol2 = Math.max($('.infor').height(), $('.dashboard').height());
 	$('.infor').height(highestCol2);	
 	$('.dashboard').height(highestCol2);
@@ -116,11 +115,19 @@ function addActionForButton()
 		var path = $(this).attr("path")
 		if (id == undefined) {jAlert('Bạn chưa chọn ' + name + ' nào', 'Thông báo');
 								; return; }
-		document.location = path + "/id/" + id;
+		document.location = path + "/id/" + id + '/';
 	});
 	
 	$('a.edit2').click(function(){
 		document.location = $(".global").attr("path1");
+	});
+	
+	$('a.avatar').click(function(){
+		document.location = $(".global").attr("avatar");
+	});
+	
+	$('a.password').click(function(){
+		document.location = $(".global").attr("password");
 	});
 	
 	$('a.view').click(function(){
@@ -583,7 +590,7 @@ function addActionForButton()
 		var word = $('.txtSearch').val();
 		var name = $(this).attr('name');
 		var currentpath = $(this).attr('currentpath');
-		document.location = currentpath + "/" + name + "/" + word;		
+		document.location = currentpath + "/" + name + "/" + word + "/";		
 	});	
 	
 	$(".order").click(function(){
