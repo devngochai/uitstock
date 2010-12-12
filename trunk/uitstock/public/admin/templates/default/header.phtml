@@ -1,0 +1,99 @@
+	<div id="top">
+		<div id="header">
+			<h1><a href="admin/index">UITStock Admin</a></h1>
+			
+			<div id="info">
+				<h4>Chào Linh</h4>
+				
+				<p>
+					Logged in as Admin
+					<br />
+					<a href="">Trang chủ</a> | <a>Thoát</a>
+				</p>
+				
+				<img src="files/avatar/linhnn.jpg" alt="avatar" />
+			</div> <!-- #info -->
+					
+		</div> <!-- #header -->	
+		
+		
+		<div id="nav">	
+	
+			<ul class="mega-container mega-grey">
+		           
+				<li class="mega">
+					<a class="mega-link">Cấu hình</a>
+					<div class="mega-content mega-menu ">
+						<ul>
+							<li><a href="admin/index/home/"><img src="<?php echo $this->dirImg; ?>/Menu/cpanel.png" width="16" height="16"/>Control Panel</a></li>
+							<li class="seperator"></li>
+							<li><a href="admin/config/visitstatics/"><img src="<?php echo $this->dirImg; ?>/Menu/statistic.png" width="16" height="16"/>Visits Statics</a></li>
+							<li><a href="admin/config/file-manager/"><img src="<?php echo $this->dirImg; ?>/Menu/file-manager.png" width="16" height="16"/>File Manager</a></li>	
+							<li class="seperator"></li>
+							<li><a href="admin/config/configuration/"><img src="<?php echo $this->dirImg; ?>/Menu/security.png" width="16" height="16"/>Global Configuration</a></li>																																																		
+						</ul>
+					</div>			
+				</li>
+		
+				<li class="mega">				
+					<a class="mega-link">Menus</a>
+					<div class="mega-content mega-menu ">
+						<ul>														
+							<li><a href="admin/menu/list-category/"><img src="<?php echo $this->dirImg; ?>/Menu/menu.png" width="16" height="16"/>Menu Manager</a></li>																																																																								
+						</ul>
+					</div>																
+				</li>
+		
+				<li class="mega">				
+					<a class="mega-link">Chứng khoán</a>
+					<div class="mega-content mega-menu ">
+						<ul>
+							<li><a href="admin/stock/stock/"><img src="<?php echo $this->dirImg; ?>/Menu/stock.jpg" width="16" height="16"/>Danh sách chứng khoán</a></li>
+							<li class="seperator"></li>
+							<li><a href="admin/stock/analyze/"><img src="<?php echo $this->dirImg; ?>/Menu/analyze.png" width="16" height="16"/>Biểu đồ phân tích</a></li>
+							<li><a href="admin/stock/exchange/"><img src="<?php echo $this->dirImg; ?>/Menu/exchange.png" width="16" height="16"/>Hoạt động giao dịch</a></li>																																						
+						</ul>
+					</div>			
+				</li>
+				
+				<li class="mega">				
+					<a class="mega-link">Tin tức</a>
+					<div class="mega-content mega-menu ">
+						<ul>
+						    <li><a href="admin/article/list-article/"><img src="<?php echo $this->dirImg; ?>/Menu/news.png" width="16" height="16"/>Danh sách tin</a></li>
+							<li class="seperator"></li>
+							<li><a href="admin/article/list-category/"><img src="<?php echo $this->dirImg; ?>/Menu/section.png" width="16" height="16"/>Danh sách loại tin</a></li>																																																									
+						</ul>
+					</div>	
+				</li>	
+		
+				<li class="mega">				
+					<a class="mega-link">Thành viên</a>
+					<div class="mega-content mega-menu ">
+						<ul>
+						    <li><a href="admin/user/list/"><img src="<?php echo $this->dirImg; ?>/Menu/user.png" width="16" height="16"/>Danh sách thành viên</a></li>
+							<li class="seperator"></li>																																																										
+							<li><a href="admin/role/list/"><img src="<?php echo $this->dirImg; ?>/Menu/role.png" width="16" height="16"/>Danh sách Role</a></li>														
+							<li><a href="admin/module/list/"><img src="<?php echo $this->dirImg; ?>/Menu/module.png" width="16" height="16"/>Danh sách Module</a></li>							
+						</ul>
+					</div>			
+				</li>
+				
+				<li class="mega <?php if ($_SESSION['current'] == true) echo  'mega-current'; ?>">				
+					<a class="mega-link">Hệ thống</a>
+					<div class="mega-content mega-menu ">
+						<ul>
+						    <li><a href="admin/template/list/"><img src="<?php echo $this->dirImg; ?>/Menu/template.png" width="16" height="16"/>Quản lý template</a></li>							
+							<li><a href="admin/theme/list/"><img src="<?php echo $this->dirImg; ?>/Menu/theme.png" width="16" height="16"/>Quản lý theme</a></li>
+							<li><a href="admin/component/list/"><img src="<?php echo $this->dirImg; ?>/Menu/component.png" width="16" height="16"/>Quản lý component</a></li>
+							<li class="seperator"></li>	
+							<li><a href="admin/page/list/"><img src="<?php echo $this->dirImg; ?>/Menu/page.png" width="16" height="16"/>Quản lý page</a></li>							
+							<li><a href="admin/widget/list/"><img src="<?php echo $this->dirImg; ?>/Menu/widget.png" width="16" height="16"/>Quản lý widget</a></li>
+																																																															
+						</ul>
+					</div>			
+				</li>				
+					
+			</ul>
+		</div> <!-- #nav -->
+	</div> <!-- #top -->
