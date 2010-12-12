@@ -1,0 +1,21 @@
+<section id="news-company">
+	<h2><a  href="tintuc/chuyenmuc/tin-van-chung-khoan/">Tin doanh nghiệp</a></h2>
+	<hgroup>
+		<ul>
+			<?php 
+				foreach ($news as $new) {
+					$alias = $this->categoryMapper->getAliasByArticle($new['id']);
+					$link = $alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new['alias'] . '/' ;
+			?>
+			<li>
+				<a href="tintuc/<?php echo $link;?>">
+					<?php echo $new['title']; ?>
+				  	<span>
+				  		<?php echo Cloud_Model_Utli_CloudUtli::showDate($new['create_date']);?>
+				  	</span>
+				</a>
+			</li>			
+			<?php } ?>
+		</ul>
+	</hgroup>
+</section>
