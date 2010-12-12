@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 11, 2010 at 11:19 PM
+-- Generation Time: Dec 12, 2010 at 11:48 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -968,6 +968,7 @@ CREATE TABLE `users` (
   `avatar` text,
   `password` varchar(255) default NULL,
   `is_enable` tinyint(1) default NULL,
+  `salt` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -975,7 +976,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 -- 
 
-INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211111409.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1);
+INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211111409.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1, 'ce8d96d579d389e783f95b3772785783ea1a9854');
 
 -- --------------------------------------------------------
 

@@ -26,28 +26,25 @@ class Admin_IndexController extends ZendStock_Controller_Action {
 	     	//$password_md5 = md5($password);
 	     	//$password = md5($password_md5 . $salt);
 	     	
-	     	$dbAdapter = Zend_Db_Table::getDefaultAdapter();
-	     	
-	     	$authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-	     	
-	     	$authAdapter->setTableName('users')
-	     				->setIdentityColumn('email')
-	     				->setCredentialColumn('password');	 
+	        $dbAdapter = Zend_Db_Table::getDefaultAdapter();
+        	$authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
 
-	     	$authAdapter->setIdentity($email)
-	     	            ->setCredential($password);			
-
-			$auth = Zend_Auth::getInstance();
-
-			//$result = $auth->authenticate($authAdapter);
-
-//			if ($result->isValid())
-//			{
-//				$userInfo = $authAdapter->getResultRowObject(null, 'passsword');
-//
-//				$authStorage = $auth->getStorage();
-//				$authStorage->write($userInfo);
-//			}
+	        $authAdapter->setTableName('users')
+	                    ->setIdentityColumn('email')
+	                    ->setCredentialColumn('password')
+	                    ->setCredentialTreatment('SHA1(CONCAT(?,salt))');;
+	                    
+	       $authAdapter->setIdentity($email);
+	       $authAdapter->setCredential($password);
+	
+	       $auth = Zend_Auth::getInstance();
+	       $result = $auth->authenticate($authAdapter);
+	       //var_dump($authAdapter);
+//	       if ($result->isValid()) {
+//	            $user = $authAdapter->getResultRowObject();
+//	            $auth->getStorage()->write($user);
+//	            return true;
+//	        }	                    
 	     }
 	}   	
 
