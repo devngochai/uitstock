@@ -1,0 +1,94 @@
+<?php 
+	$i = 0;
+	foreach ($news as $new):	
+	$i++;
+	$relative_id = $new['relative_id'];				
+	$relatives = $this->newsMapper->getRelativeArticle($relative_id);	
+	
+	$alias = $this->categoryMapper->getAliasByArticle($new['id']);
+	$link = (null == $this->aliasS) ?
+		$alias['parent_alias'] . '/' . $new['alias'] . '/' :
+		$alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new['alias']. '/' ;
+	
+	$linkPage = (null == $this->aliasS) ?
+		$alias['parent_alias']:
+		$alias['parent_alias'] . '/' . $alias['sub_alias'] ;
+	if ($i == 1) { 
+?>
+
+<section class="news-inportant">
+	<?php if (null != $new['image']) { ?>
+	<a href="tintuc/<?php echo $link;?>" ><img src="<?php echo $new['image'];?>" class="left"/></a>
+	<?php } ?>
+	<hgroup>
+		<a href="tintuc/<?php echo $link;?>" ><?php echo $new['title']?></a>
+		<br />
+		<label class="c-time">
+			<?php echo Cloud_Model_Utli_CloudUtli::showTime($new['create_date']);?>
+		</label>  |  
+		<label class="c-date">
+			<?php echo Cloud_Model_Utli_CloudUtli::showDay($new['create_date']);?>
+		</label>
+		<br />
+		<p>
+			<?php echo $new['summarize'];?><br />
+			<?php 										
+				if ($relatives != '') {	 echo "&gt;";								
+					foreach ($relatives as $relative) {
+						$alias = $relative['alias']; 
+						$link = (null == $this->aliasS) ?
+							"tintuc/$this->aliasP/$alias/" :
+							"tintuc/$this->aliasP/$this->aliasS/$alias/";
+			?>
+						<a href="tintuc/<?php echo $link;?>"><?php echo $relative->title;?></a> /
+			<?php }} ?>
+		</p>
+	</hgroup>
+	<div class="clear"></div>
+</section>
+
+<?php
+	 } else {	 
+?>
+
+<section class="news-box-cat">
+	<?php if (null != $new['image']) { ?>
+	<a href="tintuc/<?php echo $link;?>"><img src="<?php echo $new['image'];?>" class="left"/></a>
+	<?php } ?>
+	<hgroup>
+		<a href="tintuc/<?php echo $link;?>"><?php echo $new['title']; ?></a>
+		<br />
+		<label class="c-time">
+			<?php echo Cloud_Model_Utli_CloudUtli::showTime($new['create_date']);?>
+		</label>  |  
+		<label class="c-date">
+			<?php echo Cloud_Model_Utli_CloudUtli::showDay($new['create_date']);?>
+		</label>
+		<br />
+		<p>
+			<?php echo $new['summarize'];?><br />			
+			<?php 										
+				if ($relatives != '') {	 echo "&gt;";								
+					foreach ($relatives as $relative) {
+						$alias = $relative['alias']; 
+						$link = (null == $this->aliasS) ?
+							"tintuc/$this->aliasP/$alias/" :
+							"tintuc/$this->aliasP/$this->aliasS/$alias/";
+			?>
+						<a href="tintuc/<?php echo $link;?>"><?php echo $relative->title;?></a> /
+			<?php }} ?>
+		</p>
+	</hgroup>
+	<div class="clear"></div>
+</section>  
+<?php 
+	}	
+	endforeach 
+?>
+<section class="news-other">	
+	<div class="continue">
+	<?php if ($number_of_page > $this->page * $number) {?>
+		<a href="tintuc/chuyenmuc/<?php echo $linkPage , '/page/', $this->page + 1;?>/">Xem tiếp...</a>
+	<?php } ?>
+	</div>
+</section> 
