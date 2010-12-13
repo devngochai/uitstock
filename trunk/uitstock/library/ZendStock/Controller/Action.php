@@ -108,11 +108,4 @@ class ZendStock_Controller_Action extends Zend_Controller_Action {
           
           return $config;	
 	}
-	
-	public function getForm($section, $myForm)
-	{
-		 $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/cloudform.xml', 'localhost');		 
-		 $form = new Zend_Form($config->$section->$myForm);
-		 return $form;
-	}
 }

@@ -34,4 +34,4 @@
 
 	$application = new Zend_Application($environment, $options);
 	
-	$application->bootstrap()->run();
+	$application->bootstrap()->run();	
