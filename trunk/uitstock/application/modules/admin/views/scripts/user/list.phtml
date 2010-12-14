@@ -4,24 +4,21 @@
 				<h4>Quản lý thành viên</h4>
 				<div class="float-right">	
 					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"></div>																								
-					<a class="minibutton btn add" path="admin/user/add/">
-						<span><span class="icon add"></span>Thêm</span>
-					</a>
-					<a class="minibutton btn edit" name="user" path="admin/user/edit" >
-						<span><span class="icon edit" ></span>Sửa</span>
-					</a>
-					<a class="minibutton btn publish" name="user" mapper="userMapper" path="admin/user/enable">
-						<span><span class="icon publish"></span>Enable</span>
-					</a>
-					<a class="minibutton btn unpublish" name="user" mapper="userMapper" path="admin/user/disable">
-						<span><span class="icon unpublish"></span>Disable</span>
-					</a>
-					<a class="minibutton btn deleteall" name="user" path="admin/user/delete">
-						<span><span class="icon delete"></span>Xóa</span>
-					</a>					
+					<?php 								
+		 				foreach ($this->button1 as $button) {
+		 					echo stripslashes($button['button1']);
+		 				}	 									 				
+					?>					
 				</div>				
 			</div>
 			
+			<?php 
+				$flag = false;		
+ 				foreach ($this->privileges as $privilege) {
+					if ($privilege['id'] == 36) $flag = true; 
+ 				}
+  				if ($flag) {					 				
+			?>
 			<div class="portlet-content">				 							                             														
 				<table cellpadding="0" cellspacing="0" border="0" class="display">
 					<thead>
@@ -107,6 +104,7 @@
 				</table>	
 				<?php echo $this->paginationControl($this->users, 'Sliding', 'pagination.phtml'); ?>																																
 			</div>
+			<?php } ?>		
 		</div>			
 		
 	</div><!--  end #content -->

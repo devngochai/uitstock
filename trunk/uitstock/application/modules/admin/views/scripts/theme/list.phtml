@@ -4,21 +4,21 @@
 				<h4>Quản lý theme</h4>
 				<div class="float-right">		
 					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"></div>																						
-					<a class="minibutton btn add" path="admin/theme/add/">
-						<span><span class="icon add"></span>Thêm</span>
-					</a>
-					<a class="minibutton btn edit" name="theme" path="admin/theme/edit" >
-						<span><span class="icon edit" ></span>Sửa</span>
-					</a>
-					<a class="minibutton btn default" name="theme" path="admin/theme/set-default-theme">
-						<span><span class="icon default"></span>Mặc định</span>
-					</a>
-					<a class="minibutton btn delete" name="theme" path="admin/theme/delete">
-						<span><span class="icon delete"></span>Xóa</span>
-					</a>					
+					<?php 								
+		 				foreach ($this->button1 as $button) {
+		 					echo stripslashes($button['button1']);
+		 				}	 									 				
+					?>						
 				</div>				
 			</div>
 			
+			<?php 
+				$flag = false;		
+ 				foreach ($this->privileges as $privilege) {
+					if ($privilege['id'] == 59) $flag = true; 
+ 				}
+  				if ($flag) {					 				
+			?>
 			<div class="portlet-content">				 			
 				<div class="cat">	
 					<?php $i = 0;foreach ($this->components as $component): $i++;?>
@@ -82,6 +82,7 @@
 					</tbody>
 				</table>																																	
 			</div>
+			<?php } ?>		
 		</div>			
 		
 	</div><!--  end #content -->

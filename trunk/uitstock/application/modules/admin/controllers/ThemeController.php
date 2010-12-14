@@ -4,11 +4,19 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 	public $request;
 	public $templateMapper;
 	public $themeMapper;
+	public $privileges;
+	public $privilegeTypeMapper;
+	public $entry;
     
 	public function init() {  
 		 session_start();
-	 	 if (!$_SESSION['log']) {
-			$this->_redirect('admin/index/login');
+		 $this->privileges = $_SESSION['privilege'];		 
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 58) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
 		 }
 		   		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
@@ -17,7 +25,16 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 	        	    				
-		 $this->request = $this->getRequest();		 		 		 	
+		 $this->request = $this->getRequest();	
+
+		 $this->privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+		 $this->view->privileges = $this->privileges;	
+		 
+		 $this->entry = "";
+		 foreach ($this->privileges as $privilege) {
+			$this->entry = $this->entry . "," . $privilege['id']; 
+		 }
+		 $this->entry = substr($this->entry, 1);
 	}				
 	
 	public function listAction() {
@@ -43,11 +60,20 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 				'c' => $c,
 				'components' => $components,
 				'themes' => $themes,
+		        'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 15),
 		));					  		     		     		
 	}  
 	
 	public function addAction() 
-	{					
+	{	
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 60) $flag = true; 
+		}
+	 	if (!$flag) {
+		    $this->_redirect('admin/index/error');
+		} 
+		 				
 		$this->view->headTitle($this->config['title']['addTheme']);
 		
 		$componentMapper = new Cloud_Model_Component_CloudComponentMapper();
@@ -68,6 +94,14 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 	}
 	
 	public function editAction() {		
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 61) $flag = true; 
+		}
+	 	if (!$flag) {
+		    $this->_redirect('admin/index/error');
+		} 
+		
 		$this->view->headTitle($this->config['title']['editTheme']); 
 		    		
 		if ($this->request->getParam('id') != null) {
@@ -97,6 +131,14 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 	
 	public function deleteAction()
 	{
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 62) $flag = true; 
+		}
+	 	if (!$flag) {
+		    $this->_redirect('admin/index/error');
+		} 
+		
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);		
 				
@@ -114,6 +156,14 @@ class Admin_ThemeController extends ZendStock_Controller_Action {
 	
 	public function setDefaultThemeAction()
 	{
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 61) $flag = true; 
+		}
+	 	if (!$flag) {
+		    $this->_redirect('admin/index/error');
+		} 
+		
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);											
 		

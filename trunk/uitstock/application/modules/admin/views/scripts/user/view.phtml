@@ -4,21 +4,11 @@
 			<h4>Profile</h4>
 			<div class="float-right">											
 				<div class="global" id="<?php echo $this->user['id']; ?>" path1="admin/user/edit/id/<?php echo $this->user['id'] ?>/" path2="admin/user/delete" avatar="admin/user/change-avatar/id/<?php echo $this->user['id'] ?>/" password="admin/user/change-password/id/<?php echo $this->user['id'] ?>/" back="<?php echo $_SESSION['temp']; ?>"></div>																																																																
-				<a class="minibutton btn avatar">
-					<span><span class="icon avatar" ></span>Thay đổi avatar</span>
-				</a>
-				<a class="minibutton btn password">
-					<span><span class="icon password" ></span>Thay đổi mật khẩu</span>
-				</a>
-				<a class="minibutton btn edit2">
-					<span><span class="icon edit" ></span>Sửa</span>
-				</a>
-				<a class="minibutton btn delete2" name="user">
-						<span><span class="icon delete"></span>Xóa</span>
-				</a>
-				<a class="minibutton btn close">
-						<span><span class="icon close"></span>Đóng</span>
-				</a>								
+				<?php 								
+	 				foreach ($this->button2 as $button) {
+	 					echo stripslashes($button['button2']);
+	 				}	 									 				
+				?>								
 			</div>				
 		</div>
 		

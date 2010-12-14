@@ -192,6 +192,15 @@ background-repeat:no-repeat;
 	background: url("../images/Toolbar/password.png") no-repeat 11px 0px;
 }
 
+.visitStatics h4 {
+	background: url("../images/Toolbar/statics.png") no-repeat 11px 0px;
+}
+
+.configuration h4 {
+	background: url("../images/Toolbar/configuration.png") no-repeat 11px 0px;
+}
+
+
 /* -------------------------------------------------------------- 
    Button basics
 -------------------------------------------------------------- */

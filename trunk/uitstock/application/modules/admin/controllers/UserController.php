@@ -6,12 +6,20 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	public $themeMapper;
 	public $userMapper;
 	public $roleMapper;
+	public $privileges;
+	public $privilegeTypeMapper;
+	public $entry;
     
 	public function init() { 
 		 session_start();
-	 	 if (!$_SESSION['log']) {
-			$this->_redirect('admin/index/login');
+		 $this->privileges = $_SESSION['privilege'];		 
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 35) $flag = true; 
 		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
 		    		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
@@ -22,7 +30,16 @@ class Admin_UserController extends ZendStock_Controller_Action {
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 	        	    		 		 			
-		 $this->request = $this->getRequest();		 		 		 	
+		 $this->request = $this->getRequest();		
+
+		 $this->privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+		 $this->view->privileges = $this->privileges;	
+		 
+		 $this->entry = "";
+		 foreach ($this->privileges as $privilege) {
+			$this->entry = $this->entry . "," . $privilege['id']; 
+		 }
+		 $this->entry = substr($this->entry, 1);
 	}				
 	
 	public function listAction() {
@@ -33,7 +50,8 @@ class Admin_UserController extends ZendStock_Controller_Action {
 		$users = $this->userMapper->fetchAll($page);	
 
 		$this->view->assign(array(
-			'users' => $users,			   
+			'users' => $users,	
+		    'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 11),		   
 		));										  		     		     		
 	}
 	
@@ -47,12 +65,21 @@ class Admin_UserController extends ZendStock_Controller_Action {
 			$currentUser = $this->userMapper->getUserById($id);					
 														
 			$this->view->assign(array(			
-	    		'user' => $currentUser,	 			  
+	    		'user' => $currentUser,	 
+			    'button2' => $this->privilegeTypeMapper->getButton2ById($this->entry, 11),			  
 	    	));
 		}		
 	}
 
 	public function addAction() {
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 37) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addUser']);		  
 	    
 	    $form = new Cloud_Form_Admin_User_Add(array(
@@ -72,6 +99,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	}
 
 	public function editAction() {
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 38) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['editUser']);
 
 		if (null != $this->request->getParam('id')) {
@@ -98,6 +133,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	
 	public function changeAvatarAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 38) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['changeAvatar']);
 		
 		if (null != $this->request->getParam('id')) {		
@@ -117,6 +160,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	
 	public function changePasswordAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 38) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['changePassword']);
 		
 		if (null != $this->request->getParam('id')) {		
@@ -147,6 +198,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	
 	public function enableAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 38) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 				 
@@ -162,6 +221,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	
 	public function disableAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 38) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -177,6 +244,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	
 	public function setEnableAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 38) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -192,6 +267,14 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	
 	public function deleteAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 39) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);		
 						

@@ -5,12 +5,21 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	public $templateMapper;
 	public $themeMapper;
 	public $pageMapper;
+	public $privileges;
+	public $privilegeTypeMapper;
+	public $entry;
     
 	public function init() {    	
 		 session_start();
-	 	 if (!$_SESSION['log']) {
-			$this->_redirect('admin/index/login');
-		 }	
+		 $this->privileges = $_SESSION['privilege'];		 
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 67) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 	
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->pageMapper = new Cloud_Model_Page_CloudPageMapper(); 			     	           
@@ -18,7 +27,16 @@ class Admin_PageController extends ZendStock_Controller_Action {
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 	        	    		 		 			
-		 $this->request = $this->getRequest();		 		 		 	
+		 $this->request = $this->getRequest();
+
+		 $this->privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+		 $this->view->privileges = $this->privileges;	
+		 
+		 $this->entry = "";
+		 foreach ($this->privileges as $privilege) {
+			$this->entry = $this->entry . "," . $privilege['id']; 
+		 }
+		 $this->entry = substr($this->entry, 1);
 	}				
 	
 	public function listAction() {
@@ -44,11 +62,20 @@ class Admin_PageController extends ZendStock_Controller_Action {
 				'c' => $c,
 				'components' => $components,
 				'pages' => $pages,
+				'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 17),
 		));										  		     		     		
 	}  
 	
 	public function addAction() 
-	{					
+	{	
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 69) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 				
 		$this->view->headTitle($this->config['title']['addPage']);
 		
 		$componentMapper = new Cloud_Model_Component_CloudComponentMapper();
@@ -74,6 +101,14 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	}
 	
 	public function editAction() {		
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 70) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['editPage']); 
 		    		
 		if ($this->request->getParam('id') != null) {
@@ -103,6 +138,14 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	
 	public function publishAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 70) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 				 
@@ -118,6 +161,14 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	
 	public function unpublishAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 70) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -133,6 +184,14 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	
 	public function setPublishAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 70) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 }  
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -148,6 +207,14 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	
 	public function deleteAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 71) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);		
 						

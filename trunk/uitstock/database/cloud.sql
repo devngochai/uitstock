@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 14, 2010 at 12:08 PM
+-- Generation Time: Dec 14, 2010 at 04:05 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -642,9 +642,9 @@ INSERT INTO `privilege_types` VALUES (31, 'Sửa loại tin', 'Edit', 1, '<a cla
 INSERT INTO `privilege_types` VALUES (32, 'Xóa loại tin', 'Delete', 1, '<a class=\\"minibutton btn delete\\" name=\\"loại tin\\" path=\\"admin/article/delete-cat\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n					</a>', '<a class=\\"minibutton btn delete2\\" name=\\"loại tin\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n				</a>');
 INSERT INTO `privilege_types` VALUES (33, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/user/list/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/users.png">\r\n								<span>Thành viên</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (34, 'Xem danh sách thành viên', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (35, 'Thêm thành viên', 'Add', 1, '', '');
-INSERT INTO `privilege_types` VALUES (36, 'Sửa thành viên', 'Edit', 1, '', '');
-INSERT INTO `privilege_types` VALUES (37, 'Xóa thành viên', 'Delete', 1, '', '');
+INSERT INTO `privilege_types` VALUES (35, 'Thêm thành viên', 'Add', 1, '					<a class="minibutton btn add" path="admin/user/add/">\r\n						<span><span class="icon add"></span>Thêm</span>\r\n					</a>', '');
+INSERT INTO `privilege_types` VALUES (36, 'Sửa thành viên', 'Edit', 1, '					<a class="minibutton btn edit" name="user" path="admin/user/edit" >\r\n						<span><span class="icon edit" ></span>Sửa</span>\r\n					</a>\r\n					<a class="minibutton btn publish" name="user" mapper="userMapper" path="admin/user/enable">\r\n						<span><span class="icon publish"></span>Enable</span>\r\n					</a>\r\n					<a class="minibutton btn unpublish" name="user" mapper="userMapper" path="admin/user/disable">\r\n						<span><span class="icon unpublish"></span>Disable</span>\r\n					</a>', '<a class="minibutton btn avatar">\r\n					<span><span class="icon avatar" ></span>Thay đổi avatar</span>\r\n				</a>\r\n				<a class="minibutton btn password">\r\n					<span><span class="icon password" ></span>Thay đổi mật khẩu</span>\r\n				</a>\r\n				<a class="minibutton btn edit2">\r\n					<span><span class="icon edit" ></span>Sửa</span>\r\n				</a>');
+INSERT INTO `privilege_types` VALUES (37, 'Xóa thành viên', 'Delete', 1, '					<a class="minibutton btn deleteall" name="user" path="admin/user/delete">\r\n						<span><span class="icon delete"></span>Xóa</span>\r\n					</a>', '				<a class="minibutton btn delete2" name="user">\r\n						<span><span class="icon delete"></span>Xóa</span>\r\n				</a>');
 INSERT INTO `privilege_types` VALUES (38, 'Truy cập', 'Access', 1, '', '');
 INSERT INTO `privilege_types` VALUES (39, 'Xem danh sách Role', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (40, 'Thêm Role', 'Add', 1, '					<a class="minibutton btn add" path="admin/role/add">\r\n						<span><span class="icon add"></span>Thêm</span>\r\n					</a>', '');
@@ -656,8 +656,8 @@ INSERT INTO `privilege_types` VALUES (45, 'Thêm module', 'Add', 1, '<a class=\\
 INSERT INTO `privilege_types` VALUES (46, 'Thêm privilege', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/module/add-privilege\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm privilige</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (47, 'Sửa module', 'Edit', 1, '', '<a class=\\"minibutton btn edit2\\">\r\n					<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n				</a>');
 INSERT INTO `privilege_types` VALUES (48, 'Xóa module', 'Delete', 1, '', '<a class=\\"minibutton btn delete2\\" name=\\"module\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n				</a>');
-INSERT INTO `privilege_types` VALUES (49, 'Sửa privilege', 'Edit', 1, '', '<a class=\\"minibutton btn edit2\\">\r\n					<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n				</a>');
-INSERT INTO `privilege_types` VALUES (50, 'Xóa privilege', 'Delete', 1, '', '<a class=\\"minibutton btn delete2\\" name=\\"privilege\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n				</a>');
+INSERT INTO `privilege_types` VALUES (49, 'Sửa privilege', 'Edit2', 1, '', '<a class=\\"minibutton btn edit2\\">\r\n					<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n				</a>');
+INSERT INTO `privilege_types` VALUES (50, 'Xóa privilege', 'Delete2', 1, '', '<a class=\\"minibutton btn delete2\\" name=\\"privilege\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n				</a>');
 INSERT INTO `privilege_types` VALUES (51, 'Truy cập', 'Access', 1, '', '');
 INSERT INTO `privilege_types` VALUES (52, 'Xem danh sách template', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (53, 'Thêm template', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/template/add\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm</span>\r\n					</a>', '');
@@ -674,7 +674,7 @@ INSERT INTO `privilege_types` VALUES (63, 'Thêm component', 'Add', 1, '<a class
 INSERT INTO `privilege_types` VALUES (64, 'Sửa component', 'Edit', 1, '<a class=\\"minibutton btn edit\\" name=\\"component\\" path=\\"admin/component/edit\\" >\r\n						<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (65, 'Truy cập', 'Access', 1, '', '');
 INSERT INTO `privilege_types` VALUES (66, 'Xem danh sách page', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (67, 'Thêm page', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/page/add\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm</span>\r\n					</a>', '');
+INSERT INTO `privilege_types` VALUES (67, 'Thêm page', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/page/add/">\r\n						<span><span class=\\"icon add\\"></span>Thêm</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (68, 'Sửa page', 'Edit', 1, '<a class=\\"minibutton btn edit\\" name=\\"page\\" path=\\"admin/page/edit\\" >\r\n						<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n					</a>\r\n					<a class=\\"minibutton btn publish\\" name=\\"page\\" mapper=\\"pageMapper\\" path=\\"admin/page/publish\\">\r\n						<span><span class=\\"icon publish\\"></span>Published</span>\r\n					</a>\r\n					<a class=\\"minibutton btn unpublish\\" name=\\"page\\" mapper=\\"pageMapper\\" path=\\"admin/page/unpublish\\">\r\n						<span><span class=\\"icon unpublish\\"></span>Unpublished</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (69, 'Xóa page', 'Delete', 1, '<a class=\\"minibutton btn deleteall\\" name=\\"page\\" path=\\"admin/page/delete\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (70, 'Truy cập', 'Access', 1, '', '');
@@ -710,14 +710,13 @@ CREATE TABLE `roles` (
   `name` varchar(50) default NULL,
   `description` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- 
 -- Dumping data for table `roles`
 -- 
 
-INSERT INTO `roles` VALUES (1, 'Admin', 'Quản trị');
-INSERT INTO `roles` VALUES (2, 'Cộng tác viên', 'Cộng tác viên đưa tin');
+INSERT INTO `roles` VALUES (1, 'Super Administrator', 'Quản trị viên');
 
 -- --------------------------------------------------------
 
@@ -730,7 +729,7 @@ CREATE TABLE `role_privilege` (
   `role_id` int(11) default NULL,
   `pri_id` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=153 ;
 
 -- 
 -- Dumping data for table `role_privilege`
@@ -742,76 +741,74 @@ INSERT INTO `role_privilege` VALUES (3, 1, 3);
 INSERT INTO `role_privilege` VALUES (4, 1, 4);
 INSERT INTO `role_privilege` VALUES (5, 1, 5);
 INSERT INTO `role_privilege` VALUES (6, 1, 6);
-INSERT INTO `role_privilege` VALUES (7, 1, 7);
-INSERT INTO `role_privilege` VALUES (8, 1, 8);
-INSERT INTO `role_privilege` VALUES (9, 1, 9);
-INSERT INTO `role_privilege` VALUES (10, 1, 10);
-INSERT INTO `role_privilege` VALUES (11, 1, 11);
-INSERT INTO `role_privilege` VALUES (12, 1, 12);
-INSERT INTO `role_privilege` VALUES (13, 1, 13);
-INSERT INTO `role_privilege` VALUES (14, 1, 14);
-INSERT INTO `role_privilege` VALUES (15, 1, 15);
-INSERT INTO `role_privilege` VALUES (16, 1, 16);
-INSERT INTO `role_privilege` VALUES (17, 1, 17);
-INSERT INTO `role_privilege` VALUES (18, 1, 18);
-INSERT INTO `role_privilege` VALUES (19, 1, 19);
-INSERT INTO `role_privilege` VALUES (20, 1, 20);
-INSERT INTO `role_privilege` VALUES (21, 1, 21);
-INSERT INTO `role_privilege` VALUES (22, 1, 22);
-INSERT INTO `role_privilege` VALUES (23, 1, 23);
-INSERT INTO `role_privilege` VALUES (24, 1, 24);
-INSERT INTO `role_privilege` VALUES (25, 1, 25);
-INSERT INTO `role_privilege` VALUES (26, 1, 26);
-INSERT INTO `role_privilege` VALUES (27, 1, 27);
-INSERT INTO `role_privilege` VALUES (28, 1, 28);
-INSERT INTO `role_privilege` VALUES (29, 1, 29);
-INSERT INTO `role_privilege` VALUES (30, 1, 30);
-INSERT INTO `role_privilege` VALUES (31, 1, 31);
-INSERT INTO `role_privilege` VALUES (32, 1, 32);
-INSERT INTO `role_privilege` VALUES (33, 1, 33);
-INSERT INTO `role_privilege` VALUES (34, 1, 34);
-INSERT INTO `role_privilege` VALUES (35, 1, 35);
-INSERT INTO `role_privilege` VALUES (36, 1, 36);
-INSERT INTO `role_privilege` VALUES (37, 1, 37);
-INSERT INTO `role_privilege` VALUES (38, 1, 38);
-INSERT INTO `role_privilege` VALUES (39, 1, 39);
-INSERT INTO `role_privilege` VALUES (40, 1, 40);
-INSERT INTO `role_privilege` VALUES (41, 1, 41);
-INSERT INTO `role_privilege` VALUES (42, 1, 42);
-INSERT INTO `role_privilege` VALUES (43, 1, 43);
-INSERT INTO `role_privilege` VALUES (44, 1, 44);
-INSERT INTO `role_privilege` VALUES (45, 1, 45);
-INSERT INTO `role_privilege` VALUES (46, 1, 46);
-INSERT INTO `role_privilege` VALUES (47, 1, 47);
-INSERT INTO `role_privilege` VALUES (48, 1, 48);
-INSERT INTO `role_privilege` VALUES (49, 1, 49);
-INSERT INTO `role_privilege` VALUES (50, 1, 50);
-INSERT INTO `role_privilege` VALUES (51, 1, 51);
-INSERT INTO `role_privilege` VALUES (52, 1, 52);
-INSERT INTO `role_privilege` VALUES (53, 1, 53);
-INSERT INTO `role_privilege` VALUES (54, 1, 54);
-INSERT INTO `role_privilege` VALUES (55, 1, 55);
-INSERT INTO `role_privilege` VALUES (56, 1, 56);
-INSERT INTO `role_privilege` VALUES (57, 1, 57);
-INSERT INTO `role_privilege` VALUES (58, 1, 58);
-INSERT INTO `role_privilege` VALUES (59, 1, 59);
-INSERT INTO `role_privilege` VALUES (60, 1, 60);
-INSERT INTO `role_privilege` VALUES (61, 1, 61);
-INSERT INTO `role_privilege` VALUES (62, 1, 62);
-INSERT INTO `role_privilege` VALUES (63, 1, 63);
-INSERT INTO `role_privilege` VALUES (64, 1, 64);
-INSERT INTO `role_privilege` VALUES (65, 1, 65);
-INSERT INTO `role_privilege` VALUES (66, 1, 66);
-INSERT INTO `role_privilege` VALUES (67, 1, 67);
-INSERT INTO `role_privilege` VALUES (68, 1, 68);
-INSERT INTO `role_privilege` VALUES (69, 1, 69);
-INSERT INTO `role_privilege` VALUES (70, 1, 70);
-INSERT INTO `role_privilege` VALUES (71, 1, 71);
-INSERT INTO `role_privilege` VALUES (72, 1, 72);
-INSERT INTO `role_privilege` VALUES (73, 1, 73);
-INSERT INTO `role_privilege` VALUES (74, 1, 74);
-INSERT INTO `role_privilege` VALUES (75, 2, 25);
-INSERT INTO `role_privilege` VALUES (76, 2, 27);
+INSERT INTO `role_privilege` VALUES (7, 1, 9);
+INSERT INTO `role_privilege` VALUES (8, 1, 10);
+INSERT INTO `role_privilege` VALUES (9, 1, 11);
+INSERT INTO `role_privilege` VALUES (10, 1, 12);
+INSERT INTO `role_privilege` VALUES (11, 1, 13);
+INSERT INTO `role_privilege` VALUES (12, 1, 14);
+INSERT INTO `role_privilege` VALUES (13, 1, 15);
+INSERT INTO `role_privilege` VALUES (14, 1, 16);
+INSERT INTO `role_privilege` VALUES (15, 1, 17);
+INSERT INTO `role_privilege` VALUES (16, 1, 18);
+INSERT INTO `role_privilege` VALUES (17, 1, 19);
+INSERT INTO `role_privilege` VALUES (18, 1, 20);
+INSERT INTO `role_privilege` VALUES (19, 1, 21);
+INSERT INTO `role_privilege` VALUES (20, 1, 22);
+INSERT INTO `role_privilege` VALUES (21, 1, 23);
+INSERT INTO `role_privilege` VALUES (22, 1, 24);
+INSERT INTO `role_privilege` VALUES (23, 1, 25);
+INSERT INTO `role_privilege` VALUES (24, 1, 26);
+INSERT INTO `role_privilege` VALUES (25, 1, 27);
+INSERT INTO `role_privilege` VALUES (26, 1, 28);
+INSERT INTO `role_privilege` VALUES (27, 1, 29);
+INSERT INTO `role_privilege` VALUES (28, 1, 30);
+INSERT INTO `role_privilege` VALUES (29, 1, 31);
+INSERT INTO `role_privilege` VALUES (30, 1, 32);
+INSERT INTO `role_privilege` VALUES (31, 1, 33);
+INSERT INTO `role_privilege` VALUES (32, 1, 34);
+INSERT INTO `role_privilege` VALUES (33, 1, 35);
+INSERT INTO `role_privilege` VALUES (34, 1, 36);
+INSERT INTO `role_privilege` VALUES (35, 1, 37);
+INSERT INTO `role_privilege` VALUES (36, 1, 38);
+INSERT INTO `role_privilege` VALUES (37, 1, 39);
+INSERT INTO `role_privilege` VALUES (38, 1, 40);
+INSERT INTO `role_privilege` VALUES (39, 1, 41);
+INSERT INTO `role_privilege` VALUES (40, 1, 42);
+INSERT INTO `role_privilege` VALUES (41, 1, 43);
+INSERT INTO `role_privilege` VALUES (42, 1, 44);
+INSERT INTO `role_privilege` VALUES (43, 1, 45);
+INSERT INTO `role_privilege` VALUES (44, 1, 46);
+INSERT INTO `role_privilege` VALUES (45, 1, 47);
+INSERT INTO `role_privilege` VALUES (46, 1, 48);
+INSERT INTO `role_privilege` VALUES (47, 1, 49);
+INSERT INTO `role_privilege` VALUES (48, 1, 50);
+INSERT INTO `role_privilege` VALUES (49, 1, 51);
+INSERT INTO `role_privilege` VALUES (50, 1, 52);
+INSERT INTO `role_privilege` VALUES (51, 1, 53);
+INSERT INTO `role_privilege` VALUES (52, 1, 54);
+INSERT INTO `role_privilege` VALUES (53, 1, 55);
+INSERT INTO `role_privilege` VALUES (54, 1, 56);
+INSERT INTO `role_privilege` VALUES (55, 1, 57);
+INSERT INTO `role_privilege` VALUES (56, 1, 58);
+INSERT INTO `role_privilege` VALUES (57, 1, 59);
+INSERT INTO `role_privilege` VALUES (58, 1, 60);
+INSERT INTO `role_privilege` VALUES (59, 1, 61);
+INSERT INTO `role_privilege` VALUES (60, 1, 62);
+INSERT INTO `role_privilege` VALUES (61, 1, 63);
+INSERT INTO `role_privilege` VALUES (62, 1, 64);
+INSERT INTO `role_privilege` VALUES (63, 1, 65);
+INSERT INTO `role_privilege` VALUES (64, 1, 66);
+INSERT INTO `role_privilege` VALUES (65, 1, 67);
+INSERT INTO `role_privilege` VALUES (66, 1, 68);
+INSERT INTO `role_privilege` VALUES (67, 1, 69);
+INSERT INTO `role_privilege` VALUES (68, 1, 70);
+INSERT INTO `role_privilege` VALUES (69, 1, 71);
+INSERT INTO `role_privilege` VALUES (70, 1, 72);
+INSERT INTO `role_privilege` VALUES (71, 1, 73);
+INSERT INTO `role_privilege` VALUES (72, 1, 74);
+INSERT INTO `role_privilege` VALUES (73, 1, 75);
+INSERT INTO `role_privilege` VALUES (74, 1, 76);
 
 -- --------------------------------------------------------
 
@@ -976,8 +973,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 -- 
 
-INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211143034.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1, 'ce8d96d579d389e783f95b3772785783ea1a9854');
-INSERT INTO `users` VALUES (2, 2, 'CTV', 1, '1990-08-20', 'ctv@mail.com', '', '', 'files/avatar/user/ctv@mail.com/20101214083157.gif', 'bcfedcf1b568e23ddf56c0e959c0d101', 1, '');
+INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211111409.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1, 'ce8d96d579d389e783f95b3772785783ea1a9854');
 
 -- --------------------------------------------------------
 

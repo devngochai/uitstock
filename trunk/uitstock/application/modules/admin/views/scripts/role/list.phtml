@@ -4,15 +4,21 @@
 				<h4>Quản lý role</h4>
 				<div class="float-right">	
 					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"></div>																								
-					<a class="minibutton btn add" path="admin/role/add/">
-						<span><span class="icon add"></span>Thêm</span>
-					</a>
-					<a class="minibutton btn deleteall" name="role" path="admin/role/delete">
-						<span><span class="icon delete"></span>Xóa</span>
-					</a>					
+                    <?php 								
+		 				foreach ($this->button1 as $button) {
+		 					echo stripslashes($button['button1']);
+		 				}	 									 				
+					?>						
 				</div>				
 			</div>
 			
+			<?php 
+				$flag = false;		
+ 				foreach ($this->privileges as $privilege) {
+					if ($privilege['id'] == 41) $flag = true; 
+ 				}
+  				if ($flag) {					 				
+			?>
 			<div class="portlet-content">				 							                														
 				<table cellpadding="0" cellspacing="0" border="0" class="display">
 					<thead>											  						
@@ -45,6 +51,7 @@
 					</tbody>
 				</table>																																	
 			</div>
+			<?php } ?>		
 		</div>			
 		
 	</div><!--  end #content -->

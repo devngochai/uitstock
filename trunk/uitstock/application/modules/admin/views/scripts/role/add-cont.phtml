@@ -20,7 +20,7 @@
 					foreach ($this->privilegeTypes as $privilegeType): if ($privilegeType['module_id'] == $module->id) {									
 			?>
 			<tr>				
-				<td><input type="checkbox" name="select[]" value="<?php echo $privilegeType['id'] ?>"/></td>
+				<td><input type="checkbox" name="select[]" value="<?php echo $privilegeType['priId'] ?>"/></td>
 				<td class="in"><?php echo $privilegeType['name'] ?></td>
 			</tr>
 			<?php } endforeach; } ?>

@@ -7,12 +7,20 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 	public $moduleMapper;
 	public $privilegeTypeMapper;
 	public $privilegeMapper;
+	public $privileges;	
+	public $entry;
     
 	public function init() { 
 		 session_start();
-	 	 if (!$_SESSION['log']) {
-			$this->_redirect('admin/index/login');
-		 }   		
+		 $this->privileges = $_SESSION['privilege'];		 
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 45) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		   		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->moduleMapper = new Cloud_Model_Module_CloudModuleMapper();
@@ -22,7 +30,15 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 	        	    							
-		 $this->request = $this->getRequest();		 		 		 	
+		 $this->request = $this->getRequest();	
+
+		 $this->view->privileges = $this->privileges;	
+		 
+		 $this->entry = "";
+		 foreach ($this->privileges as $privilege) {
+			$this->entry = $this->entry . "," . $privilege['id']; 
+		 }
+		 $this->entry = substr($this->entry, 1);
 	}				
 	
 	public function listAction() {
@@ -36,6 +52,7 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 		$this->view->assign(array(
 			'modules' => $modules,	
 		    'privilegeTypes' => $privilegeTypes,
+		    'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 13),
 		));										  		     		     		
 	}  
 	
@@ -54,11 +71,20 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 			$this->view->assign(array(			
 	    		'module' => $currentModule,	 
 			    'privilegeTypes' => $privilegeTypes,  
+			    'button2' => $this->privilegeTypeMapper->getButton2ById($this->entry, 13),
 	    	));
 		}		
 	}
 	
 	public function addModuleAction() {
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 47) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addModule']);		  
 	    
 	    $form = new Cloud_Form_Admin_Module_Add();
@@ -76,6 +102,14 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 	}	
 	
 	public function editModuleAction() {
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 49) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['editModule']);
 
 		if (null != $this->request->getParam('id')) {
@@ -105,6 +139,14 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 	
 	public function deleteModuleAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 50) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -115,6 +157,14 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 	}
 	
 	public function addPrivilegeAction() {
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 48) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addPrivilege']);		  
 	    
 	    $form = new Cloud_Form_Admin_Privilege_Add(array(
@@ -135,7 +185,7 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 	}	
 	
 	public function viewPrivilegeAction()
-	{
+	{		 
 		$this->view->headTitle($this->config['title']['viewPrivilege']);
 		
 		if (null != $this->request->getParam('id')) {
@@ -144,12 +194,21 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 			$privilege = $this->privilegeMapper->getPrivilegeById($id);					
 														
 			$this->view->assign(array(			
-	    		'privilege' => $privilege,	 			      
+	    		'privilege' => $privilege,	 		
+			    'button2' => $this->privilegeTypeMapper->getButton2V2ById($this->entry, 13),	      
 	    	));
 		}		
 	}
 	
 	public function editPrivilegeAction() {
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 51) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['editPrivilege']);
 
 		if (null != $this->request->getParam('id')) {
@@ -178,6 +237,14 @@ class Admin_ModuleController extends ZendStock_Controller_Action {
 	
 	public function deletePrivilegeAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 52) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		

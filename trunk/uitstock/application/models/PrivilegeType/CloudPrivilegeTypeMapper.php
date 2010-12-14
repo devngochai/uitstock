@@ -191,7 +191,32 @@
 		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id', array('button2'))
 		                 ->where("p.id in ($id)")
 		                 ->where('p.module_id = ?', $moduleId)
-		                 ->where("pt.description != 'access'");		               		           	           
+		                 ->where("pt.description != 'access'")
+		                 ->where("pt.description != 'Edit2'")
+		                 ->where("pt.description != 'Delete2'");		               		           	           
+			    
+           return $db->fetchAll($select);
+		}
+		
+		public function getButton2V2ById($id, $moduleId)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPrivilegeType = $this->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];			
+			
+			$privilegeMapper = new Cloud_Model_Privilege_CloudPrivilegeMapper();
+			$dbPrivilege= $privilegeMapper->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];			
+				
+			$select = $db->select()		                  
+		                 ->from(array('p' => $dbPrivilegeName), array())		                 
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id', array('button2'))
+		                 ->where("p.id in ($id)")
+		                 ->where('p.module_id = ?', $moduleId)
+		                 ->where("pt.description != 'access'")
+		                 ->where("pt.description != 'Edit'")
+		                 ->where("pt.description != 'Delete'");			               		           	           
 			    
            return $db->fetchAll($select);
 		}

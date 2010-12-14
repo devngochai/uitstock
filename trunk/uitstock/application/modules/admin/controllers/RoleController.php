@@ -6,12 +6,20 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	public $themeMapper;
 	public $roleMapper;
 	public $rolePrivilegeMapper;
+	public $privileges;
+	public $privilegeTypeMapper;
+	public $entry;
 
 	public function init() {   
 		 session_start();
-	 	 if (!$_SESSION['log']) {
-			$this->_redirect('admin/index/login');
+		 $this->privileges = $_SESSION['privilege'];		 
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 40) $flag = true; 
 		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
 		  		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
@@ -21,7 +29,16 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 	        	    							 
-		 $this->request = $this->getRequest();		 		 		 	
+		 $this->request = $this->getRequest();	
+
+		 $this->privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+		 $this->view->privileges = $this->privileges;	
+		 
+		 $this->entry = "";
+		 foreach ($this->privileges as $privilege) {
+			$this->entry = $this->entry . "," . $privilege['id']; 
+		 }
+		 $this->entry = substr($this->entry, 1);
 	}				
 	
 	public function listAction() {
@@ -29,11 +46,20 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];								
 
 		$this->view->assign(array(
-			'roles' => $this->roleMapper->fetchAll(),			    
+			'roles' => $this->roleMapper->fetchAll(),	
+		    'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 12),		    
 		));										  		     		     		
 	}  
 	
 	public function addAction() {
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 42) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addRole']);		
 
 		if (isset($_POST['ok'])) {
@@ -46,6 +72,14 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	}
 	
 	public function addContAction() {
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 42) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 									
 		if (null != $this->request->getParam('name')) {
@@ -82,6 +116,14 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	}
 	
 	public function editAction() {
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 43) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addRole']);		
 		
 		$id = $this->request->getParam('id');
@@ -99,6 +141,14 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	}
 	
 	public function editContAction() {
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 43) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 									
 		if (null != $this->request->getParam('name')) {
@@ -140,6 +190,14 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	
 	public function deleteAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 44) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
