@@ -1,6 +1,6 @@
   function startTime()
 {
-	 var Days = new Array("Ch&#7911; nh&#7853;t","Th&#7913; hai","Th&#7913; ba","Th&#7913; t&#432;","Th&#7913; n&#259;m","Th&#7913; s&aacute;u","Th&#7913; b&#7843;y");
+	 var Days = new Array("Chủ nhật","Thứ hai","Thứ ba","Thứ tư;","Thứ năm","Thứ sáu","Thứ bảy");
 	 var sign = "/";
 	 var signdigit = ":";
 	 var signchar = ",";
