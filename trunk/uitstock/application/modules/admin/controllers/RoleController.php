@@ -7,7 +7,12 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	public $roleMapper;
 	public $rolePrivilegeMapper;
 
-	public function init() {    		
+	public function init() {   
+		 session_start();
+	 	 if (!$_SESSION['log']) {
+			$this->_redirect('admin/index/login');
+		 }
+		  		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->roleMapper = new Cloud_Model_Role_CloudRoleMapper();
@@ -15,9 +20,7 @@ class Admin_RoleController extends ZendStock_Controller_Action {
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
-	        	    
-		 session_start();
-		 $_SESSION['log'] = true;			 
+	        	    							 
 		 $this->request = $this->getRequest();		 		 		 	
 	}				
 	

@@ -14,7 +14,7 @@
 			<?php 
 				if (null != $this->user) {
 					$dirname = "files/avatar/user/" . $this->user['email'] . "/";
-					$ignore = Array(".", "..", "Thumbs.db");
+					$ignore = Array(".", "..", "Thumbs.db", '.svn');
 					$images = scandir($dirname);
 					$count = 0;
 					$avatar = $this->user['avatar'];

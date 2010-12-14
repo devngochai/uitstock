@@ -132,6 +132,68 @@
 				return null;
 																      				 			      		
 			return $row;
-		}			
+		}	
+
+		public function getShortcutById($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPrivilegeType = $this->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];			
+			
+			$privilegeMapper = new Cloud_Model_Privilege_CloudPrivilegeMapper();
+			$dbPrivilege= $privilegeMapper->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];			
+				
+			$select = $db->select()		                  
+		                 ->from(array('p' => $dbPrivilegeName), array())		                 
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id', array('button1'))
+		                 ->where("p.id in ($id)")
+		                 ->where("pt.description = 'access'");		               		           	           
+			    
+           return $db->fetchAll($select);
+		}
+		
+		public function getButton1ById($id, $moduleId)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPrivilegeType = $this->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];			
+			
+			$privilegeMapper = new Cloud_Model_Privilege_CloudPrivilegeMapper();
+			$dbPrivilege= $privilegeMapper->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];			
+				
+			$select = $db->select()		                  
+		                 ->from(array('p' => $dbPrivilegeName), array())		                 
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id', array('button1'))
+		                 ->where("p.id in ($id)")
+		                 ->where('p.module_id = ?', $moduleId)
+		                 ->where("pt.description != 'access'");		               		           	           
+			    
+           return $db->fetchAll($select);
+		}
+		
+		public function getButton2ById($id, $moduleId)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPrivilegeType = $this->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];			
+			
+			$privilegeMapper = new Cloud_Model_Privilege_CloudPrivilegeMapper();
+			$dbPrivilege= $privilegeMapper->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];			
+				
+			$select = $db->select()		                  
+		                 ->from(array('p' => $dbPrivilegeName), array())		                 
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id', array('button2'))
+		                 ->where("p.id in ($id)")
+		                 ->where('p.module_id = ?', $moduleId)
+		                 ->where("pt.description != 'access'");		               		           	           
+			    
+           return $db->fetchAll($select);
+		}
 		
 	}

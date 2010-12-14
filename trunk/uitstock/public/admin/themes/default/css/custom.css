@@ -87,6 +87,15 @@ dd {
 	margin-bottom: 10px;	
 }
 
+.warning {
+	background: url("../images/alert.gif") no-repeat 5% bottom #fceabb;	
+	font-weight: bold;
+	height:30px; 
+	line-height: 30px; 
+	border-bottom: 1px solid #FF9900; 	 
+	padding-left: 122px; 		
+}
+
 .nickname {
 	color: green;
 }

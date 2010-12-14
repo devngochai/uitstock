@@ -15,43 +15,70 @@ class Admin_IndexController extends ZendStock_Controller_Action {
 	     unset($_SESSION['temp']);
 	}
 	
-	public function indexAction() {			      
-	     $this->view->headTitle($this->config['title']['login']);	
+	public function loginAction() {			      
+	    if ($_SESSION['log']) {
+	   	 	$this->_redirect('admin/index/home');
+	   	} else {
+	   		
+	   		$this->view->headTitle($this->config['title']['login']);	
 
-	     if (isset($_POST['btnSubmit'])) {	     	
-	     	$email = $_POST['email'];
-	     	$password = $_POST['password'];
-	     	echo $password;
-	     	
-	     	$salt = md5($email);
-	     	$password_md5 = md5($password);
-	     	$password = md5($password_md5 . $salt);	     			
-	     	
-	        $dbAdapter = Zend_Db_Table::getDefaultAdapter();	        
-        	$authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
+		    if (isset($_POST['btnSubmit'])) {	     	
+		     	$email = $_POST['email'];
+		     	$password = $_POST['password'];	
+		     	$remember = $_POST['remember'];		     		     	
+		     	
+		     	$salt = md5($email);
+		     	$password_md5 = md5($password);
+		     	$password = md5($password_md5 . $salt);	     			
+		     	
+		     	$userMapper = new Cloud_Model_User_CloudUserMapper();
+				if ($userMapper->isValidate($email, $password)) {					
+					$currentUser = $userMapper->findUserByEmail($email);					
+					$_SESSION['userId'] = $currentUser['id'];
+					$_SESSION['role_name'] = $currentUser['role_name'];
+					$_SESSION['full_name'] = $currentUser['full_name'];
+					$_SESSION['avatar'] = $currentUser['avatar'];									
+					$_SESSION['privilege']= $userMapper->getRolePrivilegeById($currentUser['id']);					
+					$_SESSION['log'] = true;
+					$this->_redirect('admin/index/home');
+				} else {			
+					$this->view->message = 'Thông tin đăng nhập không đúng';				
+				}                   
+		     }
+	   	}
+	}  
 
-     	    $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-
-	        $authAdapter->setTableName('users')
-                        ->setIdentityColumn('email')
-                        ->setCredentialColumn('password')
-                        ->setIdentity($email)
-                        ->setCredential($password);
-	                    	    
-
-	        $auth = Zend_Auth::getInstance();
-	        $result = $auth->authenticate($authAdapter);
-	
-//		       if ($result->isValid()) {
-//		            $user = $authAdapter->getResultRowObject();
-//		            $auth->getStorage()->write($user);
-//		            return true;
-//		        }	                    
-	     }
-	}   	
+	public function logOutAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		session_destroy();       
+		$this->_redirect('admin/index/login');
+	}
 
 	public function homeAction() {
-		$this->view->headTitle($this->config['title']['index']);		
-		$_SESSION['log'] = true;					
+		if (!$_SESSION['log']) {
+			$this->_redirect('admin/index/error');
+		} else {
+			$this->view->headTitle($this->config['title']['index']);
+			$privileges = $_SESSION['privilege'];
+		
+			$entry = "";
+			foreach ($privileges as $privilege) {
+				$entry = $entry . "," . $privilege['id']; 
+			}	
+			$entry = substr($entry, 1);
+			$privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();			
+			$this->view->shortcuts = $privilegeTypeMapper->getShortcutById($entry);
+		}											
+	}
+	
+	public function errorAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		echo "<p>You don't have permission to access this page!</p>";
 	}
 }

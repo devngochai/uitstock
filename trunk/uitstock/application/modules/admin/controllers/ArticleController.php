@@ -6,8 +6,21 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	public $themeMapper;
 	public $articleMapper;
 	public $contentCategoryMapper;
+	public $privileges;
+	public $privilegeTypeMapper;
+	public $entry;
     
-	public function init() {    		
+	public function init() {  
+		 session_start();
+		 $this->privileges = $_SESSION['privilege'];		 
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 25) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 		 			
+		  	  		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->articleMapper = new Cloud_Model_Article_CloudArticleMapper();		
@@ -15,14 +28,29 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
-	        	    
-		 session_start();
-		 $_SESSION['log'] = true;			 
-		 $this->request = $this->getRequest();		 		 		 	
+	        	    				 
+		 $this->request = $this->getRequest();		 
+		 		 
+		 $this->privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+		 $this->view->privileges = $this->privileges;	
+		 
+		 $this->entry = "";
+		 foreach ($this->privileges as $privilege) {
+			$this->entry = $this->entry . "," . $privilege['id']; 
+		 }
+		 $this->entry = substr($this->entry, 1);
 	}	
 	
 	public function listCategoryAction()
-	{
+	{		
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 30) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['category']);	
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];	
 
@@ -32,17 +60,27 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		if (null == $name) {
 			$parents = $this->contentCategoryMapper->fetchParentByPage($page);
 			$subs = $this->contentCategoryMapper->fetchAllSub();
-		} else 
+		} else {
 			$parents = $this->contentCategoryMapper->searchCat($name);
-						    
+		}
+		 		 	
 	    $this->view->assign(array(
 	    		'parents' => $parents,
 	    		'subs' => $subs,
+	            'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 10),	            
 	    ));
 	}
 	
 	public function viewCatAction()
 	{
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 30) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['viewCategory']);
 		
 		if (null != $this->request->getParam('id')) {
@@ -56,12 +94,21 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 			$this->view->assign(array(			
 	    		'category' => $currentCategory,
 	    		'sub' => $sub,
+			    'button2' => $this->privilegeTypeMapper->getButton2ById($this->entry, 10),
 	    	));
 		}		
 	}
 	
 	public function addCatAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 32) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addCategory']);		  
 	    
 	    $form = new Cloud_Form_Admin_ContentCategory_Add(array(
@@ -83,6 +130,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function editCatAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 33) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['editCategory']);
 
 		if (null != $this->request->getParam('id')) {
@@ -111,6 +166,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function deleteCatAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 34) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -122,6 +185,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		
 	public function publishAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 33) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 				 
@@ -137,6 +208,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function unpublishAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 33) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -152,6 +231,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function setPublishAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 33) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
@@ -167,6 +254,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function autoSuggestionCatAction()
 	{
+		$flag = false;		
+		foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 30) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);	
 				
@@ -198,9 +293,12 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 		if (null != $pid) 
 			$articles = $this->articleMapper->fetchArticleBySub($this->request->getParam('pid'));
 		if (null != $title) 
-			$articles = $this->articleMapper->searchArticle($title);			
-		
-		$this->view->articles = $articles;	
+			$articles = $this->articleMapper->searchArticle($title);								
+				
+		$this->view->assign(array(				    		
+	    		'articles' => $articles,
+		        'button1' => $this->privilegeTypeMapper->getButton1ById($this->entry, 9),			    
+	    	));	
 	}
 	
 	public function viewArticleAction()
@@ -215,13 +313,22 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 			
 			$this->view->assign(array(			
 	    		'entries' => $entries,
-	    		'article' => $article,
+	    		'article' => $article,		
+			    'button2' => $this->privilegeTypeMapper->getButton2ById($this->entry, 9),	    
 	    	));			
 		}		
 	}
 	
 	public function addArticleAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 27) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['addArticle']);		  
 	    
 	    $form = new Cloud_Form_Admin_Article_Add(array(
@@ -244,6 +351,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function editArticleAction()
 	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 28) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 } 
+		 
 		$this->view->headTitle($this->config['title']['editArticle']);
 
 		if (null != $this->request->getParam('id')) {
@@ -280,6 +395,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function setImportantAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 28) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 }
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);										
 							
@@ -296,6 +419,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function setNormalAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 28) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 }
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);										
 							
@@ -312,6 +443,14 @@ class Admin_ArticleController extends ZendStock_Controller_Action {
 	
 	public function deleteArticleAction()
 	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 29) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 }
+		 
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 12, 2010 at 11:48 PM
+-- Generation Time: Dec 14, 2010 at 12:08 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -608,11 +608,11 @@ CREATE TABLE `privilege_types` (
 -- Dumping data for table `privilege_types`
 -- 
 
-INSERT INTO `privilege_types` VALUES (1, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/statistic.png\\">\r\n								<span>Visit Statics</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (1, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/config/visitstatics/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/statistic.png">\r\n								<span>Visit Statics</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (2, 'Xem', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (3, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\\\\\"\\\\\\" src=\\\\\\"<?php echo $this->dirImg;?>/Dashboard/file-manager.png\\\\\\">\r\n								<span>File manager</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (3, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/config/file-manager/">\r\n								<img alt="" src="/admin/themes/default/images/Dashboard/file-manager.png">\r\n								<span>File manager</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (4, 'Xem', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (5, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/security.png\\">\r\n								<span>Configuration</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (5, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/config/configuration/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/security.png">\r\n								<span>Configuration</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (6, 'Xem', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (7, 'Truy cập', 'Access', 1, '', '');
 INSERT INTO `privilege_types` VALUES (8, 'Xem danh sách category', 'List', 1, '', '');
@@ -624,13 +624,13 @@ INSERT INTO `privilege_types` VALUES (13, 'Xem danh sách item', 'List', 1, '', 
 INSERT INTO `privilege_types` VALUES (14, 'Thêm item', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/menuItem/add-item\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (15, 'Sửa item', 'Edit', 1, '<a class=\\"minibutton btn edit\\" name=\\"menuItem\\" path=\\"admin/menu/edit-item\\" >\r\n						<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n					</a>\r\n					<a class=\\"minibutton btn publish\\" name=\\"menuItem\\" path=\\"admin/menu/publish-item\\" currentpath=\\"<?php echo $_SERVER[\\''REQUEST_URI\\'']; ?>\\">\r\n						<span><span class=\\"icon publish\\"></span>Published</span>\r\n					</a>\r\n					<a class=\\"minibutton btn unpublish\\" name=\\"menuItem\\" path=\\"admin/menu/unpublish-item\\" currentpath=\\"<?php echo $_SERVER[\\''REQUEST_URI\\'']; ?>\\">\r\n						<span><span class=\\"icon unpublish\\"></span>Unpublished</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (16, 'Xóa item', 'Delete', 1, '<a class=\\"minibutton btn deleteall\\" name=\\"menuItem\\" path=\\"admin/menu/delete-item\\" currentpath=\\"<?php echo $_SERVER[\\''REQUEST_URI\\'']; ?>\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n					</a>', '');
-INSERT INTO `privilege_types` VALUES (17, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/stock.png\\">\r\n								<span>Chứng khoán</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (17, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/stock/stock/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/stock.png">\r\n								<span>Chứng khoán</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (18, 'Xem', 'View', 1, '', '');
-INSERT INTO `privilege_types` VALUES (19, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/analyze.png\\">\r\n								<span>Biểu đồ phân tích</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (19, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/stock/analyze/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/analyze.png">\r\n								<span>Biểu đồ phân tích</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (20, 'Xem', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (21, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/exchange.png\\">\r\n								<span>Giao dịch</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (21, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/stock/exchange/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/exchange.png">\r\n								<span>Giao dịch</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (22, 'Xem', 'List', 1, '', '');
-INSERT INTO `privilege_types` VALUES (23, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/news.png\\">\r\n								<span>Danh sách tin</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (23, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/article/list-article/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/news.png">\r\n								<span>Danh sách tin</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (24, 'Xem danh sách tin', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (25, 'Thêm tin', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/article/add-article\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (26, 'Sửa tin', 'Edit', 1, '<a class=\\"minibutton btn edit\\" name=\\"tin\\" path=\\"admin/article/edit-article\\" >\r\n						<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n					</a>\r\n					<a class=\\"minibutton btn important\\" name=\\"tin\\" path=\\"admin/article/set-important\\">\r\n						<span><span class=\\"icon default\\"></span>Quan trọng</span>\r\n					</a>\r\n					<a class=\\"minibutton btn normal\\" name=\\"tin\\" path=\\"admin/article/set-normal\\">\r\n						<span><span class=\\"icon normal\\"></span>Bình thường</span>\r\n					</a>\r\n					<a class=\\"minibutton btn publish\\" name=\\"tin\\" mapper=\\"articleMapper\\" path=\\"admin/article/publish\\">\r\n						<span><span class=\\"icon publish\\"></span>Published</span>\r\n					</a>\r\n					<a class=\\"minibutton btn unpublish\\" name=\\"tin\\" mapper=\\"articleMapper\\" path=\\"admin/article/unpublish\\">\r\n						<span><span class=\\"icon unpublish\\"></span>Unpublished</span>\r\n					</a>', '<a class=\\"minibutton btn edit2\\"  >\r\n					<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n				</a>');
@@ -640,7 +640,7 @@ INSERT INTO `privilege_types` VALUES (29, 'Xem danh sách loại tin', 'List', 1
 INSERT INTO `privilege_types` VALUES (30, 'Thêm loại tin', 'Add', 1, '<a class=\\"minibutton btn add\\" path=\\"admin/article/add-cat\\">\r\n						<span><span class=\\"icon add\\"></span>Thêm</span>\r\n					</a>', '');
 INSERT INTO `privilege_types` VALUES (31, 'Sửa loại tin', 'Edit', 1, '<a class=\\"minibutton btn edit\\" name=\\"loại tin\\" path=\\"admin/article/edit-cat\\" >\r\n						<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n					</a>\r\n					<a class=\\"minibutton btn publish\\" name=\\"loại tin\\" mapper=\\"contentCategoryMapper\\" path=\\"admin/article/publish\\">\r\n						<span><span class=\\"icon publish\\"></span>Published</span>\r\n					</a>\r\n					<a class=\\"minibutton btn unpublish\\" name=\\"loại tin\\" mapper=\\"contentCategoryMapper\\" path=\\"admin/article/unpublish\\">\r\n						<span><span class=\\"icon unpublish\\"></span>Unpublished</span>\r\n					</a>', '<a class=\\"minibutton btn edit2\\">\r\n					<span><span class=\\"icon edit\\" ></span>Sửa</span>\r\n				</a>');
 INSERT INTO `privilege_types` VALUES (32, 'Xóa loại tin', 'Delete', 1, '<a class=\\"minibutton btn delete\\" name=\\"loại tin\\" path=\\"admin/article/delete-cat\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n					</a>', '<a class=\\"minibutton btn delete2\\" name=\\"loại tin\\">\r\n						<span><span class=\\"icon delete\\"></span>Xóa</span>\r\n				</a>');
-INSERT INTO `privilege_types` VALUES (33, 'Truy cập', 'Access', 1, '<li>\r\n							<a>\r\n								<img alt=\\"\\" src=\\"<?php echo $this->dirImg;?>/Dashboard/users.png\\">\r\n								<span>Thành viên</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (33, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/user/list/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/users.png">\r\n								<span>Thành viên</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (34, 'Xem danh sách thành viên', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (35, 'Thêm thành viên', 'Add', 1, '', '');
 INSERT INTO `privilege_types` VALUES (36, 'Sửa thành viên', 'Edit', 1, '', '');
@@ -710,7 +710,7 @@ CREATE TABLE `roles` (
   `name` varchar(50) default NULL,
   `description` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- 
 -- Dumping data for table `roles`
@@ -810,8 +810,8 @@ INSERT INTO `role_privilege` VALUES (71, 1, 71);
 INSERT INTO `role_privilege` VALUES (72, 1, 72);
 INSERT INTO `role_privilege` VALUES (73, 1, 73);
 INSERT INTO `role_privilege` VALUES (74, 1, 74);
-INSERT INTO `role_privilege` VALUES (75, 2, 23);
-INSERT INTO `role_privilege` VALUES (76, 2, 25);
+INSERT INTO `role_privilege` VALUES (75, 2, 25);
+INSERT INTO `role_privilege` VALUES (76, 2, 27);
 
 -- --------------------------------------------------------
 
@@ -970,13 +970,14 @@ CREATE TABLE `users` (
   `is_enable` tinyint(1) default NULL,
   `salt` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Dumping data for table `users`
 -- 
 
-INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211111409.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1, 'ce8d96d579d389e783f95b3772785783ea1a9854');
+INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linhvt22@gmail.com', '0168 286 9021', '11 Ngô Quyền, Quận 9, Tp. Hồ Chí Minh', 'files/avatar/user/linhvt22@gmail.com/20101211143034.jpg', 'd836477560cf4b4e6397f384c42bd64a', 1, 'ce8d96d579d389e783f95b3772785783ea1a9854');
+INSERT INTO `users` VALUES (2, 2, 'CTV', 1, '1990-08-20', 'ctv@mail.com', '', '', 'files/avatar/user/ctv@mail.com/20101214083157.gif', 'bcfedcf1b568e23ddf56c0e959c0d101', 1, '');
 
 -- --------------------------------------------------------
 

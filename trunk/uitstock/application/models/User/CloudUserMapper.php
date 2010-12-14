@@ -117,6 +117,7 @@
 			$data = array('avatar' => $path);
 			$where = array('id = ?' => $id);
 			$this->getDbTable()->update($data, $where);
+			return $path;
 		}
 		
 		public function updatePassword($id, $email, $password)
@@ -146,6 +147,29 @@
 			     ->setAvatar($row->avatar)
 			     ->setPassword($row->password)			      			      
 			     ->setIs_enable($row->is_enable);	   
+		}	
+		
+	    public function findUserByEmail($email)
+		{													
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();
+			             
+			$dbUser = $this->getDbTable()->info();
+			$dbUserName = $dbUser['name'];							
+				
+			$roleMapper = new Cloud_Model_Role_CloudRoleMapper();
+			$dbRole = $roleMapper->getDbTable()->info();
+			$dbRoleName = $dbRole['name'];					
+				
+			$select = $db->select()		                  
+		                 ->from(array('u' => $dbUserName))		     
+		                 ->join(array('r' => $dbRoleName), 'u.role_id = r.id', array('name as role_name'))
+		                 ->where('email = ?', $email);;         			             
+			             			             			             
+			$row = $db->fetchRow($select);														
+			if ($row == null)
+				return null;
+																      				 			      		
+			return $row;
 		}	
 		
 		public function deleteAll($listid)
@@ -191,7 +215,7 @@
 		{						
 			if (null == $currentUser) $id = "";
 			else $id = $currentUser->getId();
-						
+					
 			$db = $this->getDbTable();
 			$select = $db->select()			                	
 			             ->where('email = ?', $email)			             
@@ -240,5 +264,53 @@
 		                 ->where('u.id = ?', $id);            		                 		                 		                 		                 		               		        	           
 			    
             return $db->fetchRow($select);
-		}				
+		}	
+		
+		public function getRolePrivilegeById($id)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbUser = $this->getDbTable()->info();
+			$dbUserName = $dbUser['name'];							
+				
+			$roleMapper = new Cloud_Model_Role_CloudRoleMapper();
+			$dbRole = $roleMapper->getDbTable()->info();
+			$dbRoleName = $dbRole['name'];		
+
+			$rolePrivilegeMapper = new Cloud_Model_RolePrivilege_CloudRolePrivilegeMapper();
+			$dbRolePrivilege = $rolePrivilegeMapper->getDbTable()->info();
+			$dbRolePrivilegeName = $dbRolePrivilege['name'];
+
+			$privilegeMapper = new Cloud_Model_Privilege_CloudPrivilegeMapper();
+			$dbPrivilege = $privilegeMapper->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];
+			
+			$privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+			$dbPrivilegeType = $privilegeTypeMapper->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];						
+			
+			$select = $db->select()		                  
+		                 ->from(array('u' => $dbUserName), array())		     
+		                 ->join(array('r' => $dbRoleName), 'u.role_id = r.id', array())
+		                 ->join(array('rp' => $dbRolePrivilegeName), 'rp.role_id = r.id', array())
+		                 ->join(array('p' => $dbPrivilegeName), 'p.id = rp.pri_id', array('id'))
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'pt.id = p.pri_type_id', array('description'))
+		                 ->where('u.id = ?', $id);            		                 		                 		                 		                 		               		        	           
+			    
+            return $db->fetchAll($select);
+		}
+
+		public function isValidate($email, $password)
+		{
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('password = ?', $password)			             
+			             ->where('email = ?', $email)
+			             ->where('is_enable = 1');
+			$row = $db->fetchRow($select);														
+			if ($row == null)
+				return false;
+																      				 			      		
+			return true;
+		}
 	}

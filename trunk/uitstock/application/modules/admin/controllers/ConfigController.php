@@ -2,12 +2,15 @@
 class Admin_ConfigController extends ZendStock_Controller_Action {
 	public $config;
     
-	public function init() {      			     	           
+	public function init() {    
+		 session_start();
+	 	 if (!$_SESSION['log']) {
+			$this->_redirect('admin/index/login');
+		 }
+		   			     	           
 	     $dirTemplate = '/admin/templates/default';		 
 		 $dirTheme = '/admin/themes/default';		     	           
-	     $this->config = $this->createLayout($dirTemplate, $dirTheme);  
-		 session_start();
-		 $_SESSION['log'] = true;
+	     $this->config = $this->createLayout($dirTemplate, $dirTheme);  				
 	}			
 	
 	public function visitstaticsAction() {

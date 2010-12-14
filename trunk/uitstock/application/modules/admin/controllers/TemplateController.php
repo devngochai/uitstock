@@ -5,15 +5,22 @@ class Admin_TemplateController extends ZendStock_Controller_Action {
 	public $templateMapper;
 	public $themeMapper;
     
-	public function init() {    		
+	public function init() {   
+		 session_start();
+		 $privileges = $_SESSION['privilege'];
+		 $flag = false;		
+		 foreach ($privileges as $privilege) {
+			if ($privilege['id'] == 53) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/login');
+		 } 		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 			     	           
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
-	        	    
-		 session_start();
-		 $_SESSION['log'] = true;			 
+	        	    		 
 		 $this->request = $this->getRequest();		 		 		 	
 	}				
 	

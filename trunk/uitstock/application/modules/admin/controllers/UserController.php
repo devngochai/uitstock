@@ -7,7 +7,12 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	public $userMapper;
 	public $roleMapper;
     
-	public function init() {    		
+	public function init() { 
+		 session_start();
+	 	 if (!$_SESSION['log']) {
+			$this->_redirect('admin/index/login');
+		 }
+		    		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->userMapper = new Cloud_Model_User_CloudUserMapper();
@@ -16,9 +21,7 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
-	        	    
-		 session_start();
-		 $_SESSION['log'] = true;			 
+	        	    		 		 			
 		 $this->request = $this->getRequest();		 		 		 	
 	}				
 	
@@ -83,7 +86,8 @@ class Admin_UserController extends ZendStock_Controller_Action {
 				if ($form->isValid($this->request->getPost())) {			
 					$values = $form->getValues();
 					$user = new Cloud_Model_User_CloudUser($values);
-					$this->userMapper->save($user);												
+					$this->userMapper->save($user);				
+					if ($id == $_SESSION['userId']) $_SESSION['full_name'] = $values['full_name'];								
 					$this->view->message = 'Đã thay đổi thông tin thành viên : ' . $values['full_name'];
 				}
 			}
@@ -104,7 +108,8 @@ class Admin_UserController extends ZendStock_Controller_Action {
 				$id = $_POST['id'];
 				$avatar = $_POST['avatar'];
 				$email = $_POST['email'];
-				$this->userMapper->updateAvatar($id, $email, $avatar);
+				$path = $this->userMapper->updateAvatar($id, $email, $avatar);
+				if ($id == $_SESSION['userId']) $_SESSION['avatar'] = $path;
 				header("Location: #");	
 			}
 		}

@@ -41,6 +41,7 @@ function autoFocus()
 {
 	$('.zend_form').find('input').first().focus();
 	$('.txtSearch').focus();
+	$('#login_form #email').focus();
 }
 
 /* -------------------------------------------------------------- 

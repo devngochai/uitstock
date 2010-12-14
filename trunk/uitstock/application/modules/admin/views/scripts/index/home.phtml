@@ -46,77 +46,11 @@
 			
 			<div class="portlet-content">					
 					<ul>
-					   <li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/stock.png">
-								<span>Chứng khoán</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/analyze.png">
-								<span>Biểu đồ phân tích</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/exchange.png">
-								<span>Giao dịch</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/write.png">
-								<span>Viết tin tức</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/news.png">
-								<span>Danh sách tin</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/comments.png">
-								<span>Bình luận tin</span>
-							</a>
-						</li>	
-											
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/users.png">
-								<span>Thành viên</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/file-manager.png">
-								<span>File manager</span>
-							</a>
-						</li>
-						
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/statistic.png">
-								<span>Visit Statics</span>
-							</a>
-						</li>
-																								
-						<li>
-							<a>
-								<img alt="" src="<?php echo $this->dirImg;?>/Dashboard/security.png">
-								<span>Configuration</span>
-							</a>
-						</li>
-																		
-										
+						<?php 
+							foreach ($this->shortcuts as $shortcut) {
+								echo stripslashes($shortcut['button1']);
+							}
+						?>						   																												
 					</ul>										
 			</div> <!-- .portlet-content -->			
 		</div> <!-- .portlet -->		

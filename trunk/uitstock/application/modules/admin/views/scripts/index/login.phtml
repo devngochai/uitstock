@@ -1,5 +1,5 @@
 <style>
-body { background: white; font: 12px/1.7em arial, sans-serif; }
+body { background: #263849; font: 12px/1.7em arial, sans-serif; }
 </style>
 <div id="login">
 	
@@ -7,7 +7,11 @@ body { background: white; font: 12px/1.7em arial, sans-serif; }
 	
 <div id="login-body" class="clearfix"> 
 
-	         
+	 <?php if (isset($this->message)) {?>
+		<div class="warning">
+			<?php echo $this->message; ?>
+		</div>					
+	<?php } ?>    
 	<form action="" name="login" id="login_form" method="post">
 		
 		
@@ -18,21 +22,14 @@ body { background: white; font: 12px/1.7em arial, sans-serif; }
 	        	<div class="field">
 					<label>Email:</label>
 					
-					<div class=""><span class="input"><input name="email" class="text" type="text" value="" /></span></div>
+					<div class=""><span class="input"><input name="email" id="email" class="text" type="text" value="" /></span></div>
 				</div> <!-- .field -->
 				
 				<div class="field">
 					<label>Mật khẩu:</label>
 					
 					<div class=""><span class="input"><input name="password"  class="text" type="password" value="" /></span></div>
-				</div> <!-- .field -->
-				
-				<div class="checkbox">
-					<span class="label">&nbsp;</span>
-					
-					<div class=""><input name="remember" id="remember" class="checkbox" value="yes" type="checkbox" /> &nbsp;&nbsp;<label style="display: inline;" for="remember">Duy trì trạng thái đăng nhập</label></div>
-				</div> <!-- .field -->
-
+				</div> <!-- .field -->				
 				
 				<div class="field">
 					<span class="label">&nbsp;</span>
