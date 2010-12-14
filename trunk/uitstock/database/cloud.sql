@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 14, 2010 at 04:05 PM
+-- Generation Time: Dec 14, 2010 at 07:16 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -710,7 +710,7 @@ CREATE TABLE `roles` (
   `name` varchar(50) default NULL,
   `description` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `roles`
@@ -729,7 +729,7 @@ CREATE TABLE `role_privilege` (
   `role_id` int(11) default NULL,
   `pri_id` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=153 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 -- 
 -- Dumping data for table `role_privilege`
@@ -967,7 +967,7 @@ CREATE TABLE `users` (
   `is_enable` tinyint(1) default NULL,
   `salt` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `users`
