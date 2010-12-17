@@ -173,4 +173,29 @@
 			if (null == $row['max']) return 0;
 			else return $row['max'];											
 		}
+		
+		public function getAccessPrivilege()
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPrivilege = $this->getDbTable()->info();
+			$dbPrivilegeName = $dbPrivilege['name'];
+
+			$moduleMapper = new Cloud_Model_Module_CloudModuleMapper();
+			$dbModule = $moduleMapper->getDbTable()->info();
+			$dbModuleName = $dbModule['name'];
+			
+			$privilegeTypeMapper = new Cloud_Model_PrivilegeType_CloudPrivilegeTypeMapper();
+			$dbPrivilegeType= $privilegeTypeMapper->getDbTable()->info();
+			$dbPrivilegeTypeName = $dbPrivilegeType['name'];				
+				
+			$select = $db->select()		                  
+		                 ->from(array('p' => $dbPrivilegeName), array('id'))		     
+		                 ->join(array('m' => $dbModuleName), 'p.module_id = m.id', array('name'))            
+		                 ->join(array('pt' => $dbPrivilegeTypeName), 'p.pri_type_id = pt.id', array())
+		                 ->where("pt.description = 'Access'");						                 
+			    
+           return $db->fetchAll($select);
+		}
+				
 	}

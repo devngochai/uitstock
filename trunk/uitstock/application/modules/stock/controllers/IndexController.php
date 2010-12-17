@@ -1,7 +1,7 @@
 <?php
 class IndexController extends ZendStock_Controller_Action {
 	public $config;
-	public $widgetMapper;	
+	public $widgetMapper;		
     
 	public function init() {    
 		 $templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
@@ -10,15 +10,17 @@ class IndexController extends ZendStock_Controller_Action {
 		 $dirTheme = $themeMapper->getThemeDefault(2);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 
-	     $this->widgetMapper = new Cloud_Model_Widget_CloudWidgetMapper();
-	     
+	     $this->widgetMapper = new Cloud_Model_Widget_CloudWidgetMapper();	     	     	 
+	     	     
 		 session_start();			 
-		 $this->request = $this->getRequest();		 		   				
+		 $this->request = $this->getRequest();
+
+		 $this->view->menuItemMapper = new Cloud_Model_MenuItem_CloudMenuItemMapper();
 	}
 	
 	public function indexAction() {			      
 	     $this->view->headTitle($this->config['title']['index']);		 
-		 $_SESSION['nav-main'] = 1;		
+		 $_SESSION['nav-main'] = 'Trang chủ';		
 		 
 	     $widgets = $this->widgetMapper->getWidgetByComponentPage(2, 'index');
 	     
@@ -27,7 +29,7 @@ class IndexController extends ZendStock_Controller_Action {
     
     public function ruleAction() {
         $this->view->headTitle($this->config['title']['rule']);		
-		$_SESSION['nav-main'] = 2;
+		$_SESSION['nav-main'] = 'Thể lệ sàn ảo';
 		
 		$widgets = $this->widgetMapper->getWidgetByComponentPage(2, 'rule');
 	     
@@ -36,7 +38,7 @@ class IndexController extends ZendStock_Controller_Action {
     
     public function staticsAction() {
         $this->view->headTitle($this->config['title']['statics']);
-		$_SESSION['nav-main'] = 3;
+		$_SESSION['nav-main'] = 'Thống kê sàn ảo';
 		
 		$widgets = $this->widgetMapper->getWidgetByComponentPage(2, 'statics');		
 	     

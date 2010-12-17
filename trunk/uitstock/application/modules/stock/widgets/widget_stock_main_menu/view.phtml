@@ -1,9 +1,21 @@
 <nav>
 	 <ul>
-		 <li class="<?php if ($_SESSION['nav-main'] == 1) echo 'active'; ?> first"><a href="stock/index" class="first-child">Trang chủ</a></li>
-		 <li><a href="" class="s_blue">Thực hiện giao dịch</a></li>    	         
-		 <li <?php if ($_SESSION['nav-main'] == 3) echo "class='active'"; ?>><a href="stock/index/statics">Thống kê sàn ảo</a></li>	
-		 <li <?php if ($_SESSION['nav-main'] == 2) echo "class='active'"; ?>><a href="stock/index/rule">Thể lệ sàn ảo</a></li>						    			 	    			     			                
-		 <li class="last"><a href="tintuc/" class="last-child">Tin tức</a></li>					 
+	 	<?php	 	   	     
+	 		$i = 0; 
+	 		foreach ($items as $item):
+	 		 $i++;
+	 		 
+	 		 if ($i == 1) { $li = "first"; $a = "first-child"; } 
+	 		 
+     		 $active = ($_SESSION['nav-main'] == $item->name) ? "active" : ""; 
+
+	 		 if ($i == count($items)) { $li = "last"; $a = "last-child"; }
+	 	?>
+	 	 <li class="<?php echo $active .' '. $li ?>">
+	 	 	<a href="<?php echo $item->link ?>" class="<?php echo $a ?>" />
+	 	 		<?php echo $item->name ?>
+	 	 	</a>
+	 	 </li>	 	
+		 <?php endforeach ?>					 
 	 </ul>
 </nav>

@@ -149,6 +149,22 @@
 			     ->setIs_enable($row->is_enable);	   
 		}	
 		
+		public function searchUser($full_name)
+		{
+			if (null == $full_name) exit();			 
+
+            $db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbUser = $this->getDbTable()->info();
+			$dbUserName = $dbUser['name'];							
+												
+			$select = $db->select()		                  
+		                 ->from(array('u' => $dbUserName))		     
+		                 ->where('full_name = ?', $full_name);            		                 		                 		                 		                 		               		        	           
+			    
+            return $db->fetchAll($select);            
+		}
+		
 	    public function findUserByEmail($email)
 		{													
 			$db = Zend_DB_table_Abstract::getDefaultAdapter();
@@ -313,4 +329,16 @@
 																      				 			      		
 			return true;
 		}
+		
+		public function autoSuggestion($full_name)
+		{
+			if (null == $full_name) exit();	
+			
+			$db = $this->getDbTable();			
+			$select = $db->select()
+			             ->from($db, array('full_name'))
+			             ->where('full_name like ?', "%$full_name%");			             			                               
+                   
+            return $db->fetchAll($select);            
+		}	
 	}

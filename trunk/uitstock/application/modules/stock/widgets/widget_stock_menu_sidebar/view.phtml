@@ -1,18 +1,23 @@
 <section id="stock-statics">
 	<h2 class="sidebar-header">Thông tin</h2>
 	
-	<p id="stock-online" class="statics">Bảng giá trực tuyến</p>
-	<ul id="submenu-stock-online">
-		<li><a href="#">Sàn HOSE</a></li>	                          
-	</ul>
-	
-	<p id="stock-tool" class="statics">UITStock</p>
-	<ul id="submenu-stock-tool">
-		<li><a href="#">CP nóng tại UITStock</a></li>
-		<li><a href="#">Top CP UITStock</a></li>
-		<li><a href="#">Top CP niêm yết</a></li>                        
-		<li><a href="#">Tìm CP theo giá</a></li>								
-		<li><a href="#">Thống kê sàn niêm yết</a></li>    
-		<li><a href="#">Dữ liệu ngành</a></li>                            
-	</ul>                                                  
+	<?php	 	   	      	
+ 		foreach ($parentItem as $parent): 		
+ 		 
+ 		$idP = ($parent->name == 'Bảng giá trực tuyến') ? "stock-online" :
+ 													"stock-tool";	
+ 		
+ 		$idS = ($parent->name == 'Bảng giá trực tuyến') ? "submenu-stock-online" :
+ 													"submenu-stock-tool";
+	?>
+		<p id="<?php echo $idP ?>" class="statics"><?php echo $parent->name ?></p>
+		<ul id="<?php echo $idS ?>">
+		<?php	 	   	      	
+	 		foreach ($subItem as $sub): 	 			 		 
+		 		if ($sub->parent_id == $parent->id) {	
+		?>
+			<li><a href="<?php echo $sub->link ?>"><?php echo $sub->name ?></a></li>						
+		<?php } endforeach ?>					                        
+		</ul>	
+	<?php endforeach ?>                                               
 </section> 

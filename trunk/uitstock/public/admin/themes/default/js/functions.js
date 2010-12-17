@@ -110,6 +110,12 @@ function addActionForButton()
 		document.location = path;
 	});
 	
+	$('a.add2').click(function(){
+		var path = $(this).attr("path");
+		var catId = $(".global").attr("catId");		
+		document.location = path + "catId/" + catId + "/";
+	});
+	
 	$('a.edit').click(function(){
 		var id = $("input[name='select']:checked").attr("id");
 		var name = $(this).attr("name");
@@ -606,6 +612,28 @@ function addActionForButton()
 		
 		var data = 'type=' + type + '&id=' + id + '&ordering=' + ordering +
 					'&position=' + position + '&pageId=' + pageId;
+	
+		$.ajax({
+			url: path,
+			data: data,
+			cache: false,
+			success: function(data) {							
+				document.location = currentPath;			
+			}
+		});
+	});
+	
+	$(".order2").click(function(){
+		var path = $(this).attr('path');
+		var currentPath = $(this).attr('currentPath');
+			
+		var type = $(this).attr('type');
+		var id = $(this).attr('id');
+		var ordering = $(this).attr('ordering');				
+		var catId = $(this).attr('catId');
+		
+		var data = 'type=' + type + '&id=' + id + '&ordering=' + ordering +
+					'&catId=' + catId;
 	
 		$.ajax({
 			url: path,

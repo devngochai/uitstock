@@ -9,6 +9,9 @@ interface Cloud_Model_Privilege_Interface
 	public function saveAll($data, $id);
 	public function find($id, Cloud_Model_Privilege_CloudPrivilege $privilege);
 	public function delete($id);
-	public function update($moduleId, $privilegeId);
+	public function update($moduleId, $privilegeId);	
 	public function fetchAllPrivilege();
+	public function getPrivilegeById($id);
+	public function getMaxOrder($moduleId);
+	public function getAccessPrivilege();
 }

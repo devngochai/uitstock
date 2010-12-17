@@ -8,7 +8,8 @@ interface Cloud_Model_Module_Interface
 	public function save(Cloud_Model_module_CloudModule $module);
 	public function find($id, Cloud_Model_Module_CloudModule $module);
 	public function delete($id);
+	public function fetch();
 	public function fetchAll($page);
 	public function getAll();
-	public function getModuleByName($name, $currentModule);
+	public function getModuleByName($name, $currentModule);	
 }

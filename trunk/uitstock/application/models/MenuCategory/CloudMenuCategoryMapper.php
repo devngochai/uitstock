@@ -75,5 +75,26 @@
 			$menuCategory->setId($row->id)		
 				 	 	 ->setName($row->name)
 				 	 	 ->setDescription($row->description);					 	 				 	 			 				      		   
-		}				    					
+		}	
+
+		public function fetchAll()
+		{										
+			return $this->getDbTable()->fetchAll();	
+		}		
+		
+		public function getMenuCategoryByName($name, $currentMenutCategory)
+		{						
+			if (null == $currentMenutCategory) $id = "";
+			else $id = $currentMenutCategory->getId();
+						
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('name = ?', $name)			            
+			             ->where('id != ?', $id);
+			$row = $db->fetchRow($select);														
+			if (null == $row)
+				return null;
+																      				 			      		
+			return $row;
+		}		
 	}

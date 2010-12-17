@@ -2,47 +2,53 @@
 	<div class="MenuWrapper02">
 		<div class="MenuWrapper">
 			<ul id="menu">
-				<li class="First"><a href="" class="<?php if ($this->aliasP == 'chuyen-gia-nhan-dinh') echo "Active Hover"; ?>" ><span class="LeftBg"><span class="RightBg">Trang chủ</span></span></a>
-					<ul>
-						<li class="FirstItem"><a href="" >Sàn chứng khoán ảo</a></li>
-						<li><a href="#">Đặt làm trang chủ</a></li>
-					</ul>
-				</li>
-				<li><a href="tintuc/chuyenmuc/tin-tuc/" title="Trang chính"  class="<?php if ($this->aliasP == null || $this->aliasP == 'tin-tuc') echo "Active Hover"; ?>"><span class="LeftBg"><span class="RightBg">Tin tức</span></span></a>
-					<ul>
-						<li class="FirstItem"><a href="tintuc/chuyenmuc/tin-tuc/tin-van-chung-khoan/" >Tin vắn chứng khoán</a></li>
-						<li><a href="tintuc/chuyenmuc/tin-tuc/tin-hose/" >Tin HOSE</a></li>
-						<li><a href="tintuc/chuyenmuc/tin-tuc/tin-tu-cong-ty-niem-yet/" >Tin từ công ty niêm yết</a></li>                     
-					</ul>
-				</li>
-				<li><a href="tintuc/chuyenmuc/nhan-dinh-thi-truong/" class="<?php if ($this->aliasP == 'nhan-dinh-thi-truong') echo "Active Hover"; ?>"><span class="LeftBg"><span class="RightBg">Nhận định thị trường</span></span></a>
-					<ul>
-						<li class="FirstItem"><a href="tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty-ck-nhan-dinh/" title="Giới tính">Công ty CK nhận định</a></li>
-						<li><a href="tintuc/chuyenmuc/nhan-dinh-thi-truong/thi-truong/" >Thị trường</a></li>
-						<li><a href="tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty/" >Công ty</a></li>                     
-					</ul>
-				</li>
-				<li><a href="tintuc/chuyenmuc/kinh-te-viet-nam/" class="<?php if ($this->aliasP == 'kinh-te-viet-nam') echo "Active Hover"; ?>"><span class="LeftBg"><span class="RightBg">Kinh tế Việt Nam</span></span></a>
-					<ul>
-						<li class="FirstItem"><a href="tintuc/chuyenmuc/kinh-te-viet-nam/thi-truong-vn/" >Thị trường</a></li>
-						<li><a href="tintuc/chuyenmuc/kinh-te-viet-nam/tai-chinh---ngan-hang/" >Tài chính - Ngân hàng</a></li>
-						<li><a href="tintuc/chuyenmuc/kinh-te-viet-nam/bat-dong-san/" >Bất động sản</a></li>                     
-					</ul>
-				</li>
-				<li><a href="tintuc/chuyenmuc/kinh-te-the-gioi/" class="<?php if ($this->aliasP == 'kinh-te-the-gioi') echo "Active Hover"; ?>"><span class="LeftBg"><span class="RightBg">Kinh tế thế giới</span></span></a>
-					<ul>
-						<li class="FirstItem"><a href="tintuc/chuyenmuc/kinh-te-the-gioi/chung-khoan/" >Chứng khoán</a></li>
-						<li><a href="tintuc/chuyenmuc/kinh-te-the-gioi/thi-truong-tg/">Thị trường</a></li>                                      
-					</ul>
-				</li>
-				<li><a href="tintuc/chuyenmuc/kien-thuc-dau-tu/" class="<?php if ($this->aliasP == 'kien-thuc-dau-tu') echo "Active Hover"; ?>"><span class="LeftBg"><span class="RightBg">Kiến thức đầu tư</span></span></a>
-					<ul>
-						<li class="FirstItem"><a href="tintuc/chuyenmuc/kien-thuc-dau-tu/kien-thuc-co-ban/">Kiến thức cơ bản</a></li>
-						<li><a href="tintuc/chuyenmuc/kien-thuc-dau-tu/kinh-nghiem-dau-tu/">Kinh nghiệm đầu tư</a></li>                                      
-					</ul>
-				</li>
-
-			</ul>		          
+			   	<?php
+			   		$i = 0;	 	   	      	
+			 		foreach ($parentItem as $parent): 		
+				 		$i++;
+				 		
+						if ($parent->name == 'Trang chủ') { 
+							$li = "First";
+							$a = ($this->aliasP == 'chuyen-gia-nhan-dinh') ? "Active Hover" : "";
+						}	
+						if ($parent->name == 'Tin tức') {
+							$a = ($this->aliasP == null || $this->aliasP == 'tin-tuc') ? "Active Hover" : "";
+						}
+						if ($parent->name == 'Nhận định thị trường') {
+							$a = ($this->aliasP == 'nhan-dinh-thi-truong') ? "Active Hover" : "";
+						}	
+						if ($parent->name == 'Kinh tế Việt Nam') {
+							$a = ($this->aliasP == 'kinh-te-viet-nam') ? "Active Hover" : "";
+						}	
+						if ($parent->name == 'Kinh tế thế giới') {
+							$a = ($this->aliasP == 'kinh-te-the-gioi') ? "Active Hover" : "";
+						}					
+						if ($parent->name == 'Kiến thức đầu tư') {
+							$a = ($this->aliasP == 'kien-thuc-dau-tu') ? "Active Hover" : "";
+						}					
+				?>
+					<li class="<?php echo $li ?>">
+						<a href="<?php echo $parent->link ?>" class="<?php echo $a ?>" >
+							<span class="LeftBg"><span class="RightBg"><?php echo $parent->name ?></span></span>
+						</a>				
+							<ul>
+							<?php	 	   	      	
+						 		foreach ($subItem as $sub): 	
+						 			$j = 0; 			 		 
+							 		if ($sub->parent_id == $parent->id) {
+							 			$j++;					 			 
+										$liS = ($j == 1) ? "FirstItem" :  "";								
+							?>
+								<li class="<?php echo $liS ?>">
+									<a href="<?php echo $sub->link ?>" >
+										<?php echo $sub->name ?>
+									</a>
+								</li>						
+							<?php } endforeach ?>					                        
+							</ul>	
+					</li>
+				<?php endforeach ?> 
+			</ul>										          
 		</div>            
 	</div>        
 </nav>

@@ -11,12 +11,12 @@
 		protected $id;
 		protected $parent_id;
 		protected $menu_cat_id;
-		protected $role_pri_id;
-		protected $name;	
-		protected $alias;
+		protected $pri_id;
+		protected $name;			
 		protected $link;
 		protected $ordering;		
-		protected $published;	
+		protected $published;
+		protected $is_home;	
 		
 	public function __construct(array $options = null)
 		{
@@ -77,10 +77,10 @@
 		}
 	
 			/**
-		 * @return the $role_pri_id
+		 * @return the $pri_id
 		 */
-		public function getRole_pri_id() {
-			return $this->role_pri_id;
+		public function getPri_id() {
+			return $this->pri_id;
 		}
 	
 			/**
@@ -89,14 +89,7 @@
 		public function getName() {
 			return $this->name;
 		}
-	
-			/**
-		 * @return the $alias
-		 */
-		public function getAlias() {
-			return $this->alias;
-		}
-	
+		
 			/**
 		 * @return the $link
 		 */
@@ -116,6 +109,13 @@
 		 */
 		public function getPublished() {
 			return $this->published;
+		}
+	
+			/**
+		 * @return the $is_home
+		 */
+		public function getIs_home() {
+			return $this->is_home;
 		}
 	
 			/**
@@ -143,10 +143,10 @@
 		}
 	
 			/**
-		 * @param $role_pri_id the $role_pri_id to set
+		 * @param $pri_id the $pri_id to set
 		 */
-		public function setRole_pri_id($role_pri_id) {
-			$this->role_pri_id = $role_pri_id;
+		public function setPri_id($pri_id) {
+			$this->pri_id = $pri_id;
 			return $this;
 		}
 	
@@ -156,15 +156,7 @@
 		public function setName($name) {
 			$this->name = $name;
 			return $this;
-		}
-	
-			/**
-		 * @param $alias the $alias to set
-		 */
-		public function setAlias($alias) {
-			$this->alias = $alias;
-			return $this;
-		}
+		}	
 	
 			/**
 		 * @param $link the $link to set
@@ -188,7 +180,15 @@
 		public function setPublished($published) {
 			$this->published = $published;
 			return $this;
-		}																		
+		}
+	
+			/**
+		 * @param $is_home the $is_home to set
+		 */
+		public function setIs_home($is_home) {
+			$this->is_home = $is_home;
+			return $this;
+		}																					
 	}	
 	
 	

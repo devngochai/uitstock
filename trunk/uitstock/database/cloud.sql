@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 15, 2010 at 02:21 PM
+-- Generation Time: Dec 17, 2010 at 11:48 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -260,16 +260,19 @@ CREATE TABLE `market` (
 -- 
 
 CREATE TABLE `menu_category` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) default NULL,
   `description` text,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- Dumping data for table `menu_category`
 -- 
 
+INSERT INTO `menu_category` VALUES (1, 'Stock Main Menu', 'Menu top của chứng khoán');
+INSERT INTO `menu_category` VALUES (2, 'Stock SideBar', 'Menu sidebar của chứng khoán');
+INSERT INTO `menu_category` VALUES (3, 'News Main Menu', 'Menu Top của tin tức');
 
 -- --------------------------------------------------------
 
@@ -278,21 +281,57 @@ CREATE TABLE `menu_category` (
 -- 
 
 CREATE TABLE `menu_items` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `parent_id` int(11) default NULL,
   `menu_cat_id` int(11) default NULL,
+  `pri_id` int(11) default NULL,
   `name` varbinary(50) default NULL,
-  `alias` varchar(255) default NULL,
   `link` varchar(255) default NULL,
   `ordering` int(11) default NULL,
   `published` tinyint(1) default NULL,
+  `is_home` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 -- 
 -- Dumping data for table `menu_items`
 -- 
 
+INSERT INTO `menu_items` VALUES (1, 0, 1, 0, 0x5472616e67206368e1bba7, 'stock/index', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (2, 0, 1, 0, 0x5468e1bbb163206869e1bb876e206769616f2064e1bb8b6368, '', 2, 1, 1);
+INSERT INTO `menu_items` VALUES (3, 0, 1, 0, 0x5468e1bb916e67206bc3aa2073c3a06e20e1baa36f, 'stock/index/statics', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (4, 0, 1, 0, 0x5468e1bb83206ce1bb872073c3a06e20e1baa36f, 'stock/index/rule', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (5, 0, 1, 0, 0x54696e2074e1bba963, 'tintuc/', 5, 1, 0);
+INSERT INTO `menu_items` VALUES (6, 0, 2, 0, 0x42e1baa36e67206769c3a1207472e1bbb16320747579e1babf6e, '', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (7, 6, 2, 0, 0x53c3a06e20484f5345, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (8, 0, 2, 0, 0x55495453746f636b, '', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (9, 8, 2, 0, 0x4350206ec3b36e672074e1baa1692055495453746f636b, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (10, 8, 2, 0, 0x546f702043502055495453746f636b, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (11, 8, 2, 0, 0x546f70204350206e69c3aa6d2079e1babf74, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (12, 8, 2, 0, 0x54c3ac6d204350207468656f206769c3a1, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (13, 8, 2, 0, 0x5468e1bb916e67206bc3aa2073c3a06e206e69c3aa6d2079e1babf74, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (14, 8, 2, 0, 0x44e1bbaf206c69e1bb8775206e67c3a06e68, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (15, 0, 3, 0, 0x5472616e67206368e1bba7, '', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (16, 15, 3, 0, 0x53c3a06e206368e1bba96e67206b686fc3a16e20e1baa36f, '', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (17, 15, 3, 0, 0xc490e1bab774206cc3a06d207472616e67206368e1bba7, '', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (18, 0, 3, 0, 0x54696e2074e1bba963, 'tintuc/chuyenmuc/tin-tuc/', 2, 1, 1);
+INSERT INTO `menu_items` VALUES (19, 18, 3, 0, 0x54696e2076e1baaf6e206368e1bba96e67206b686fc3a16e, 'tintuc/chuyenmuc/tin-tuc/tin-van-chung-khoan/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (20, 18, 3, 0, 0x54696e20484f5345, 'tintuc/chuyenmuc/tin-tuc/tin-hose/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (21, 18, 3, 0, 0x54696e2074e1bbab2063c3b46e67207479206e69c3aa6d2079e1babf74, 'tintuc/chuyenmuc/tin-tuc/tin-tu-cong-ty-niem-yet/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (22, 0, 3, 0, 0x4e68e1baad6e20c491e1bb8b6e68207468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (23, 22, 3, 0, 0x43c3b46e6720747920434b206e68e1baad6e20c491e1bb8b6e68, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty-ck-nhan-dinh/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (24, 22, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/thi-truong/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (25, 22, 3, 0, 0x43c3b46e67207479, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (26, 0, 3, 0, 0x4b696e682074e1babf205669e1bb8774204e616d, 'tintuc/chuyenmuc/kinh-te-viet-nam/', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (27, 26, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/kinh-te-viet-nam/thi-truong-vn/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (28, 26, 3, 0, 0x54c3a069206368c3ad6e68202d204e67c3a26e2068c3a06e67, 'tintuc/chuyenmuc/kinh-te-viet-nam/tai-chinh---ngan-hang/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (29, 26, 3, 0, 0x42e1baa57420c491e1bb996e672073e1baa36e, 'tintuc/chuyenmuc/kinh-te-viet-nam/bat-dong-san/', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (30, 0, 3, 0, 0x4b696e682074e1babf207468e1babf206769e1bb9b69, 'tintuc/chuyenmuc/kinh-te-the-gioi/', 5, 1, 0);
+INSERT INTO `menu_items` VALUES (31, 30, 3, 0, 0x4368e1bba96e67206b686fc3a16e, 'tintuc/chuyenmuc/kinh-te-the-gioi/chung-khoan/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (32, 30, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/kinh-te-the-gioi/thi-truong-tg/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (33, 0, 3, 0, 0x4b69e1babf6e207468e1bba96320c491e1baa7752074c6b0, 'tintuc/chuyenmuc/kien-thuc-dau-tu/', 6, 1, 0);
+INSERT INTO `menu_items` VALUES (34, 33, 3, 0, 0x4b69e1babf6e207468e1bba9632063c6a12062e1baa36e, 'tintuc/chuyenmuc/kien-thuc-dau-tu/kien-thuc-co-ban/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (35, 33, 3, 0, 0x4b696e68206e676869e1bb876d20c491e1baa7752074c6b0, 'tintuc/chuyenmuc/kien-thuc-dau-tu/kinh-nghiem-dau-tu/', 2, 1, 0);
 
 -- --------------------------------------------------------
 

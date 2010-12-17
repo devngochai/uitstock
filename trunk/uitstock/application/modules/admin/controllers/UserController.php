@@ -47,7 +47,12 @@ class Admin_UserController extends ZendStock_Controller_Action {
 		$_SESSION['temp'] = $_SERVER['REQUEST_URI'];
 		
 		$page = $this->_getParam('page', 1);	
-		$users = $this->userMapper->fetchAll($page);	
+		
+		$name = $this->request->getParam('name');
+		if (null == $name) 
+			$users = $this->userMapper->fetchAll($page);			    		
+		else
+			$users = $this->userMapper->searchUser($name);
 
 		$this->view->assign(array(
 			'users' => $users,	
@@ -282,5 +287,21 @@ class Admin_UserController extends ZendStock_Controller_Action {
 			$listid = $this->request->getParam('listid');
 			$this->userMapper->deleteAll($listid);
 		}								
+	}
+	
+	public function autoSuggestionAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);	
+				
+		$name = $this->request->getParam('name');				
+		$result = $this->userMapper->autoSuggestion($name);					
+		if ($result) {			
+			echo '<ul>';
+			foreach ($result as $row) {
+				echo '<li onClick="fill(\''.$row->full_name.'\');">'.$row->full_name.'</li>';	
+			}
+			echo '</ul>';
+		} 
 	}
 }
