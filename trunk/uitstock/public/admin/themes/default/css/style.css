@@ -200,6 +200,10 @@ background-repeat:no-repeat;
 	background: url("../images/Toolbar/configuration.png") no-repeat 11px 0px;
 }
 
+.player h4 {
+	background: url("../images/Toolbar/player.png") no-repeat 11px 0px;
+}
+
 
 /* -------------------------------------------------------------- 
    Button basics

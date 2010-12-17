@@ -34,7 +34,7 @@
 							<?php $i = 0; foreach ($this->roles as $role): $i++; if ($i % 2 != 0) {?>
 								<tr class="odd gradeX" >							
 									<td class="left"><?php echo $i ?></td>
-									<td class="center"><input type="checkbox" name="select" value="<?php echo $this->escape($role->id) ?>" id="<?php echo $this->escape($role->id) ?>" /></td> 
+									<td class="left"><input type="checkbox" name="select" value="<?php echo $this->escape($role->id) ?>" id="<?php echo $this->escape($role->id) ?>" /></td> 
 									<td class="left"><?php echo $this->escape($role->name) ?></td>
 									<td class="left"><?php echo $this->escape($role->description) ?></td>																																														
 									<td class="right"><?php echo $this->escape($role->id) ?></td>
@@ -42,7 +42,7 @@
 							<?php } else { ?>
 								<tr class="even gradeC">							
 									<td class="left"><?php echo $i ?></td>
-									<td class="center"><input type="checkbox" name="select" value="<?php echo $this->escape($role->id) ?>" id="<?php echo $this->escape($role->id) ?>" /></td> 
+									<td class="left"><input type="checkbox" name="select" value="<?php echo $this->escape($role->id) ?>" id="<?php echo $this->escape($role->id) ?>" /></td> 
 									<td class="left"><?php echo $this->escape($role->name) ?></td>
 									<td class="left"><?php echo $this->escape($role->description) ?></td>																																														
 									<td class="right"><?php echo $this->escape($role->id) ?></td>																																								

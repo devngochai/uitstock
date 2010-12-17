@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 17, 2010 at 11:48 AM
+-- Generation Time: Dec 18, 2010 at 01:35 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -1034,24 +1034,28 @@ INSERT INTO `users` VALUES (1, 1, 'Nguyễn Ngọc Linh', 1, '1989-02-20', 'linh
 -- 
 
 CREATE TABLE `user_account` (
-  `USER_ID` varchar(10) NOT NULL,
-  `LEVEL_ID` varchar(10) default NULL,
-  `NAME` varchar(255) default NULL,
-  `HASHED_PASS` varchar(255) default NULL,
-  `FULL_NAME` varchar(255) default NULL,
-  `ADDRESS` text,
-  `EMAIL` varchar(255) default NULL,
-  `PHONE` int(11) default NULL,
-  `STATUS` varchar(50) default NULL,
-  `MONEY` float default NULL,
-  `LAST_LOGIN_TIME` date default NULL,
-  PRIMARY KEY  (`USER_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL auto_increment,
+  `level_id` varchar(10) default NULL,
+  `username` varchar(255) default NULL,
+  `password` varchar(255) default NULL,
+  `full_name` varchar(255) default NULL,
+  `gender` tinyint(1) default NULL,
+  `birthday` date default NULL,
+  `address` text,
+  `email` varchar(255) default NULL,
+  `mobile` varchar(255) default NULL,
+  `job` varchar(255) default NULL,
+  `company` varchar(255) default NULL,
+  `is_enable` varchar(50) default NULL,
+  `money` double default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `user_account`
 -- 
 
+INSERT INTO `user_account` VALUES (1, '1', 'linhnn', 'd836477560cf4b4e6397f384c42bd64a', 'Nguyễn Ngọc Linh', 1, '1989-02-20', '11 Ngô Quyền, Quận 9, Tp Hồ Chí Minh', 'linhvt22@gmail.com', '0168 286 9021', 'Sinh viên', 'UIT', '1', 1000000);
 
 -- --------------------------------------------------------
 

@@ -1,5 +1,12 @@
 .visualize { margin-bottom: 4em; }
 
+.money {
+	font-weight: bold;
+	font-style: italic;
+}
+.green {
+	color: green;
+}
 .orange{
 	color: orange;
 	font-weight: bold;

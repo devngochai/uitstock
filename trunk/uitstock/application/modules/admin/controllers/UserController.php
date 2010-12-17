@@ -218,7 +218,7 @@ class Admin_UserController extends ZendStock_Controller_Action {
 			$listid = explode(",", $this->request->getParam('listid'));
 			$mapper = $this->request->getParam('mapper');
 			$dbTable = $this->$mapper->getDbTable();			
-			Cloud_Model_Utli_CloudUtli::setPublish($dbTable, $listid);	
+			Cloud_Model_Utli_CloudUtli::setEnable($dbTable, $listid);	
 		}	
 		else 
 			echo 'error';							
@@ -241,7 +241,7 @@ class Admin_UserController extends ZendStock_Controller_Action {
 			$listid = explode(",", $this->request->getParam('listid'));					 			
 			$mapper = $this->request->getParam('mapper');
 			$dbTable = $this->$mapper->getDbTable();
-			Cloud_Model_Utli_CloudUtli::setUnPublish($dbTable, $listid);	
+			Cloud_Model_Utli_CloudUtli::setDisable($dbTable, $listid);	
 		}		
 		else 
 			echo 'error';						

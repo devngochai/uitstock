@@ -152,17 +152,27 @@
 		public function searchUser($full_name)
 		{
 			if (null == $full_name) exit();			 
-
-            $db = Zend_DB_table_Abstract::getDefaultAdapter();							
+  
+     		$db = Zend_DB_table_Abstract::getDefaultAdapter();							
 			
 			$dbUser = $this->getDbTable()->info();
 			$dbUserName = $dbUser['name'];							
-												
+				
+			$roleMapper = new Cloud_Model_Role_CloudRoleMapper();
+			$dbRole = $roleMapper->getDbTable()->info();
+			$dbRoleName = $dbRole['name'];					
+				
 			$select = $db->select()		                  
-		                 ->from(array('u' => $dbUserName))		     
-		                 ->where('full_name = ?', $full_name);            		                 		                 		                 		                 		               		        	           
+            		     ->from(array('u' => $dbUserName))		     
+                 		 ->where('full_name = ?', $full_name);             		                 		                 		                 		                 		               		        	           
 			    
-            return $db->fetchAll($select);            
+            $rows = $db->fetchAll($select);           
+           
+            $paginator = Zend_Paginator::factory($rows);
+    	    $paginator->setItemCountPerPage(6);
+    	    $paginator->setCurrentPageNumber($page);           		
+                     
+            return $paginator;  
 		}
 		
 	    public function findUserByEmail($email)
