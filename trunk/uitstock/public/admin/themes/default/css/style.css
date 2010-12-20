@@ -128,22 +128,30 @@ caption {
 /* -------------------------------------------------------------- 
    Paging
 -------------------------------------------------------------- */
+.paging img {	
+	margin: 0 2px;	
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+}
+
+.paging img:hover {
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	height: 19px;
+	width: 19px;	
+}
+
+.paging input {
+	margin: 0 3px;
+}
+
 .paging .btnseparator {
    border-left: 1px solid #CCCCCC;
     border-right: 1px solid #FFFFFF;
     height: 22px;
-    margin: 1px;
-    display: inline;
-    padding: 0 1px;
-}
-
-.paging input,
-.paging img {	
-	padding: 0 3px;
-}
-
-.paging img {
-	cursor: pointer;
+    margin: 0 5px;
+    display: inline;    
 }
 
 /* -------------------------------------------------------------- 

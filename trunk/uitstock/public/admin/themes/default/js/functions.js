@@ -101,6 +101,139 @@ function countRow()
 }
 
 /* -------------------------------------------------------------- 
+	Paging ajax
+-------------------------------------------------------------- */
+function pagingAjax()
+{
+	$(".paging img").click(function(){		
+		var btn = $(this).attr('type');				
+		
+		if (btn == 'disable') return false; 		
+		
+		//$(".player_online_ajax").hide();		
+		
+		var newPage = "";
+		var page = parseInt($(".paging #pageNumber").val());		
+		var path = $(".paging .data").attr('path');		
+		var type = $(this).attr('class');
+		
+		var first = $(".paging .data").attr('first');
+		var last = $(".paging .data").attr('last');				
+		
+		if (type == 'f')
+			newPage = first;
+		else if (type == 'l')
+			newPage = last;
+		else if (type == 'n')
+			newPage = page + 1;
+		else if (type == 'p') {
+			newPage = page - 1;						
+		}		
+		
+		if (newPage == "1") {
+			$(".paging img").each(function(){
+				if ($(".paging img").hasClass('f'))
+					$(this).removeAttr('type').attr('type', 'disable');
+			
+				if ($(".paging img").hasClass('p'))
+					$(this).removeAttr('type').attr('type', 'disable');
+				
+				if ($(".paging img").hasClass('n'))
+					$(this).removeAttr('type').attr('type', 'enable');
+				
+				if ($(".paging img").hasClass('l'))
+					$(this).removeAttr('type').attr('type', 'enable');
+			})
+		}
+		
+		if (newPage == last) {						
+			$(".paging img").each(function(){
+				if ($(".paging img").hasClass('n')) 
+					$(this).removeAttr('type').attr('type', 'disable');								
+				
+				if ($(this).hasClass('l'))
+					$(this).removeAttr('type').attr('type', 'disable');
+				
+				if ($(".paging img").hasClass('f'))
+					$(this).removeAttr('type').attr('type', 'enable');		
+				
+				if ($(".paging img").hasClass('p'))
+					$(this).removeAttr('type').attr('type', 'enable');					
+			})					
+		}
+		
+		$.ajax({
+			url: path,
+			data: 'page=' + newPage,
+			cache: false,
+			success: function(data){			
+				$(".paging #pageNumber").val(newPage);
+				$(".player_online_ajax").html(data);				
+			}
+		});
+		
+	});	
+	
+	$(".paging #pageNumber").keypress(function(e){
+		if (e.keyCode == 13) {					
+			//$(".player_online_ajax").hide();	
+			var page = parseInt($(this).val());
+			var first = $(".paging .data").attr('first');
+			var last = $(".paging .data").attr('last');	
+			
+			if (page < first || page > last) return false;						
+					
+			var path = $(".paging .data").attr('path');																		
+			
+			if (page == "1") {
+				$(".paging img").each(function(){
+					if ($(".paging img").hasClass('f'))
+						$(this).removeAttr('type').attr('type', 'disable');
+				
+					if ($(".paging img").hasClass('p'))
+						$(this).removeAttr('type').attr('type', 'disable');
+					
+					if ($(".paging img").hasClass('n'))
+						$(this).removeAttr('type').attr('type', 'enable');
+					
+					if ($(".paging img").hasClass('l'))
+						$(this).removeAttr('type').attr('type', 'enable');
+				})
+			}
+			
+			if (page == last) {						
+				$(".paging img").each(function(){
+					if ($(".paging img").hasClass('n')) 
+						$(this).removeAttr('type').attr('type', 'disable');								
+					
+					if ($(this).hasClass('l'))
+						$(this).removeAttr('type').attr('type', 'disable');
+					
+					if ($(".paging img").hasClass('f'))
+						$(this).removeAttr('type').attr('type', 'enable');		
+					
+					if ($(".paging img").hasClass('p'))
+						$(this).removeAttr('type').attr('type', 'enable');					
+				})					
+			}
+			
+			$.ajax({
+				url: path,
+				data: 'page=' + page,
+				cache: false,
+				success: function(data){			
+					$(".paging #pageNumber").val(page);
+					$(".player_online_ajax").html(data);				
+				}
+			});			
+		}		
+	});	
+	
+	
+}
+
+
+/* -------------------------------------------------------------- 
   Add action for button
 -------------------------------------------------------------- */
 function addActionForButton()
@@ -732,3 +865,4 @@ function change3()
 		});
 	});
 }
+

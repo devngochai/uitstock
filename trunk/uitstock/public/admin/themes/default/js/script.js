@@ -2,6 +2,7 @@ $(function ()
 {
 	slate.init ();
 	slate.portlet.init ();
+	pagingAjax();
 	
 	$('.com').select();	
 	$('.hide').hide();

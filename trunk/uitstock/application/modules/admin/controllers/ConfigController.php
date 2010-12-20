@@ -8,6 +8,7 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 		 	$this->_redirect('admin/index/error');
 		 				 
 		 $this->privileges = $_SESSION['privilege'];
+		 $this->request = $this->getRequest();		 
 		 
 		 $templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 		
@@ -17,7 +18,7 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    	        	    		 		 				 		 				
 	}			
 	
-	public function visitstaticsAction() {		 		 
+	public function visitStaticsAction() {		 		 
 		 $flag = false;		
 		 foreach ($this->privileges as $privilege) {
 			if ($privilege['id'] == 1) $flag = true; 
@@ -36,10 +37,36 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 		$imgDir = $this->config['dirImg'];
 		
 		 $this->view->assign(array(	    		    	    		         
-			'players' => $playerMapper->fetchUserOnline(0 ,5),		
+			'players' => $playerMapper->fetchUserOnline(0 ,$playerNumber),		
 		 	'playerMapper' => $playerMapper,
 		 	'playerPaging' => $playerMapper->showPaging($playerPage, $playerNumber, $playerLink, $imgDir),			 			 			 		    	   		    
 	    ));			
+	}
+	
+	public function pagingAjaxAction()
+	{
+		 $flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 1) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 }
+		 
+		 $this->_helper->layout()->disableLayout();
+
+		 if (null != $this->request->getParam('page')) {
+		 	$page = $this->request->getParam('page');
+		 	$number = 1;
+		 	$start = ($page - 1) * $number;
+		 	
+		 	$playerMapper = new Cloud_Model_Player_CloudPlayerMapper();
+		 	
+		 	$this->view->assign(array(	    		    	    		         
+				'players' => $playerMapper->fetchUserOnline($start ,$number),					 			 					 			 			 		    	   		    
+	    	));			 	
+		 }
+		 
 	}
 	
 	public function fileManagerAction()

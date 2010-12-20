@@ -402,14 +402,15 @@
 //                 $nav .= "<a path=\"$qt\">{$i}</a>";                  
 //            }
             
-            $first = "<img src=\"$imgDir/paging/first.gif\" />";            
-            $prev = "<img src=\"$imgDir/paging/prev.gif\" />";
-            $next = "<img path=\"$link\\page\\2\" src=\"$imgDir/paging/next.gif\" />";
-            $last = "<img path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/last.gif\" />";
-			$nav =  "<input type=\"text\" value=\"$currentPage\" size=\"2\" /> ";
-			$refresh = "<img path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/load.png\" />";
+            $data ="<span class=\"data\" first=\"1\" last=\"$totalPages\" path=\"admin/config/paging-ajax/\" ></span>";
+            $first = "<img class=\"f\" type=\"disable\" src=\"$imgDir/paging/first.gif\" />";            
+            $prev = "<img class=\"p\" type=\"disable\" src=\"$imgDir/paging/prev.gif\" />";
+            $next = "<img class=\"n\" type=\"enable\" title=\"Trang sau\" path=\"$link\\page\\2\" src=\"$imgDir/paging/next.gif\" />";
+            $last = "<img class=\"l\" type=\"enable\" title=\"Trang cuối\" path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/last.gif\" />";
+			$nav =  "Page<input id=\"pageNumber\" type=\"text\" value=\"$currentPage\" size=\"2\" style=\"text-align: center;\" />of $totalPages";
+			$refresh = "<img class=\"r\" type=\"enable\" title=\"Refresh\" path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/load.png\" />";
 			$sep = "<div class=\"btnseparator\"></div>";
 							            
-            return $sep.$first.$prev.$sep.$nav.$sep.$next.$last.$sep.$refresh;
+            return $data.$sep.$first.$prev.$sep.$nav.$sep.$next.$last.$sep.$refresh;
         }		
 	}
