@@ -4,10 +4,10 @@
 	<?php	 	   	      	
  		foreach ($parentItem as $parent): 		
  		 
- 		$idP = ($parent->name == 'Bảng giá trực tuyến') ? "stock-online" :
+ 		$idP = ($parent->alias == 'online-price') ? "stock-online" :
  													"stock-tool";	
  		
- 		$idS = ($parent->name == 'Bảng giá trực tuyến') ? "submenu-stock-online" :
+ 		$idS = ($parent->alias == 'online-price') ? "submenu-stock-online" :
  													"submenu-stock-tool";
 	?>
 		<p id="<?php echo $idP ?>" class="statics"><?php echo $parent->name ?></p>
@@ -16,7 +16,7 @@
 	 		foreach ($subItem as $sub): 	 			 		 
 		 		if ($sub->parent_id == $parent->id) {	
 		?>
-			<li><a href="<?php echo $sub->link ?>"><?php echo $sub->name ?></a></li>						
+			<li><a class="stock_ajax" path="<?php echo $sub->link ?>"><?php echo $sub->name ?></a></li>						
 		<?php } endforeach ?>					                        
 		</ul>	
 	<?php endforeach ?>                                               

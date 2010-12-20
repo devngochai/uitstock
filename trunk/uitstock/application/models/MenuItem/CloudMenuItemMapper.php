@@ -37,6 +37,7 @@
 			      ->setParent_id($row->parent_id)
 			      ->setMenu_cat_id($row->menu_cat_id)
 			      ->setPri_id($row->role_pri_id)
+			      ->setAlias($row->alias)
 				  ->setName($row->name)				
 				  ->setLink($row->link)
 				  ->setOrdering($row->ordering)				 
@@ -60,7 +61,8 @@
 			    'parent_id' => $menuItem->getParent_id(),
 			    'menu_cat_id' => $menuItem->getMenu_cat_id(),
 			    'pri_id' => $menuItem->getPri_id(),
-				'name' => $menuItem->getName(),				
+				'name' => $menuItem->getName(),		
+				'alias' => $menuItem->getAlias(),		
 				'link' => $menuItem->getLink(),
 				'ordering' => $menuItem->getOrdering(),				
 			    'published' => $menuItem->getPublished(),
@@ -105,6 +107,26 @@
 			}	
 		}
 		
+		public function delete($id)
+		{
+			$currentItem = new Cloud_Model_MenuItem_CloudMenuItem();
+			$this->find($id, $currentItem);
+			
+			$db = $this->getDbTable();
+			$parentId =  $currentItem->getParent_id();
+							
+			if ($parentId == 0) {								
+				$where = $db->getAdapter()->quoteInto('parent_id = ?', $id);
+				$db->delete($where);
+												
+				$where = $db->getAdapter()->quoteInto('id = ?', $id);
+				$db->delete($where);
+			} else {									
+				$where = $db->getAdapter()->quoteInto('id = ?', $id);
+				$db->delete($where);
+			}
+		}		
+		
 		public function find($id, Cloud_Model_MenuItem_CloudMenuItem  $menuItem)
 		{
 			$result = $this->getDbTable()->find($id);
@@ -116,7 +138,8 @@
 			      	 ->setParent_id($row->parent_id)
 			      	 ->setMenu_cat_id($row->menu_cat_id)
 			      	 ->setPri_id($row->pri_id)
-				  	 ->setName($row->name)				  	
+				  	 ->setName($row->name)	
+				  	 ->setAlias($row->alias)			  	
 				  	 ->setLink($row->link)
 				  	 ->setOrdering($row->ordering)				 
 				  	 ->setPublished($row->published)
@@ -128,32 +151,75 @@
 			$db = $this->getDbTable();			
 			$select = $db->select()			             
 			             ->where('menu_cat_id = ?' , $id)
+			             ->where('published = 1')
 			             ->order('ordering');			             			                              	
                      
            return $db->fetchAll($select);   
 		}
 
-		public function fetchAllParent($id)
+		public function fetchAllParent($id, $flag = null)
 		{			
-			$db = $this->getDbTable();			
-			$select = $db->select()
-			             ->where('parent_id = 0')
-			             ->where('menu_cat_id = ?' , $id)
-			             ->order('ordering');			             			                              	
+			$db = $this->getDbTable();	
+						
+			if ($flag) {
+				$select = $db->select()
+				             ->where('parent_id = 0')
+				             ->where('menu_cat_id = ?' , $id)
+				             ->where('published = 1')
+				             ->order('ordering');				
+			} else {
+				$select = $db->select()
+				             ->where('parent_id = 0')
+				             ->where('menu_cat_id = ?' , $id)
+				             ->order('ordering');					
+			}
+			             			                              	
                      
            return $db->fetchAll($select);   
 		}
 		
-		public function fetchAllSub($id)
-		{
-			$db = $this->getDbTable();			
-			$select = $db->select()
-			             ->where('parent_id != 0')
-			             ->where('menu_cat_id = ?' , $id)
-			             ->order('ordering');		             			                                 	
-                     
+		public function fetchAllSub($id, $flag = null)
+		{			
+			$db = $this->getDbTable();
+			
+			if ($flag) {
+				$select = $db->select()
+				             ->where('parent_id != 0')
+				             ->where('menu_cat_id = ?' , $id)
+				             ->where('published = 1')
+				             ->order('ordering');					             			
+			} else {
+				$select = $db->select()
+				             ->where('parent_id != 0')
+				             ->where('menu_cat_id = ?' , $id)				             
+				             ->order('ordering');					
+			}			
+		             			                                 	                     
            return $db->fetchAll($select);  
 		}
+		
+		public function fetchAllParent2($id)
+		{			
+			$db = $this->getDbTable();	
+						
+			$select = $db->select()
+				             ->where('parent_id = 0')
+				             ->where('menu_cat_id = ?' , $id);
+				             								             			                              	
+                     
+           return $db->fetchAll($select);   
+		}
+		
+		public function fetchAllSub2($id)
+		{			
+			$db = $this->getDbTable();
+			
+			$select = $db->select()
+			             ->where('parent_id != 0')
+			             ->where('menu_cat_id = ?' , $id);				             				          				
+					             			                                 	                     
+           return $db->fetchAll($select);  
+		}		
 		
 		public function getMinOrder($id)
 		{					
@@ -177,7 +243,24 @@
 			
 			if (null == $row['max']) return 0;
 			else return $row['max'];
-		}	
+		}
+
+		public function getItemByAlias($alias, $currentItem)
+		{						
+			if (null == $currentItem) {$id = ""; $cat = "";}
+			else {$id = $currentItem->getId(); $cat = $currentItem->getMenu_cat_id();}						
+						
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('alias = ?', $alias)
+			             ->where('menu_cat_id = ?', $cat)			            
+			             ->where('id != ?', $id);
+			$row = $db->fetchRow($select);														
+			if (null == $row)
+				return null;
+																      				 			      		
+			return $row;
+		}		
 		
 		public function getIdByOrdering($catId, $ordering)
 		{							

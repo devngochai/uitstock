@@ -11,6 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             'namespace' => 'Cloud',
             'basePath' => APPLICATION_PATH,
         ));
+        Zend_Session::start();
         return $autoloader;
     }
     

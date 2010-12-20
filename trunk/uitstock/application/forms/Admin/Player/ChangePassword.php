@@ -64,10 +64,10 @@ class Cloud_Form_Admin_Player_ChangePassword extends Zend_Form
 		               array('tag' => 'dd', 'class' => 'noDisplay')))
 		));	
 		
-		$this->addElement('hidden', 'email', array(
+		$this->addElement('hidden', 'username', array(
 		       'filters' => array('StringTrim'),
 		       'required' => true,
-		       'value' => $this->_player->email,
+		       'value' => $this->_player->username,
 		       'decorators' => array('ViewHelper', array('HtmlTag',
 		               array('tag' => 'dd', 'class' => 'noDisplay')))
 		));	

@@ -6,7 +6,46 @@
 				</div>
 				
 				<div class="portlet-content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>							
+					<table width="100%" cellpadding="0" cellspacing="0" border="0" class="display">
+						<caption>Danh sách người chơi đang trực tuyến</caption>
+						<thead>							
+							<tr>
+								<th width="10">#</th>	
+								<th>UserName</th>
+								<th>Last visit</th>								
+								<th>IP</th>							
+								<th>Browser</th>															
+								<th>OS</th>
+								<th width="10" class="right">ID</th>							
+							</tr>
+						</thead>
+						<tbody class="rows no-link player_online_ajax">						
+							<?php 
+								if ($this->players != null) {
+									$i = 0;
+									foreach ($this->players as $player) :
+										$i++;			
+										$time = date('H:i:s', $player['last_visit']);	
+										$browserInfo = Cloud_Model_Utli_CloudUtli::getBrowser($player['browser']);
+										$browser = $browserInfo['Browser'] . ' ' . $browserInfo['Version'];				
+										$os = Cloud_Model_Utli_CloudUtli::getOs($player['browser']);
+							?>				
+									<tr>
+										<td><?php echo $i ?></td>										
+										<td><a href="admin/player/view/id/<?php echo $player['id'] ?>"><?php echo $player['username'] ?></a></td>
+										<td><?php echo  $time ?></td>
+										<td><?php echo $player['ip'] ?></td>
+										<td><?php echo $browser ?></td>
+										<td><?php echo $os ?></td>
+										<td class="right"><?php echo $player['id'] ?></td>
+									</tr>		
+							<?php endforeach ?>
+							<?php } ?>
+							<tr class="paging" align="center">
+								<td colspan="7"><?php echo $this->playerPaging ?></td>
+							</tr>											
+						</tbody>
+					</table>																		
 				</div>
 			</div>
 	</div>		

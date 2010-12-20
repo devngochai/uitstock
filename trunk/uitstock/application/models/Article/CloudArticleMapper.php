@@ -591,6 +591,21 @@
                    
             return $db->fetchRow($select);  
 		}
+		
+		public function getSummarize($id, $from, $end)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();
+
+			$dbArticle = $this->getDbTable()->info();
+			$dbArticleName = $dbArticle['name'];			
+			
+			$stmt = $db->query("SELECT distinct(summarize) as date FROM $dbArticleName
+								WHERE cat_id = $id
+								LIMIT $from, $end");
+			$row = $stmt->fetchAll();
+
+			return $row;; 			
+		}
 
 	 	public function setImportant($listid)
 		{	

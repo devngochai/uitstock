@@ -3,7 +3,10 @@ class IndexController extends ZendStock_Controller_Action {
 	public $config;
 	public $widgetMapper;		
     
-	public function init() {    
+	public function init() { 		
+		 if (isset($_COOKIE['Username']) && isset($_COOKIE['Password']) && !isset($_SESSION['player_log'])) 
+		 	$this->_redirect('auth/login/');
+		 	   
 		 $templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 		  			     	           
 	     $dirTemplate = $templateMapper->getTemplateDefault(2); 
@@ -11,11 +14,16 @@ class IndexController extends ZendStock_Controller_Action {
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
 
 	     $this->widgetMapper = new Cloud_Model_Widget_CloudWidgetMapper();	     	     	 
-	     	     
-		 session_start();			 
-		 $this->request = $this->getRequest();
-
-		 $this->view->menuItemMapper = new Cloud_Model_MenuItem_CloudMenuItemMapper();
+	     	     		 	 
+		 if (!isset($_SESSION['player_log'])) $_SESSION['back'] = $_SERVER['REQUEST_URI'];        
+		 $this->request = $this->getRequest();		 
+		 
+		 $this->view->assign(array(
+	    	'menuItemMapper' => new Cloud_Model_MenuItem_CloudMenuItemMapper(),	    	    	
+	        'newsMapper' => new Cloud_Model_Article_CloudArticleMapper(), 
+		 	'playerMapper' => new Cloud_Model_Player_CloudPlayerMapper(),
+		 	'session' => new Cloud_Model_PlayerSession_CloudPlayerSessionMapper(),	    	   		    
+	    ));		 
 	}
 	
 	public function indexAction() {			      

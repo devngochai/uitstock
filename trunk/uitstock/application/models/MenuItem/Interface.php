@@ -8,12 +8,16 @@ interface Cloud_Model_MenuItem_Interface
 	public function save(Cloud_Model_MenuItem_CloudMenuItem $menuItem);
 	public function updateOrdering($id, $parent_id, $catId);
 	public function updateHome($id, $is_home, $catId);
+	public function delete($id);
 	public function find($id, Cloud_Model_MenuItem_CloudMenuItem $menuItem);
 	public function getItemByCat($id);
 	public function fetchAllParent($id);
 	public function fetchAllSub($id);
+	public function fetchAllParent2($id);
+	public function fetchAllSub2($id);
 	public function getMinOrder($id);
 	public function getMaxOrder($id);
+	public function getItemByAlias($alias, $currentItem);
 	public function getItemByCategory($id);
 	public function checkOrder($id, $catId, $type, $ordering);
 	public function changeOrder($id, $catId, $type, $ordering);

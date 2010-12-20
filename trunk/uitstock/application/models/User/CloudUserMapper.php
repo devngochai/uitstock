@@ -236,6 +236,26 @@
                      
            return $paginator;  
 		}	
+		
+		public function fetchUserById($listId, $page)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbUser = $this->getDbTable()->info();
+			$dbUserName = $dbUser['name'];															
+				
+			$select = $db->select()		                  
+		                 ->from(array('u' => $dbUserName))		     
+		        		 ->where("id in ($listId)");            		                 		                 		                 		                 		               		        	           
+			    
+           $rows = $db->fetchAll($select);           
+           
+           $paginator = Zend_Paginator::factory($rows);
+    	   $paginator->setItemCountPerPage(6);
+    	   $paginator->setCurrentPageNumber($page);           		
+                     
+           return $paginator;  
+		}			
 
 		public function getUserByEmail($email, $currentUser)
 		{						

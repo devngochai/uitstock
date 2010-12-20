@@ -41,6 +41,10 @@
 	text-decoration: none;	
 }
 
+.disable {
+	background: #f1f1f1;	
+}
+
 .mega-container .no-hover:hover .mega-link{	
 	background: #263849;
 	border-color: #263849;
@@ -98,8 +102,7 @@ dd {
 	background: url("../images/alert.gif") no-repeat 5% bottom #fceabb;	
 	font-weight: bold;
 	height:30px; 
-	line-height: 30px; 
-	border-bottom: 1px solid #FF9900; 	 
+	line-height: 30px; 	 	
 	padding-left: 122px; 		
 }
 

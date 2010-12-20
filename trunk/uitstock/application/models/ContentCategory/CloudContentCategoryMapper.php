@@ -91,17 +91,16 @@
 			$currentCategory = new Cloud_Model_ContentCategory_CloudContentCategory();
 			$this->find($id, $currentCategory);
 			
+			$db = $this->getDbTable();
 			$parentId =  $currentCategory->getParent_id();
 			
-			if ($parentId == 0) {
-				$db = $this->getDbTable();					
+			if ($parentId == 0) {									
 				$where = $db->getAdapter()->quoteInto('parent_id = ?', $id);
 				$db->delete($where);
 												
 				$where = $db->getAdapter()->quoteInto('id = ?', $id);
 				$db->delete($where);
-			} else {
-				$db = $this->getDbTable();					
+			} else {								
 				$where = $db->getAdapter()->quoteInto('id = ?', $id);
 				$db->delete($where);
 			}

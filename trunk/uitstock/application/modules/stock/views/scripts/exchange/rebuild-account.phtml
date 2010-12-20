@@ -1,0 +1,101 @@
+<p class="stick">Giao dịch</p>
+<table class="menu_style">
+	<tr>
+		<?php 
+			foreach ($this->items as $item) {
+				$class = ($item->alias == 'tai-lap-tai-khoan') ? "black" : "";	
+		?>
+		<td>
+			<a class="<?php echo $class ?>" href="<?php echo $item->link ?>">
+				<?php echo $item->name ?>
+			</a></td>
+		<td>&nbsp;|&nbsp;</td>
+		<?php } ?>		
+	</tr>	
+</table><br/>
+
+<?php if (isset($this->message)) {?>
+	<div class="warning2">
+		<?php echo $this->message; ?>
+	</div>					
+<?php } ?>
+
+<form method="post" action="">
+	<table class="trading_table" cellpadding="5">	
+		<tr><td class="trade_header"><span>Tái lập tài khoản</span></td></tr>
+		<tr>
+			<td height="10px"></td>
+		</tr>
+		<tr>
+			<td align="center" class="trade_content">
+			    <table width="98%" cellspacing="0" cellpadding="0" border="0">
+	                <tr>
+			            <td class="adv_top_left"></td>
+			            <td class="adv_top_center"></td>
+			            <td class="adv_top_right"></td>
+		            </tr>
+	                <tr>
+	                    <td class="adv_left">&nbsp;</td>
+	                    <td align="center" style="background-color: rgb(255, 255, 255);">
+	                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	                            <tr><td align="left" class="rebuild-text-rule">- Chức năng này sẽ giúp bạn tái lập lại tài khoản.</td></tr>
+	                            <tr><td class="rebuild-text-rule">&nbsp;</td></tr>
+	                            <tr><td align="left" class="rebuild-text-rule">- Khi sử dụng chức năng này thì tài khoản hiện hành của bạn sẽ được khởi tạo lại.</td></tr>
+	                            <tr><td class="rebuild-text-rule">&nbsp;</td></tr>
+	                            <tr><td align="left" class="rebuild-text-rule">- Các cổ phiếu và tiền hiện có sẽ bị hủy và trả về trạng thái như vừa bắt đầu chơi!</td></tr>
+	                         </table>
+	                    </td>
+	                    <td class="adv_right">&nbsp;</td>
+		            </tr>
+		            <tr>
+			            <td class="adv_bottom_left"></td>
+			            <td class="adv_bottom_center"></td>
+			            <td class="adv_bottom_right"></td>
+		            </tr>
+	           </table>
+			</td>
+		</tr>
+		<tr>
+			<td height="20px"></td>
+		</tr>		
+		<tr>
+			<td align="center" class="trade_content">
+			    <div style="width: 100%;">		
+					<table width="50%" cellspacing="0" cellpadding="0" border="0" style="text-align: center;">
+					   <tr>
+					        <td valign="top" align="left">
+								<span class="title">Mật khẩu xác nhận: </span></td>
+					        <td valign="top" align="left" style="color: Red;">
+					            <input type="password" class="input_rebuild_acc" />*<br>
+	                            <span class="error2">Xin vui lòng nhập mật khẩu</span><br><br>
+					        </td>
+					    </tr>
+						<tr>
+							<td valign="middle" align="center" rowspan="1" style="" colspan="3"></td>
+						</tr>
+	                    <tr>
+	                        <td valign="top" align="left"><span class="title">Địa chỉ Email: </span></td>
+	                        <td valign="top" align="left" style="color: Red;">
+	                        	<input type="text" class="input_rebuild_acc" />*&nbsp;<br>
+	                            <span class="error2" >Xin vui lòng điền địa chỉ email</span><br>
+	                            <span class="error2">Địa chỉ Email không hợp lệ</span></td>
+	                    </tr>
+						<tr>
+							<td valign="middle" align="center" rowspan="1" style="" colspan="3"></td>
+						</tr>
+				 </table>	            
+				</div>
+	            <span class="error3"></span>
+			</td>
+	</tr>
+	<tr>
+	    <td align="right" class="trade_content">
+	        <input type="submit"  class="Btn" value="Khởi tạo" />&nbsp;
+			<input type="reset"  class="Btn" value="Bỏ qua" />&nbsp;
+	    </td>
+	</tr>
+	<tr>
+		<td height="10px"></td>
+	</tr>
+	</table>
+</form>

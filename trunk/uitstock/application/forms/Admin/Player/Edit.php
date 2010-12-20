@@ -2,7 +2,7 @@
 class Cloud_Form_Admin_Player_Edit extends Zend_Form
 {
 	/**
-	 * Class        : Edit Admin Player
+	 * Class        : Edit Player Information
 	 * Description  : Form
 	 * Author       : Vita - Nguyen Ngoc Linh
 	 * Student ID   : 07520194
@@ -19,36 +19,28 @@ class Cloud_Form_Admin_Player_Edit extends Zend_Form
 		     APPLICATION_PATH . '/models/validate/Player',
 		     'validate'
 		);		
-		
-		$money = Zend_Locale_Format::toNumber($this->_player->getMoney(),
-        						       array('locale' => 'en')
-        );
-		
-		$this->setMethod('post');				  
-		
-		$this->addElement('text', 'username', array(	
-		      'required' => true,			      
-		      'label' => 'Username',
-			  'value' => $this->_player->getUsername(),
-			  'filters' => array('StringTrim'),		     
-		));		
-		
-		$this->addElement('text', 'money', array(			  
-		      'label' => 'Tổng tiền',
-			  'value' => $money,
-			  'attribs' => array(
-				    'readonly' => true,
-					//'disable' => 'disabled',
-			   ),			  		     
-		));	
-		
+				
+		$this->setMethod('post');
+
 		$this->addElement('text', 'full_name', array(	
 		      'required' => true,			      
 		      'label' => 'Họ tên',
 			  'value' => $this->_player->getFull_name(),
 			  'filters' => array('StringTrim'),		     
-		));			
+		));	
 		
+		$this->addElement('text', 'username', array(	
+		      'required' => true,			      
+		      'label' => 'Username',
+			  'value' => $this->_player->getUsername(),
+			   'attribs' => array(
+				    'class' => 'disable',
+			   		'readonly' => true,
+					//'disable' => 'disabled',
+			   ),	
+		  'filters' => array('StringTrim'),		     
+		));		
+							
 		$this->addElement('select', 'gender', array(
 			   'label' => 'Giới tính',	
 		       'value' => $this->_player->getGender(),	       
@@ -104,7 +96,7 @@ class Cloud_Form_Admin_Player_Edit extends Zend_Form
 			  'filters' => array('StringTrim'),		     
 		));	
 		
-		$this->addElement('select', 'status', array(
+		$this->addElement('select', 'is_enable', array(
 			   'label' => 'Status',		       
 		       'multiOptions' => array('1' => 'Enable', '0' => 'Disable')
 		));			
@@ -117,6 +109,14 @@ class Cloud_Form_Admin_Player_Edit extends Zend_Form
 		       'filters' => array('StringTrim'),
 		       'required' => true,
 		       'value' => $this->_player->id,
+		       'decorators' => array('ViewHelper', array('HtmlTag',
+		               array('tag' => 'dd', 'class' => 'noDisplay')))
+		));	
+		
+		$this->addElement('hidden', 'idmoney', array(
+		       'filters' => array('StringTrim'),
+		       'required' => true,
+		       'value' => $this->_player->getMoney(),
 		       'decorators' => array('ViewHelper', array('HtmlTag',
 		               array('tag' => 'dd', 'class' => 'noDisplay')))
 		));	

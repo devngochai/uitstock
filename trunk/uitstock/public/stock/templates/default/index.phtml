@@ -18,8 +18,11 @@
     
         <?php echo $this->render('header.phtml'); ?> 
         		 
-        <div id="mainContent">             
-			 <div id="content">
+        <div id="mainContent">
+        	<div class="center hide1">
+        	 	<img src="<?php echo $this->dirImg;?>/loader.gif"  />
+        	 </div>             
+			 <div id="content">			 				    			    
 				 <?php echo $this->layout()->content; ?>
 			 </div> 
 			 

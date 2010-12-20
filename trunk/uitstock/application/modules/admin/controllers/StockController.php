@@ -5,8 +5,7 @@ class Admin_StockController extends ZendStock_Controller_Action {
 	public function init() {      			     	           
 	     $dirTemplate = '/admin/templates/default';		 
 		 $dirTheme = '/admin/themes/default';		     	           
-	     $this->config = $this->createLayout($dirTemplate, $dirTheme);   
-		 session_start();
+	     $this->config = $this->createLayout($dirTemplate, $dirTheme);   		 
 	}
 	
 	public function stockAction() {			      

@@ -91,12 +91,22 @@ class ZendStock_Controller_Action extends Zend_Controller_Action {
              }
           }
           
+          
+		$front = Zend_Controller_Front::getInstance();
+		$front->registerPlugin(new Zend_Controller_Plugin_ErrorHandler(array(
+		    'module'     => 'admin',
+		    'controller' => 'error',
+		    'action'     => 'error'
+		)));
+		          
+          
           /* -------------------------------------------------------------- 
     	   * Thiết lập đường dẫn	   
 		  -------------------------------------------------------------- */                						   
           $this->view->dirCss = $dirCss;
           $this->view->dirImg = $dirImg;
           $this->view->dirJs  = $dirJs;
+          $config['dirImg'] = $dirImg;
           
           /* -------------------------------------------------------------- 
     	   * Thiết lập template	   

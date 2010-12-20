@@ -7,23 +7,23 @@
 			 		foreach ($parentItem as $parent): 		
 				 		$i++;
 				 		
-						if ($parent->name == 'Trang chủ') { 
+						if ($parent->alias == 'index') { 
 							$li = "First";
 							$a = ($this->aliasP == 'chuyen-gia-nhan-dinh') ? "Active Hover" : "";
 						}	
-						if ($parent->name == 'Tin tức') {
+						if ($parent->alias == 'tin-tuc') {
 							$a = ($this->aliasP == null || $this->aliasP == 'tin-tuc') ? "Active Hover" : "";
 						}
-						if ($parent->name == 'Nhận định thị trường') {
+						if ($parent->alias == 'nhan-dinh-thi-truong') {
 							$a = ($this->aliasP == 'nhan-dinh-thi-truong') ? "Active Hover" : "";
 						}	
-						if ($parent->name == 'Kinh tế Việt Nam') {
+						if ($parent->alias == 'kinh-te-viet-nam') {
 							$a = ($this->aliasP == 'kinh-te-viet-nam') ? "Active Hover" : "";
 						}	
-						if ($parent->name == 'Kinh tế thế giới') {
+						if ($parent->alias == 'kinh-te-the-gioi') {
 							$a = ($this->aliasP == 'kinh-te-the-gioi') ? "Active Hover" : "";
 						}					
-						if ($parent->name == 'Kiến thức đầu tư') {
+						if ($parent->name == 'kien-thuc-dau-tu') {
 							$a = ($this->aliasP == 'kien-thuc-dau-tu') ? "Active Hover" : "";
 						}					
 				?>

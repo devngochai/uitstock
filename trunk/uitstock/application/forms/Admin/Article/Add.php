@@ -61,8 +61,7 @@ class Cloud_Form_Admin_Article_Add extends Zend_Form
 			  'filters' => array('StringTrim'),		     
 		));
 		
-		$this->addElement('textarea', 'content', array(	
-		      'required' => true,			      
+		$this->addElement('textarea', 'content', array(			      			      
 		      'label' => 'Nội dung',
 			  'attribs' => array(
 					'cols' => 200,

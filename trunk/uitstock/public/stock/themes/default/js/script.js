@@ -1,6 +1,22 @@
-  function startTime()
+$(document).ready(function(){  	
+	$('.hide').hide();
+	$('.focus').focus(); 
+	
+    startTime();     
+    tab();
+    table();	 
+    jExpand();
+    sidebar();  
+    datepicker();
+   
+    stockAjax();
+    checkValid();
+    command();       	
+});
+
+function startTime()
 {
-	 var Days = new Array("Ch&#7911; nh&#7853;t","Th&#7913; hai","Th&#7913; ba","Th&#7913; t&#432;","Th&#7913; n&#259;m","Th&#7913; s&aacute;u","Th&#7913; b&#7843;y");
+	 var Days = new Array("Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy");
 	 var sign = "/";
 	 var signdigit = ":";
 	 var signchar = ",";
@@ -36,86 +52,188 @@
      tickTime=setTimeout("startTime()",1000);
 } 
 
-$(document).ready(function(){  	
-    startTime();
-    
-    // Tabs
-    //When page loads...
-    $("#news-info ul.tabs li:first").addClass("active").show(); //Activate first tab
-    $("#stock-info ul.tabs li:first").addClass("active").show(); //Activate first tab    
-    $("#rule-info ul.tabs li:first").addClass("active").show(); //Activate first tab 
-    
-	$("#news-info .tab_content").hide(); //Hide all content
-	$("#news-info .tab_content:first").show(); //Show first tab content
-	
-	$("#stock-info .tab_content2").hide(); //Hide all content	
-	$("#stock-info .tab_content2:first").show(); //Show first tab content
-    
-    $("#rule-info .tab_content1").hide(); //Hide all content	
-	$("#rule-info .tab_content1:first").show(); //Show first tab content
-
-	//On Click Event
-	$("#news-info ul.tabs li").click(function() {
-
-		$("#news-info ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$("#news-info .tab_content").hide(); //Hide all tab content
-
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
-	});   
-
-	//On Click Event
-	$("#stock-info ul.tabs li").click(function() {
-
-		$("#stock-info ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$("#stock-info .tab_content2").hide(); //Hide all tab content
-
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
+function checkValid()
+{
+	$(".valid").blur(function(){	
+		var name = $(this).attr('name');
+		
+		$('.hide').insertAfter(this);	
+		$('.hide').css('display', 'inline');
+		
+		var mess = '.' + name; 
+		$(mess).insertAfter(this);											
+		$(mess).html("");
+		
+		var value = $(this).val();
+		var path = $(this).attr('path');
+		
+		if (value == '') {
+			$('.hide').css('display', 'none');
+			$(mess).removeClass('ok').addClass('error').html('Bạn chưa nhập ' + name); 
+			return false;
+		}
+		
+		$.ajax({
+			url: path,
+			data: 'value=' + value,
+			cache: false,
+			success: function(data) {		
+				$('.hide').hide();								
+				
+				if (data == 'error') 					
+					$(mess).removeClass('ok').addClass('error').html(name + ' không hợp lệ');					
+				else if (data == 'duplicate') 
+					$(mess).removeClass('ok').addClass('error').html(name + ' đã tồn tại trong hệ thống');
+				else
+					$(mess).removeClass('error').addClass('ok').html(name + ' hợp lệ');
+									
+		    }
+		});
 	});
-    
-    //On Click Event
-    $("#rule-info ul.tabs li").click(function() {
+}
 
-		$("#rule-info ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$("#rule-info .tab_content1").hide(); //Hide all tab content
+function tab()
+{
+		// Tabs
+	    //When page loads...
+	    $("#news-info ul.tabs li:first").addClass("active").show(); //Activate first tab
+	    $("#stock-info ul.tabs li:first").addClass("active").show(); //Activate first tab    
+	    $("#rule-info ul.tabs li:first").addClass("active").show(); //Activate first tab 
+	    
+		$("#news-info .tab_content").hide(); //Hide all content
+		$("#news-info .tab_content:first").show(); //Show first tab content
+		
+		$("#stock-info .tab_content2").hide(); //Hide all content	
+		$("#stock-info .tab_content2:first").show(); //Show first tab content
+	    
+	    $("#rule-info .tab_content1").hide(); //Hide all content	
+		$("#rule-info .tab_content1:first").show(); //Show first tab content
+	
+		//On Click Event
+		$("#news-info ul.tabs li").click(function() {
+	
+			$("#news-info ul.tabs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$("#news-info .tab_content").hide(); //Hide all tab content
+	
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+		});   
+	
+		//On Click Event
+		$("#stock-info ul.tabs li").click(function() {
+	
+			$("#stock-info ul.tabs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$("#stock-info .tab_content2").hide(); //Hide all tab content
+	
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+		});
+	    
+	    //On Click Event
+	    $("#rule-info ul.tabs li").click(function() {
+	
+			$("#rule-info ul.tabs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$("#rule-info .tab_content1").hide(); //Hide all tab content
+	
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+		});
+}
 
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
-	});
-	
-	
-   // Table
-   $(".panel-content-data table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"}); 
-   
-   $(".panel-content-data table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});
-   
-   $("#content #stock-info .tab_content2 table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});
-   
-   $("#content #stock-info .tab_content2 table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});     
-   
-   $(".statics-box table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"}); 
-   
-   $(".statics-box table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});
-   //Menu
-    /*
-   $("#submenu-stock-online").hide(); 
-   
-   $("#stock-online").click(function(){       
+function table()
+{
+	   // Table
+	   $(".panel-content-data table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"}); 
+	   
+	   $(".panel-content-data table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});
+	   
+	   $("#content #stock-info .tab_content2 table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});
+	   
+	   $("#content #stock-info .tab_content2 table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});     
+	   
+	   $(".statics-box table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"}); 
+	   
+	   $(".statics-box table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});	   	   
+	   
+	   $(".statics-box2 table tbody tr:even").css({"background" : "url(stock/themes/default/images/theme_green.gif) repeat", "color" : "#008000", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"}); 
+	   
+	   $(".statics-box2 table tbody tr:odd").css({"color" : "#C46200", "font-weight" : "bold", "font-style" : "italic", "font-size" : "14px"});
+}
+
+function sidebar()
+{
+    $("#stock-online").click(function(){       
         $("#submenu-stock-online").slideToggle("slow");    
-   });
-   
-   $("#submenu-stock-tool").hide(); 
-   
-   $("#stock-tool").click(function(){       
+    });
+    $("#stock-tool").click(function(){       
         $("#submenu-stock-tool").slideToggle("slow");    
-   });
-  */   
-     
-});
+    });	
+}
+
+function datepicker()
+{
+	// Datepicker
+	$( ".datepicker" ).datepicker({
+		showOn: "button",
+		buttonImage: "stock/themes/default/images/calendar.gif",
+		buttonImageOnly: true,
+        numberOfMonths: 1,  dateFormat: 'dd/mm/yy',
+        monthNames: ['Một','Hai','Ba','Tư','Năm','Sáu','Bảy','Tám','Chín', 
+        'Mười','Mười một','Mười hai'] ,
+        monthNamesShort: ['Tháng1','Tháng2','Tháng3','Tháng4','Tháng5',
+        'Tháng6','Tháng7','Tháng8','Tháng9','Tháng10','Tháng11','Tháng12'] ,
+        dayNames: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm',
+         'Thứ sáu', 'Thứ bảy'],
+        dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'] ,
+        showWeek: true , showOn: 'both',
+        changeMonth: true , changeYear: true,
+        currentText: 'Hôm nay', weekHeader: 'Tuần'
+        });
+}
+
+function command()
+{
+	$("select.command").change(function(){
+		if ($(this).val() == 'ato')
+			$(".price").hide();
+		else
+			$(".price").show();
+	});
+}
+
+function stockAjax()
+{
+	$(".stock_ajax").click(function(){
+		$("#content").html("");
+		$("#content").append($('.hide1'));
+		$('.hide1').css('display', 'block');
+		var path = $(this).attr('path');
+		
+		$.ajax({
+			url: path,			
+			cache: false,
+			success: function(data) {	
+				$('.hide1').css('display', 'none');
+				$("#content").html(data);									
+		    }
+		});
+	});
+}
+
+function jExpand()
+{    
+    $("#report tr.even").hide();
+    $("#report tr:first-child").show();
+    
+    $("#report tr.odd").click(function(){
+        $(this).next("tr").toggle();
+        $(this).find(".arrow").toggleClass("up");
+    });
+    //$("#report").jExpand();
+}

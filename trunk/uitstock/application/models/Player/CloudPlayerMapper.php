@@ -67,20 +67,20 @@
 			}		
 			
 			if ($player->getPassword() != '') {
-				$salt = md5($player->getEmail());
-				$password = md5($player->getPassword());
+				$salt = $player->getUsername();
+				$password = $player->getPassword();
 			}			
 			
 			$data = array(			   
 				'level_id' => 1,
 			    'username' => $player->getUsername(),
+			    'email' => $player->getEmail(),
 				'password' => md5($password . $salt),
 				'full_name' => $player->getFull_name(),
 			    'gender' => $player->getGender(),
 				'birthday' => $birthday,
-			    'address' => $player->getAddress(),
-			    'email' => $player->getEmail(),
-				'mobile' => $player->getMobile(),			   			    			    										    							 											    
+			    'mobile' => $player->getMobile(),
+				'address' => $player->getAddress(),			    							   			    			    										    							 											    
 			    'job' => $player->getJob(),
 				'company' => $player->getCompany(),
 			    'is_enable' => $player->getIs_enable(), 
@@ -99,10 +99,9 @@
 			}
 		}			
 		
-		public function updatePassword($id, $email, $password)
+		public function updatePassword($id, $username, $password)
 		{
-			$salt = md5($email);
-			$password = md5($password); 			
+			$salt = $username;			 			
 			$data = array('password' => md5($password . $salt));
 			$where = array('id = ?' => $id);
 			$this->getDbTable()->update($data, $where);
@@ -130,6 +129,19 @@
 			       ->setIs_enable($row->is_enable)			      			      
 			       ->setMoney($row->money);	   
 		}	
+		
+	    public function findPlayerByUsername($username)
+		{													
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('username = ?', $username);			             
+			             
+			$row = $db->fetchRow($select);														
+			if ($row == null)
+				return null;
+																      				 			      		
+			return $row;
+		}			
 		
 		public function searchPlayer($username)
 		{
@@ -185,7 +197,44 @@
     	   $paginator->setCurrentPageNumber($page);           		
                      
            return $paginator;  
+		}	
+		
+		public function fetchUserOnline($from, $end)
+		{
+			$db = Zend_DB_table_Abstract::getDefaultAdapter();							
+			
+			$dbPlayer = $this->getDbTable()->info();
+			$dbPlayerName = $dbPlayer['name'];	
+
+			$sessionMapper = new Cloud_Model_PlayerSession_CloudPlayerSessionMapper();
+			$dbSession = $sessionMapper->getDbTable()->info();
+			$dbSessionName = $dbSession['name'];			
+				
+			$select = $db->select()		                  
+		                 ->from(array('a' => $dbPlayerName), array('id', 'username'))
+		                 ->join(array('s' => $dbSessionName), 'a.id = s.user_id', array('ip', 'browser', 'last_visit'))
+		                 ->order('s.last_visit desc')		                 		                 		                 
+		                 ->limit($end, $from);		               		        	             			                            	
+
+		                 
+           return $db->fetchAll($select);
 		}		
+
+		public function getPlayerByUsername($username, $currentPlayer)
+		{						
+			if (null == $currentPlayer) $id = "";
+			else $id = $currentPlayer->getId();
+					
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('username = ?', $username)			             
+			             ->where('id != ?', $id);
+			$row = $db->fetchRow($select);														
+			if ($row == null)
+				return null;
+																      				 			      		
+			return $row;
+		}
 		
 		public function getPlayerByEmail($email, $currentPlayer)
 		{						
@@ -208,8 +257,7 @@
 			if (null == $currentPlayer) $id = "";
 			else $id = $currentPlayer->getId();
 			
-			$salt = md5($currentPlayer->getEmail());
-			$password = md5($password); 			
+			$salt = $currentPlayer->getUsername();			 			
 				
 			$db = $this->getDbTable();
 			$select = $db->select()			                	
@@ -233,5 +281,135 @@
 			             ->where('username like ?', "%$username%");			             			                               
                    
             return $db->fetchAll($select);            
-		}	
+		}
+
+		public function isValidate($username, $password)
+		{			
+			$db = $this->getDbTable();
+			$select = $db->select()			                	
+			             ->where('password = ?', $password)			             
+			             ->where('username = ?', $username)
+			             ->where('is_enable = 1');
+			$row = $db->fetchRow($select);														
+			if ($row == null)
+				return false;
+																      				 			      		
+			return true;
+		}
+		
+		public function checkUsername($username)
+		{
+			$db = $this->getDbTable();
+			$select = $db->select()			                							             
+			             ->where('username = ?', $username);
+			             			             
+			$row = $db->fetchRow($select);														
+			if ($row == NULL)
+				return true;
+																      				 			      		
+			return false;
+		}
+		
+		public function checkEmail($email)
+		{
+			$db = $this->getDbTable();
+			$select = $db->select()			                							             
+			             ->where('email = ?', $email);
+			             			             
+			$row = $db->fetchRow($select);														
+			if ($row == NULL)
+				return true;
+																      				 			      		
+			return false;
+		}
+		
+		public function login($username, $password, $remember = null)
+		{
+			$currentPlayer = $this->findPlayerByUsername($username);
+								
+			$_SESSION['playerId'] = $currentPlayer->id;					
+			$_SESSION['username'] = $currentPlayer->username;
+			$_SESSION['player_name'] = $currentPlayer->full_name;	
+			$_SESSION['money'] =  $currentPlayer->money;																							
+			$_SESSION['player_log'] = true;
+			
+			if ($remember  == '1') {                            
+                setcookie("Username", $username, time()+60*60*24*30, '/');
+                setcookie("Password", $password, time()+60*60*24*30, '/');
+           	} else {                       			
+                setcookie("Username", "", time()-60*60*24*30, '/');
+                setcookie("Password", "", time()-60*60*24*30, '/');                
+           	}									
+		}		
+		
+		public function getNumberUser()
+		{
+			$db = $this->getDbTable();			
+			$select = $db->select()
+			             ->from($db, 'id');			             			            
+                     
+            return count($db->fetchRow($select));			
+		}		
+		
+		public function getUserNameById($listId)
+		{						
+			$db = $this->getDbTable();			
+			$select = $db->select()
+			             ->from($db, 'username')
+			             ->where("id in ($listId)");			             			            
+                     
+            return $db->fetchAll($select);			
+		}
+		
+		public function showPaging($page, $number, $link, $imgDir)
+        {            
+           	$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+           	
+			$sessionMapper = new Cloud_Model_PlayerSession_CloudPlayerSessionMapper();
+			$dbSession = $sessionMapper->getDbTable()->info();
+			$dbSessionName = $dbSession['name'];	
+			
+			$stmt = $db->query("SELECT count(*) as count from $dbSessionName 
+								WHERE user_id != 0");
+			$row = $stmt->fetch();
+									                                           
+            $totalPages = ceil((int) $row['count'] / (int) $number);                         
+            return $this->paging(1, $page, $totalPages, $link, $imgDir);
+        } 
+
+		public function paging($pageCount, $currentPage, $totalPages, $link, $imgDir)
+        {
+            if ($totalPages < 1) return "";                                           
+                  
+            $nav = "";                                
+            $prev = "";
+            $next = "";            
+            $from = 1;         
+            $to = $from + $pageCount;                                    
+            if ($to > $totalPages) $to = $totalPages;
+                   
+            //$nextLink = $link . '\page\2';
+            //$prevLink =  $link . '\page\1';
+            
+            //$next = "<a path=\"$nextLink\" class=\"btnPaging\">Next</a>"; 
+			//$prev = "<a path=\"$prevlink\" class=\"btnPaging\">Previous</a>";
+                   
+ 
+            
+//            for ($i = $from; $i <= $to; $i++)
+//            {                                                            
+//                 $qt = $link .  "\\page\\" . $i;
+//                 $nav .= "<a path=\"$qt\">{$i}</a>";                  
+//            }
+            
+            $first = "<img src=\"$imgDir/paging/first.gif\" />";            
+            $prev = "<img src=\"$imgDir/paging/prev.gif\" />";
+            $next = "<img path=\"$link\\page\\2\" src=\"$imgDir/paging/next.gif\" />";
+            $last = "<img path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/last.gif\" />";
+			$nav =  "<input type=\"text\" value=\"$currentPage\" size=\"2\" /> ";
+			$refresh = "<img path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/load.png\" />";
+			$sep = "<div class=\"btnseparator\"></div>";
+							            
+            return $sep.$first.$prev.$sep.$nav.$sep.$next.$last.$sep.$refresh;
+        }		
 	}

@@ -9,16 +9,17 @@ class Admin_PageController extends ZendStock_Controller_Action {
 	public $privilegeTypeMapper;
 	public $entry;
     
-	public function init() {    	
-		 session_start();
+	public function init() {  
+		 if (!isset($_SESSION['log']))
+		 	$this->_redirect('admin/index/error');
+		 			  			 
 		 $this->privileges = $_SESSION['privilege'];		 
 		 $flag = false;		
 		 foreach ($this->privileges as $privilege) {
 			if ($privilege['id'] == 67) $flag = true; 
 		 }
-	 	 if (!$flag) {
-			$this->_redirect('admin/index/error');
-		 } 
+	 	 if (!$flag) 
+			$this->_redirect('admin/index/error');		 
 		 	
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 18, 2010 at 01:35 AM
+-- Generation Time: Dec 20, 2010 at 12:43 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -35,7 +35,7 @@ CREATE TABLE `articles` (
   `important` tinyint(1) default NULL,
   `count` int(11) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
 
 -- 
 -- Dumping data for table `articles`
@@ -128,6 +128,31 @@ INSERT INTO `articles` VALUES (85, 12, 1, 0, 'Bán căn hộ IPH giá gốc đ�
 INSERT INTO `articles` VALUES (86, 7, 1, 0, 'Chứng khoán tiếp tục thăng hoa trong phiên đầu tuần', 'chung-khoan-tiep-tuc-thang-hoa-trong-phien-dau-tuan', 'Vn-Index khiến nhiều nhà đầu tư ngỡ ngàng khi tăng hơn 12 điểm ngay trong đợt khớp lệnh mở cửa. Giao dịch khả quan, đặc biệt tại nhóm cổ phiếu tài chính, bất động sản, giúp đà đi lên của chứng khoán tiếp tục được nối dài.', 'files/news/20101214/20101214220523.jpg', '<p>\r\n	Sau 2 phi&ecirc;n giao dịch mang t&iacute;nh &ldquo;hồi sinh&rdquo; hồi cuối tuần trước, thị trường chứng kho&aacute;n tiếp tục khởi động đầy hứng khởi trong s&aacute;ng nay. Tăng tới 12,76 điểm chỉ trong v&ograve;ng 15 ph&uacute;t mở cửa, Vn-Index vượt ngưỡng 480 điểm một c&aacute;ch dễ d&agrave;ng với 8,3 triệu chứng kho&aacute;n được chuyển nhượng, tương đương 193,13 tỷ đồng.</p>\r\n<p>\r\n	<img alt="" src="/files/upload/images/chung-khoan-0(1).jpg" /></p>\r\n<p>\r\n	Chứng kho&aacute;n tiếp tục nối d&agrave;i chuỗi thăng hoa. Ảnh minh họa: Ho&agrave;ng H&agrave;</p>\r\n<p class=\\"Normal\\">\r\n	Trong số hơn 8 triệu cổ phiếu được sang tay n&oacute;i tr&ecirc;n, PXL v&agrave; STB đ&oacute;ng g&oacute;p mỗi m&atilde; một triệu chứng kho&aacute;n, OGC, EIB, REE, HPG, SJS&hellip; cũng c&oacute; giao dịch khả quan.</p>\r\n<p class=\\"Normal\\">\r\n	Bước sang khớp lệnh li&ecirc;n tục, c&aacute;c lệnh mua được ồ ạt đẩy v&agrave;o thị trường, tập trung v&agrave;o c&aacute;c m&atilde; t&agrave;i ch&iacute;nh&hellip; CTG, EIB, STB, SSI nhanh ch&oacute;ng mất hết dư b&aacute;n. Trong khi đ&oacute;, tr&ecirc;n s&agrave;n H&agrave; Nội, ACB, BVS, KLS, VND&hellip; cũng nhanh ch&oacute;ng rơi v&agrave;o cảnh ch&aacute;y h&agrave;ng.</p>\r\n<p class=\\"Normal\\">\r\n	T&iacute;nh đến sau 9 giờ, bảng điện tử 2 s&agrave;n ghi nhận hơn 500 m&atilde; chứng kho&aacute;n tăng gi&aacute;, trong đ&oacute; c&oacute; khoảng 300 m&atilde; tăng trần. Vn-Index vọt l&ecirc;n gần 17 điểm tại thời điểm n&agrave;y để tiệm cận ngưỡng 490 điểm. Sau thời điểm n&agrave;y, chỉ số của s&agrave;n TP HCM c&oacute; xu hướng đi ngang cho d&ugrave; giao dịch tr&ecirc;n thị trường vẫn diễn biến s&ocirc;i động.</p>\r\n<p class=\\"Normal\\">\r\n	Vn-Index ch&iacute;nh thức vượt ngưỡng kh&aacute;ng cự 490 điểm trong đợt khớp lệnh đ&oacute;ng cửa bằng việc tăng 17,16 điểm. Chỉ số n&agrave;y chốt phi&ecirc;n ở 490,22 điểm với 81,97 triệu chứng kho&aacute;n được chuyển nhượng, tương đương 1.905,35 tỷ đồng. Bảng điện tử HOSE ghi nhận gần 20 cổ phiếu chuyển nhượng được tr&ecirc;n một triệu chứng kho&aacute;n. Trong đ&oacute;, PXL l&agrave; m&atilde; &ldquo;đắt h&agrave;ng&rdquo; nhất với hơn 4 triệu cổ phiếu được sang tay.</p>\r\n<p class=\\"Normal\\">\r\n	Tr&ecirc;n s&agrave;n H&agrave; Nội, <strong><font color=\\"#4f4f4f\\">HNX-Index</font></strong> cũng tăng 5,37 điểm, l&ecirc;n 121,76 điểm. Khối lượng giao dịch tr&ecirc;n s&agrave;n cũng đạt 53,15 triệu cổ phiếu, tr&aacute;i phiếu, tương đương 1.074 tỷ đồng. Mức tăng nhẹ cũng được ghi nhận tr&ecirc;n s&agrave;n <strong><font color=\\"#4f4f4f\\">UPCoM</font></strong> khi Index t&iacute;ch lũy th&ecirc;m 0,32 điểm, l&ecirc;n 41,75 điểm. Lượng giao dịch trong buổi s&aacute;ng cũng tương đối khả quan với 577.200 cổ phiếu được chuyển nhượng, tương đương 5,8 tỷ đồng.</p>', '2010-12-14 21:44:06', NULL, 1, 1, 0);
 INSERT INTO `articles` VALUES (87, 11, 1, 0, 'Lãi suất liên ngân hàng đồng loạt tăng', 'lai-suat-lien-ngan-hang-dong-loat-tang', 'Lãi suất giao dịch bình quân trên thị trường liên ngân hàng bằng VND tăng ở tất cả các kỳ hạn. Trong đó, tăng mạnh nhất là lãi suất giao dịch bình quân qua đêm và 1 tuần với các mức tăng lần lượt là 2.39% và 1.19%. Các kỳ hạn còn lại có các mức tăng từ 0.06% đến 0.79%', 'files/news/20101215/20101215124250.jpg', '<p class=\\"pBody\\" style=\\"text-align: center;\\">\r\n	<img alt=\\"\\" src=\\"/files/upload/images/GetImage_ashx.jpg\\" style=\\"width: 200px; height: 150px;\\" /></p>\r\n<p class=\\"pBody\\">\r\n	Th&ocirc;ng tin tr&ecirc;n vừa được NHNN c&ocirc;ng bố s&aacute;ng ng&agrave;y 15/12. Cũng theo NHNN trong tuần từ 4/12-10/12, l&atilde;i suất b&igrave;nh qu&acirc;n qua đ&ecirc;m <a href=\\"http://finance.vietstock.vn/vi/Stock/VND\\" style=\\"text-decoration: underline;\\" target=\\"_blank\\">VND</a> ở mức 11.33%/năm, tăng 2.39% so với kỳ trước. L&atilde;i suất c&aacute;c kỳ hạn c&ograve;n lại đều dao động quanh mức 13% v&agrave; 13.5%. L&atilde;i suất b&igrave;nh qu&acirc;n cao nhất trong tuần l&agrave; kỳ hạn 3 th&aacute;ng, hiện ở mức 13.45%. Tuần n&agrave;y kh&ocirc;ng ph&aacute;t sinh giao dịch kỳ hạn 6 th&aacute;ng.</p>\r\n<p class=\\"pBody\\">\r\n	Đối với c&aacute;c giao dịch bằng USD: L&atilde;i suất b&igrave;nh qu&acirc;n c&aacute;c kỳ hạn 1 tuần v&agrave; 2 tuần tăng; với mức tăng lần lượt 0.04% v&agrave; 0.35%. C&aacute;c kỳ hạn c&ograve;n lại giảm; trong đ&oacute; kỳ hạn qua đ&ecirc;m giảm nhẹ 0.01%; kỳ hạn 1 th&aacute;ng v&agrave; 3 th&aacute;ng giảm tương đối với c&aacute;c mức giảm lần lượt l&agrave; 0.22% v&agrave; 0.49%. L&atilde;i suất b&igrave;nh qu&acirc;n qua đ&ecirc;m ở mức 0.52%/năm; l&atilde;i suất b&igrave;nh qu&acirc;n c&aacute;c kỳ hạn c&ograve;n lại dao động từ 0.97% đến 3.25%/năm.</p>\r\n<p class=\\"pBody\\">\r\n	Đến ng&agrave;y 8/12/2010, tổng doanh số giao dịch tr&ecirc;n thị trường li&ecirc;n ng&acirc;n h&agrave;ng trong kỳ đạt xấp xỉ 110,984 tỷ <a href=\\"http://finance.vietstock.vn/vi/Stock/VND\\" style=\\"text-decoration: underline;\\" target=\\"_blank\\">VND</a> v&agrave; 3,615 triệu USD, b&igrave;nh qu&acirc;n đạt khoảng 22,197 tỷ <a href=\\"http://finance.vietstock.vn/vi/Stock/VND\\" style=\\"text-decoration: underline;\\" target=\\"_blank\\">VND</a> v&agrave; 723 triệu USD/ng&agrave;y.</p>\r\n<p class=\\"pBody\\">\r\n	Trong tuần, c&aacute;c giao dịch chủ yếu ph&aacute;t sinh đối với c&aacute;c kỳ hạn ngắn (qua đ&ecirc;m v&agrave; 1 tuần), tập trung v&agrave;o kỳ hạn qua đ&ecirc;m. Doanh số <a href=\\"http://finance.vietstock.vn/vi/Stock/VND\\" style=\\"text-decoration: underline;\\" target=\\"_blank\\">VND</a> qua đ&ecirc;m đạt 46,112 tỷ, chiếm tỷ trọng 41.5% so với tổng doanh số giao dịch cả tuần; doanh số giao dịch USD qua đ&ecirc;m đạt 2,497 triệu USD, chiếm 68.49% tổng doanh số cả tuần.</p>\r\n<p class=\\"pSubTitle\\">\r\n	L&atilde;i suất huy động ổn định trở lại sau vụ Techcombank</p>\r\n<p class=\\"pBody\\">\r\n	L&atilde;i suất huy động <a href=\\"http://finance.vietstock.vn/vi/Stock/VND\\" style=\\"text-decoration: underline;\\" target=\\"_blank\\">VND</a> tr&ecirc;n thị trường tiền tệ trong ng&agrave;y 7-8/12/2010 biến động tăng đột biến l&ecirc;n 17-18%/năm do NHTM cổ phần Kỹ thương (Techcombank)&nbsp;thực hiện l&atilde;i suất huy động vốn 17%/năm th&ocirc;ng qua sản phẩm tiết kiệm &rdquo;03 ng&agrave;y v&agrave;ng&rdquo;.</p>\r\n<p class=\\"pBody\\">\r\n	Tuy nhi&ecirc;n, sau khi&nbsp; NHNN c&oacute; c&ocirc;ng văn số 9577/NHNN-CSTT ng&agrave;y 9/12/2010 y&ecirc;u cầu Techcombank kịp thời r&uacute;t kinh nghiệm, kh&ocirc;ng tiếp tục thực hiện sản phẩm tiết kiệm &rdquo;03 ng&agrave;y v&agrave;ng&rdquo;, l&atilde;i suất huy động tr&ecirc;n thị trường tiền tệ đ&atilde; ổn định trở lại. Hiện nay, l&atilde;i suất huy động của c&aacute;c ng&acirc;n h&agrave;ng phổ biến ở mức 14-15%/năm, tập trung ở kỳ hạn dưới 3 th&aacute;ng. Theo đ&oacute;, l&atilde;i suất cho vay n&ocirc;ng nghiệp n&ocirc;ng th&ocirc;n, xuất khẩu ở mức 12-13%/năm; đối với c&aacute;c lĩnh vực sản xuất kinh doanh kh&aacute;c từ 14-18%/năm; đối với lĩnh vực phi sản xuất từ 18-20%/năm.</p>\r\n<p class=\\"pBody\\">\r\n	L&atilde;i suất USD tương đối ổn định so với tuần trước. Cụ thể, l&atilde;i suất huy động tiết kiệm kh&ocirc;ng kỳ hạn phổ biến từ 0.2-0.5%/năm, dưới 12 th&aacute;ng&nbsp; từ 3.5-5.2%/năm, tr&ecirc;n 12 th&aacute;ng từ 4.2-5.6%; l&atilde;i suất cho vay phổ biến ở mức 5.5-6.5%/năm đối với ngắn hạn, 6-8%/năm đối với trung v&agrave; d&agrave;i hạn.</p>\r\n<p class=\\"pBody\\">\r\n	&nbsp;</p>\r\n<table align=\\"center\\" bgcolor=\\"#cdfbfd\\" border=\\"0\\" cellpadding=\\"5\\" cellspacing=\\"0\\" style=\\"border-collapse: separate;\\" width=\\"480\\">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<p class=\\"pBody\\">\r\n					Tuần qua, NHNN tiếp tục thực hiện b&aacute;n can thiệp ngoại tệ đối với c&aacute;c nhu cầu thiết yếu. Ngo&agrave;i ra, Tổ c&ocirc;ng t&aacute;c li&ecirc;n vụ của NHNN vẫn đang thực hiện gi&aacute;m s&aacute;t việc cho vay bằng ngoại tệ v&agrave; thanh to&aacute;n ngoại tệ để nhập khẩu của c&aacute;c TCTD đối với c&aacute;c mặt h&agrave;ng thuộc Danh mục c&aacute;c mặt h&agrave;ng nhập khẩu kh&ocirc;ng thiết yếu, h&agrave;ng ti&ecirc;u d&ugrave;ng kh&ocirc;ng khuyến kh&iacute;ch nhập khẩu theo quy định của Bộ C&ocirc;ng thương.</p>\r\n				<p class=\\"pBody\\">\r\n					Hiện tại, thị trường ngoại hối đ&atilde; c&oacute; chuyển biến theo chiều hướng t&iacute;ch cực hơn. Thanh khoản ngoại tệ tr&ecirc;n thị trường được cải thiện, c&aacute;c NHTM đ&atilde; bắt đầu mua được ngoại tệ từ thị trường v&agrave; t&iacute;ch cực b&aacute;n ra phục vụ kh&aacute;ch h&agrave;ng. B&ecirc;n cạnh đ&oacute;, sự gia tăng nguồn cung ngoại tệ từ c&aacute;c luồng vốn v&agrave;o quan trọng của c&aacute;n c&acirc;n thương mại v&agrave;o những th&aacute;ng cuối năm đ&atilde; g&oacute;p phần c&acirc;n bằng cung cầu ngoại tệ tr&ecirc;n thị trường. Theo thống k&ecirc; của Vụ QLNH, nguồn thu ngoại tệ từ kiều hối, luồng vốn đầu tư nước ngo&agrave;i v&agrave;o Việt Nam đang tăng mạnh.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', '2010-12-15 12:39:59', NULL, 1, 1, 0);
 INSERT INTO `articles` VALUES (88, 2, 1, 0, 'Nhận định thị trường chứng khoán ngày 15/12', 'nhan-dinh-thi-truong-chung-khoan-ngay-1512', 'Chúng tôi xin giới thiệu nhận định của một số công ty chứng khoán về khả năng diễn biến thị trường ngày 15/12.', 'files/news/20101215/20101215124833.gif', '<p style=\\"margin-top: 5px; text-align: center;\\">\r\n	<img alt=\\"\\" src=\\"/files/upload/images/198952598_0c4Untitled119.gif\\" style=\\"width: 500px; height: 330px;\\" /></p>\r\n<p style=\\"margin-top: 5px; text-align: center;\\">\r\n	<font color=\\"#808080\\" face=\\"Arial\\" size=\\"2\\">Theo BVSC, VN-Index sẽ sớm bứt ph&aacute; qua ngưỡng kh&aacute;ng cự t&acirc;m l&yacute; tại 500 điểm khi những nỗi lo về việc tăng vốn của c&aacute;c ng&acirc;n h&agrave;ng sẽ h&uacute;t một lượng tiền lớn ra khỏi thị trường kh&ocirc;ng c&ograve;n.</font></p>\r\n<p>\r\n	<font face=\\"Arial\\" style=\\"font-size: 11pt; color: rgb(0, 0, 0); line-height: 1.5;\\"><span style=\\"font-weight: bold; font-size: 11pt;\\">Giảm mạnh kh&oacute; xẩy ra</span><br style=\\"font-weight: bold; font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-style: italic; font-size: 11pt;\\">(C&ocirc;ng ty Cổ phần Chứng kho&aacute;n FPT - FPTS)</span><br style=\\"font-style: italic; font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	&quot;Thị trường đ&atilde; c&oacute; một phi&ecirc;n giao dịch đầy cảm x&uacute;c với bi&ecirc;n độ dao động lớn, khối lượng giao dịch đột biến. X&eacute;t về mặt kỹ thuật, k&ecirc;nh tr&ecirc;n của k&ecirc;nh hồi quy trung hạn tỏ ra kh&aacute; vững trong việc cản đường l&ecirc;n của VN-Index trong phi&ecirc;n giao dịch ng&agrave;y h&ocirc;m nay. Với th&ocirc;ng tin được gi&atilde;n thời gian tăng vốn l&ecirc;n 1 năm, nh&oacute;m cổ phiếu ng&acirc;n h&agrave;ng sẽ l&agrave; điểm s&aacute;ng cho phi&ecirc;n giao dịch ng&agrave;y mai. Do đ&oacute; việc giảm mạnh trong phi&ecirc;n giao dịch tới của VN-Index kh&oacute; xảy ra.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Tuy nhi&ecirc;n, &aacute;p lực b&aacute;n khi c&aacute;c chỉ b&aacute;o RSI, MFI v&agrave;o v&ugrave;ng qu&aacute; mua l&agrave; kh&aacute; cao n&ecirc;n khả năng ng&agrave;y mai l&agrave; một phi&ecirc;n giao dịch giằng co v&agrave; c&oacute; thể chốt phi&ecirc;n giao dịch l&agrave; một c&acirc;y nến rỗng với mức đ&oacute;ng cửa cao hơn mở cửa. Ngưỡng hỗ trợ 482 (k&ecirc;nh giữa của k&ecirc;nh h&ocirc;i qui ngắn hạn) sẽ l&agrave; ngưỡng đỡ cơ bản trong phi&ecirc;n ng&agrave;y mai.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Nh&oacute;m cổ phiếu ng&acirc;n h&agrave;ng tiếp tục tạo s&oacute;ng tr&ecirc;n thị trường. Nhưng ch&uacute;ng t&ocirc;i cũng lưu &yacute; nh&agrave; đầu tư rằng, c&aacute;c cổ phiếu ng&acirc;n h&agrave;ng đang ni&ecirc;m yết đều đ&atilde; thỏa m&atilde;n điều kiện vốn điều lệ tối thiểu 3.000 tỷ đồng. Do đ&oacute; việc gia hạn thời gian tăng vốn kh&ocirc;ng ảnh hưởng trực tiếp đến những ng&acirc;n h&agrave;ng n&agrave;y. Khả năng thị trường sẽ quay trở lại xu hướng tăng trưởng sau một v&agrave;i phi&ecirc;n điều chỉnh nếu nh&oacute;m cổ phiếu ng&acirc;n h&agrave;ng tiếp tục dẫn dắt thị trường&quot;.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-weight: bold; font-size: 11pt;\\">Cần một giai đoạn ph&acirc;n phối t&iacute;ch lũy?</span><br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-style: italic; font-size: 11pt;\\">(C&ocirc;ng ty Cổ phần Chứng kho&aacute;n S&agrave;i G&ograve;n - SSI)</span><br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	&ldquo;Th&ocirc;ng tin đ&aacute;ng ch&uacute; &yacute; h&ocirc;m nay l&agrave; Ch&iacute;nh phủ đ&atilde; c&oacute; quyết định ch&iacute;nh thức gi&atilde;n tăng vốn l&ecirc;n 3.000 tỷ cho c&aacute;c NHTM đến hết năm 2011. Như vậy &aacute;p lực tăng vốn, một lực cản lớn của VNIndex trong thời gian qua đ&atilde; gần như được dỡ bỏ. Tuy nhi&ecirc;n, hy vọng v&agrave;o luồng tiền mới trong bối cảnh l&atilde;i suất cao cũng kh&ocirc;ng thực sự s&aacute;ng sủa để tạo ra một sự thay đổi đ&aacute;ng kể trong c&aacute;n c&acirc;n cung cầu của thị trường.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Đợt tăng điểm vừa qua đ&atilde; phản &aacute;nh sự kỳ vọng rất lớn của nh&agrave; đầu tư v&agrave;o thị trường sau một thời gian d&agrave;i đi ngang. Xu hướng đi ngang rất c&oacute; thể đ&atilde; bị ph&aacute; vỡ v&agrave; VN-Index sẽ đi v&agrave;o giai đoạn c&oacute; những đợt tăng, giảm mạnh hơn, đồng nghĩa với cơ hội v&agrave; rủi ro cao hơn.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Nh&agrave; đầu tư mạo hiểm c&oacute; thể tham gia v&agrave;o thị trường trong c&aacute;c phi&ecirc;n điều chỉnh, ng&agrave;y mai t&acirc;m điểm sẽ vấn tiếp tục l&agrave; c&aacute;c cổ phiếu ng&acirc;n h&agrave;ng. Nếu nh&oacute;m ng&acirc;n h&agrave;ng kh&oacute; trụ vững th&igrave; VN-Index cần một giai đoạn ph&acirc;n phối t&iacute;ch lũy trước khi c&oacute; thể tăng trở lại&rdquo;.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-weight: bold; font-size: 11pt;\\">Sớm bứt ph&aacute; qua ngưỡng 500</span><br style=\\"font-weight: bold; font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-style: italic; font-size: 11pt;\\">(C&ocirc;ng ty Cổ phần Chứng kho&aacute;n Bảo Việt - BVSC)</span><br style=\\"font-style: italic; font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	&quot;Đầu giờ chiều, Ch&iacute;nh phủ cũng đ&atilde; ch&iacute;nh thức c&ocirc;ng bố th&ocirc;ng tin gia hạn thời gian tăng vốn l&ecirc;n 3.000 tỷ đồng đến hết ng&agrave;y 31/12/2011 cho c&aacute;c ng&acirc;n h&agrave;ng. Ch&uacute;ng t&ocirc;i cho rằng đối với c&aacute;c ng&acirc;n h&agrave;ng chưa c&oacute; phương &aacute;n tăng vốn cụ thể cho tới thời điểm n&agrave;y, việc gia hạn th&ecirc;m thời gian tăng vốn l&agrave; một quyết định hợp l&yacute; nhằm minh bạch h&oacute;a th&ocirc;ng tin, tr&aacute;nh việc c&aacute;c ng&acirc;n h&agrave;ng n&agrave;y t&igrave;m đủ mọi c&aacute;ch vay mượn, g&acirc;y x&aacute;o trộn tr&ecirc;n thị trường tiền tệ.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Tuy nhi&ecirc;n, ch&uacute;ng t&ocirc;i cũng kh&aacute; bất ngờ v&igrave; thời gian gia hạn của Ch&iacute;nh phủ l&ecirc;n tới 1 năm, thay v&igrave; 6 th&aacute;ng như kiến nghị của Ng&acirc;n h&agrave;ng Nh&agrave; nước.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Với diễn biến hiện tại, ch&uacute;ng t&ocirc;i đ&aacute;nh gi&aacute; chỉ số VN-Index sẽ sớm bứt ph&aacute; qua ngưỡng kh&aacute;ng cự t&acirc;m l&yacute; tại 500 điểm khi những nỗi lo về việc tăng vốn của c&aacute;c ng&acirc;n h&agrave;ng sẽ h&uacute;t một lượng tiền lớn ra khỏi thị trường kh&ocirc;ng c&ograve;n. V&igrave; vậy, ch&uacute;ng t&ocirc;i tiếp tục khuyến nghị nh&agrave; đầu tư ngắn hạn c&oacute; thể mạnh dạn dải ng&acirc;n nếu thị trường tiếp tục điều chỉnh trong phi&ecirc;n sắp tới&quot;.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-weight: bold; font-size: 11pt;\\"> Khả năng sẽ c&oacute; v&agrave;i phi&ecirc;n điều chỉnh</span><br style=\\"font-weight: bold; font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-style: italic; font-size: 11pt;\\">(C&ocirc;ng ty Cổ phần Chứng kho&aacute;n Woori CBV)</span><br style=\\"font-style: italic; font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	&quot;Tr&ecirc;n phương diện kỹ thuật, sau khi vượt ra ngo&agrave;i dải Bollinger Band phi&ecirc;n h&ocirc;m trước, xu hướng điều chỉnh đ&atilde; xảy ra. Mức dao động trong phi&ecirc;n l&agrave; kh&aacute; lớn, tạo một th&acirc;n nến d&agrave;i. C&aacute;c chỉ b&aacute;o ph&aacute;t ra những t&iacute;n hiệu tr&aacute;i ngược nhau. Sự hồi phục mạnh trong 15 ph&uacute;t cuối l&agrave; một t&iacute;n hiệu tốt mặc d&ugrave; VN-Index chỉ được k&eacute;o bằng một v&agrave;i cổ phiếu ti&ecirc;u biểu. Khối lượng tăng mạnh trong một phi&ecirc;n giảm thường l&agrave; dấu hiệu của một đợt tho&aacute;t h&agrave;ng hơn l&agrave; điểu chỉnh.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Mặc d&ugrave; b&ecirc;n mua vẫn chiếm ưu thể nhưng lượng b&aacute;n tăng đ&aacute;ng kể vẫn cho thấy t&acirc;m l&yacute; thận trọng của nh&agrave; đầu tư. C&oacute; thể những nh&agrave; đầu tư ra b&aacute;n phi&ecirc;n h&ocirc;m nay chưa phải đ&atilde; hết kỳ vọng về đợt tăng điểm n&agrave;y, m&agrave; chỉ đơn giản hy vọng c&oacute; thể thị trường điều chỉnh để mua lại ở c&aacute;c mức gi&aacute; thấp hơn. D&ograve;ng tiền đầu cơ sẽ kh&ocirc;ng dễ r&uacute;t ra khỏi thị trường bởi cơ hội cho đợt tăng gi&aacute; cuối năm n&agrave;y vẫn bỏ ngỏ.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Do vậy, Woori CBV vẫn nghi&ecirc;ng về khả năng thị trường c&oacute; thể tiếp cận mức 500 điểm sau khi trải qua một v&agrave;i phi&ecirc;n điều chỉnh&quot;.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	<span style=\\"font-weight: bold; font-size: 11pt;\\">Đang tr&ecirc;n đ&agrave; phục hồi</span><br style=\\"font-weight: bold; font-size: 11pt;\\" />\r\n	<br style=\\"font-style: italic; font-size: 11pt;\\" />\r\n	<span style=\\"font-style: italic; font-size: 11pt;\\">(C&ocirc;ng ty Chứng kho&aacute;n ACB - ACBS)</span><br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	&quot;Tr&ecirc;n nhiều phương diện, phi&ecirc;n giao dịch h&ocirc;m nay (14/12) l&agrave; một phi&ecirc;n điều chỉnh cần thiết của thị trường khi đợt tăng mạnh h&ocirc;m thứ Hai chủ yếu l&agrave; do khan hiếm nguồn cung. X&eacute;t về xu hướng d&agrave;i hạn, sự tăng gi&aacute; của cổ phiếu l&agrave; cần thiết cho sự phục hồi của thị trường. Nhưng, sự phục hồi đ&oacute; sẽ thiếu t&iacute;nh bền vững nếu sự tăng gi&aacute; của cổ phiếu l&agrave; do người b&aacute;n kh&ocirc;ng b&aacute;n ra v&agrave; cố t&igrave;nh tạo n&ecirc;n một sự khan hiếm cổ phiếu khi lực cầu tăng.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Tuy nhi&ecirc;n, do nh&agrave; đầu tư cổ phiếu chỉ c&oacute; một số vốn nhất định, trong khi đ&oacute;, gi&aacute; cổ phiếu tăng cao sẽ khiến l&agrave;m giảm sức của lực cầu v&agrave; đặt nh&agrave; đầu tư v&agrave;o tư thế rượt gi&aacute; cổ phiếu tr&ecirc;n thị trường. V&agrave; khi nh&agrave; đầu tư mua được cổ phiếu ở gi&aacute; cao, th&igrave; l&uacute;c đ&oacute;, đ&ograve;i hỏi về lợi nhuận cao của nh&agrave; đầu tư sẽ kh&ocirc;ng được bảo đảm do rủi ro từ c&aacute;c yếu tố vĩ m&ocirc; v&agrave; rủi ro của thị trường.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Từ đ&oacute; cho thấy, diễn biến thị trường trong phi&ecirc;n giao dịch ng&agrave;y h&ocirc;m nay, cả hai lực cầu v&agrave; cung mạnh l&agrave;m tăng thanh khoản v&agrave; gi&aacute; trị giao dịch của thị trường so với ng&agrave;y thứ Hai, l&agrave; một t&iacute;n hiệu tốt cho thị trường khi đang tr&ecirc;n đ&agrave; phục hồi về mức 500.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Ngo&agrave;i ra, th&ocirc;ng tin về việc l&ugrave;i thời hạn tăng vốn điều lệ của c&aacute;c ng&acirc;n h&agrave;ng thương mại l&ecirc;n 3.000 tỷ đồng đến 31/12/2011 của Ng&acirc;n h&agrave;ng Nh&agrave; nước đ&atilde; khiến cổ phiếu c&aacute;c ng&acirc;n h&agrave;ng tăng mạnh. Do ng&agrave;nh t&agrave;i ch&iacute;nh chiếm một tỷ trọng lớn tr&ecirc;n thị trường, cổ phiếu ng&acirc;n h&agrave;ng c&oacute; thể sẽ tiếp tục n&acirc;ng đỡ thị trường trong c&aacute;c phi&ecirc;n sắp tới.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-size: 11pt;\\" />\r\n	Về mặt ph&acirc;n t&iacute;ch kỹ thuật, VN-Index c&oacute; thể tiếp tục xu hướng tăng trong c&aacute;c phi&ecirc;n tới với mục ti&ecirc;u ở mức 500. HNX-Index c&oacute; thể đi ngang trong c&aacute;c phi&ecirc;n giao dich trong tuần&quot;.<br style=\\"font-size: 11pt;\\" />\r\n	<br style=\\"font-style: italic; font-size: 11pt;\\" />\r\n	<span style=\\"font-style: italic; font-size: 11pt;\\">* Nhận định thị trường của c&aacute;c c&ocirc;ng ty chứng kho&aacute;n được tr&iacute;ch dẫn chỉ c&oacute; gi&aacute; trị như một nguồn th&ocirc;ng tin tham khảo. C&aacute;c c&ocirc;ng ty chứng kho&aacute;n c&oacute; thể c&oacute; những xung đột lợi &iacute;ch đối với c&aacute;c nh&agrave; đầu tư khi đưa ra nhận định.</span></font></p>', '2010-12-15 12:44:59', NULL, 1, 1, 0);
+INSERT INTO `articles` VALUES (89, 27, 1, 0, 'Đề xuất ý tưởng của nhóm (20/10/2010)', 'de-xuat-y-tuong-cua-nhom-20102010', '', NULL, '', '2010-12-19 23:42:53', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (90, 27, 1, 0, 'Sàn chứng khoán ảo được chọn (20/10/2010)', 'san-chung-khoan-ao-duoc-chon-20102010', '', NULL, '', '2010-12-19 23:42:53', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (91, 27, 1, 0, 'Phát thảo layout UITStock (25/10/2010)', 'phat-thao-layout-uitstock-25102010', '', NULL, '', '2010-12-19 23:42:53', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (92, 27, 1, 0, 'Trình bày ý tưởng với cô (25/10/2010)', 'trinh-bay-y-tuong-voi-co-25102010', '', NULL, '', '2010-12-19 23:42:53', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (93, 27, 1, 0, 'Báo cáo Sequence Diagram (09/12/2010)', 'bao-cao-sequence-diagram-09122010', '', NULL, '', '2010-12-19 23:54:56', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (94, 27, 1, 0, 'Hoàn thành xong các module chính (19/12/2010)', 'hoan-thanh-xong-cac-module-chinh-19122010', '', NULL, '', '2010-12-19 23:54:56', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (95, 28, 1, 0, 'AVSC: Bài phân tích về lợi thế nào cho các doanh nghiệp Bất động sản Vũng Tàu', 'avsc-bai-phan-tich-ve-loi-the-nao-cho-cac-doanh-nghiep-bat-dong-san-vung-tau', '0dc70369-959e-4d9b-a6ef-d4596eebff7d.pdf', NULL, '', '2010-12-20 00:16:57', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (96, 28, 1, 0, 'AVSC: Bài giới thiệu cổ phiếu mới niêm yết VRC', 'avsc-bai-gioi-thieu-co-phieu-moi-niem-yet-vrc', '51ffc65e-ca4f-42dd-b318-46678d0e93b6.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (97, 28, 1, 0, 'AVSC: Lựa chọn cổ phiếu chiến thắng thị trường', 'avsc-lua-chon-co-phieu-chien-thang-thi-truong', '56cd3226-77ac-44ef-a560-078b70e80e4d.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (98, 28, 1, 0, 'AVSC: Đánh giá tác động của Dự thảo Luật chứng khoán sửa đổi', 'avsc-danh-gia-tac-dong-cua-du-thao-luat-chung-khoan-sua-doi', '5d3c5201-69f9-43c3-a887-14dc7ee5a6ab.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (99, 28, 1, 0, 'AVSC: Báo cáo phân tích Công ty cổ phần Kỹ Thuật Điện Toàn Cầu', 'avsc-bao-cao-phan-tich-cong-ty-co-phan-ky-thuat-dien-toan-cau', 'b42dfbdf-e3ad-4e2c-b2a7-0c4422678f87.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (100, 28, 1, 0, 'AVSC: Đặc điểm TTCK và Chiến thuật đầu tư', 'avsc-dac-diem-ttck-va-chien-thuat-dau-tu', '61eb48e1-31c3-43da-a288-53837e9aae57.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (101, 28, 1, 0, 'AVSC: 550 điểm đích đến của Vn-Index', 'avsc-550-diem-dich-den-cua-vn-index', '00588d14-96e0-40bd-9507-567bb3756025.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (102, 28, 1, 0, 'VNDS: Báo cáo phân tích cổ phiếu AVF', 'vnds-bao-cao-phan-tich-co-phieu-avf', '23112010413551061215b3838ca9de54b4169274.pdf', NULL, '', '2010-12-20 00:22:21', '2010-12-20 00:29:30', 1, 0, 0);
+INSERT INTO `articles` VALUES (103, 28, 1, 0, 'FPTS: Khuyến nghị MUA đối với cổ phiếu VNF', 'fpts-khuyen-nghi-mua-doi-voi-co-phieu-vnf', '301120105951c35e6ebb5647f203becc75af4498.pdf', NULL, '', '2010-12-20 00:22:21', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (104, 29, 1, 0, 'HTI: Ngày giao dịch chính thức 24.949.200 cổ phiếu của CTCP Đầu tư Phát triển Hạ Tầng IDICO trên HOSE', 'hti-ngay-giao-dich-chinh-thuc-24949200-co-phieu-cua-ctcp-dau-tu-phat-trien-ha-tang-idico-tren-hose', '20/12/2010', NULL, '', '2010-12-20 00:31:51', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (105, 29, 1, 0, 'YSC: Ngày GDKHQ tạm ứng cổ tức năm 2010 (18%)', 'ysc-ngay-gdkhq-tam-ung-co-tuc-nam-2010-18', '20/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (106, 29, 1, 0, 'HBC: Ngày GDKHQ lấy ý kiến bằng văn bản', 'hbc-ngay-gdkhq-lay-y-kien-bang-van-ban', '20/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (107, 29, 1, 0, 'TAG: Ngày GDKHQ tạm ứng cổ tức năm 2010 (20%)', 'tag-ngay-gdkhq-tam-ung-co-tuc-nam-2010-20', '20/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (108, 29, 1, 0, 'NTL: Ngày GDKHQ tạm ứng cổ tức năm 2010 (30%)', 'ntl-ngay-gdkhq-tam-ung-co-tuc-nam-2010-30', '21/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (109, 29, 1, 0, 'YBC: Ngày GDKHQ lấy ý kiến bằng văn bản', 'ybc-ngay-gdkhq-lay-y-kien-bang-van-ban', '21/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (110, 29, 1, 0, 'PDR: Ngày GDKHQ tạm ứng cổ tức năm 2010 (10%)', 'pdr-ngay-gdkhq-tam-ung-co-tuc-nam-2010-10', '21/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (111, 29, 1, 0, 'VLF: Ngày giao dịch chính thức 10,4 triệu cổ phiếu của CTCP Lương thực Thực phẩm Vĩnh Long trên HOSE', 'vlf-ngay-giao-dich-chinh-thuc-104-trieu-co-phieu-cua-ctcp-luong-thuc-thuc-pham-vinh-long-tren-hose', '21/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (112, 29, 1, 0, 'SGS: Ngày giao dịch chính thức 14,42 triệu cổ phiếu của CTCP Vận tải biển Sài Gòn trên UPCoM', 'sgs-ngay-giao-dich-chinh-thuc-1442-trieu-co-phieu-cua-ctcp-van-tai-bien-sai-gon-tren-upcom', '22/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
+INSERT INTO `articles` VALUES (113, 29, 1, 0, 'CTC: Ngày GDKHQ nhận cổ tức đợt 1/2010 (7%)', 'ctc-ngay-gdkhq-nhan-co-tuc-dot-12010-7', '22/12/2010', NULL, '', '2010-12-20 01:19:07', NULL, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -202,7 +227,7 @@ CREATE TABLE `content_categories` (
   `description` text,
   `published` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 -- 
 -- Dumping data for table `content_categories`
@@ -234,6 +259,9 @@ INSERT INTO `content_categories` VALUES (23, 22, 'Luật chơi', 'luat-choi', 'L
 INSERT INTO `content_categories` VALUES (24, 22, 'Hướng dẫn đặt lệnh', 'huong-dan-dat-lenh', 'Hướng dẫn đặt lệnh', 1);
 INSERT INTO `content_categories` VALUES (25, 0, 'Chuyên gia nhận định', 'chuyen-gia-nhan-dinh', 'Chuyên gia nhận định', 1);
 INSERT INTO `content_categories` VALUES (26, 25, 'Nhận định', 'nhan-dinh', 'Nhận định', 1);
+INSERT INTO `content_categories` VALUES (27, 19, 'Điểm tin', 'diem-tin', 'Điểm tin UITStock', 1);
+INSERT INTO `content_categories` VALUES (28, 20, 'Báo cáo', 'bao-cao', 'Báo cáo', 1);
+INSERT INTO `content_categories` VALUES (29, 21, 'Lịch SK', 'lich-sk', 'Lịch sụ kiện', 1);
 
 -- --------------------------------------------------------
 
@@ -264,7 +292,7 @@ CREATE TABLE `menu_category` (
   `name` varchar(50) default NULL,
   `description` text,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- 
 -- Dumping data for table `menu_category`
@@ -273,6 +301,8 @@ CREATE TABLE `menu_category` (
 INSERT INTO `menu_category` VALUES (1, 'Stock Main Menu', 'Menu top của chứng khoán');
 INSERT INTO `menu_category` VALUES (2, 'Stock SideBar', 'Menu sidebar của chứng khoán');
 INSERT INTO `menu_category` VALUES (3, 'News Main Menu', 'Menu Top của tin tức');
+INSERT INTO `menu_category` VALUES (4, 'Stock Menu Exchange', 'Menu thực hiện giao dịch');
+INSERT INTO `menu_category` VALUES (5, 'Stock Menu User', 'Menu thông tin người chơi');
 
 -- --------------------------------------------------------
 
@@ -286,52 +316,60 @@ CREATE TABLE `menu_items` (
   `menu_cat_id` int(11) default NULL,
   `pri_id` int(11) default NULL,
   `name` varbinary(50) default NULL,
+  `alias` varchar(255) default NULL,
   `link` varchar(255) default NULL,
   `ordering` int(11) default NULL,
   `published` tinyint(1) default NULL,
   `is_home` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 -- 
 -- Dumping data for table `menu_items`
 -- 
 
-INSERT INTO `menu_items` VALUES (1, 0, 1, 0, 0x5472616e67206368e1bba7, 'stock/index', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (2, 0, 1, 0, 0x5468e1bbb163206869e1bb876e206769616f2064e1bb8b6368, '', 2, 1, 1);
-INSERT INTO `menu_items` VALUES (3, 0, 1, 0, 0x5468e1bb916e67206bc3aa2073c3a06e20e1baa36f, 'stock/index/statics', 3, 1, 0);
-INSERT INTO `menu_items` VALUES (4, 0, 1, 0, 0x5468e1bb83206ce1bb872073c3a06e20e1baa36f, 'stock/index/rule', 4, 1, 0);
-INSERT INTO `menu_items` VALUES (5, 0, 1, 0, 0x54696e2074e1bba963, 'tintuc/', 5, 1, 0);
-INSERT INTO `menu_items` VALUES (6, 0, 2, 0, 0x42e1baa36e67206769c3a1207472e1bbb16320747579e1babf6e, '', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (7, 6, 2, 0, 0x53c3a06e20484f5345, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (8, 0, 2, 0, 0x55495453746f636b, '', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (9, 8, 2, 0, 0x4350206ec3b36e672074e1baa1692055495453746f636b, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (10, 8, 2, 0, 0x546f702043502055495453746f636b, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (11, 8, 2, 0, 0x546f70204350206e69c3aa6d2079e1babf74, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (12, 8, 2, 0, 0x54c3ac6d204350207468656f206769c3a1, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (13, 8, 2, 0, 0x5468e1bb916e67206bc3aa2073c3a06e206e69c3aa6d2079e1babf74, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (14, 8, 2, 0, 0x44e1bbaf206c69e1bb8775206e67c3a06e68, '', 0, 1, 0);
-INSERT INTO `menu_items` VALUES (15, 0, 3, 0, 0x5472616e67206368e1bba7, '', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (16, 15, 3, 0, 0x53c3a06e206368e1bba96e67206b686fc3a16e20e1baa36f, '', 4, 1, 0);
-INSERT INTO `menu_items` VALUES (17, 15, 3, 0, 0xc490e1bab774206cc3a06d207472616e67206368e1bba7, '', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (18, 0, 3, 0, 0x54696e2074e1bba963, 'tintuc/chuyenmuc/tin-tuc/', 2, 1, 1);
-INSERT INTO `menu_items` VALUES (19, 18, 3, 0, 0x54696e2076e1baaf6e206368e1bba96e67206b686fc3a16e, 'tintuc/chuyenmuc/tin-tuc/tin-van-chung-khoan/', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (20, 18, 3, 0, 0x54696e20484f5345, 'tintuc/chuyenmuc/tin-tuc/tin-hose/', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (21, 18, 3, 0, 0x54696e2074e1bbab2063c3b46e67207479206e69c3aa6d2079e1babf74, 'tintuc/chuyenmuc/tin-tuc/tin-tu-cong-ty-niem-yet/', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (22, 0, 3, 0, 0x4e68e1baad6e20c491e1bb8b6e68207468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/', 3, 1, 0);
-INSERT INTO `menu_items` VALUES (23, 22, 3, 0, 0x43c3b46e6720747920434b206e68e1baad6e20c491e1bb8b6e68, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty-ck-nhan-dinh/', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (24, 22, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/thi-truong/', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (25, 22, 3, 0, 0x43c3b46e67207479, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty/', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (26, 0, 3, 0, 0x4b696e682074e1babf205669e1bb8774204e616d, 'tintuc/chuyenmuc/kinh-te-viet-nam/', 4, 1, 0);
-INSERT INTO `menu_items` VALUES (27, 26, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/kinh-te-viet-nam/thi-truong-vn/', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (28, 26, 3, 0, 0x54c3a069206368c3ad6e68202d204e67c3a26e2068c3a06e67, 'tintuc/chuyenmuc/kinh-te-viet-nam/tai-chinh---ngan-hang/', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (29, 26, 3, 0, 0x42e1baa57420c491e1bb996e672073e1baa36e, 'tintuc/chuyenmuc/kinh-te-viet-nam/bat-dong-san/', 3, 1, 0);
-INSERT INTO `menu_items` VALUES (30, 0, 3, 0, 0x4b696e682074e1babf207468e1babf206769e1bb9b69, 'tintuc/chuyenmuc/kinh-te-the-gioi/', 5, 1, 0);
-INSERT INTO `menu_items` VALUES (31, 30, 3, 0, 0x4368e1bba96e67206b686fc3a16e, 'tintuc/chuyenmuc/kinh-te-the-gioi/chung-khoan/', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (32, 30, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, 'tintuc/chuyenmuc/kinh-te-the-gioi/thi-truong-tg/', 2, 1, 0);
-INSERT INTO `menu_items` VALUES (33, 0, 3, 0, 0x4b69e1babf6e207468e1bba96320c491e1baa7752074c6b0, 'tintuc/chuyenmuc/kien-thuc-dau-tu/', 6, 1, 0);
-INSERT INTO `menu_items` VALUES (34, 33, 3, 0, 0x4b69e1babf6e207468e1bba9632063c6a12062e1baa36e, 'tintuc/chuyenmuc/kien-thuc-dau-tu/kien-thuc-co-ban/', 1, 1, 0);
-INSERT INTO `menu_items` VALUES (35, 33, 3, 0, 0x4b696e68206e676869e1bb876d20c491e1baa7752074c6b0, 'tintuc/chuyenmuc/kien-thuc-dau-tu/kinh-nghiem-dau-tu/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (1, 0, 1, 0, 0x5472616e67206368e1bba7, 'index', 'stock/index', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (2, 0, 1, 0, 0x5468e1bbb163206869e1bb876e206769616f2064e1bb8b6368, 'exxchange', 'exchange/order/', 2, 1, 1);
+INSERT INTO `menu_items` VALUES (3, 0, 1, 0, 0x5468e1bb916e67206bc3aa2073c3a06e20e1baa36f, 'statics', 'stock/index/statics', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (4, 0, 1, 0, 0x5468e1bb83206ce1bb872073c3a06e20e1baa36f, 'rule', 'stock/index/rule', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (5, 0, 1, 0, 0x54696e2074e1bba963, 'news', 'tintuc/', 5, 1, 0);
+INSERT INTO `menu_items` VALUES (6, 0, 2, 0, 0x42e1baa36e67206769c3a1207472e1bbb16320747579e1babf6e, 'online-price', '', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (7, 6, 2, 0, 0x53c3a06e20484f5345, NULL, '', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (8, 0, 2, 0, 0x43c3b46e672063e1bba5, NULL, '', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (9, 8, 2, 0, 0x4350206ec3b36e672074e1baa1692055495453746f636b, NULL, 'stocks/hot-stock/', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (11, 8, 2, 0, 0x546f70204350206e69c3aa6d2079e1babf74, NULL, 'stocks/top-stock/', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (12, 8, 2, 0, 0x54c3ac6d204350207468656f206769c3a1, NULL, 'stocks/search-price/', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (13, 8, 2, 0, 0x5468e1bb916e67206bc3aa2073c3a06e206e69c3aa6d2079e1babf74, '', 'stocks/market-statics/', 0, 1, 0);
+INSERT INTO `menu_items` VALUES (14, 8, 2, 0, 0x44e1bbaf206c69e1bb8775206e67c3a06e68, NULL, '', 0, 0, 0);
+INSERT INTO `menu_items` VALUES (15, 0, 3, 0, 0x5472616e67206368e1bba7, 'index', '', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (16, 15, 3, 0, 0x53c3a06e206368e1bba96e67206b686fc3a16e20e1baa36f, NULL, '', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (17, 15, 3, 0, 0xc490e1bab774206cc3a06d207472616e67206368e1bba7, NULL, '', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (18, 0, 3, 0, 0x54696e2074e1bba963, 'tin-tuc', 'tintuc/chuyenmuc/tin-tuc/', 2, 1, 1);
+INSERT INTO `menu_items` VALUES (19, 18, 3, 0, 0x54696e2076e1baaf6e206368e1bba96e67206b686fc3a16e, NULL, 'tintuc/chuyenmuc/tin-tuc/tin-van-chung-khoan/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (20, 18, 3, 0, 0x54696e20484f5345, NULL, 'tintuc/chuyenmuc/tin-tuc/tin-hose/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (21, 18, 3, 0, 0x54696e2074e1bbab2063c3b46e67207479206e69c3aa6d2079e1babf74, NULL, 'tintuc/chuyenmuc/tin-tuc/tin-tu-cong-ty-niem-yet/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (22, 0, 3, 0, 0x4e68e1baad6e20c491e1bb8b6e68207468e1bb8b207472c6b0e1bb9d6e67, 'nhan-dinh-thi-truong', 'tintuc/chuyenmuc/nhan-dinh-thi-truong/', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (23, 22, 3, 0, 0x43c3b46e6720747920434b206e68e1baad6e20c491e1bb8b6e68, NULL, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty-ck-nhan-dinh/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (24, 22, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, NULL, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/thi-truong/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (25, 22, 3, 0, 0x43c3b46e67207479, NULL, 'tintuc/chuyenmuc/nhan-dinh-thi-truong/cong-ty/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (26, 0, 3, 0, 0x4b696e682074e1babf205669e1bb8774204e616d, 'kinh-te-viet-nam', 'tintuc/chuyenmuc/kinh-te-viet-nam/', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (27, 26, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, NULL, 'tintuc/chuyenmuc/kinh-te-viet-nam/thi-truong-vn/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (28, 26, 3, 0, 0x54c3a069206368c3ad6e68202d204e67c3a26e2068c3a06e67, NULL, 'tintuc/chuyenmuc/kinh-te-viet-nam/tai-chinh---ngan-hang/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (29, 26, 3, 0, 0x42e1baa57420c491e1bb996e672073e1baa36e, NULL, 'tintuc/chuyenmuc/kinh-te-viet-nam/bat-dong-san/', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (30, 0, 3, 0, 0x4b696e682074e1babf207468e1babf206769e1bb9b69, 'kinh-te-the-gioi', 'tintuc/chuyenmuc/kinh-te-the-gioi/', 5, 1, 0);
+INSERT INTO `menu_items` VALUES (31, 30, 3, 0, 0x4368e1bba96e67206b686fc3a16e, NULL, 'tintuc/chuyenmuc/kinh-te-the-gioi/chung-khoan/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (32, 30, 3, 0, 0x5468e1bb8b207472c6b0e1bb9d6e67, NULL, 'tintuc/chuyenmuc/kinh-te-the-gioi/thi-truong-tg/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (33, 0, 3, 0, 0x4b69e1babf6e207468e1bba96320c491e1baa7752074c6b0, 'kien-thuc-dau-tu', 'tintuc/chuyenmuc/kien-thuc-dau-tu/', 6, 1, 0);
+INSERT INTO `menu_items` VALUES (34, 33, 3, 0, 0x4b69e1babf6e207468e1bba9632063c6a12062e1baa36e, NULL, 'tintuc/chuyenmuc/kien-thuc-dau-tu/kien-thuc-co-ban/', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (35, 33, 3, 0, 0x4b696e68206e676869e1bb876d20c491e1baa7752074c6b0, NULL, 'tintuc/chuyenmuc/kien-thuc-dau-tu/kinh-nghiem-dau-tu/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (36, 0, 4, 0, 0xc490e1bab774206ce1bb876e68, 'dat-lenh', 'exchange/order/', 1, 1, 1);
+INSERT INTO `menu_items` VALUES (37, 0, 4, 0, 0x4ce1bb876e6820c491c3a3206b68e1bb9b70, 'lenh-da-khop', 'exchange/success-order/', 2, 1, 0);
+INSERT INTO `menu_items` VALUES (38, 0, 4, 0, 0x4ce1bb876e68206b68c3b46e67206b68e1bb9b70, 'lenh-khong-khop', 'exchange/fail-order/', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (39, 0, 4, 0, 0x4ce1bb8b63682073e1bbad206769616f2064e1bb8b6368, 'lich-su-giao-dich', 'exchange/order-history/', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (40, 0, 4, 0, 0x44616e68206de1bba56320c491e1baa7752074c6b0, 'danh-muc-dau-tu', 'exchange/portfolio/', 5, 1, 0);
+INSERT INTO `menu_items` VALUES (41, 0, 4, 0, 0x54c3a169206ce1baad702074c3a069206b686fe1baa36e, 'tai-lap-tai-khoan', 'exchange/rebuild-account/', 6, 1, 0);
+INSERT INTO `menu_items` VALUES (42, 0, 5, 0, 0x5468c3b46e672074696e2063c3a1206e68c3a26e, 'thong-tin-ca-nhan', 'player/infor/', 1, 1, 1);
+INSERT INTO `menu_items` VALUES (43, 0, 5, 0, 0xc490e1bb9569206de1baad74206b68e1baa975, 'doi-mat-khau', 'player/change-pass/', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -392,11 +430,11 @@ CREATE TABLE `pages` (
 -- 
 
 INSERT INTO `pages` VALUES (1, '2', 'Trang chủ', 'index', 1, 1, 1);
-INSERT INTO `pages` VALUES (2, '2', 'Thực hiện giao dịch', 'a', 1, 2, 0);
+INSERT INTO `pages` VALUES (2, '2', 'Thực hiện giao dịch', 'exchange', 1, 2, 0);
 INSERT INTO `pages` VALUES (3, '2', 'Thống kê sàn ảo', 'statics', 1, 3, 0);
 INSERT INTO `pages` VALUES (4, '2', 'Thể lệ sàn ảo', 'rule', 1, 4, 0);
-INSERT INTO `pages` VALUES (5, '2', 'Đăng nhập', 'd', 1, 5, 0);
-INSERT INTO `pages` VALUES (6, '2', 'Đăng ký', 'e', 1, 6, 0);
+INSERT INTO `pages` VALUES (5, '2', 'Đăng nhập', 'login', 1, 5, 0);
+INSERT INTO `pages` VALUES (6, '2', 'Đăng ký', 'register', 1, 6, 0);
 INSERT INTO `pages` VALUES (7, '3', 'Trang chủ', 'index', 1, 7, 1);
 INSERT INTO `pages` VALUES (8, '3', 'Loại tin', 'category', 1, 8, 0);
 INSERT INTO `pages` VALUES (9, '3', 'Tin', 'detail', 1, 9, 0);
@@ -1049,13 +1087,40 @@ CREATE TABLE `user_account` (
   `is_enable` varchar(50) default NULL,
   `money` double default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- Dumping data for table `user_account`
 -- 
 
-INSERT INTO `user_account` VALUES (1, '1', 'linhnn', 'd836477560cf4b4e6397f384c42bd64a', 'Nguyễn Ngọc Linh', 1, '1989-02-20', '11 Ngô Quyền, Quận 9, Tp Hồ Chí Minh', 'linhvt22@gmail.com', '0168 286 9021', 'Sinh viên', 'UIT', '1', 1000000);
+INSERT INTO `user_account` VALUES (1, '1', 'linhnn', 'f0d3fb3513ee31a33a3b0856edbfbdbc', 'Nguyễn Ngọc Linh', 1, '1989-02-20', '11 Ngô Quyền, Quận 9, Tp Hồ Chí Minh', 'linhvt22@gmail.com', '0168 286 9021', 'Sinh viên', 'UIT', '1', 1000000);
+INSERT INTO `user_account` VALUES (2, '1', 'phuongtp', '88a0da10f267fa6cf85eeb2021524414', 'Nguyễn Thành Phương', 1, '1988-01-01', 'Đồng Nai', 'phuongtp@gmail.com', '0168 999 9999', 'Sinh viên', 'UIT', '1', 1000000);
+INSERT INTO `user_account` VALUES (3, '1', 'phucdd', 'fb445ce96c20f8cd03a75d00b989137e', 'Đoàn Đình Phúc', 1, '1988-01-01', 'Đồng Nai', 'phucdd@gmail.com', '0168 888 8888', 'Sinh viên', 'UIT', '1', 1000000);
+INSERT INTO `user_account` VALUES (4, '1', 'nghiepth', 'b953b9a14b5e8d57169928cead1ab368', 'Trần Hưng Nghiệp', 1, '1988-01-01', 'Đồng Nai', 'nghiepth@gmail.com', '0168 777 7777', 'Sinh viên', 'UIT', '1', 1000000);
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `user_account_session`
+-- 
+
+CREATE TABLE `user_account_session` (
+  `id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) default NULL,
+  `session_id` varchar(255) default NULL,
+  `ip` varchar(50) default NULL,
+  `browser` varchar(255) default NULL,
+  `last_visit` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+-- 
+-- Dumping data for table `user_account_session`
+-- 
+
+INSERT INTO `user_account_session` VALUES (3, 0, 'b3453be0cfe77758bac9a71d0e081cd3', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292818454);
+INSERT INTO `user_account_session` VALUES (4, 2, 'b3453be0cfe77758bac9a71d0e081cd3', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292818460);
+INSERT INTO `user_account_session` VALUES (5, 1, '28b7ff205769ed780d46c24673f3a74f', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13', 1292818506);
 
 -- --------------------------------------------------------
 
@@ -1087,7 +1152,7 @@ CREATE TABLE `user_session` (
   `session_id` varchar(255) default NULL,
   `ip` varchar(50) default NULL,
   `browser` varchar(255) default NULL,
-  `time` int(11) default NULL,
+  `last_visit` time default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

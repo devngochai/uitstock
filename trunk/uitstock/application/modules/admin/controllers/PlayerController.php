@@ -7,15 +7,16 @@ class Admin_PlayerController extends ZendStock_Controller_Action {
 	public $playerMapper;
     
 	public function init() { 
+		 if (!isset($_SESSION['log']))
+		 	$this->_redirect('admin/index/error');
+		 			
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->playerMapper = new Cloud_Model_Player_CloudPlayerMapper();		 		 					     	           
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
-	        	    
-		 session_start();
-		 $_SESSION['log'] = true;			 
+	        	    		 		 			 
 		 $this->request = $this->getRequest();	
 	}				
 	
@@ -67,8 +68,8 @@ class Admin_PlayerController extends ZendStock_Controller_Action {
 			
 			if ($this->getRequest()->isPost()) {
 				if ($form->isValid($this->request->getPost())) {								
-					$user = new Cloud_Model_Player_CloudPlayer($form->getValues());
-					$this->playerMapper->save($user);																	
+					$player = new Cloud_Model_Player_CloudPlayer($form->getValues());
+					$this->playerMapper->save($player);																	
 					$this->view->message = 'Đã thay đổi thông tin người chơi : ' . $currentPlayer->full_name;
 				}
 			}
@@ -95,9 +96,9 @@ class Admin_PlayerController extends ZendStock_Controller_Action {
 				if ($form->isValid($this->request->getPost())) {			
 					$values = $form->getValues();
 					$id = $values['id'];
-					$email = $values['email'];
+					$username = $values['username'];
 					$password = $values['new_password'];					
-					$this->playerMapper->updatePassword($id, $email, $password);												
+					$this->playerMapper->updatePassword($id, $username, $password);												
 					$this->view->message = 'Đã thay đổi mật khẩu thành viên : ' . $currentPlayer->full_name;
 				}
 			}

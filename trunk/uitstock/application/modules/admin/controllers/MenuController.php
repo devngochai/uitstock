@@ -7,7 +7,10 @@ class Admin_MenuController extends ZendStock_Controller_Action {
 	public $menuItemMapper;
 	public $menuCategoryMapper;	
     
-	public function init() {    		
+	public function init() { 
+		 if (!isset($_SESSION['log']))
+		 	$this->_redirect('admin/index/error');
+		 			   			 				
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 
 		 $this->menuItemMapper = new Cloud_Model_MenuItem_CloudMenuItemMapper();
@@ -15,9 +18,7 @@ class Admin_MenuController extends ZendStock_Controller_Action {
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);	    
-	        	    
-		 session_start();
-		 $_SESSION['log'] = true;			 
+	        	    		 		 			 
 		 $this->request = $this->getRequest();		 		 		 	
 	}	
 		
@@ -93,8 +94,8 @@ class Admin_MenuController extends ZendStock_Controller_Action {
 	     
 	     $id = $this->request->getParam('catId');		 
 		 
-		 $parents = $this->menuItemMapper->fetchAllParent($id);
-		 $subs = $this->menuItemMapper->fetchAllSub($id);
+		 $parents = $this->menuItemMapper->fetchAllParent2($id);
+		 $subs = $this->menuItemMapper->fetchAllSub2($id);		 
 		 
 		 $this->view->assign(array(
 	    		'parents' => $parents,
@@ -220,4 +221,16 @@ class Admin_MenuController extends ZendStock_Controller_Action {
 		else 
 			echo 'error';
 	}
+	
+	public function deleteItemAction()
+	{		
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);		
+				
+		if (null != $this->request->getParam('id')) {			
+			$id = $this->request->getParam('id');				
+			$this->menuItemMapper->delete($id);
+		}
+	}
+	
 }

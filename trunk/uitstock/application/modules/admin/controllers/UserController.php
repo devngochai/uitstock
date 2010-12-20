@@ -11,15 +11,17 @@ class Admin_UserController extends ZendStock_Controller_Action {
 	public $entry;
     
 	public function init() { 
-		 session_start();
+		 if (!isset($_SESSION['log']))
+		 	$this->_redirect('admin/index/error');
+		 					 
 		 $this->privileges = $_SESSION['privilege'];		 
 		 $flag = false;		
 		 foreach ($this->privileges as $privilege) {
 			if ($privilege['id'] == 35) $flag = true; 
 		 }
-	 	 if (!$flag) {
-			$this->_redirect('admin/index/error');
-		 } 
+		 
+	 	 if (!$flag) 
+			$this->_redirect('admin/index/error');		  
 		    		
 		 $this->templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
 		 $this->themeMapper = new Cloud_Model_Theme_CloudThemeMapper(); 

@@ -1,0 +1,23 @@
+<div class="infor-tab">
+	<?php 
+		$i = 0;
+		foreach ($this->items as $item) {
+			$i++; 
+			$sep = "";
+			$class = ($item->alias == 'thong-tin-ca-nhan') ? "black" : "";			
+			if ($i < count($this->items)) echo $sep = "|";	
+	?>		
+		<div class="item">
+			<a class="<?php echo $class ?>" href="<?php echo $item->link ?>">
+				<?php echo $item->name . ' ' . $sep ?> 
+			</a>
+		</div>
+	<?php } ?>	
+</div>
+<?php if (isset($this->message)) {?>
+	<div class="warning2">
+		<?php echo $this->message; ?>
+	</div>					
+<?php } ?>
+<?php echo $this->form ?> 
+

@@ -3,8 +3,10 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 	public $config;		
 	public $privileges;
     
-	public function init() {    
-		 session_start();
+	public function init() {    	
+		 if (!isset($_SESSION['log']))
+		 	$this->_redirect('admin/index/error');
+		 				 
 		 $this->privileges = $_SESSION['privilege'];
 		 
 		 $templateMapper = new Cloud_Model_Template_CloudTemplateMapper();	  		
@@ -24,7 +26,20 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 			$this->_redirect('admin/index/error');
 		 } 
 		 
-		$this->view->headTitle($this->config['title']['visit']);		
+		$this->view->headTitle($this->config['title']['visit']);
+		
+		$playerMapper = new Cloud_Model_Player_CloudPlayerMapper();
+		$playerSessionMapper = new Cloud_Model_PlayerSession_CloudPlayerSessionMapper();
+		$playerPage = 1;
+		$playerNumber = 1;				
+		$playerLink = '';
+		$imgDir = $this->config['dirImg'];
+		
+		 $this->view->assign(array(	    		    	    		         
+			'players' => $playerMapper->fetchUserOnline(0 ,5),		
+		 	'playerMapper' => $playerMapper,
+		 	'playerPaging' => $playerMapper->showPaging($playerPage, $playerNumber, $playerLink, $imgDir),			 			 			 		    	   		    
+	    ));			
 	}
 	
 	public function fileManagerAction()

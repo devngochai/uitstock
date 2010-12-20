@@ -2,8 +2,22 @@
 @import url("global-tabs.css");
 
 /********** BASIC SETTINGS **********/
+.hide,
+.hide1 {
+	display: none;
+}
+
 .left {
     float: left;
+}
+
+.center {
+	text-align: center;
+	margin-top: 100px;
+}
+
+.center2 {
+	text-align: center;
 }
 
 .right {
@@ -26,6 +40,171 @@
 	font-weight: bold;
 }
 
+.sub-txt {
+	color: #993300;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sub-head {
+	color: #5D5D5D;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sub-data {
+	background: url("../images/theme_green.gif");
+	color: #008000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.black {
+	color: black !important; 
+}
+
+.Btn {
+  	color: #009507;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.not_exists {
+    color: #5D5D5D;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;	
+}
+
+
+.title {
+  	color: #5D5D5D;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;	
+}
+
+.company {
+	color: #5353FF;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;	
+}
+
+.pink {
+	color: #CE00CE;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.select {
+	border-collapse: collapse;
+    color: #01540E;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    width: 63px;
+}
+
+.money {
+    color: #01520D;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;	
+}
+
+.sum {
+    color: #1A1AFF;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;	
+}
+
+.rebuild-text-rule {
+	font-size: 14px;
+	color: rgb(128, 0, 0);
+}
+
+.giatran {
+   	color: Green;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;	
+}
+
+.giathamchieu {
+    color: #FEA304;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;	
+}
+
+.giasan {
+    color: Red;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;	
+}
+
+.input_trading {
+    border: 1px solid #018715;
+    border-collapse: collapse;
+    color: #01540E;
+    font-family: Arial;
+    font-size: 10pt;
+    font-weight: normal;
+    padding: 2px;	
+}
+
+.input_rebuild_acc {
+	color: rgb(1, 84, 14); 
+	border: 1px solid rgb(1, 135, 21); 
+	font-family: Arial; 
+	font-size: 10pt; 
+	font-weight: normal; 
+	width: 200px; 
+	border-collapse: collapse; 
+	padding: 2px;
+}
+
+.normal {
+	font-size: 11px;
+}
+
+.stock-own {
+  	color: #001E7E;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;	
+}
+
+a.stock_ajax {
+	cursor: pointer;	
+}
+
+.protflolio_list {
+    height: 130px;
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;	
+}
+
+.maroon {
+	color: Maroon;
+}
+
+img.ui-datepicker-trigger {
+	margin-left: 5px;
+	cursor: pointer;
+}
+
 .red {
     color: red;
 }
@@ -40,7 +219,75 @@
 
 .s_blue {
 	color: #244CCF !important;
-}	
+}
+
+.disable {
+	background: #f1f1f1;	
+}
+
+.ok {
+	color: green;
+}
+
+.error {
+	color: red;
+}
+
+.error2 {
+	color: Red; visibility: hidden;
+}
+
+.error3 {
+	color: Red; 
+	font-family: Arial; 
+	font-size: 12px; 
+	font-weight: normal;
+}
+
+.success {
+	text-align: center; 
+	margin-top: 50px; 
+	font-weight: bold;
+}
+
+
+.mess_ajax {
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: yellowGreen;	
+}
+
+.warning {
+	background: url("../images/alert.gif") no-repeat 35% bottom #fceabb;	
+	font-weight: bold;
+	height:30px; 
+	line-height: 30px; 
+	border-bottom: 1px solid #FF9900; 	 
+	padding-left: 276px; 		
+}
+
+.warning2 {
+	background: url("../images/note.png") no-repeat 3% 50% #92C24A;	
+	font-weight: bold;
+	height:30px; 
+	line-height: 30px; 
+	width: 557px;
+	margin-top: 47px;
+	padding-left: 57px;
+	color: white;
+}
+
+.stick {
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	color: green;
+}
 
 .stock-time {
     text-align: right;
@@ -472,19 +719,36 @@ aside #money-info table td {
     -moz-border-radius: 7px 7px 7px 7px;
 }
 
-#content .statics-box h2 {
+.statics-box3 table tbody tr.first 
+ {
+	color: #5D5D5D;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#content .statics-box h2,
+.statics-box2 h2,
+.statics-box3 h2
+{
     color:Maroon;    
     font: bold 16px Arial;     
     text-align: center;
 }
 
-#content .statics-box p {
+#content .statics-box p,
+.statics-box2 p,
+.statics-box3 p
+{
     text-align: right;
     color:#993300;
     font: bold 12px Arial;    
 }
 
-#content .statics-box table thead {
+#content .statics-box table thead,
+.statics-box2 table thead,
+.statics-box3 table thead.first
+{
     background: url(../images/top_center.gif) repeat-x;
     text-align: center;
     color: #8D6B2B;
@@ -493,7 +757,10 @@ aside #money-info table td {
     font-weight: bold;
 }
 
-#content .statics-box table tbody tr {
+#content .statics-box table tbody tr,
+.statics-box table tbody tr,
+.statics-box2 table tbody tr
+ {
     color:#008000;  
 }
 
@@ -513,3 +780,344 @@ footer {
 footer a {
     color: #fff;
 }
+
+/***** FORM *****/
+.group {
+	margin-left: -36px;
+	padding-left: 50px;
+	width: 547px;	
+}
+
+.g-red {
+	border-color: #8A0000;	
+}
+
+.g-red legend {
+	color: #8A0000;	
+}
+
+.g-blue {
+	border-color: #549EB7;	
+}
+
+.g-blue legend {
+	color: #549EB7;	
+}
+
+.g-green {
+	border-color: green;	
+}
+
+.g-green legend {
+	color: green;	
+}
+
+.form label {
+	display: block;
+}
+/***** LOGIN FORM *****/
+.form {
+	width: 300px;
+	margin-left: 200px;
+}
+/***** REGISTER FORM *****/
+#loginText {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: Green;
+}
+
+#registerForm input {
+	margin-right: 10px;
+}
+
+/***** INFORMATION TAB *****/
+.infor-tab {	 
+	vertical-align: middle; 	 
+	text-align: center;
+}
+
+.infor-tab .item {
+	margin-right: 20px;
+	color: #279230;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    float: left;
+}
+
+.infor-tab .item a:visited,
+.infor-tab .item a:link {
+	color: #279230;
+}
+
+/***** EXCHANGE TAB *****/
+.menu_style {
+    background-image: url("../images/bg_nav.jpg");
+    background-repeat: repeat-x;
+    border: 3px double #007500;
+    border-collapse: collapse;
+    color: #FFFFFF;
+    height: 28px;
+    padding: 0 5px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.menu_style a {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+.menu_style a:link {
+    color: #FFFFFF;    
+}
+.menu_style a:hover {
+    color: #FFA74F;
+    text-decoration: none;
+}
+.menu_style a:active {
+    color: #FFFFFF;    
+}
+
+/***** TRADING TABLE *****/
+.trading_table {
+    background-color: #FFFFFF;
+    border: 1px solid #007500;
+    border-collapse: collapse;
+    padding: 3px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.trade_header {
+    background-image: url("../images/trade_header_bg.gif");
+    background-repeat: repeat-x;
+    height: 20px;
+    padding: 0 3px;
+    text-align: left;
+    line-height: normal;
+}
+
+.trade_header span {
+ 	color: #006FDD;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;	
+}
+
+.adv_top_left {
+    background-image: url("../images/table/adv_top_left.gif");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    height: 5px;
+}
+
+.adv_top_center {
+    background-image: url("../images/table/adv_top.gif");
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    height: 5px;
+}
+
+.adv_top_right {
+    background-image: url("../images/table/adv_top_right.gif");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    height: 5px;
+}
+
+.adv_bottom_left {
+    background-image: url("../images/table/adv_bottom_left.gif");
+    background-repeat: no-repeat;
+    height: 5px;
+}
+
+.adv_bottom_center {
+    background-image: url("../images/table/adv_bottom.gif");
+    background-repeat: repeat-x;
+    height: 5px;
+}
+
+.adv_bottom_right {
+    background-image: url("../images/table/adv_bottom_right.gif");
+    background-repeat: no-repeat;
+    height: 5px;
+}
+
+.adv_left {
+    background-image: url("../images/table/adv_left.gif");
+    background-repeat: repeat-y;
+    width: 5px;
+}
+
+.adv_right {
+    background-image: url("../images/table/adv_right.gif");
+    background-repeat: repeat-y;
+    width: 5px;
+}
+
+/***** PORTFOLIO TABLE *****/
+.trade_content {
+    padding: 0 3px;
+    vertical-align: top;
+    line-height: normal;
+}
+
+.header_td_20 {
+    background-image: url("../images/table/top_center_40.gif");
+    color: #8D6B2B;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cell_item {
+    border-left: 1px solid #B5CDEC;
+    border-right: 1px solid #B5CDEC;
+    padding-left: 3px;
+    padding-right: 3px;
+    vertical-align: middle;    
+}
+
+.header_td_bottom_20 {
+    background-image: url("../images/table/top_bottom_20.gif");
+    color: #2755D2;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.text_grid_item_2 {
+    background: url("../images/table/theme_green.gif") repeat fixed center top transparent;
+    color: #C46200;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    height: 20px;
+    border-bottom: 1px solid black;
+}
+
+.text_grid_Alternate_item {
+    color: #C46200;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    height: 20px;
+    border-bottom: 1px solid black;
+}
+
+.text_grid_item_2 .cell_item,
+.text_grid_Alternate_item .cell_item {
+	border-bottom: 1px solid #B5CDEC;
+}
+
+/***** HOT STOCK *****/
+.hot_stock_table {
+	margin: 0 auto;
+	display: inline-table;
+}
+
+.hot_stock_table thead {
+	background: #47B759;
+   	color: #F3E4C2;
+   	font-family: Arial;
+   	font-size: 14px;
+   	font-weight: bold;
+   	height: 22px;
+   	line-height: 22px;
+   	padding: 2px 0;
+   	text-align: left;
+   	text-transform: uppercase;
+   	width: 100%;	
+}
+
+#hotStock thead,
+#hotStock tbody {
+	text-align: center;
+}
+
+/***** TOP STOCK *****/
+.top_stock_table {
+	display: inline-table;
+	margin-bottom: 5px;
+}
+
+.top_stock_table tr.top {
+	background: #47B759;
+   	color: #F3E4C2;
+   	font-family: Arial;
+   	font-size: 14px;
+   	font-weight: bold;
+   	height: 22px;
+   	line-height: 22px;
+   	padding: 2px 0;
+   	text-align: left;
+   	text-transform: uppercase;
+   	width: 100%;	
+}
+
+/***** REPORT *****/
+#report .even td { 
+	background:#fff url(../images/table/row_bkg.png) repeat-x scroll center left; cursor:pointer;
+}
+
+#report .arrow { 
+	background:transparent url(../images/table/expand.gif) no-repeat 7% 55%; 	 	 	
+	padding-left: 14px;
+}
+
+#report .up { 
+	background:transparent url(../images/table/collapse.gif) no-repeat 7% 55%;
+}
+      
+
+/***** SEARCH PRICE RESULT *****/
+#search_price_ajax {
+	margin-top: 35px;
+}
+#searchPriceResult {
+	margin-top: 10px;
+	
+}
+
+#searchPriceResult caption {
+	background: url("../images/bg_nav.jpg") repeat-x;
+	font-size: 16px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+}
+
+#searchPriceResult thead {
+	font-weight: bold;
+	text-align: center;
+}
+
+#searchPriceResult tbody {
+	text-align: center;
+}
+        
+/***** MARKET STATICS *****/
+#marketStatics {
+	text-align: center;
+}
+
+#marketStatics thead {
+	background: #26B34D;
+	color: #fff;
+}	
+
+ 

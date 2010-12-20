@@ -236,6 +236,5 @@
 			             ->where('component_id = ?', $component_id);			            
                      
             return $db->fetchAll($select);           
-		}
-		
+		}				
 	}

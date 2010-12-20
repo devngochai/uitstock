@@ -50,3 +50,33 @@
 *html #content .box-first {
     margin-top: 0px;
 }
+
+*html .form {
+    width: 300px;   
+}
+
+*html .form label,
+*html .form input,
+{
+	margin-left: 20px;
+}
+
+*html .form input#login {
+	margin-bottom: 10px;
+}
+
+*html .group {    
+    padding-bottom: 15px;
+}
+
+*html .top_stock_table {
+	display: inline;	
+}
+
+*html .hot_stock_table tbody tr td {	
+	padding: 5px 0;
+}
+
+*html #searchPriceResult {
+	margin-top: 47px;
+}

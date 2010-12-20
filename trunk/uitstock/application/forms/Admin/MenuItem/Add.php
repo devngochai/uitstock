@@ -14,7 +14,14 @@ class Cloud_Form_Admin_MenuItem_Add extends Zend_Form
 	protected $_catId;
 	
 	public function init()
-	{						
+	{
+		// thêm validator
+		$this->addElementPrefixPath(
+		     'Cloud_Validate',
+		     APPLICATION_PATH . '/models/validate/MenuItem',
+		     'validate'
+		);	
+										
 		$this->setMethod('post');				  
 		
 		$this->addElement('text', 'name', array(	
@@ -22,6 +29,15 @@ class Cloud_Form_Admin_MenuItem_Add extends Zend_Form
 		      'label' => 'Menu Item Name',
 			  'filters' => array('StringTrim'),		     
 		));
+		
+		$this->addElement('text', 'alias', array(			      			      
+		      'label' => 'Alias',
+		      'validators' => array(
+		            array('UniqueMenuItemAlias', false, array(new
+		            Cloud_Model_MenuItem_CloudMenuItemMapper()))
+		      ),		
+			  'filters' => array('StringTrim'),		     
+		));		
 		
 		$this->addElement('text', 'link', array(			      			      
 		      'label' => 'Link',

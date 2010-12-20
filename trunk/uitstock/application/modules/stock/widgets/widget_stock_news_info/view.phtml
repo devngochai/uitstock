@@ -9,49 +9,38 @@
 		<article id="tab1-news" class="tab_content">
 			<ul class="block">                    				              		
 				<li>
-					<ul>                    			
-						<li><a>Trình bày ý tưởng với cô (25/10/2010)</a></li>
-						<li><a>Phát thảo layout UITStock (25/10/2010)</a></li>                    						                    			                   		
-						<li><a>Sàn chứng khoán ảo được chọn (20/10/2010)</a></li>
-						<li><a>Đề xuất ý tưởng của nhóm (20/10/2010)</a></li>                    				
+					<ul>     
+						<?php foreach ($stockNews as $new ) { ?>               			
+							<li><a><?php echo $new['title'] ?></a></li>
+						<?php } ?>		                    				
 					</ul>
 				</li>
-			</ul>	
-			<p class="read-all"><a>Xem tất cả</a></p>
+			</ul>				
 		</article>
 		<article id="tab2-news" class="tab_content">
 			<ul class="block">                    				                    			
 				<li>
-					<ul>                    			
-						<li><a>Lãi suất liên ngân hàng tăng mạnh - BVSC  ( 27/10/2010).</a></li>
-						<li><a>Chỉ số CPI theo năm đang có xu hướng tăng nhanh trong khi tốc độ tăng theo tháng tiếp tục vượt 1% - HSC  ( 27/10/2010).</a></li>
-						<li><a>CPI Tháng 10 và Lạm phát lõi - LVS  ( 27/10/2010).</a></li>
-						<li><a>Báo cáo phân tích CTCP Kỹ thuật điện Toàn Cầu - AVSC  ( 27/10/2010).</a></li>                    				
+					<ul>          
+						<?php foreach ($reports as $report ) { ?>               			
+							<li><a href="files/upload/files/report/<?php echo $report['summarize'] ?>"><?php echo $report['title'] ?></a></li>
+						<?php } ?>					          			                    				
 					</ul>
 				</li>
-			</ul>
-			<p class="read-all"><a>Xem tất cả</a></p>
+			</ul>			
 		</article>
 		<article id="tab3-news" class="tab_content">
 		   <ul class="block">
-				<li class="date">27/10/2010:</li>                    				
-				<li>
-					<ul>                    			
-						<li><a>KAC: Ngày giao dịch chính thức 20 triệu cổ phiếu của CTCP Đầu tư Địa ốc Khang An trên HOSE</a></li>
-						<li><a>KHP: Ngày GDKHQ tạm ứng cổ tức đợt 1/2010 (5%)</a></li>
-						<li><a>PPI: Ngày GDKHQ tạm ứng cổ tức đợt 1/2010 (8%)</a></li>   
-						<li><a>HVC: Ngày giao dịch chính thức 6.920.750 cổ phiếu của CTCP Hưng Vượng trên HNX</a></li>                 				
-					</ul>
-				</li>	                    		
-				<li class="date">28/10/2010:</li>                    				
-				<li>
-					<ul>                    			
-						<li><a>SDK: Ngày giao dịch chính thức 2,6 triệu cổ phiếu của CTCP Cơ khí Luyện Kim trên UPCoM</a></li>
-						<li><a>LM7: Ngày giao dịch chính thức 4.957.000 cổ phiếu của CTCP Lilama 7 trên HNX</a></li>
-						<li><a>KTT: Ngày giao dịch chính thức 2,5 triệu cổ phiếu của CTCP Đầu tư Thiết bị và Xây lắp Điện Thiên Trường trên HNX</a></li>   
-						<li><a>TMP: Ngày GDKHQ tạm ứng cổ tức năm 2010 (6%)</a></li>                 				
-					</ul>
-				</li>
+		   		<?php foreach ($dates as $date):  ?>
+		   			<li class="date"><?php echo $date['date'] ?>:</li>		   		 
+			   		<li><ul>  
+							<?php					
+					   			foreach ($events as $event ):
+					   				if ($event['summarize'] == $date['date']) {						   						   					
+					   		?>               			
+								<li><a><?php echo $event['title'] ?></a></li>
+							<?php }  endforeach ?>
+					</ul></li>
+				<?php endforeach ?>				                  															
 			</ul>	                    		
 		</article>
 	</hgroup>

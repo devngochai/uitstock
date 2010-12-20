@@ -12,7 +12,8 @@
 		protected $parent_id;
 		protected $menu_cat_id;
 		protected $pri_id;
-		protected $name;			
+		protected $name;	
+		protected $alias;		
 		protected $link;
 		protected $ordering;		
 		protected $published;
@@ -89,7 +90,14 @@
 		public function getName() {
 			return $this->name;
 		}
-		
+	
+			/**
+		 * @return the $alias
+		 */
+		public function getAlias() {
+			return $this->alias;
+		}
+	
 			/**
 		 * @return the $link
 		 */
@@ -156,7 +164,15 @@
 		public function setName($name) {
 			$this->name = $name;
 			return $this;
-		}	
+		}
+	
+			/**
+		 * @param $alias the $alias to set
+		 */
+		public function setAlias($alias) {
+			$this->alias = $alias;
+			return $this;
+		}
 	
 			/**
 		 * @param $link the $link to set
@@ -188,7 +204,5 @@
 		public function setIs_home($is_home) {
 			$this->is_home = $is_home;
 			return $this;
-		}																					
-	}	
-	
-	
+		}																												
+	}			

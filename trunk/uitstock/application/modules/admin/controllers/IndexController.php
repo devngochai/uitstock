@@ -11,7 +11,6 @@ class Admin_IndexController extends ZendStock_Controller_Action {
 	     $dirTemplate = $this->templateMapper->getTemplateDefault(1); 
 		 $dirTheme = $this->themeMapper->getThemeDefault(1);		     	           
 	     $this->config = $this->createLayout($dirTemplate, $dirTheme);
-	     session_start();
 	     unset($_SESSION['temp']);
 	}
 	
@@ -50,6 +49,9 @@ class Admin_IndexController extends ZendStock_Controller_Action {
 
 	public function logOutAction()
 	{
+		 if (!isset($_SESSION['log']))
+		 	$this->_redirect('admin/index/error');
+		 			
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		

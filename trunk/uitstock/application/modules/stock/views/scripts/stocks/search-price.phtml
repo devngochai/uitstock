@@ -1,0 +1,38 @@
+<script type="text/javascript"
+ src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {  	  	 		 	   	
+		$('.focus').focus();
+
+		$("#searchPrice").click(function(){
+			$("#search_price_ajax").html("");		
+			$('.hide1').css('display', 'block');
+			
+			$.ajax({
+				url: 'stocks/search-result/',			
+				cache: false,
+				success: function(data) {	
+				$('.hide1').css('display', 'none');
+					$("#search_price_ajax").html(data);									
+			    }
+			});		
+		});			
+  });
+</script>
+
+<div class="center hide1">
+     <img src="<?php echo $this->dirImg;?>/loader.gif"/>
+</div>
+
+<div id="search_price_ajax" >
+	<fieldset class="g-green center2">
+		<legend>Tìm cổ phiếu theo giá</legend>
+		<p>Vui lòng nhập khoản giá cần tìm</p>
+		<p style="margin: 10px auto;">
+			Giá từ <input type="text" class="focus center2" /> Đến <input type="text" class="center2" />(nghìn đồng) 
+		</p>
+		<p>
+			<input type="button" value="Tìm kiếm" id="searchPrice" />
+		</p>
+	</fieldset>
+</div> 
