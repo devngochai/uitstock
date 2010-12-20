@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 20, 2010 at 12:43 PM
+-- Generation Time: Dec 20, 2010 at 04:13 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -698,7 +698,7 @@ CREATE TABLE `privilege_types` (
 -- Dumping data for table `privilege_types`
 -- 
 
-INSERT INTO `privilege_types` VALUES (1, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/config/visitstatics/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/statistic.png">\r\n								<span>Visit Statics</span>\r\n							</a>\r\n						</li>', '');
+INSERT INTO `privilege_types` VALUES (1, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/config/visit-statics/">\r\n								<img alt=\\"\\" src="/admin/themes/default/images/Dashboard/statistic.png">\r\n								<span>Visit Statics</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (2, 'Xem', 'List', 1, '', '');
 INSERT INTO `privilege_types` VALUES (3, 'Truy cập', 'Access', 1, '<li>\r\n							<a href="admin/config/file-manager/">\r\n								<img alt="" src="/admin/themes/default/images/Dashboard/file-manager.png">\r\n								<span>File manager</span>\r\n							</a>\r\n						</li>', '');
 INSERT INTO `privilege_types` VALUES (4, 'Xem', 'List', 1, '', '');
@@ -1112,15 +1112,15 @@ CREATE TABLE `user_account_session` (
   `browser` varchar(255) default NULL,
   `last_visit` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 -- 
 -- Dumping data for table `user_account_session`
 -- 
 
-INSERT INTO `user_account_session` VALUES (3, 0, 'b3453be0cfe77758bac9a71d0e081cd3', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292818454);
-INSERT INTO `user_account_session` VALUES (4, 2, 'b3453be0cfe77758bac9a71d0e081cd3', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292818460);
-INSERT INTO `user_account_session` VALUES (5, 1, '28b7ff205769ed780d46c24673f3a74f', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13', 1292818506);
+INSERT INTO `user_account_session` VALUES (17, 1, '3921019f3e27e3841563edb3c93a640f', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 FirePHP/0.5', 1292836054);
+INSERT INTO `user_account_session` VALUES (19, 2, 'cbf24eead0fa38bb78a891f5322d1236', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292836082);
+INSERT INTO `user_account_session` VALUES (18, 0, 'cbf24eead0fa38bb78a891f5322d1236', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292836074);
 
 -- --------------------------------------------------------
 
