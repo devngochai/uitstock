@@ -101,24 +101,46 @@ function countRow()
 }
 
 /* -------------------------------------------------------------- 
+	Hot Key
+-------------------------------------------------------------- */
+jQuery(document).bind('keydown', 'Shift+h',function (evt){document.location = "http://uitstock/admin/index/home"; });
+jQuery(document).bind('keydown', 'Shift+v',function (evt){document.location = "http://uitstock/admin/config/visit-statics/"; });
+jQuery(document).bind('keydown', 'Shift+f',function (evt){document.location = "http://uitstock/admin/config/file-manager/"; });
+jQuery(document).bind('keydown', 'Shift+n',function (evt){document.location = "http://uitstock/admin/article/add-article"; });
+jQuery(document).bind('keydown', 'Shift+t',function (evt){document.location = "http://uitstock/admin/theme/list"; });
+
+/* -------------------------------------------------------------- 
 	Paging ajax
 -------------------------------------------------------------- */
 function pagingAjax()
-{
+{	
 	$(".paging img").click(function(){		
 		var btn = $(this).attr('type');				
 		
-		if (btn == 'disable') return false; 		
+		if (btn == 'disable') return false; 	
+				
+		var $data = $(this).parent().find(".data");
+		var $pageNumber = $(this).parent().find("#pageNumber");
+		var $img = $(this).parent().find("img");
+		var $refresh = $(this).parent().find("img.r");
+		var $table = $(this).parent().parent().parent().parent().find(".player_online_ajax");
+		var $updatePlayerTotalPages = $(this).parent().find(".updatePlayerTotalPages");
+		var page = parseInt($pageNumber.val());
+		var first = $data.attr('first');
+		var last = $data.attr('last');			
 		
-		//$(".player_online_ajax").hide();		
+		if (page < first || page > last) return false;
+		$table.find('td').css('background', '#EEEEEE');
 		
-		var newPage = "";
-		var page = parseInt($(".paging #pageNumber").val());		
-		var path = $(".paging .data").attr('path');		
-		var type = $(this).attr('class');
+		var imgDir = $data.attr('imgDir');
 		
-		var first = $(".paging .data").attr('first');
-		var last = $(".paging .data").attr('last');				
+		$refresh.attr('src', imgDir + '/paging/load.gif');	
+		
+		var newPage = "";				
+		var number = $data.attr('number');
+		var path = $data.attr('path');		
+		var update = $data.attr('update');
+		var type = $(this).attr('class');					
 		
 		if (type == 'f')
 			newPage = first;
@@ -126,106 +148,149 @@ function pagingAjax()
 			newPage = last;
 		else if (type == 'n')
 			newPage = page + 1;
-		else if (type == 'p') {
+		else if (type == 'p') 
 			newPage = page - 1;						
-		}		
+		else if (type == 'r')	
+			newPage = page;
 		
 		if (newPage == "1") {
-			$(".paging img").each(function(){
-				if ($(".paging img").hasClass('f'))
+			$img.each(function(){
+				if ($(this).hasClass('f'))
 					$(this).removeAttr('type').attr('type', 'disable');
 			
-				if ($(".paging img").hasClass('p'))
+				if ($(this).hasClass('p'))
 					$(this).removeAttr('type').attr('type', 'disable');
 				
-				if ($(".paging img").hasClass('n'))
+				if ($(this).hasClass('n'))
 					$(this).removeAttr('type').attr('type', 'enable');
 				
-				if ($(".paging img").hasClass('l'))
+				if ($(this).hasClass('l'))
 					$(this).removeAttr('type').attr('type', 'enable');
 			})
 		}
 		
 		if (newPage == last) {						
-			$(".paging img").each(function(){
-				if ($(".paging img").hasClass('n')) 
+			$img.find("img").each(function(){
+				if ($(this).hasClass('n')) 
 					$(this).removeAttr('type').attr('type', 'disable');								
 				
 				if ($(this).hasClass('l'))
 					$(this).removeAttr('type').attr('type', 'disable');
 				
-				if ($(".paging img").hasClass('f'))
+				if ($(this).hasClass('f'))
 					$(this).removeAttr('type').attr('type', 'enable');		
 				
-				if ($(".paging img").hasClass('p'))
+				if ($(this).hasClass('p'))
 					$(this).removeAttr('type').attr('type', 'enable');					
 			})					
 		}
 		
 		$.ajax({
-			url: path,
-			data: 'page=' + newPage,
+			url: update,	
+			data: 'number=' + number,
 			cache: false,
-			success: function(data){			
-				$(".paging #pageNumber").val(newPage);
-				$(".player_online_ajax").html(data);				
+			success: function(data){	
+				$updatePlayerTotalPages.html(data);
+				$data.attr('last', data);				
+				if (parseInt(newPage) > parseInt(data)) newPage = data;
+				
+				$.ajax({
+					url: path,
+					data: 'page=' + newPage + '&number=' + number,
+					cache: false,
+					success: function(data){		
+						$refresh.attr('src', imgDir + '/paging/load.png');
+						$pageNumber.val(newPage);
+						$table.html(data);					
+					}
+				})				
 			}
-		});
+		});	
+				
+		
+;
 		
 	});	
 	
 	$(".paging #pageNumber").keypress(function(e){
-		if (e.keyCode == 13) {					
-			//$(".player_online_ajax").hide();	
-			var page = parseInt($(this).val());
-			var first = $(".paging .data").attr('first');
-			var last = $(".paging .data").attr('last');	
+		if (e.keyCode == 13) {			
+			var $data = $(this).parent().find(".data");
+			var $pageNumber = $(this).parent().find("#pageNumber");
+			var $img = $(this).parent().find("img");
+			var $refresh = $(this).parent().find("img.r");
+			var $table = $(this).parent().parent().parent().parent().find(".player_online_ajax");
+			var $updatePlayerTotalPages = $(this).parent().find(".updatePlayerTotalPages");		
 			
-			if (page < first || page > last) return false;						
+			var page = parseInt($(this).val());
+			var first = $data.attr('first');
+			var last = $data.attr('last');	
+			
+			if (page < first || page > last) return false;	
+			
+			$table.find('td').css('background', '#EEEEEE');
+			
+			var imgDir = $data.attr('imgDir');
+			$refresh.attr('src', imgDir + '/paging/load.gif');
 					
-			var path = $(".paging .data").attr('path');																		
+			var number = $data.attr('number');
+			var path = $data.attr('path');		
+			var update = $data.attr('update');
 			
 			if (page == "1") {
-				$(".paging img").each(function(){
-					if ($(".paging img").hasClass('f'))
+				$img.each(function(){
+					if ($(this).hasClass('f'))
 						$(this).removeAttr('type').attr('type', 'disable');
 				
-					if ($(".paging img").hasClass('p'))
+					if ($(this).hasClass('p'))
 						$(this).removeAttr('type').attr('type', 'disable');
 					
-					if ($(".paging img").hasClass('n'))
+					if ($(this).hasClass('n'))
 						$(this).removeAttr('type').attr('type', 'enable');
 					
-					if ($(".paging img").hasClass('l'))
+					if ($(this).hasClass('l'))
 						$(this).removeAttr('type').attr('type', 'enable');
 				})
 			}
 			
 			if (page == last) {						
-				$(".paging img").each(function(){
-					if ($(".paging img").hasClass('n')) 
+				$img.each(function(){
+					if ($(this).hasClass('n')) 
 						$(this).removeAttr('type').attr('type', 'disable');								
 					
 					if ($(this).hasClass('l'))
 						$(this).removeAttr('type').attr('type', 'disable');
 					
-					if ($(".paging img").hasClass('f'))
+					if ($(this).hasClass('f'))
 						$(this).removeAttr('type').attr('type', 'enable');		
 					
-					if ($(".paging img").hasClass('p'))
+					if ($(this).hasClass('p'))
 						$(this).removeAttr('type').attr('type', 'enable');					
 				})					
 			}
 			
 			$.ajax({
-				url: path,
-				data: 'page=' + page,
+				url: update,	
+				data: 'number=' + number,
 				cache: false,
-				success: function(data){			
-					$(".paging #pageNumber").val(page);
-					$(".player_online_ajax").html(data);				
+				success: function(data){					
+					$data.attr('last', data);
+					$updatePlayerTotalPages.html(data);
+					if (parseInt(page) > parseInt(data)) page = data;
+					
+					$.ajax({
+						url: path,
+						data: 'page=' + page + '&number=' + number,
+						cache: false,
+						success: function(data){		
+							$refresh.attr('src', imgDir + '/paging/load.png');
+							$pageNumber.val(page);
+							$table.html(data);				
+						}
+					});						
 				}
-			});			
+			});				
+			
+		
 		}		
 	});	
 	

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Dec 20, 2010 at 04:13 PM
+-- Generation Time: Dec 21, 2010 at 01:16 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -328,10 +328,10 @@ CREATE TABLE `menu_items` (
 -- Dumping data for table `menu_items`
 -- 
 
-INSERT INTO `menu_items` VALUES (1, 0, 1, 0, 0x5472616e67206368e1bba7, 'index', 'stock/index', 1, 1, 0);
+INSERT INTO `menu_items` VALUES (1, 0, 1, 0, 0x5472616e67206368e1bba7, 'index', 'stock/index/', 1, 1, 0);
 INSERT INTO `menu_items` VALUES (2, 0, 1, 0, 0x5468e1bbb163206869e1bb876e206769616f2064e1bb8b6368, 'exxchange', 'exchange/order/', 2, 1, 1);
-INSERT INTO `menu_items` VALUES (3, 0, 1, 0, 0x5468e1bb916e67206bc3aa2073c3a06e20e1baa36f, 'statics', 'stock/index/statics', 3, 1, 0);
-INSERT INTO `menu_items` VALUES (4, 0, 1, 0, 0x5468e1bb83206ce1bb872073c3a06e20e1baa36f, 'rule', 'stock/index/rule', 4, 1, 0);
+INSERT INTO `menu_items` VALUES (3, 0, 1, 0, 0x5468e1bb916e67206bc3aa2073c3a06e20e1baa36f, 'statics', 'stock/index/statics/', 3, 1, 0);
+INSERT INTO `menu_items` VALUES (4, 0, 1, 0, 0x5468e1bb83206ce1bb872073c3a06e20e1baa36f, 'rule', 'stock/index/rule/', 4, 1, 0);
 INSERT INTO `menu_items` VALUES (5, 0, 1, 0, 0x54696e2074e1bba963, 'news', 'tintuc/', 5, 1, 0);
 INSERT INTO `menu_items` VALUES (6, 0, 2, 0, 0x42e1baa36e67206769c3a1207472e1bbb16320747579e1babf6e, 'online-price', '', 1, 1, 0);
 INSERT INTO `menu_items` VALUES (7, 6, 2, 0, 0x53c3a06e20484f5345, NULL, '', 0, 1, 0);
@@ -1112,15 +1112,13 @@ CREATE TABLE `user_account_session` (
   `browser` varchar(255) default NULL,
   `last_visit` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 -- 
 -- Dumping data for table `user_account_session`
 -- 
 
-INSERT INTO `user_account_session` VALUES (17, 1, '3921019f3e27e3841563edb3c93a640f', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 FirePHP/0.5', 1292836054);
-INSERT INTO `user_account_session` VALUES (19, 2, 'cbf24eead0fa38bb78a891f5322d1236', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292836082);
-INSERT INTO `user_account_session` VALUES (18, 0, 'cbf24eead0fa38bb78a891f5322d1236', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.224 Safari/534.10', 1292836074);
+INSERT INTO `user_account_session` VALUES (29, 1, '88679be17efa9aa6eda510ee9183c7d5', '127.0.0.1', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 FirePHP/0.5', 1292868842);
 
 -- --------------------------------------------------------
 

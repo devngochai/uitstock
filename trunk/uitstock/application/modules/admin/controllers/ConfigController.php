@@ -28,18 +28,18 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 		 } 
 		 
 		$this->view->headTitle($this->config['title']['visit']);
-		
-		$playerMapper = new Cloud_Model_Player_CloudPlayerMapper();
-		$playerSessionMapper = new Cloud_Model_PlayerSession_CloudPlayerSessionMapper();
-		$playerPage = 1;
-		$playerNumber = 1;				
-		$playerLink = '';
 		$imgDir = $this->config['dirImg'];
 		
+		$playerMapper = new Cloud_Model_Player_CloudPlayerMapper();
+		$playerSessionMapper = new Cloud_Model_PlayerSession_CloudPlayerSessionMapper();		
+		$playerNumber = 3;				
+		$playerLink = 'admin/config/paging-ajax/';
+		$playerUpdate = 'admin/config/update-player-total-pages';
+				
 		 $this->view->assign(array(	    		    	    		         
 			'players' => $playerMapper->fetchUserOnline(0 ,$playerNumber),		
 		 	'playerMapper' => $playerMapper,
-		 	'playerPaging' => $playerMapper->showPaging($playerPage, $playerNumber, $playerLink, $imgDir),			 			 			 		    	   		    
+		 	'playerPaging' => $playerMapper->showPaging($playerNumber, $playerUpdate, $playerLink, $imgDir),			 			 			 		    	   		    
 	    ));			
 	}
 	
@@ -57,7 +57,7 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 
 		 if (null != $this->request->getParam('page')) {
 		 	$page = $this->request->getParam('page');
-		 	$number = 1;
+		 	$number = $this->request->getParam('number');
 		 	$start = ($page - 1) * $number;
 		 	
 		 	$playerMapper = new Cloud_Model_Player_CloudPlayerMapper();
@@ -67,6 +67,26 @@ class Admin_ConfigController extends ZendStock_Controller_Action {
 	    	));			 	
 		 }
 		 
+	}
+	
+	public function updatePlayerTotalPagesAction()
+	{
+		$flag = false;		
+		 foreach ($this->privileges as $privilege) {
+			if ($privilege['id'] == 1) $flag = true; 
+		 }
+	 	 if (!$flag) {
+			$this->_redirect('admin/index/error');
+		 }
+		 
+		 $this->_helper->layout()->disableLayout();
+		 $this->_helper->viewRenderer->setNoRender(true);	
+
+		 if (null != $this->request->getParam('number')) {
+		 	$number = $this->request->getParam('number');
+		 	$playerMapper = new Cloud_Model_Player_CloudPlayerMapper();
+		 	echo $playerMapper->updateTotalPages($number);	 	
+		 }		
 	}
 	
 	public function fileManagerAction()

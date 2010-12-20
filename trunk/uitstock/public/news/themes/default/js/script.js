@@ -39,6 +39,8 @@
 $(document).ready(function(){  	  
 	startTime();
 	
+	jQuery(document).bind('keydown', 'Shift+h',function (evt){document.location = "http://uitstock/"; });
+	
     jQuery(".SearchTextBox").focus(function() {
 		if (jQuery(this).val()=="Tìm kiếm") {
 			jQuery(this).val("");

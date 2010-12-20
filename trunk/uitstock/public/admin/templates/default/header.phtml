@@ -11,8 +11,9 @@
 				<br />
 				<a href="">Trang chủ</a> | <a href="admin/index/log-out">Thoát</a>
 			</p>
-			
-			<img src="<?php echo $_SESSION['avatar'];?>" alt="avatar" />
+			<a href="admin/user/view/id/<?php echo $_SESSION['userId'] ?>/">
+				<img src="<?php echo $_SESSION['avatar'];?>" alt="avatar" />
+			</a>
 		</div> <!-- #info -->
 				
 	</div> <!-- #header -->	

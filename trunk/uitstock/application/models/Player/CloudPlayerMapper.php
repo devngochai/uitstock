@@ -348,7 +348,7 @@
 			$select = $db->select()
 			             ->from($db, 'id');			             			            
                      
-            return count($db->fetchRow($select));			
+            return count($db->fetchAll($select));			
 		}		
 		
 		public function getUserNameById($listId)
@@ -361,7 +361,7 @@
             return $db->fetchAll($select);			
 		}
 		
-		public function showPaging($page, $number, $link, $imgDir)
+		public function showPaging($number, $updateLink, $link, $imgDir)
         {            
            	$db = Zend_DB_table_Abstract::getDefaultAdapter();	
            	
@@ -374,43 +374,44 @@
 			$row = $stmt->fetch();
 									                                           
             $totalPages = ceil((int) $row['count'] / (int) $number);                         
-            return $this->paging(1, $page, $totalPages, $link, $imgDir);
+            return $this->paging($number, $totalPages, $updateLink, $link, $imgDir);
         } 
 
-		public function paging($pageCount, $currentPage, $totalPages, $link, $imgDir)
-        {
-            if ($totalPages < 1) return "";                                           
-                  
+		public function paging($number, $totalPages, $updateLink, $link, $imgDir)
+        {                                                                  
             $nav = "";                                
             $prev = "";
             $next = "";            
-            $from = 1;         
-            $to = $from + $pageCount;                                    
-            if ($to > $totalPages) $to = $totalPages;
-                   
-            //$nextLink = $link . '\page\2';
-            //$prevLink =  $link . '\page\1';
             
-            //$next = "<a path=\"$nextLink\" class=\"btnPaging\">Next</a>"; 
-			//$prev = "<a path=\"$prevlink\" class=\"btnPaging\">Previous</a>";
-                   
- 
+            if ($totalPages == 1) {$typeF = $typeP = $typeN = $typeL = "disable";}
+            else  {$typeF = $typeP = "disable"; $typeN = $typeL ="enable";}
             
-//            for ($i = $from; $i <= $to; $i++)
-//            {                                                            
-//                 $qt = $link .  "\\page\\" . $i;
-//                 $nav .= "<a path=\"$qt\">{$i}</a>";                  
-//            }
-            
-            $data ="<span class=\"data\" first=\"1\" last=\"$totalPages\" path=\"admin/config/paging-ajax/\" ></span>";
-            $first = "<img class=\"f\" type=\"disable\" src=\"$imgDir/paging/first.gif\" />";            
-            $prev = "<img class=\"p\" type=\"disable\" src=\"$imgDir/paging/prev.gif\" />";
-            $next = "<img class=\"n\" type=\"enable\" title=\"Trang sau\" path=\"$link\\page\\2\" src=\"$imgDir/paging/next.gif\" />";
-            $last = "<img class=\"l\" type=\"enable\" title=\"Trang cuối\" path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/last.gif\" />";
-			$nav =  "Page<input id=\"pageNumber\" type=\"text\" value=\"$currentPage\" size=\"2\" style=\"text-align: center;\" />of $totalPages";
-			$refresh = "<img class=\"r\" type=\"enable\" title=\"Refresh\" path=\"$link\\page\\$totalPages\" src=\"$imgDir/paging/load.png\" />";
-			$sep = "<div class=\"btnseparator\"></div>";
+            $data ="<span class=\"data\" first=\"1\" last=\"$totalPages\" path=\"$link\" update=\"$updateLink\" number=\"$number\" imgDir=\"$imgDir\" ></span>";
+            $first = "<img class=\"f\" type=\"$typeF\" src=\"$imgDir/paging/first.gif\" />";            
+            $prev = "<img class=\"p\" type=\"$typeP\" src=\"$imgDir/paging/prev.gif\" />";
+            $next = "<img class=\"n\" type=\"$typeN\" title=\"Trang sau\"  src=\"$imgDir/paging/next.gif\" />";
+            $last = "<img class=\"l\" type=\"$typeL\" title=\"Trang cuối\" src=\"$imgDir/paging/last.gif\" />";
+			$nav =  "Page<input id=\"pageNumber\" type=\"text\" value=\"1\" size=\"2\" style=\"text-align: center;\" />of <span class=\"updatePlayerTotalPages\">$totalPages</span>";
+			$refresh = "<img class=\"r\" type=\"enable\" title=\"Refresh\" src=\"$imgDir/paging/load.png\" />";
+			$sep = "<div class=\"btnseparator\"></div>";			
 							            
             return $data.$sep.$first.$prev.$sep.$nav.$sep.$next.$last.$sep.$refresh;
-        }		
+        }	
+
+        public function updateTotalPages($number)
+        {
+ 			$db = Zend_DB_table_Abstract::getDefaultAdapter();	
+           	
+			$sessionMapper = new Cloud_Model_PlayerSession_CloudPlayerSessionMapper();
+			$dbSession = $sessionMapper->getDbTable()->info();
+			$dbSessionName = $dbSession['name'];	
+			
+			$stmt = $db->query("SELECT count(*) as count from $dbSessionName 
+								WHERE user_id != 0");
+			$row = $stmt->fetch();
+									                                           
+            $totalPages = ceil((int) $row['count'] / (int) $number);  
+            
+            return $totalPages;         	
+        }
 	}

@@ -17,6 +17,7 @@ interface Cloud_Model_Player_Interface
 	public function login($username, $password, $remember = null);
 	public function getNumberUser();
 	public function getUserNameById($listId);	
-	public function showPaging($page, $number, $link, $imgDir);
-	public function paging($pageCount, $currentPage, $totalPages, $link, $imgDir);
+	public function showPaging($number, $updateLink, $link, $imgDir);
+	public function paging($number, $totalPages, $updateLink, $link, $imgDir);
+	public function updateTotalPages($number);
 }

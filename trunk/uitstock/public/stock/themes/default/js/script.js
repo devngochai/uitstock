@@ -2,11 +2,12 @@ $(document).ready(function(){
 	$('.hide').hide();
 	$('.focus').focus(); 
 	
-    startTime();     
+    startTime();
+    hotkey();
     tab();
-    table();	 
-    jExpand();
+    table();	     
     sidebar();  
+    jExpand();
     datepicker();
    
     stockAjax();
@@ -236,4 +237,16 @@ function jExpand()
         $(this).find(".arrow").toggleClass("up");
     });
     //$("#report").jExpand();
+}
+
+function hotkey()
+{
+	jQuery(document).bind('keydown', 'Shift+h',function (evt){document.location = "http://uitstock/"; });
+	jQuery(document).bind('keydown', 'Shift+l',function (evt){document.location = "http://uitstock/auth/login/"; });
+	jQuery(document).bind('keydown', 'Shift+o',function (evt){document.location = "http://uitstock/auth/log-out/"; });
+	jQuery(document).bind('keydown', 'Shift+i',function (evt){document.location = "http://uitstock/player/infor/"; });
+	jQuery(document).bind('keydown', 'Shift+p',function (evt){document.location = "http://uitstock/player/change-pass/"; });
+	jQuery(document).bind('keydown', 'Shift+e',function (evt){document.location = "http://uitstock/exchange/order/"; });
+	jQuery(document).bind('keydown', 'Shift+s',function (evt){document.location = "http://uitstock/stock/index/statics/"; });
+	jQuery(document).bind('keydown', 'Shift+n',function (evt){document.location = "http://uitstock/tintuc/"; });
 }
