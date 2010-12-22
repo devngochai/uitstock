@@ -1,0 +1,58 @@
+	<div id="content" class="xfluid">
+		
+		<div class="portlet x3 infor" >
+			
+			<div class="portlet-header">
+				<h4>Thống kê hôm nay</h4>
+			</div> <!-- .portlet-header -->
+			
+			<div class="portlet-content">
+				<table cellspacing="0" class="info_table">
+					<tbody>
+						<tr>
+							<td class="value">50</td>
+							<td class="full">lượt truy cập</td>
+						</tr>
+						<tr>					
+							<td class="value">100</td>
+							<td class="full">chứng khoán bán ra</td>
+						</tr>
+						<tr>					
+							<td class="value">300</td>
+							<td class="full">chứng khoán mua vào</td>
+						</tr>
+						<tr>					
+							<td class="value">100</td>
+							<td class="full">tin tức</td>
+						</tr>										
+						<tr>
+							<td class="value">10</td>
+							<td class="full">yêu cầu hỗ trợ</td>
+						</tr>
+						<tr>
+							<td class="value">10</td>
+							<td class="full">việc cần làm</td>
+						</tr>
+					</tbody>
+				</table>
+			</div> <!-- .portlet-content -->			
+		</div> <!-- .portlet -->
+		
+		<div id="dash_chart" class="portlet x9 dashboard">
+			
+			<div class="portlet-header">
+				<h4>Công cụ</h4>							
+			</div> <!-- .portlet-header -->
+			
+			<div class="portlet-content">					
+					<ul>
+						<?php 
+							foreach ($this->shortcuts as $shortcut) {
+								echo stripslashes($shortcut['button1']);
+							}
+						?>						   																												
+					</ul>										
+			</div> <!-- .portlet-content -->			
+		</div> <!-- .portlet -->		
+							
+	</div> <!-- #content -->

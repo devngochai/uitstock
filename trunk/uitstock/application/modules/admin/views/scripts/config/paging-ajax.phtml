@@ -1,0 +1,21 @@
+<?php 
+	if ($this->players != null) {
+		$i = 0;
+		foreach ($this->players as $player) :
+			$i++;			
+			$time = date('H:i:s', $player['last_visit']);	
+			$browserInfo = Cloud_Model_Utli_CloudUtli::getBrowser($player['browser']);
+			$browser = $browserInfo['Browser'] . ' ' . $browserInfo['Version'];				
+			$os = Cloud_Model_Utli_CloudUtli::getOs($player['browser']);
+?>				
+<tr>
+	<td><?php echo $i ?></td>										
+	<td><a href="admin/player/view/id/<?php echo $player['id'] ?>"><?php echo $player['username'] ?></a></td>
+	<td><?php echo  $time ?></td>
+	<td><?php echo $player['ip'] ?></td>
+	<td><?php echo $browser ?></td>
+	<td><?php echo $os ?></td>
+	<td class="right"><?php echo $player['id'] ?></td>
+</tr>		
+<?php endforeach ?>
+<?php } ?>

@@ -1,0 +1,46 @@
+<style>
+	#form-role {
+		margin-left: 30px;
+	}	
+	
+	#form-role .in {
+		padding-left: 30px;
+	}	
+}
+</style>
+<form id="form-role" method="post" action="">		
+	<table>					
+			<?php foreach ($this->modules as $module): ?>		
+			<tr>				
+				<td width="10"></td>
+				<td><b><?php echo $module->name ?></b></td>
+			</tr>
+			<?php 
+				if (null != $this->privilegeTypes) {
+					foreach ($this->privilegeTypes as $privilegeType): if ($privilegeType['module_id'] == $module->id) {									
+			?>
+			<tr>				
+				<td><input type="checkbox" name="select[]" value="<?php echo $privilegeType['priId'] ?>"/></td>
+				<td class="in"><?php echo $privilegeType['name'] ?></td>
+			</tr>
+			<?php } endforeach; } ?>
+			<?php endforeach ?>
+									
+			<tr>				
+				<td colspan="2">
+					<div class="buttonrow">								
+					    <input type="hidden" name="roleId" value=<?php echo $this->roleId; ?> />
+					    <input type="hidden" name="roleName" value=<?php echo $this->name; ?> />
+						<button class="btn btn-orange" name="ok">OK</button>						
+					</div>
+				</td>
+			</tr>
+	
+	</table>
+</form>	
+
+
+																																																										
+	
+	
+	

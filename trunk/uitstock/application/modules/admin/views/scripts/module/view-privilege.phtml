@@ -1,0 +1,51 @@
+<div id="content" class="xfluid">
+	<div class="portlet x12">
+		<div class="portlet-header item privilege">
+			<h4>Xem privilege</h4>
+			<div class="float-right">											
+				<div class="global" id="<?php echo $this->privilege['privilege_id']; ?>" path1="admin/module/edit-privilege/id/<?php echo $this->privilege['privilege_id'] ?>/" path2="admin/module/delete-privilege" back="<?php echo $_SESSION['temp']; ?>"></div>																																																																
+                <?php 								
+	 				foreach ($this->button2 as $button) {
+	 					echo stripslashes($button['button2']);
+	 				}	 									 				
+				?>	
+				<a class="minibutton btn close">
+						<span><span class="icon close"></span>Đóng</span>
+				</a>							
+			</div>				
+		</div>
+		
+		<div class="portlet-content">
+			<?php if (null != $this->privilege) {?>									 							                													
+			<table cellpadding="0" cellspacing="0" border="0" class="display">
+				<tr>
+					<td width="90"><b>Privilege name:</b></td>
+					<td><?php echo $this->privilege['name']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Description:</b></td>
+					<td><?php echo $this->privilege['description']; ?></td>
+				</tr>	
+				<tr>
+					<td><b>Module:</b></td>					
+					<td><?php echo $this->privilege['module_name']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Button 1:</b></td>					
+					<td><?php echo stripslashes($this->privilege['button1']); ?></td>
+				</tr>
+				<tr>
+					<td><b>Button 2:</b></td>					
+					<td><?php echo $this->privilege['button2']; ?></td>
+				</tr>							
+				<tr>
+					<td><b>Published:</b></td>
+					<?php $published = ($this->privilege['published'] == 1) ? "Yes" : "No"; ?>
+					<td><?php echo $published; ?></td>
+				</tr>
+			</table>
+			<?php } ?>																																			
+		</div>
+	</div>			
+	
+</div><!--  end #content -->

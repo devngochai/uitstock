@@ -1,0 +1,21 @@
+<nav>
+	 <ul>
+	 	<?php	 	   	     
+	 		$i = 0; 
+	 		foreach ($items as $item):
+	 		 $i++;
+	 		 
+	 		 if ($i == 1) { $li = "first"; $a = "first-child"; } 
+	 		 
+     		 $active = ($_SESSION['nav-main'] == $item->name) ? "active" : ""; 
+
+	 		 if ($i == count($items)) { $li = "last"; $a = "last-child"; }
+	 	?>
+	 	 <li class="<?php echo $active .' '. $li ?>">
+	 	 	<a href="<?php echo $item->link ?>" class="<?php echo $a ?>" />
+	 	 		<?php echo $item->name ?>
+	 	 	</a>
+	 	 </li>	 	
+		 <?php endforeach ?>					 
+	 </ul>
+</nav>

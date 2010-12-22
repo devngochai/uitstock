@@ -1,0 +1,85 @@
+	<div id="content" class="xfluid">
+		<div class="portlet x12">
+			<div class="portlet-header item module">
+				<h4>Quản lý module</h4>
+				<div class="float-right">	
+				    <div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"></div>																								
+					<?php 								
+		 				foreach ($this->button1 as $button) {
+		 					echo stripslashes($button['button1']);
+		 				}	 									 				
+					?>																				
+				</div>				
+			</div>
+			
+			<?php 
+				$flag = false;		
+ 				foreach ($this->privileges as $privilege) {
+					if ($privilege['id'] == 64) $flag = true; 
+ 				}
+  				if ($flag) {					 				
+			?>
+			<div class="portlet-content">							 							                													
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" class="display">
+					<thead>					   						
+						<tr>
+							<th width="10">#</th>
+							<th width="10"></th>	
+							<th >Name</th>
+							<th >Description</th>							
+							<th class="center">Published</th>														
+							<th width="10" class="right">ID</th>							
+						</tr>
+					</thead>
+					<tbody class="rows no-link2">
+							<?php $i = 0; foreach ($this->modules as $module): $i++; $moduleId = $module['id']; ?>
+								<tr class="odd gradeX" >							
+									<td class="left"><?php echo $i ?></td>
+									<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($module['id']) ?>" value="<?php echo $this->escape($module['id']) ?>"  /></td> 
+									<td class="left"><a href="admin/module/view-module/id/<?php echo $this->escape($module['id']) ?>"><?php echo $this->escape($module['name']) ?></a></td>
+									<td class="left"><?php echo $this->escape($module['description']) ?></td>								
+									<td class="center">
+										<?php if ($module['published'] == 1) {
+											$title = "Click vào để ẩn Module";
+											$img =  $this->dirImg . '/AnHien_1.png'; 
+											} else {
+											$title = "Click vào để hiện Module";	
+											$img = $this->dirImg . '/AnHien_0.png';
+											}
+										?>
+										<img name="module" mapper="moduleMapper" path="admin/module/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($module['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+									</td>																															
+									<td class="right"><?php echo $this->escape($module['id']) ?></td>
+								</tr>		
+								<?php 
+									if (null != $this->privilegeTypes) {
+										foreach ($this->privilegeTypes as $privilegeType): $i++; if ($privilegeType['module_id'] == $moduleId) {									
+								?>
+									<tr class="odd gradeX" >							
+									<td class="left"><?php echo $i ?></td>
+									<td class="center"><input type="radio" name="select" id="<?php echo $this->escape($privilegeType['id']) ?>" value="<?php echo $this->escape($privilegeType['id']) ?>"  /></td> 
+									<td class="left inside"><a href="admin/module/view-privilege/id/<?php echo $this->escape($privilegeType['priId']) ?>"><?php echo $this->escape($privilegeType['name']) ?></a></td>
+									<td class="left"><?php echo $this->escape($privilegeType['description']) ?></td>								
+									<td class="center">
+										<?php if ($privilegeType['published'] == 1) {
+											$title = "Click vào để ẩn Privilege";
+											$img =  $this->dirImg . '/AnHien_1.png'; 
+											} else {
+											$title = "Click vào để hiện Privilege";	
+											$img = $this->dirImg . '/AnHien_0.png';
+											}
+										?>
+										<img name="module" mapper="moduleMapper" path="admin/module/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($privilegeType['published']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+									</td>																															
+									<td class="right"><?php echo $this->escape($privilegeType['priId']) ?></td>
+								</tr>							
+								<?php } endforeach; } ?>									
+							<?php endforeach ?>			
+					</tbody>
+				</table>
+				<?php echo $this->paginationControl($this->modules, 'Sliding', 'pagination.phtml'); ?>																																	
+			</div>
+			<?php } ?>
+		</div>			
+		
+	</div><!--  end #content -->

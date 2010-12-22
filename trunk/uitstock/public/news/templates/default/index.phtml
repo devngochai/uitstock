@@ -1,0 +1,32 @@
+<!--Force IE6 into quirks mode with this comment tag-->
+<?php echo $this->doctype(); ?>
+
+<html>
+<head>	
+	<!--[if IE]><base href="http://<?php echo $_SERVER['SERVER_NAME']; ?>"></base><![endif]-->
+    <!--[if !IE]>--><base href="http://<?php echo $_SERVER['SERVER_NAME']; ?>" /><!--<![endif]-->  
+    <?php 
+	    echo $this->headMeta()->setIndent(' ')."\n"; 
+	    echo $this->headTitle()->setIndent(' ')."\n"; 
+	    echo $this->headLink()->setIndent(' ')."\n";
+	    echo $this->headScript()->setIndent(' ')."\n"; 
+	?>    
+</head>
+<body>
+    <div id="wrapper">
+        <?php echo $this->render('header.phtml'); ?> 	
+        		 
+        <div id="mainContent">     
+			<div id="content">
+				<?php echo $this->layout()->content; ?>
+			</div> 
+            <?php echo $this->render('sidebar.phtml'); ?>
+             <div class="clear"></div><!-- end .clear --> 
+        </div><!-- end #mainContent -->                                  
+                  
+        <?php             
+             echo $this->render('footer.phtml'); 
+        ?>                             			    
+   </div><!-- End #wrapper -->	
+</body>
+</html>

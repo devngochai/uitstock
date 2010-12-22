@@ -1,0 +1,112 @@
+<p class="stick">Giao dịch</p>
+<table class="menu_style">
+	<tr>
+		<?php 
+			foreach ($this->items as $item) {
+				$class = ($item->alias == 'lich-su-giao-dich') ? "black" : "";	
+		?>
+		<td>
+			<a class="<?php echo $class ?>" href="<?php echo $item->link ?>">
+				<?php echo $item->name ?>
+			</a></td>
+		<td>&nbsp;|&nbsp;</td>
+		<?php } ?>			
+	</tr>	
+</table><br/>
+
+<?php if (isset($this->message)) {?>
+	<div class="warning2">
+		<?php echo $this->message; ?>
+	</div>					
+<?php } ?>
+
+<form method="post" action="">
+	<table class="trading_table" cellpadding="5">	
+		<tr><td class="trade_header" colspan="4"><span>Lịch sử giao dịch</span></td></tr>
+		<tr>
+			<td colspan="4">
+				<span class="title">Tài khoản:</span>
+				<span class="pink"><?php echo $_SESSION['player_name'] ?></span>
+			</td>		
+		</tr>
+		<tr>
+			<td>
+				<span class="title">Từ ngày</span>
+				<input type="text" class="datepicker input_trading" size="7" maxlength="14" />				
+			</td>	
+			<td>
+				<span class="title">Đến	 ngày</span>
+				<input type="text" class="datepicker input_trading" size="7" maxlength="14" />				
+			</td>	
+			<td>
+				<span class="title">Loại giao dịch</span>
+				<select class="select">
+					<option>Mua</option>
+					<option>Bán</option>
+				</select>
+			</td>					
+			<td>
+				<input type="submit" name="btnSubmit" class="Btn" value="Tìm kiếm" />
+			</td>			
+		</tr>
+		<tr>
+			<td class="statics-box2" colspan="4" style="padding-top: 20px">
+				<table width="100%" cellpadding="0" cellspacing="0">
+					<thead>
+						<tr>
+							<td>STT</td>
+							<td>Ngày</td>
+							<td>Loại GD</td>
+							<td>Mô tả</td>
+							<td>Giá trị</td>
+						</tr>						
+					</thead>
+					<tbody>
+						<tr>
+							<td align="center">11</td>
+							<td align="center">12/11/2010 10:50</td>
+							<td align="center">Trả tiền mua chứng khoán</td>
+							<td align="center">Trả tiền mua 100 cổ phiếu CII khớp với giá 33,800 </td>
+							<td align="right">3,380,000 </td>
+						</tr>
+						<tr>
+							<td align="center">12</td>
+							<td align="center">12/11/2010 10:50</td>
+							<td align="center">Đặt lệnh mua</td>
+							<td align="center">Giao dịch mua 100 cổ phiếu CII khớp với giá 33,800 </td>
+							<td align="right">100</td>
+						</tr>
+						<tr>
+							<td align="center">11</td>
+							<td align="center">12/11/2010 10:50</td>
+							<td align="center">Trả tiền mua chứng khoán</td>
+							<td align="center">Trả tiền mua 100 cổ phiếu CII khớp với giá 33,800 </td>
+							<td align="right">3,380,000 </td>
+						</tr>
+						<tr>
+							<td align="center">12</td>
+							<td align="center">12/11/2010 10:50</td>
+							<td align="center">Đặt lệnh mua</td>
+							<td align="center">Giao dịch mua 100 cổ phiếu CII khớp với giá 33,800 </td>
+							<td align="right">100</td>
+						</tr>																								
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="10px"></td>
+		</tr>	
+		<tr>
+			<td align="right" colspan="4">
+				Trang
+				<select>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>	
+				/3		
+			</td>
+		</tr>	
+	</table>
+</form>

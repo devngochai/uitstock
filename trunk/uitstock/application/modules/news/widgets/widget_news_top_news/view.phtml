@@ -1,0 +1,27 @@
+<?php
+	  $alias = $this->categoryMapper->getAliasByArticle($new[0]->id);
+	  $link = $alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new[0]->alias . '/';
+	  
+	  $relative_id = $new[0]->relative_id;				
+	  $relatives = $this->newsMapper->getRelativeArticle($relative_id);
+?>
+<section id="top-news">
+	<div class="left">
+		<a href="tintuc/<?php echo $link;?>">
+			<img src="<?php echo $new[0]->image;?>" width="200" height="200"/>
+		</a>
+	</div>
+	<div class="right">
+		<h2><a href="tintuc/<?php echo $link;?>"><?php echo stripslashes($new[0]->title) ?></a></h2>
+		<p>
+			<?php echo stripslashes($new[0]->summarize) ?><br />			
+			<?php 
+				if ($relatives != '') {	 echo "&gt;";								
+					foreach ($relatives as $relative) {
+			?>
+					<a href=""><?php echo stripslashes($relative->title) ?></a> /
+			<?php }} ?>
+		</p>              
+	</div>
+	<div class="clear"></div>
+</section>
