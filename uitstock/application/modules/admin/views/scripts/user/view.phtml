@@ -1,0 +1,64 @@
+<div id="content" class="xfluid">
+	<div class="portlet x12">
+		<div class="portlet-header item user">
+			<h4>Profile</h4>
+			<div class="float-right">											
+				<div class="global" id="<?php echo $this->user['id']; ?>" path1="admin/user/edit/id/<?php echo $this->user['id'] ?>/" path2="admin/user/delete" avatar="admin/user/change-avatar/id/<?php echo $this->user['id'] ?>/" password="admin/user/change-password/id/<?php echo $this->user['id'] ?>/" back="<?php echo $_SESSION['temp']; ?>"></div>																																																																
+				<?php 								
+	 				foreach ($this->button2 as $button) {
+	 					echo stripslashes($button['button2']);
+	 				}	 									 				
+				?>	
+				<a class="minibutton btn close">
+						<span><span class="icon close"></span>Đóng</span>
+				</a>							
+			</div>				
+		</div>
+		
+		<div class="portlet-content">	
+			<?php if (null != $this->user) { ?>								 							                													
+			<table cellpadding="0" cellspacing="0" border="0" class="display">
+				<tr>
+					<td width="90"><b>Họ tên:</b></td>
+					<td><?php echo $this->user['full_name']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Avatar:</b></td>
+					<td><img src="<?php echo $this->user['avatar']; ?>" width="150" height="100"/></td>
+				</tr>
+				<tr>
+					<td><b>Quyền hạn:</b></td>
+					<td><?php echo $this->user['role_name']; ?></td>
+				</tr>	
+				<tr>
+					<td><b>Giới tính:</b></td>
+					<?php $gender = ($this->user['gender'] == 1) ? "Con trai" : "Con gái"; ?>
+					<td><?php echo $gender; ?></td>
+				</tr>
+				<tr>
+					<td><b>Ngày sinh:</b></td>
+					<td><?php echo Cloud_Model_Utli_CloudUtli::showDay($this->user['birthday']); ?></td>
+				</tr>
+				<tr>
+					<td><b>Email:</b></td>
+					<td><?php echo $this->user['email']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Số điện thoại:</b></td>
+					<td><?php echo $this->user['mobile']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Địa chỉ:</b></td>
+					<td><?php echo $this->user['address']; ?></td>
+				</tr>										
+				<tr>
+					<td><b>Enable:</b></td>
+					<?php $enable = ($this->user['is_enable'] == 1) ? "Có" : "Không"; ?>
+					<td><?php echo $enable; ?></td>
+				</tr>
+			</table>
+			<?php } ?>																																	
+		</div>
+	</div>			
+	
+</div><!--  end #content -->

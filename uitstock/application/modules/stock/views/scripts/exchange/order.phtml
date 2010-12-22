@@ -1,0 +1,179 @@
+<p class="stick">Giao dịch</p>
+<table class="menu_style">
+	<tr>
+		<?php 
+			foreach ($this->items as $item) {
+				$class = ($item->alias == 'dat-lenh') ? "black" : "";	
+		?>
+		<td>
+			<a class="<?php echo $class ?>" href="<?php echo $item->link ?>">
+				<?php echo $item->name ?>
+			</a></td>
+		<td>&nbsp;|&nbsp;</td>
+		<?php } ?>			
+	</tr>	
+</table><br/>
+
+<?php if (isset($this->message)) {?>
+	<div class="warning2">
+		<?php echo $this->message; ?>
+	</div>					
+<?php } ?>
+
+<?php 
+	$money = Zend_Locale_Format::toNumber($_SESSION['money'],
+	                                    array('locale' => 'en')
+	);
+?>
+
+<form method="post" action="">
+	<table class="trading_table" cellpadding="5">	
+		<tr><td class="trade_header" colspan="4"><span>Đặt lệnh giao dịch</span></td></tr>
+		<tr>
+			<td valign="middle" align="left">
+				<span class="title">Tài khoản:</span>
+				<span class="pink"><?php echo $_SESSION['player_name'] ?></span>
+			</td>
+			<td></td>
+			<td valign="middle" align="left" colspan="2">
+				<span class="title">Số dư tiền mặt:</span>				
+				<span class="pink"><?php echo $money ?> VNĐ</span>			
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" align="left">
+				<span class="title">Loại giao dịch</span>
+				<select class="select">
+					<option>Mua</option>
+					<option>Bán</option>
+				</select>
+			</td>	
+			<td valign="middle" align="left">
+				<span class="title">Chứng khoán</span>
+				<select class="select">
+					<option>AAM</option>
+					<option>ABT</option>
+				</select>			
+			</td>
+			<td colspan="2">
+				<span class="company">Công ty cổ phần Thủy Sản Mekong (AAM)</span>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td valign="middle" align="center">
+				<span class="title">Giá trần: </span>
+				<span class="giatran">25</span>	
+			</td>
+			<td valign="middle" align="center">
+				<span class="title">Giá tham chiếu: </span>
+				<span class="giathamchieu">23.9</span>	
+			</td>
+			<td valign="middle" align="center">
+				<span class="title">Giá sàn: </span>
+				<span class="giasan">22.8</span>	
+			</td>						
+		</tr>
+		<tr>
+			<td valign="middle" align="left">
+				<span class="title">Loại lệnh</span>
+				<select class="select command">
+					<option value="limit">LIMIT</option>
+					<option value="ato">ATO</option>
+				</select>
+			</td>
+			<td>
+				<span class="title">Số lượng</span>
+				<input type="text" size="7" maxlength="15" class="input_trading"/>
+			</td>
+			<td valign="middle" align="left" colspan="2" class="price">
+				<span class="title">Giá đặt</span>
+				<input type="text" size="7" maxlength="15" class="input_trading"/>
+				<span class="normal">(*1000 VNĐ)</span>			
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" align="center" colspan="4">
+				<table width="70%" cellspacing="0" cellpadding="0" border="0">
+                     <tr>
+                     	  <td class="adv_top_left"></td>
+                          <td class="adv_top_center"></td>
+                          <td class="adv_top_right"></td>
+                     </tr>
+                     <tr>
+                          <td class="adv_left"></td>
+                          <td align="center">                                        
+					          <div class="statics-box2" style="width: 475px">			
+	                              <span class="stock-own">Chứng khoán sở hữu</span>
+                                  <div style="width: 100%; text-align: left; margin-top: 20px;">	
+<!--				              <span class="maroon">Hiện tại danh mục chứng khoán của bạn đang trống</span>-->
+								  <table width="100%" cellpadding="0" cellspacing="0">
+								  	<thead>
+								  		<tr>
+								  			<td width="100" align="left">Mã</td>
+								  			<td width="200">SL</td>
+								  			<td align="right">Giá TB</td>
+								  		</tr>
+								  	</thead>
+								  	<tbody>
+								  		<tr>
+								  			<td align="left">AGR</td>
+								  			<td align="center">100</td>
+								  			<td align="right">11,500 VNĐ</td>
+								  		</tr>
+								  		<tr>
+								  			<td align="left">ASM</td>
+								  			<td align="center">200</td>
+								  			<td align="right">54,750 VNĐ </td>
+								  		</tr>	
+								  		<tr>
+								  			<td align="left">BMC</td>
+								  			<td align="center">100</td>
+								  			<td align="right">22,300 VNĐ</td>
+								  		</tr>	
+								  		<tr>
+								  			<td align="left">CII</td>
+								  			<td align="center">100</td>
+								  			<td align="right">33,800 VNĐ</td>
+								  		</tr>	
+								  		<tr>
+								  			<td align="left">CYC</td>
+								  			<td align="center">100</td>
+								  			<td align="right">6,300 VNĐ</td>
+								  		</tr>								  									  									  									  		
+								  	</tbody>
+								  </table>	
+					              </div>					                     
+							</div>
+                           </td>
+                           <td class="adv_right"></td>
+                     </tr>
+    	             <tr>
+                          <td class="adv_bottom_left"></td>
+                          <td class="adv_bottom_center"></td>
+                          <td class="adv_bottom_right"></td>
+                      </tr>
+                 </table> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" name="btnSubmit" class="Btn" value="Đặt lệnh" />
+				<input type="reset" class="Btn" value="Hủy bỏ" />
+			</td>
+		</tr>
+		<tr>
+			<td height="10px"></td>
+		</tr>
+	</table>
+</form>
+
+<br/>
+<table class="trading_table" cellpadding="5">	
+		<tr><td class="trade_header" colspan="4"><span>Danh sách lệnh chờ khớp</span></td></tr>
+		<tr>
+			<td align="center" style="height: 19px;">
+				<span class="not_exists">Không tồn tại dữ liệu.</span>
+			</td>
+		</tr>
+</table>

@@ -1,0 +1,56 @@
+<nav>
+	<div class="MenuWrapper02">
+		<div class="MenuWrapper">
+			<ul id="menu">
+			   	<?php
+			   		$i = 0;	 	   	      	
+			 		foreach ($parentItem as $parent): 		
+				 		$i++;
+				 		
+						if ($parent->alias == 'index') { 
+							$li = "First";
+							$a = ($this->aliasP == 'chuyen-gia-nhan-dinh') ? "Active Hover" : "";
+						}	
+						if ($parent->alias == 'tin-tuc') {
+							$a = ($this->aliasP == null || $this->aliasP == 'tin-tuc') ? "Active Hover" : "";
+						}
+						if ($parent->alias == 'nhan-dinh-thi-truong') {
+							$a = ($this->aliasP == 'nhan-dinh-thi-truong') ? "Active Hover" : "";
+						}	
+						if ($parent->alias == 'kinh-te-viet-nam') {
+							$a = ($this->aliasP == 'kinh-te-viet-nam') ? "Active Hover" : "";
+						}	
+						if ($parent->alias == 'kinh-te-the-gioi') {
+							$a = ($this->aliasP == 'kinh-te-the-gioi') ? "Active Hover" : "";
+						}					
+						if ($parent->name == 'kien-thuc-dau-tu') {
+							$a = ($this->aliasP == 'kien-thuc-dau-tu') ? "Active Hover" : "";
+						}					
+				?>
+					<li class="<?php echo $li ?>">
+						<a href="<?php echo $parent->link ?>" class="<?php echo $a ?>" >
+							<span class="LeftBg"><span class="RightBg"><?php echo $parent->name ?></span></span>
+						</a>				
+							<ul>
+							<?php	 	   	      	
+						 		foreach ($subItem as $sub): 	
+						 			$j = 0; 			 		 
+							 		if ($sub->parent_id == $parent->id) {
+							 			$j++;					 			 
+										$liS = ($j == 1) ? "FirstItem" :  "";								
+							?>
+								<li class="<?php echo $liS ?>">
+									<a href="<?php echo $sub->link ?>" >
+										<?php echo $sub->name ?>
+									</a>
+								</li>						
+							<?php } endforeach ?>					                        
+							</ul>	
+					</li>
+				<?php endforeach ?> 
+			</ul>										          
+		</div>            
+	</div>        
+</nav>
+
+<p id="sub_nav"></p>

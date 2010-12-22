@@ -1,0 +1,13 @@
+<section id="top-3-news">
+	<?php 
+		foreach ($news as $new):
+		$alias = $this->categoryMapper->getAliasByArticle($new->id);
+	    $link =  $alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new->alias . '/'; 
+	?>
+	<article>
+		<a href="tintuc/<?php echo $link;?>"><img src="<?php echo $new->image; ?>" width="150px" height="120px" /></a>
+		<p><a href="tintuc/<?php echo $link;?>"><?php echo stripslashes($new->title)?></a></p>
+	</article>	
+	<?php endforeach ?>    
+	<div class="clear"></div>                  
+</section>     

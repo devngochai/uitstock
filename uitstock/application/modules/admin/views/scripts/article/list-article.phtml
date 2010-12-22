@@ -1,0 +1,109 @@
+	<div id="content" class="xfluid">
+		<div class="portlet x12">
+			<div class="portlet-header item article">
+				<h4>Quản lý tin</h4>
+				<div class="float-right">	
+					<div class="global" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>"/></div>
+					<?php 								
+		 				foreach ($this->button1 as $button) {
+		 					echo stripslashes($button['button1']);
+		 				}	 									 				
+					?>																													
+				</div>				
+			</div>
+			
+			<?php 
+				$flag = false;		
+ 				foreach ($this->privileges as $privilege) {
+					if ($privilege['id'] == 26) $flag = true; 
+ 				}
+  				if ($flag) {					 				
+			?>
+			<div class="portlet-content">								 							                													
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" class="display">
+					<thead>
+					    <tr class="tool">														
+							<th colspan="9">
+							   <div id="suggest"><br />
+							        <input type="text" size="25" value="" class="txtSearch" onkeyup="suggest(this.value);" onblur="fill();" path="admin/article/auto-suggestion-article" />							     
+							      	<div class="suggestionsBox" id="suggestions" style="display: none;">
+							      		<div class="suggestionList" id="suggestionsList"> &nbsp; </div>
+							      </div>
+							      <input type="button" value="Tìm kiếm" name="title" class="btnSearch" currentpath="<?php echo $_SERVER['REQUEST_URI']; ?>" />							      
+							   </div>
+							</th>														  							   						
+						</tr>
+						
+						<tr>
+							<th width="10">#</th>
+							<th width="10"><input type="checkbox" id="select_all"></th>	
+							<th>Tiêu đề</th>
+							<th class="center">Loại tin</th>	
+							<th class="center">Ngày</th>						
+							<th class="center">Published</th>
+							<th>Count</th>
+							<th class="center">Quan trọng</th>																																			
+							<th width="10" class="right">ID</th>							
+						</tr>
+					</thead>
+					<tbody class="rows no-link2">
+							<?php $i = 0; foreach ($this->articles as $article): $i++; if ($i % 2 != 0) {?>
+								<tr class="odd gradeX" >							
+									<td class="left"><?php echo $i ?></td>
+									<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($article['id']) ?>" value="<?php echo $this->escape($article['id']) ?>"  /></td> 
+									<td class="left"><a href="admin/article/view-article/id/<?php echo $this->escape($article['id']) ?>/"><?php echo $this->escape($article['title']) ?></a></td>
+									<td class="center"><?php echo $this->escape($article['cat_name']) ?></td>								
+									<td class="center">
+										<?php
+											  echo Cloud_Model_Utli_CloudUtli::showDate($article['create_date']); 						
+										?>
+									</td>
+									<td class="center">
+										<?php if ($article['published'] == 1) {
+											$title = "Click vào để ẩn tin";
+											$img =  $this->dirImg . '/AnHien_1.png'; 
+											} else {
+											$title = "Click vào để hiện tin";	
+											$img = $this->dirImg . '/AnHien_0.png';
+											}
+										?>
+										<img name="article" mapper="articleMapper" path="admin/article/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+									</td>
+									<td class="center"><?php echo $this->escape($article['count']) ?></td>	
+									<td class="center"><img class="important" src="<?php if ($article['important'] == 1) echo $this->dirImg; ?>/default.png" title="Quan trọng" pathDirImg="<?php echo $this->dirImg; ?>"/></td>																																							
+									<td class="right"><?php echo $this->escape($article['id']) ?></td>
+								</tr>		
+								<?php } else { ?>
+								<tr class="even gradeC">
+									<td class="left"><?php echo $i ?></td>
+									<td class="center"><input type="checkbox" name="select" id="<?php echo $this->escape($article['id']) ?>" value="<?php echo $this->escape($article['id']) ?>"  /></td> 
+									<td class="left"><a href="admin/article/view-article/id/<?php echo $this->escape($article['id']) ?>/"><?php echo $this->escape($article['title']) ?></a></td>
+									<td class="center"><?php echo $this->escape($article['cat_name']) ?></td>								
+									<td class="center">
+										<?php
+											  echo Cloud_Model_Utli_CloudUtli::showDate($article['create_date']); 						
+										?>
+									</td>
+									<td class="center">
+										<?php if ($article['published'] == 1) {
+											$title = "Click vào để ẩn tin";
+											$img =  $this->dirImg . '/AnHien_1.png'; 
+											} else {
+											$title = "Click vào để hiện tin";	
+											$img = $this->dirImg . '/AnHien_0.png';
+											}
+										?>
+										<img name="article" mapper="articleMapper" path="admin/article/set-publish" src="<?php echo $img; ?>" class="click pub" title="<?php echo $title; ?>" id="<?php echo $this->escape($article['id']) ?>" pathDirImg="<?php echo $this->dirImg; ?>" />
+									</td>	
+									<td class="center"><?php echo $this->escape($article['count']) ?></td>
+									<td class="center"><img class="important" src="<?php if ($article['important'] == 1) echo $this->dirImg; ?>/default.png" title="Quan trọng" pathDirImg="<?php echo $this->dirImg; ?>"/></td>																																							
+									<td class="right"><?php echo $this->escape($article['id']) ?></td>									
+							<?php } endforeach ?>			
+					</tbody>
+				</table>
+				<?php echo $this->paginationControl($this->articles, 'Sliding', 'pagination.phtml'); ?>																																		
+			</div>
+			<?php } ?>			
+		</div>			
+		
+	</div><!--  end #content -->

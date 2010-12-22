@@ -1,0 +1,94 @@
+	<div id="content" class="xfluid">
+			
+			<div class="portlet x12">
+				<div class="portlet-header item visitStatics">
+					<h4>Visit Statics</h4>						
+				</div>
+				
+				<div class="portlet-content">
+					<table width="100%" cellpadding="0" cellspacing="0" border="0" class="display">
+						<caption>Danh sách người chơi đang trực tuyến</caption>
+						<thead>							
+							<tr>
+								<th width="10">#</th>	
+								<th>UserName</th>
+								<th>Last visit</th>								
+								<th>IP</th>							
+								<th>Browser</th>															
+								<th>OS</th>
+								<th width="10" class="right">ID</th>							
+							</tr>
+						</thead>
+						<tbody class="rows no-link player_online_ajax" >						
+							<?php 
+								if ($this->players != null) {
+									$i = 0;
+									foreach ($this->players as $player) :
+										$i++;			
+										$time = date('H:i:s', $player['last_visit']);	
+										$browserInfo = Cloud_Model_Utli_CloudUtli::getBrowser($player['browser']);
+										$browser = $browserInfo['Browser'] . ' ' . $browserInfo['Version'];				
+										$os = Cloud_Model_Utli_CloudUtli::getOs($player['browser']);
+							?>				
+									<tr>
+										<td><?php echo $i ?></td>										
+										<td><a href="admin/player/view/id/<?php echo $player['id'] ?>"><?php echo $player['username'] ?></a></td>
+										<td><?php echo  $time ?></td>
+										<td><?php echo $player['ip'] ?></td>
+										<td><?php echo $browser ?></td>
+										<td><?php echo $os ?></td>
+										<td class="right"><?php echo $player['id'] ?></td>
+									</tr>		
+							<?php endforeach ?>
+							<?php } ?>											
+						</tbody>
+						<tr class="paging" align="center">
+								<td colspan="7"><?php echo $this->playerPaging ?></td>
+						</tr>
+					</table>	
+						
+					<br/><br/>
+					
+					<table width="100%" cellpadding="0" cellspacing="0" border="0" class="display">
+						<caption style="color: DarkRed;">Danh sách thành viên đang trực tuyến</caption>
+						<thead>							
+							<tr>
+								<th width="10">#</th>	
+								<th>Name</th>
+								<th>Last visit</th>								
+								<th>IP</th>							
+								<th>Browser</th>															
+								<th>OS</th>
+								<th width="10" class="right">ID</th>							
+							</tr>
+						</thead>
+						<tbody class="rows no-link3 player_online_ajax" >						
+							<?php 
+								if ($this->users != null) {
+									$i = 0;
+									foreach ($this->users as $user) :
+										$i++;			
+										$time = date('H:i:s', $user['last_visit']);	
+										$browserInfo = Cloud_Model_Utli_CloudUtli::getBrowser($user['browser']);
+										$browser = $browserInfo['Browser'] . ' ' . $browserInfo['Version'];				
+										$os = Cloud_Model_Utli_CloudUtli::getOs($user['browser']);
+							?>				
+									<tr>
+										<td><?php echo $i ?></td>										
+										<td><a href="admin/user/view/id/<?php echo $user['id'] ?>"><?php echo $user['full_name'] ?></a></td>
+										<td><?php echo  $time ?></td>
+										<td><?php echo $user['ip'] ?></td>
+										<td><?php echo $browser ?></td>
+										<td><?php echo $os ?></td>
+										<td class="right"><?php echo $user['id'] ?></td>
+									</tr>		
+							<?php endforeach ?>
+							<?php } ?>											
+						</tbody>
+						<tr class="paging" align="center">
+								<td colspan="7"><?php echo $this->userPaging ?></td>
+						</tr>
+					</table>																										
+				</div>
+			</div>
+	</div>		

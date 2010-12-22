@@ -1,0 +1,16 @@
+<?php 
+	$alias = $this->categoryMapper->getAliasByArticle($new[0]['id']);
+	$link = $alias['parent_alias'] . '/' . $alias['sub_alias'] . '/' . $new[0]['alias'] . '/';
+?>
+<section id="expert">
+	<div class="header-panel">
+		<h2><a style="color:white;" href="tintuc/chuyenmuc/chuyen-gia-nhan-dinh/">Nhận định chuyên gia</a></h2>
+	</div>
+	
+	<article>
+		<h2><a href="tintuc/<?php echo $link;?>"><?php echo stripcslashes($new[0]['title']) ?></a></h2>
+		<a href="tintuc/<?php echo $link;?>"><img src="<?php echo $new[0]['image'];?>" class="left" width="120" height="95"/></a>
+		<p class="right"><?php echo stripslashes($new[0]['summarize']) ?></p>
+		<div class="clear"></div>
+	</article>
+</section>

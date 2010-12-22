@@ -1,0 +1,25 @@
+<section id="rule-info" class="box-first">                    
+	<ul class="tabs">
+		<li><a href="#tab1-news">Luật chơi</a></li>
+		<li><a href="#tab2-news">Hướng dẫn đặt lệnh</a></li>
+		<li><a href="#tab3-news">Phím tắt</a></li>
+	</ul>
+	
+	<hgroup class="tab_container1">
+		<article id="tab1-news" class="tab_content1">  
+			<?php 
+				foreach ($rule as $row )                 			
+					echo $row['content'] 
+			?>							
+		</article>
+		<article id="tab2-news" class="tab_content1">
+		
+		</article>
+		<article id="tab3-news" class="tab_content1">
+			<?php 
+				foreach ($hotkey as $row )                 			
+					echo $row['content'] 
+			?>								
+		</article>
+	</hgroup>
+</section>
